@@ -1,0 +1,210 @@
+@import url('https://fonts.googleapis.com/css?family=Cairo:400,700');
+
+html {
+  position: relative;
+  min-height: 100%;
+
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 30px;
+  /* right to left addon */
+  direction: rtl;
+  font-size: 16px;
+}
+.footer {
+  position: absolute;
+  float: left;
+  text-align: center;
+  direction: ltr;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 30px;
+  padding-top: 5px;
+  background-color: black;
+  color: white;
+}
+
+#navigation-menu {
+	font-weight: 700;
+  font-family: 'Cairo', sans-serif;
+  font-size: 14px;
+}
+
+
+
+/*clients table show clients page*/
+.clients-table {
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.clients-table th {
+  text-align: center;
+}
+
+.clients-table caption {
+  text-align: center;
+}
+
+
+
+table {
+  font-weight: bold;
+}
+table caption {
+  text-align: center;
+  color: brown;
+}
+
+
+.issue-logo {
+  float: left;
+  text-align: center;
+}
+
+#client_id_form {
+  display: none;
+}
+
+#issue_id_form {
+  display: none;
+}
+
+
+
+#flash {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 10;
+  font-size: 20px;
+}
+
+
+#openent-img img {
+  float: left;
+  position: relative;
+  left: 100px;
+  min-width: 150px;
+  min-height: 150px;
+  max-width: 200px;
+  max-height: 200px;
+}
+
+
+
+td button {
+  margin-left: 10px;
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.hidden-div {
+  display: none;
+}
+
+textarea {
+  resize: none;
+}
+
+td ul li {
+  margin: 25px auto;
+}
+
+
+#dates-form {
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+  display: inline-block;
+}
+
+.dates-form {
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+  display: inline-block;
+  font-weight: bolder;
+  font-size: 18px;
+}
+
+#issues-page {
+font-size: 20px;
+font-weight: bold;
+margin: 0 auto;
+padding-top: 10px;
+max-width: 90%;
+}
+
+
+
+#searchpanel {
+  margin: 15px auto;
+  font-weight: bold;
+  max-width: 1000px;
+}
+
+#printable {
+  margin: 0 auto;
+  text-align: center;
+}
+
+/*Client Profile Page*/
+.client-name {
+  margin: 10px auto;
+  font-size: 18px;
+  min-width: 70px;
+  max-width: 150px;
+  text-align: center;
+  width: 100%;
+}
+
+.client-name img {
+  max-width: 150px;
+  min-width: 70px;
+}
+
+.profile-buttons{
+  width: 100%;
+  text-align: center;
+  margin: 10px auto;
+}
+
+.profile-buttons button {
+  margin: 0 10px !important;
+}
+
+#client_profile_div {
+  width: 100%;
+  text-align: center;
+}
+
+#client_profile_div div {
+  text-align: center;
+  font-size: 18px;
+}
+
+#UploadFileForm {
+  display: relative;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+}
+
+.panel-heading {
+  font-weight: bold;
+}
+
+#extentions {
+  display: inline-block;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 7px;
+  font-size: 16px;
+}
+
+
+
