@@ -17,7 +17,7 @@
         <link rel="stylesheet" href="{{ URL::asset('css/bootstrap-datepicker3.min.css.map') }}">
         <!-- font awesome -->
         <link rel="stylesheet" href="{{ URL::asset('css/font-awesome.min.css') }}">
-        <link rel="stylesheet" href="{{ URL::asset('css/bootstrap.css') }}">
+        <link rel="stylesheet" href="{{ URL::asset('css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ URL::asset('css/bootstrap_rtl.css') }}">
         <link rel="stylesheet" href="{{ URL::asset('css/style.css') }}">
 

@@ -11,6 +11,7 @@ body {
   /* right to left addon */
   direction: rtl;
   font-size: 16px;
+  font-family: sans-serif, arial;
 }
 .footer {
   position: absolute;
