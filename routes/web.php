@@ -18,3 +18,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+route::resource('people', 'PersonController', ['except' => ['create', 'edit']]);
