@@ -22,7 +22,7 @@
         <link rel="stylesheet" href="{{ URL::asset('css/style.css') }}">
 
         @yield('css')
-        </script>
+        
 
     
         
@@ -54,7 +54,8 @@
         <!-- date-time-picker -->
         <script src="{{ URL::asset('js/bootstrap-datepicker.min.js') }}"></script>
         <!-- Arabic support for datepicker -->
-        <script src="{{ URL::asset('locales/bootstrap-datepicker.ar.min.js') }}">
+        <script src="{{ URL::asset('locales/bootstrap-datepicker.ar.min.js') }}"></script>
+        <script src="{{ URL::asset('/js/popper.min.js') }}"></script>
 
 
 @yield('js')

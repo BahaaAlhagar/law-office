@@ -10,4 +10,23 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    protected function makeResponse($template, $objects = [])
+    {
+        if (\Request::ajax())
+        {
+            return response()->json($objects);
+        }
+
+        return view($template, $objects);
+    }
+
+
+    protected function respondWithMessage(string $message='', $objects = [])
+    {
+
+    	$data = array_merge(['item' => $objects], ['message' => $message]);
+
+    	return response()->json($data);
+    }
 }

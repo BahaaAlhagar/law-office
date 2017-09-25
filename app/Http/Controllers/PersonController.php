@@ -20,7 +20,9 @@ class PersonController extends Controller
      */
     public function index()
     {
-        return view('people/managePoeple');
+        $people = Person::orderBy('name')->paginate(10);
+
+        return $this->makeResponse('people/managePeople', compact('people'));
     }
 
 
@@ -46,16 +48,6 @@ class PersonController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Person  $person
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Person $person)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.

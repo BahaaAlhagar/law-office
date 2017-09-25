@@ -29,6 +29,7 @@ class User extends Authenticatable
 
     public function isAdmin()
     {
+        // leaving it 5 for now we may add other roles later
         return $this->group_id == 5;
     }
 }
