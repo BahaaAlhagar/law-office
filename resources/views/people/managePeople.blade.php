@@ -8,9 +8,7 @@
 <div id="managePeople">
 	
 
-	@foreach($people as $person)
-		{{$person->name}}
-	@endforeach
+
 </div>
 
 @endsection
