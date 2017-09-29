@@ -34,8 +34,6 @@ body {
 }
 
 
-
-
 table {
   text-align: center;
   width: 100%;
@@ -78,18 +76,18 @@ textarea {
 }
 
 
-
-
-
-
-
 td ul li {
   margin: 25px auto;
 }
 
 
+.btn {
+  font-weight: bold;
+}
 
-.dates-form {
+
+
+/*.dates-form {
   margin: 0 auto;
   text-align: center;
   width: 100%;
@@ -97,8 +95,6 @@ td ul li {
   font-weight: bolder;
   font-size: 18px;
 }
-
-
 
 
 
@@ -127,7 +123,7 @@ td ul li {
   text-align: center;
   margin-top: 7px;
   font-size: 16px;
-}
+}*/
 
 
 

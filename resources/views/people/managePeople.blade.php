@@ -6,12 +6,14 @@
 @section('content')
 
 <div id="managePeople">
-	قائمة الاشخاص المضافة فى التطبيق
-			<span class="pull-right">
-			<button class="btn btn-sm btn-success" data-toggle="modal" data-target="#addProvider">اضافة شخص</button>
-			</span>
-
 		<table v-if="people.length" class="table table-responsive table-striped table-bordered main-table">
+		<caption>
+			<span>
+				قائمة الاشخاص المضافة فى التطبيق
+			</span>
+			<button class="btn btn-sm btn-success pull-right" data-toggle="modal" data-target="#addPerson">اضافة شخص</button>
+			</span>
+		</caption>
 			<thead class="thead-inverse">
 				<tr>
 				<th>الاسم</th>

@@ -12,17 +12,6 @@ window.Vue = require('vue');
 import VueResource from 'vue-resource';
 import VuePaginator from 'vuejs-paginator';
 
-import Form from './partials/Form';
-
-import jquery from 'jquery';
-import toastr from 'toastr';
-import bootstrap from 'bootstrap';
-
-
-
-
-window.Form = Form;
-
 Vue.use(VueResource);
 
 import addPerson from './components/person/addPerson.vue';
