@@ -40,7 +40,7 @@
                     <div class="form-group">
                         <label for="phone" class="label">التليفون:</label>
                         
-                        <input type="number" id="phone" name="phone" class="form-control" v-model="form.phone"> 
+                        <input type="text" id="phone" name="phone" class="form-control" v-model="form.phone"> 
 
                         <span class="alert-danger" v-if="form.errors.has('phone')" v-text="form.errors.get('phone')"></span>
                     </div>
@@ -48,7 +48,7 @@
                     <div class="form-group">
                         <label for="idenity" class="label">الرقم القومى:</label>
                         
-                        <input type="number" id="idenity" name="idenity" class="form-control" v-model="form.idenity"> 
+                        <input type="text" id="idenity" name="idenity" class="form-control" v-model="form.idenity"> 
 
                         <span class="alert-danger" v-if="form.errors.has('idenity')" v-text="form.errors.get('idenity')"></span>
                     </div>
@@ -64,7 +64,7 @@
                     </div>
 
                     <div class="form-group heading">
-                        <button class="button btn-lg btn-success" :disabled="form.errors.any()">اضــافــة</button>
+                        <button class="button btn-lg btn-success" :disabled="form.errors.any()">تعديل</button>
                     </div>
                 </form>
 

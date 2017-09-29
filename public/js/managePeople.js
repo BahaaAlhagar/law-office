@@ -11159,7 +11159,7 @@ var managePeople = new Vue({
     people: [],
     person: [],
     current_view: '',
-    resource_url: '',
+    resource_url: '/people',
     options: {
       remote_data: 'people.data',
       remote_current_page: 'people.current_page',
@@ -11178,12 +11178,21 @@ var managePeople = new Vue({
       this.people.unshift(response.item);
       $('#addPerson').modal('hide');
       __WEBPACK_IMPORTED_MODULE_6_toastr___default.a.success(response.message);
+    },
+    editPerson: function editPerson(person) {
+      eventBus.$emit('editPerson', person);
+      $('#editPerson').modal('show');
+    },
+    afterPersonUpdated: function afterPersonUpdated(response) {
+      $('#editPerson').modal('hide');
+      __WEBPACK_IMPORTED_MODULE_6_toastr___default.a.info(response.message);
+      this.$refs.VP.fetchData('/people?page=' + this.$refs.VP.current_page);
     }
   },
   components: {
-    VPaginator: __WEBPACK_IMPORTED_MODULE_1_vuejs_paginator___default.a,
     addPerson: __WEBPACK_IMPORTED_MODULE_2__components_person_addPerson_vue___default.a,
-    editPerson: __WEBPACK_IMPORTED_MODULE_3__components_person_editPerson_vue___default.a
+    editPerson: __WEBPACK_IMPORTED_MODULE_3__components_person_editPerson_vue___default.a,
+    VPaginator: __WEBPACK_IMPORTED_MODULE_1_vuejs_paginator___default.a
   },
   created: function created() {
     var _this = this;
@@ -11194,6 +11203,10 @@ var managePeople = new Vue({
 
     eventBus.$on('personAdded', function (response) {
       return _this.afterPersonAdded(response);
+    });
+
+    eventBus.$on('personUpdated', function (response) {
+      return _this.afterPersonUpdated(response);
     });
   }
 });
@@ -24501,7 +24514,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "form-control",
     attrs: {
-      "type": "number",
+      "type": "text",
       "id": "phone",
       "name": "phone"
     },
@@ -24535,7 +24548,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "form-control",
     attrs: {
-      "type": "number",
+      "type": "text",
       "id": "idenity",
       "name": "idenity"
     },
@@ -24604,7 +24617,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "disabled": _vm.form.errors.any()
     }
-  }, [_vm._v("اضــافــة")])])])])])])])
+  }, [_vm._v("تعديل")])])])])])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "modal-header"
@@ -24643,7 +24656,7 @@ if (false) {
 var disposed = false
 var Component = __webpack_require__(7)(
   /* script */
-  null,
+  __webpack_require__(47),
   /* template */
   __webpack_require__(41),
   /* styles */
@@ -24681,8 +24694,250 @@ module.exports = Component.exports
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('span', [_vm._v("edit person component")])
-},staticRenderFns: []}
+  return _c('div', {
+    staticClass: "modal fade",
+    attrs: {
+      "id": "editPerson",
+      "role": "dialog",
+      "aria-labelledby": "myModalLabel"
+    }
+  }, [_c('div', {
+    staticClass: "modal-dialog",
+    attrs: {
+      "role": "document"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "modal-body"
+  }, [_c('form', {
+    attrs: {
+      "method": "POST",
+      "action": "/people"
+    },
+    on: {
+      "submit": function($event) {
+        $event.preventDefault();
+        _vm.onPersonUpdate($event)
+      },
+      "keydown": function($event) {
+        _vm.editForm.errors.clear($event.target.name)
+      },
+      "change": function($event) {
+        _vm.editForm.errors.clear($event.target.name)
+      }
+    }
+  }, [_c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "name"
+    }
+  }, [_vm._v("الاسم:")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editForm.name),
+      expression: "editForm.name"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "name",
+      "name": "name"
+    },
+    domProps: {
+      "value": (_vm.editForm.name)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.editForm.name = $event.target.value
+      }
+    }
+  }), _vm._v(" "), (_vm.editForm.errors.has('name')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.editForm.errors.get('name'))
+    }
+  }) : _vm._e()]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "location"
+    }
+  }, [_vm._v("محل الاقامة:")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editForm.location),
+      expression: "editForm.location"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "location",
+      "name": "location"
+    },
+    domProps: {
+      "value": (_vm.editForm.location)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.editForm.location = $event.target.value
+      }
+    }
+  }), _vm._v(" "), (_vm.editForm.errors.has('location')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.editForm.errors.get('location'))
+    }
+  }) : _vm._e()]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "phone"
+    }
+  }, [_vm._v("التليفون:")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editForm.phone),
+      expression: "editForm.phone"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "phone",
+      "name": "phone"
+    },
+    domProps: {
+      "value": (_vm.editForm.phone)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.editForm.phone = $event.target.value
+      }
+    }
+  }), _vm._v(" "), (_vm.editForm.errors.has('phone')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.editForm.errors.get('phone'))
+    }
+  }) : _vm._e()]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "idenity"
+    }
+  }, [_vm._v("الرقم القومى:")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editForm.idenity),
+      expression: "editForm.idenity"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "idenity",
+      "name": "idenity"
+    },
+    domProps: {
+      "value": (_vm.editForm.idenity)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.editForm.idenity = $event.target.value
+      }
+    }
+  }), _vm._v(" "), (_vm.editForm.errors.has('idenity')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.editForm.errors.get('idenity'))
+    }
+  }) : _vm._e()]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "is_client"
+    }
+  }, [_vm._v("الحاله:")]), _vm._v(" "), _c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editForm.is_client),
+      expression: "editForm.is_client"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "id": "is_client",
+      "name": "is_client"
+    },
+    on: {
+      "change": function($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        });
+        _vm.editForm.is_client = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+      }
+    }
+  }, [_c('option', {
+    attrs: {
+      "value": "1",
+      "selected": ""
+    }
+  }, [_vm._v("مــوكــل")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "0"
+    }
+  }, [_vm._v("لــيــس مــوكــل")])]), _vm._v(" "), (_vm.editForm.errors.has('is_client')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.editForm.errors.get('is_client'))
+    }
+  }) : _vm._e()]), _vm._v(" "), _c('div', {
+    staticClass: "form-group heading"
+  }, [_c('button', {
+    staticClass: "button btn-lg btn-success",
+    attrs: {
+      "disabled": _vm.editForm.errors.any()
+    }
+  }, [_vm._v("اضــافــة")])])])])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "modal-header"
+  }, [_c('button', {
+    staticClass: "close",
+    attrs: {
+      "type": "button",
+      "data-dismiss": "modal",
+      "aria-label": "Close"
+    }
+  }, [_c('span', {
+    attrs: {
+      "aria-hidden": "true"
+    }
+  }, [_vm._v("×")])]), _vm._v(" "), _c('span', {
+    staticClass: "form-control-static pull-left"
+  }, [_c('h4', {
+    staticClass: "modal-title",
+    attrs: {
+      "id": "myModalLabel"
+    }
+  }, [_vm._v(" اضافة شخص ")])])])
+}]}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
@@ -29229,6 +29484,130 @@ var Popover = function ($) {
 
 
 })();
+
+/***/ }),
+/* 47 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            editForm: new Form({
+                name: '',
+                location: '',
+                phone: '',
+                idenity: '',
+                is_client: '',
+                id: ''
+            })
+        };
+    },
+
+    methods: {
+        onPersonUpdate: function onPersonUpdate() {
+            this.editForm.patch('/people/' + this.editForm.id).then(function (response) {
+                return eventBus.$emit('personUpdated', response);
+            });
+        },
+        editPersonModal: function editPersonModal(person) {
+            this.editForm.name = person.name;
+            this.editForm.location = person.location;
+            this.editForm.phone = person.phone;
+            this.editForm.idenity = person.idenity;
+            this.editForm.is_client = person.is_client;
+            this.editForm.id = person.id;
+        }
+    },
+    created: function created() {
+        var _this = this;
+
+        eventBus.$on('editPerson', function (person) {
+            return _this.editPersonModal(person);
+        });
+    }
+});
 
 /***/ })
 /******/ ]);

@@ -38,7 +38,7 @@ const managePeople = new Vue({
     	people: [],
     	person: [],
     	current_view: '',
-    	resource_url: '',
+    	resource_url: '/people',
     	options: {
               remote_data: 'people.data',
               remote_current_page: 'people.current_page',
@@ -57,18 +57,29 @@ const managePeople = new Vue({
         this.people.unshift(response.item);
         $('#addPerson').modal('hide');
         toastr.success(response.message);
-      }
+      },
+      editPerson(person){
+        eventBus.$emit('editPerson', person);
+        $('#editPerson').modal('show');
+      },
+      afterPersonUpdated(response){
+        $('#editPerson').modal('hide');
+        toastr.info(response.message);
+        this.$refs.VP.fetchData('/people?page=' + this.$refs.VP.current_page);
+      },
    	},
     components: {
-      VPaginator: VuePaginator,
-    	addPerson: addPerson,
-    	editPerson: editPerson
+    	addPerson,
+    	editPerson,
+    	VPaginator: VuePaginator
     },
     created() {
     	axios.get('/people')
    		.then(response => this.people = response.data.people.data);
 
       eventBus.$on('personAdded', response => this.afterPersonAdded(response));
+      
+      eventBus.$on('personUpdated', response => this.afterPersonUpdated(response));
     }
 
 });
