@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class createPersonRequest extends FormRequest
+class updatePersonRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,8 +23,9 @@ class createPersonRequest extends FormRequest
      */
     public function rules()
     {
+        $person = $this->segment(2);
         return [
-            'name'      => 'required|min:2|max:70|unique:people',
+            'name'      => 'required|min:2|max:70|unique:people,name,' .$person,
             'location'  => 'required|min:2',
             'idenity'   => 'numeric|nullable',
             'phone'     => 'numeric|nullable',

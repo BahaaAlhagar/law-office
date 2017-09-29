@@ -64,7 +64,7 @@
                     </div>
 
                     <div class="form-group heading">
-                        <button class="button btn-lg btn-success" :disabled="editForm.errors.any()">اضــافــة</button>
+                        <button class="button btn-lg btn-success" :disabled="editForm.errors.any()">تـعــديــل</button>
                     </div>
                 </form>
 
@@ -87,13 +87,13 @@
                 phone: '',
                 idenity: '',
                 is_client: '',
-                id: ''
-            })
+            }),
+            id: '',
         };
         },
         methods: {
         onPersonUpdate() {
-            this.editForm.patch('/people/' + this.editForm.id)
+            this.editForm.patch('/people/' + this.id)
                 .then(response => eventBus.$emit('personUpdated', response));
             },
         editPersonModal(person){
@@ -102,7 +102,7 @@
         	this.editForm.phone = person.phone;
         	this.editForm.idenity = person.idenity;
         	this.editForm.is_client = person.is_client;
-        	this.editForm.id = person.id;
+        	this.id = person.id;
         }
         },
         created(){

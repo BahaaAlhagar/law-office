@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Person;
 use Illuminate\Http\Request;
 use App\Http\Requests\createPersonRequest;
+use App\Http\Requests\updatePersonRequest;
 
 class PersonController extends Controller
 {
@@ -48,7 +49,7 @@ class PersonController extends Controller
      */
     public function show(Person $person)
     {
-        //
+
     }
 
 
@@ -59,9 +60,10 @@ class PersonController extends Controller
      * @param  \App\Person  $person
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Person $person)
+    public function update(updatePersonRequest $request, Person $person)
     {
-        //
+        $person->update($request->all());
+        return $this->respondWithMessage('تم تحديث الشخص بنجاح!', $person);
     }
 
     /**

@@ -24914,7 +24914,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "disabled": _vm.editForm.errors.any()
     }
-  }, [_vm._v("اضــافــة")])])])])])])])
+  }, [_vm._v("تـعــديــل")])])])])])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "modal-header"
@@ -29579,15 +29579,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 location: '',
                 phone: '',
                 idenity: '',
-                is_client: '',
-                id: ''
-            })
+                is_client: ''
+            }),
+            id: ''
         };
     },
 
     methods: {
         onPersonUpdate: function onPersonUpdate() {
-            this.editForm.patch('/people/' + this.editForm.id).then(function (response) {
+            this.editForm.patch('/people/' + this.id).then(function (response) {
                 return eventBus.$emit('personUpdated', response);
             });
         },
@@ -29597,7 +29597,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.editForm.phone = person.phone;
             this.editForm.idenity = person.idenity;
             this.editForm.is_client = person.is_client;
-            this.editForm.id = person.id;
+            this.id = person.id;
         }
     },
     created: function created() {
