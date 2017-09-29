@@ -14,11 +14,4 @@ if (token) {
 }
 
 
-import Form from './partials/Form';
 
-window.$ = window.Jquery = require('jquery');
-
-import toastr from 'toastr';
-import bootstrap from 'bootstrap';
-
-window.Form = Form;

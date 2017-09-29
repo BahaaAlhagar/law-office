@@ -17,6 +17,19 @@ Vue.use(VueResource);
 import addPerson from './components/person/addPerson.vue';
 import editPerson from './components/person/editPerson.vue';
 
+
+import Form from './partials/Form';
+window.Form = Form;
+
+
+import jquery from 'jquery';
+import toastr from 'toastr';
+import bootstrap from 'bootstrap';
+
+
+
+
+
 window.eventBus = new Vue();
 
 const managePeople = new Vue({
@@ -39,7 +52,12 @@ const managePeople = new Vue({
    	methods: {
    		updateResource(data){
   			this.people = data;
-  		}
+  		},
+      afterPersonAdded(response){
+        this.people.unshift(response.item);
+        $('#addPerson').modal('hide');
+        toastr.success(response.message);
+      }
    	},
     components: {
     	addPerson,
@@ -49,6 +67,13 @@ const managePeople = new Vue({
     created() {
     	axios.get('/people')
    		.then(response => this.people = response.data.people.data);
+
+      eventBus.$on('personAdded', response => this.afterPersonAdded(response));
     }
 
 });
+
+
+toastr.options = {
+  "positionClass": "toast-bottom-right",
+}

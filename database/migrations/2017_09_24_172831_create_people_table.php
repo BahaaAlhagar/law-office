@@ -17,8 +17,8 @@ class CreatePeopleTable extends Migration
             $table->increments('id');
             $table->string('name')->unique();
             $table->string('location');
-            $table->string('idenity');
-            $table->string('phone');
+            $table->string('idenity')->nullable();
+            $table->string('phone')->nullable();
             $table->boolean('is_client');
             $table->timestamps();
             $table->softDeletes();

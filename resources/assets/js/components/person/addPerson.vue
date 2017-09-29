@@ -9,14 +9,14 @@
 
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                 <span class="form-control-static pull-left">
-                    <h4 class="modal-title" id="myModalLabel">اضافة</h4>
+                    <h4 class="modal-title" id="myModalLabel"> اضافة شخص </h4>
                 </span>
               </div>
 
-              <div class="modal-body" id="createProvider">
+              <div class="modal-body">
 
 
-                <form method="POST" action="/providers" @submit.prevent="onSubmit" @keydown="form.errors.clear($event.target.name)"
+                <form method="POST" action="/people" @submit.prevent="onPersonCreate" @keydown="form.errors.clear($event.target.name)"
                 @change="form.errors.clear($event.target.name)"
                 >
                     
@@ -63,8 +63,8 @@
                         <span class="alert-danger" v-if="form.errors.has('active')" v-text="form.errors.get('active')"></span>
                     </div>
 
-                    <div class="form-group">
-                        <button class="button btn-lg btn-success" :disabled="form.errors.any()">Create</button>
+                    <div class="form-group heading">
+                        <button type="submit" class="button btn-lg btn-success" :disabled="form.errors.any()">اضــافــة</button>
                     </div>
                 </form>
 
@@ -91,7 +91,7 @@
         };
         },
         methods: {
-        onSubmit() {
+        onPersonCreate() {
             this.form.post('/people')
                 .then(response => eventBus.$emit('personAdded', response));
             }

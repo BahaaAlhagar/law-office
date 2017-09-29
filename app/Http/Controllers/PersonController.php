@@ -34,7 +34,9 @@ class PersonController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $person = Person::create($request->all());
+
+        return $this->respondWithMessage('تم اضافة الشخص بنجاح!', $person);
     }
 
     /**

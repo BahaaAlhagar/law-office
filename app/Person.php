@@ -9,5 +9,7 @@ class Person extends Model
 {
     use SoftDeletes;
 
-    protected $dates = ['created_at'];
+    protected $dates = ['deleted_at'];
+
+    protected $guarded = ['id'];
 }
