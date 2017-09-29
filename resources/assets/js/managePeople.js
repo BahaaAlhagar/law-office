@@ -67,6 +67,16 @@ const managePeople = new Vue({
         toastr.info(response.message);
         this.$refs.VP.fetchData('/people?page=' + this.$refs.VP.current_page);
       },
+      deletePerson(person){
+        if(confirm('هل انت متاكد من حذف هذا الشخص')){
+        axios.delete('/people/' + person.id)
+        .then(response => this.onPersonDelete(response));
+      }
+    },
+      onPersonDelete(response){
+        this.$refs.VP.fetchData('/people?page=' + this.$refs.VP.current_page);
+        toastr.warning(response.data.message);
+      }
    	},
     components: {
     	addPerson,

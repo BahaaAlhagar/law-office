@@ -74,6 +74,7 @@ class PersonController extends Controller
      */
     public function destroy(Person $person)
     {
-        //
+        $person->delete();
+        return ['message' => 'تم حذف الشخص بنجاح'];
     }
 }

@@ -11187,6 +11187,19 @@ var managePeople = new Vue({
       $('#editPerson').modal('hide');
       __WEBPACK_IMPORTED_MODULE_6_toastr___default.a.info(response.message);
       this.$refs.VP.fetchData('/people?page=' + this.$refs.VP.current_page);
+    },
+    deletePerson: function deletePerson(person) {
+      var _this = this;
+
+      if (confirm('هل انت متاكد من حذف هذا الشخص')) {
+        axios.delete('/people/' + person.id).then(function (response) {
+          return _this.onPersonDelete(response);
+        });
+      }
+    },
+    onPersonDelete: function onPersonDelete(response) {
+      this.$refs.VP.fetchData('/people?page=' + this.$refs.VP.current_page);
+      __WEBPACK_IMPORTED_MODULE_6_toastr___default.a.warning(response.data.message);
     }
   },
   components: {
@@ -11195,18 +11208,18 @@ var managePeople = new Vue({
     VPaginator: __WEBPACK_IMPORTED_MODULE_1_vuejs_paginator___default.a
   },
   created: function created() {
-    var _this = this;
+    var _this2 = this;
 
     axios.get('/people').then(function (response) {
-      return _this.people = response.data.people.data;
+      return _this2.people = response.data.people.data;
     });
 
     eventBus.$on('personAdded', function (response) {
-      return _this.afterPersonAdded(response);
+      return _this2.afterPersonAdded(response);
     });
 
     eventBus.$on('personUpdated', function (response) {
-      return _this.afterPersonUpdated(response);
+      return _this2.afterPersonUpdated(response);
     });
   }
 });
