@@ -86,7 +86,7 @@
                 location: '',
                 phone: '',
                 idenity: '',
-                is_client: '',
+                is_client: ''
             })
         };
         },

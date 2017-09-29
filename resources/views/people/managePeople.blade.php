@@ -6,15 +6,15 @@
 	@section('css')
         <link href="{{ URL::asset('css/toastr.min.css') }}" rel="stylesheet">
 	@endsection
-	
+
 @section('content')
 
 <div id="managePeople">
 		<table v-if="people.length" class="table table-responsive table-striped table-bordered main-table">
 
-			<span class="heading">
+			<span class="heading col-md-12">
 				قائمة الاشخاص المضافة فى التطبيق
-			<button class="btn btn-sm btn-success" data-toggle="modal" data-target="#addPerson">اضافة شخص</button>
+			<button class="btn btn-sm btn-success pull-left" data-toggle="modal" data-target="#addPerson">اضافة شخص</button>
 			</span>
 			<thead class="thead-inverse">
 				<tr>

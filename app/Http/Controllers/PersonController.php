@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Person;
 use Illuminate\Http\Request;
+use App\Http\Requests\createPersonRequest;
 
 class PersonController extends Controller
 {
@@ -32,7 +33,7 @@ class PersonController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(createPersonRequest $request)
     {
         $person = Person::create($request->all());
 
