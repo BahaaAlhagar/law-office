@@ -60,9 +60,9 @@ const managePeople = new Vue({
       }
    	},
     components: {
-    	addPerson,
-    	editPerson,
-    	VPaginator: VuePaginator
+      VPaginator: VuePaginator,
+    	addPerson: addPerson,
+    	editPerson: editPerson
     },
     created() {
     	axios.get('/people')

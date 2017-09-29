@@ -11181,9 +11181,9 @@ var managePeople = new Vue({
     }
   },
   components: {
+    VPaginator: __WEBPACK_IMPORTED_MODULE_1_vuejs_paginator___default.a,
     addPerson: __WEBPACK_IMPORTED_MODULE_2__components_person_addPerson_vue___default.a,
-    editPerson: __WEBPACK_IMPORTED_MODULE_3__components_person_editPerson_vue___default.a,
-    VPaginator: __WEBPACK_IMPORTED_MODULE_1_vuejs_paginator___default.a
+    editPerson: __WEBPACK_IMPORTED_MODULE_3__components_person_editPerson_vue___default.a
   },
   created: function created() {
     var _this = this;
@@ -24592,17 +24592,16 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "value": "0"
     }
-  }, [_vm._v("لــيــس مــوكــل")])]), _vm._v(" "), (_vm.form.errors.has('active')) ? _c('span', {
+  }, [_vm._v("لــيــس مــوكــل")])]), _vm._v(" "), (_vm.form.errors.has('is_client')) ? _c('span', {
     staticClass: "alert-danger",
     domProps: {
-      "textContent": _vm._s(_vm.form.errors.get('active'))
+      "textContent": _vm._s(_vm.form.errors.get('is_client'))
     }
   }) : _vm._e()]), _vm._v(" "), _c('div', {
     staticClass: "form-group heading"
   }, [_c('button', {
     staticClass: "button btn-lg btn-success",
     attrs: {
-      "type": "submit",
       "disabled": _vm.form.errors.any()
     }
   }, [_vm._v("اضــافــة")])])])])])])])
@@ -24923,7 +24922,7 @@ var Errors = function () {
     }, {
         key: "record",
         value: function record(errors) {
-            this.errors = errors;
+            this.errors = errors.errors;
         }
 
         /**

@@ -60,11 +60,11 @@
                             <option value="0">لــيــس مــوكــل</option>
                         </select>
 
-                        <span class="alert-danger" v-if="form.errors.has('active')" v-text="form.errors.get('active')"></span>
+                        <span class="alert-danger" v-if="form.errors.has('is_client')" v-text="form.errors.get('is_client')"></span>
                     </div>
 
                     <div class="form-group heading">
-                        <button type="submit" class="button btn-lg btn-success" :disabled="form.errors.any()">اضــافــة</button>
+                        <button class="button btn-lg btn-success" :disabled="form.errors.any()">اضــافــة</button>
                     </div>
                 </form>
 

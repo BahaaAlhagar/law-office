@@ -24,11 +24,11 @@ class createPersonRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'      => 'required|min:2|max:70|unique:people,id',
+            'name'      => 'required|min:2|max:70|unique:people',
             'location'  => 'required|min:2',
             'idenity'   => 'nullable|number',
             'phone'     => 'nullable|number',
-            'is_active'     => 'required|boolean'
+            'is_client'     => 'required|boolean'
         ];
     }
 }
