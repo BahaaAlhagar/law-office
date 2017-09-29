@@ -1,50 +1,36 @@
-<!-- navigtaion bar start -->
-        <nav id="navigation-menu" class="navbar navbar-inverse">
-          <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand" href="/">الرئيسية</a>
-            </div>
+<nav id="navigation-menu" class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+  <a class="navbar-brand" href="/">الرئيسية</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-              <ul class="nav navbar-nav">
-                <li><a href="/dates"> الجـلــســات <span class="sr-only"></span></a></li>
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">المــوكلــــين <span class="caret"></span></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="/clients">عــرض الموكلــين</a></li>
-                    <li><a href="/clients/create">اضــافة مــوكــل</a></li>
-                    <li><a href="/clients/">تـعـديل مـوكــل</a></li>
-                  </ul>
-                </li>
-              </ul>
-              <ul class="nav navbar-nav navbar-right">
-                <li><a href="/records">أرقــام الحـصــر</a></li>
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">استكمال البيانات <span class="caret"></span></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="/completedata">ارقام القضايا والحصر</a></li>
-                    <li><a href="/olddates">قرارات الجلـــسات</a></li>
-                  </ul>
-                </li>
-                <li><a href="/timeout">مواعــيد الطـعـــون</a></li>
-                <li><a href="/officebackup">النسخ الاحتياطى</a></li>
-              </ul>
-              <form class="navbar-form navbar-left" method="post" action="/">
-              {{ CSRF_field() }}
-                <div class="form-group">
-                  <input type="text" name="searchinput" class="form-control" placeholder="اسم الموكل او الخصم او رقم الدعوى">
-                </div>
-                <button type="submit" class="btn btn-default"><b>ابـــحـــث</b></button>
-              </form>
-            </div><!-- /.navbar-collapse -->
-          </div><!-- /.container-fluid -->
-        </nav>
-        <!-- end of navigation -->
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav navbar-right">
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('people.index') }}"> الافراد <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Disabled</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown link
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+    </ul>
+
+    <form class="form-inline my-2 my-lg-0 mr-auto">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+
+  </div>
+</nav>
