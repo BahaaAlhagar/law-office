@@ -26,7 +26,7 @@ class ContractController extends Controller
 
         if($type == 'trashed')
         {
-            $contracts = Contract::onlyTrashed()->load('people')
+            $contracts = Contract::onlyTrashed()->with('people')
                             ->latest()->paginate(10);
         }
 
