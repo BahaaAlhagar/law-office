@@ -11,4 +11,5 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/assets/js/managePeople.js', 'public/js');
+mix.js('resources/assets/js/managePeople.js', 'public/js')
+	.js('resources/assets/js/manageContracts.js', 'public/js');

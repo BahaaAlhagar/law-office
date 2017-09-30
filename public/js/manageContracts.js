@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 40);
+/******/ 	return __webpack_require__(__webpack_require__.s = 48);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -28666,14 +28666,22 @@ var Popover = function ($) {
 })();
 
 /***/ }),
-/* 40 */
+/* 40 */,
+/* 41 */,
+/* 42 */,
+/* 43 */,
+/* 44 */,
+/* 45 */,
+/* 46 */,
+/* 47 */,
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(41);
+module.exports = __webpack_require__(49);
 
 
 /***/ }),
-/* 41 */
+/* 49 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -28681,10 +28689,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_resource__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuejs_paginator__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuejs_paginator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vuejs_paginator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_person_addPerson_vue__ = __webpack_require__(42);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_person_addPerson_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_person_addPerson_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_person_editPerson_vue__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_person_editPerson_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_person_editPerson_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_contract_addContract_vue__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_contract_addContract_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_contract_addContract_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_contract_editContract_vue__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_contract_editContract_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_contract_editContract_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__partials_Form__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jquery__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_jquery__);
@@ -28720,95 +28728,102 @@ window.Form = __WEBPACK_IMPORTED_MODULE_4__partials_Form__["a" /* default */];
 
 window.eventBus = new Vue();
 
-var managePeople = new Vue({
-  el: '#managePeople',
+var manageContracts = new Vue({
+  el: '#manageContracts',
   data: {
+    contracts: [],
     people: [],
     current_view: 'all',
-    resource_url: '/people',
+    resource_url: '/contracts',
     options: {
-      remote_data: 'people.data',
-      remote_current_page: 'people.current_page',
-      remote_last_page: 'people.last_page',
-      remote_next_page_url: 'people.next_page_url',
-      remote_prev_page_url: 'people.prev_page_url',
+      remote_data: 'contracts.data',
+      remote_current_page: 'contracts.current_page',
+      remote_last_page: 'contracts.last_page',
+      remote_next_page_url: 'contracts.next_page_url',
+      remote_prev_page_url: 'contracts.prev_page_url',
       next_button_text: 'التالى',
       previous_button_text: 'السابق'
     }
   },
   methods: {
     updateResource: function updateResource(data) {
-      this.people = data;
+      this.contracts = data;
     },
-    afterPersonAdded: function afterPersonAdded(response) {
-      this.people.unshift(response.item);
-      $('#addPerson').modal('hide');
-      __WEBPACK_IMPORTED_MODULE_6_toastr___default.a.success(response.message);
-    },
-    editPerson: function editPerson(person) {
-      eventBus.$emit('editPerson', person);
-      $('#editPerson').modal('show');
-    },
-    afterPersonUpdated: function afterPersonUpdated(response) {
-      $('#editPerson').modal('hide');
-      __WEBPACK_IMPORTED_MODULE_6_toastr___default.a.info(response.message);
-      this.reloadData();
-    },
-    deletePerson: function deletePerson(person) {
+
+    /*      afterPersonAdded(response){
+            this.contracts.unshift(response.item);
+            $('#addPerson').modal('hide');
+            toastr.success(response.message);
+          },
+          editPerson(person){
+            eventBus.$emit('editPerson', person);
+            $('#editPerson').modal('show');
+          },
+          afterPersonUpdated(response){
+            $('#editPerson').modal('hide');
+            toastr.info(response.message);
+            this.reloadData();
+          },
+          deletePerson(person){
+            if(confirm('هل انت متاكد من حذف هذا الشخص')){
+            axios.delete('/contracts/' + person.id)
+            .then(response => this.onPersonDelete(response));
+          }
+          },
+          onPersonDelete(response){
+            this.reloadData();
+            toastr.warning(response.data.message);
+          },*/
+    fetchContractsData: function fetchContractsData() {
       var _this = this;
 
-      if (confirm('هل انت متاكد من حذف هذا الشخص')) {
-        axios.delete('/people/' + person.id).then(function (response) {
-          return _this.onPersonDelete(response);
-        });
-      }
-    },
-    onPersonDelete: function onPersonDelete(response) {
-      this.reloadData();
-      __WEBPACK_IMPORTED_MODULE_6_toastr___default.a.warning(response.data.message);
-    },
-    fetchPPLData: function fetchPPLData() {
-      var _this2 = this;
-
       if (this.current_view == 'all') {
-        axios.get('/people').then(function (response) {
-          return _this2.people = response.data.people.data;
+        axios.get('/contracts').then(function (response) {
+          return _this.assignData(response);
         });
-        this.resource_url = '/people';
+        this.resource_url = '/contracts';
       }
-      if (this.current_view == 'clients') {
-        axios.get('/filtered-ppl/clients').then(function (response) {
-          return _this2.people = response.data.people.data;
+      if (this.current_view == '1') {
+        axios.get('/contract/1').then(function (response) {
+          return _this.assignData(response);
         });
-        this.resource_url = '/filtered-ppl/clients';
+        this.resource_url = '/contract/1';
       }
-      if (this.current_view == 'notClients') {
-        axios.get('/filtered-ppl/notclients').then(function (response) {
-          return _this2.people = response.data.people.data;
+      if (this.current_view == '2') {
+        axios.get('/contract/2').then(function (response) {
+          return _this.assignData(response);
         });
-        this.resource_url = '/filtered-ppl/notclients';
+        this.resource_url = '/contract/2';
+      }
+      if (this.current_view == '3') {
+        axios.get('/contract/3').then(function (response) {
+          return _this.assignData(response);
+        });
+        this.resource_url = '/contract/3';
       }
       if (this.current_view == 'trashed') {
-        axios.get('/filtered-ppl/trashed').then(function (response) {
-          return _this2.people = response.data.people.data;
+        axios.get('/contract/trashed').then(function (response) {
+          return _this.contracts = response.data.contracts.data;
         });
-        this.resource_url = '/filtered-ppl/trashed';
+        this.resource_url = '/contract/trashed';
       }
+    },
+    assignData: function assignData(response) {
+      this.contracts = response.data.contracts.data;
+      this.people = response.data.people;
     },
     reloadData: function reloadData() {
       this.$refs.VP.fetchData(this.resource_url + '?page=' + this.$refs.VP.current_page);
     },
-    restore: function restore(person) {
-      var _this3 = this;
 
-      axios.get('/people/' + person.id + '/restore').then(function (response) {
-        return _this3.personRestored(response);
-      });
-    },
-    personRestored: function personRestored(response) {
-      this.reloadData();
-      __WEBPACK_IMPORTED_MODULE_6_toastr___default.a.success(response.data.message);
-    },
+    /*      restore(person){
+            axios.get('/contracts/' + person.id + '/restore')
+              .then(response => this.personRestored(response));
+          },
+          personRestored(response){
+            this.reloadData();
+            toastr.success(response.data.message);
+          },*/
     printTable: function printTable() {
       $('.print-hidden').hide();
       $('.btn').hide();
@@ -28818,21 +28833,21 @@ var managePeople = new Vue({
     }
   },
   components: {
-    addPerson: __WEBPACK_IMPORTED_MODULE_2__components_person_addPerson_vue___default.a,
-    editPerson: __WEBPACK_IMPORTED_MODULE_3__components_person_editPerson_vue___default.a,
+    addContract: __WEBPACK_IMPORTED_MODULE_2__components_contract_addContract_vue___default.a,
+    editContract: __WEBPACK_IMPORTED_MODULE_3__components_contract_editContract_vue___default.a,
     VPaginator: __WEBPACK_IMPORTED_MODULE_1_vuejs_paginator___default.a
   },
   created: function created() {
-    var _this4 = this;
+    var _this2 = this;
 
-    this.fetchPPLData();
+    this.fetchContractsData();
 
     eventBus.$on('personAdded', function (response) {
-      return _this4.afterPersonAdded(response);
+      return _this2.afterPersonAdded(response);
     });
 
     eventBus.$on('personUpdated', function (response) {
-      return _this4.afterPersonUpdated(response);
+      return _this2.afterPersonUpdated(response);
     });
   }
 });
@@ -28842,15 +28857,15 @@ __WEBPACK_IMPORTED_MODULE_6_toastr___default.a.options = {
 };
 
 /***/ }),
-/* 42 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var Component = __webpack_require__(7)(
   /* script */
-  __webpack_require__(43),
+  null,
   /* template */
-  __webpack_require__(44),
+  __webpack_require__(52),
   /* styles */
   null,
   /* scopeId */
@@ -28858,9 +28873,9 @@ var Component = __webpack_require__(7)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "D:\\www\\law-office\\resources\\assets\\js\\components\\person\\addPerson.vue"
+Component.options.__file = "D:\\www\\law-office\\resources\\assets\\js\\components\\contract\\addContract.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] addPerson.vue: functional components are not supported with templates, they should use render functions.")}
+if (Component.options.functional) {console.error("[vue-loader] addContract.vue: functional components are not supported with templates, they should use render functions.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -28869,9 +28884,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-fc654cd2", Component.options)
+    hotAPI.createRecord("data-v-4222355e", Component.options)
   } else {
-    hotAPI.reload("data-v-fc654cd2", Component.options)
+    hotAPI.reload("data-v-4222355e", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -28882,789 +28897,76 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 43 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/* 51 */
+/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+var disposed = false
+var Component = __webpack_require__(7)(
+  /* script */
+  null,
+  /* template */
+  __webpack_require__(53),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "D:\\www\\law-office\\resources\\assets\\js\\components\\contract\\editContract.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] editContract.vue: functional components are not supported with templates, they should use render functions.")}
 
-/* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            form: new Form({
-                name: '',
-                location: '',
-                phone: '',
-                idenity: '',
-                is_client: ''
-            })
-        };
-    },
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-acac79a4", Component.options)
+  } else {
+    hotAPI.reload("data-v-acac79a4", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
 
-    methods: {
-        onPersonCreate: function onPersonCreate() {
-            this.form.post('/people').then(function (response) {
-                return eventBus.$emit('personAdded', response);
-            });
-        }
-    }
+module.exports = Component.exports
 
-});
 
 /***/ }),
-/* 44 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "modal fade",
-    attrs: {
-      "id": "addPerson",
-      "role": "dialog",
-      "aria-labelledby": "myModalLabel"
-    }
-  }, [_c('div', {
-    staticClass: "modal-dialog",
-    attrs: {
-      "role": "document"
-    }
-  }, [_c('div', {
-    staticClass: "modal-content"
-  }, [_vm._m(0), _vm._v(" "), _c('div', {
-    staticClass: "modal-body"
-  }, [_c('form', {
-    attrs: {
-      "method": "POST",
-      "action": "/people"
-    },
-    on: {
-      "submit": function($event) {
-        $event.preventDefault();
-        _vm.onPersonCreate($event)
-      },
-      "keydown": function($event) {
-        _vm.form.errors.clear($event.target.name)
-      },
-      "change": function($event) {
-        _vm.form.errors.clear($event.target.name)
-      }
-    }
-  }, [_c('div', {
-    staticClass: "form-group"
-  }, [_c('label', {
-    staticClass: "label",
-    attrs: {
-      "for": "name"
-    }
-  }, [_vm._v("الاسم:")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.form.name),
-      expression: "form.name"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "type": "text",
-      "id": "name",
-      "name": "name"
-    },
-    domProps: {
-      "value": (_vm.form.name)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.form.name = $event.target.value
-      }
-    }
-  }), _vm._v(" "), (_vm.form.errors.has('name')) ? _c('span', {
-    staticClass: "alert-danger",
-    domProps: {
-      "textContent": _vm._s(_vm.form.errors.get('name'))
-    }
-  }) : _vm._e()]), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
-  }, [_c('label', {
-    staticClass: "label",
-    attrs: {
-      "for": "location"
-    }
-  }, [_vm._v("محل الاقامة:")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.form.location),
-      expression: "form.location"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "type": "text",
-      "id": "location",
-      "name": "location"
-    },
-    domProps: {
-      "value": (_vm.form.location)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.form.location = $event.target.value
-      }
-    }
-  }), _vm._v(" "), (_vm.form.errors.has('location')) ? _c('span', {
-    staticClass: "alert-danger",
-    domProps: {
-      "textContent": _vm._s(_vm.form.errors.get('location'))
-    }
-  }) : _vm._e()]), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
-  }, [_c('label', {
-    staticClass: "label",
-    attrs: {
-      "for": "phone"
-    }
-  }, [_vm._v("التليفون:")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.form.phone),
-      expression: "form.phone"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "type": "text",
-      "id": "phone",
-      "name": "phone"
-    },
-    domProps: {
-      "value": (_vm.form.phone)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.form.phone = $event.target.value
-      }
-    }
-  }), _vm._v(" "), (_vm.form.errors.has('phone')) ? _c('span', {
-    staticClass: "alert-danger",
-    domProps: {
-      "textContent": _vm._s(_vm.form.errors.get('phone'))
-    }
-  }) : _vm._e()]), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
-  }, [_c('label', {
-    staticClass: "label",
-    attrs: {
-      "for": "idenity"
-    }
-  }, [_vm._v("الرقم القومى:")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.form.idenity),
-      expression: "form.idenity"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "type": "text",
-      "id": "idenity",
-      "name": "idenity"
-    },
-    domProps: {
-      "value": (_vm.form.idenity)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.form.idenity = $event.target.value
-      }
-    }
-  }), _vm._v(" "), (_vm.form.errors.has('idenity')) ? _c('span', {
-    staticClass: "alert-danger",
-    domProps: {
-      "textContent": _vm._s(_vm.form.errors.get('idenity'))
-    }
-  }) : _vm._e()]), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
-  }, [_c('label', {
-    staticClass: "label",
-    attrs: {
-      "for": "is_client"
-    }
-  }, [_vm._v("الحاله:")]), _vm._v(" "), _c('select', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.form.is_client),
-      expression: "form.is_client"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "id": "is_client",
-      "name": "is_client"
-    },
-    on: {
-      "change": function($event) {
-        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
-          return o.selected
-        }).map(function(o) {
-          var val = "_value" in o ? o._value : o.value;
-          return val
-        });
-        _vm.form.is_client = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-      }
-    }
-  }, [_c('option', {
-    attrs: {
-      "value": "1",
-      "selected": ""
-    }
-  }, [_vm._v("مــوكــل")]), _vm._v(" "), _c('option', {
-    attrs: {
-      "value": "0"
-    }
-  }, [_vm._v("لــيــس مــوكــل")])]), _vm._v(" "), (_vm.form.errors.has('is_client')) ? _c('span', {
-    staticClass: "alert-danger",
-    domProps: {
-      "textContent": _vm._s(_vm.form.errors.get('is_client'))
-    }
-  }) : _vm._e()]), _vm._v(" "), _c('div', {
-    staticClass: "form-group heading"
-  }, [_c('button', {
-    staticClass: "button btn-lg btn-success",
-    attrs: {
-      "disabled": _vm.form.errors.any()
-    }
-  }, [_vm._v("تعديل")])])])])])])])
+  return _vm._m(0)
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "modal-header"
-  }, [_c('button', {
-    staticClass: "close",
-    attrs: {
-      "type": "button",
-      "data-dismiss": "modal",
-      "aria-label": "Close"
-    }
-  }, [_c('span', {
-    attrs: {
-      "aria-hidden": "true"
-    }
-  }, [_vm._v("×")])]), _vm._v(" "), _c('span', {
-    staticClass: "form-control-static pull-left"
-  }, [_c('h4', {
-    staticClass: "modal-title",
-    attrs: {
-      "id": "myModalLabel"
-    }
-  }, [_vm._v(" اضافة شخص ")])])])
+  return _c('span', [_vm._v(" add contract "), _c('br')])
 }]}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-fc654cd2", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-4222355e", module.exports)
   }
 }
 
 /***/ }),
-/* 45 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var Component = __webpack_require__(7)(
-  /* script */
-  __webpack_require__(46),
-  /* template */
-  __webpack_require__(47),
-  /* styles */
-  null,
-  /* scopeId */
-  null,
-  /* moduleIdentifier (server only) */
-  null
-)
-Component.options.__file = "D:\\www\\law-office\\resources\\assets\\js\\components\\person\\editPerson.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] editPerson.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-3548378e", Component.options)
-  } else {
-    hotAPI.reload("data-v-3548378e", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 46 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            editForm: new Form({
-                name: '',
-                location: '',
-                phone: '',
-                idenity: '',
-                is_client: ''
-            }),
-            id: ''
-        };
-    },
-
-    methods: {
-        onPersonUpdate: function onPersonUpdate() {
-            this.editForm.patch('/people/' + this.id).then(function (response) {
-                return eventBus.$emit('personUpdated', response);
-            });
-        },
-        editPersonModal: function editPersonModal(person) {
-            this.editForm.name = person.name;
-            this.editForm.location = person.location;
-            this.editForm.phone = person.phone;
-            this.editForm.idenity = person.idenity;
-            this.editForm.is_client = person.is_client;
-            this.id = person.id;
-        }
-    },
-    created: function created() {
-        var _this = this;
-
-        eventBus.$on('editPerson', function (person) {
-            return _this.editPersonModal(person);
-        });
-    }
-});
-
-/***/ }),
-/* 47 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "modal fade",
-    attrs: {
-      "id": "editPerson",
-      "role": "dialog",
-      "aria-labelledby": "myModalLabel"
-    }
-  }, [_c('div', {
-    staticClass: "modal-dialog",
-    attrs: {
-      "role": "document"
-    }
-  }, [_c('div', {
-    staticClass: "modal-content"
-  }, [_vm._m(0), _vm._v(" "), _c('div', {
-    staticClass: "modal-body"
-  }, [_c('form', {
-    attrs: {
-      "method": "POST",
-      "action": "/people"
-    },
-    on: {
-      "submit": function($event) {
-        $event.preventDefault();
-        _vm.onPersonUpdate($event)
-      },
-      "keydown": function($event) {
-        _vm.editForm.errors.clear($event.target.name)
-      },
-      "change": function($event) {
-        _vm.editForm.errors.clear($event.target.name)
-      }
-    }
-  }, [_c('div', {
-    staticClass: "form-group"
-  }, [_c('label', {
-    staticClass: "label",
-    attrs: {
-      "for": "name"
-    }
-  }, [_vm._v("الاسم:")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.editForm.name),
-      expression: "editForm.name"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "type": "text",
-      "id": "name",
-      "name": "name"
-    },
-    domProps: {
-      "value": (_vm.editForm.name)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.editForm.name = $event.target.value
-      }
-    }
-  }), _vm._v(" "), (_vm.editForm.errors.has('name')) ? _c('span', {
-    staticClass: "alert-danger",
-    domProps: {
-      "textContent": _vm._s(_vm.editForm.errors.get('name'))
-    }
-  }) : _vm._e()]), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
-  }, [_c('label', {
-    staticClass: "label",
-    attrs: {
-      "for": "location"
-    }
-  }, [_vm._v("محل الاقامة:")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.editForm.location),
-      expression: "editForm.location"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "type": "text",
-      "id": "location",
-      "name": "location"
-    },
-    domProps: {
-      "value": (_vm.editForm.location)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.editForm.location = $event.target.value
-      }
-    }
-  }), _vm._v(" "), (_vm.editForm.errors.has('location')) ? _c('span', {
-    staticClass: "alert-danger",
-    domProps: {
-      "textContent": _vm._s(_vm.editForm.errors.get('location'))
-    }
-  }) : _vm._e()]), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
-  }, [_c('label', {
-    staticClass: "label",
-    attrs: {
-      "for": "phone"
-    }
-  }, [_vm._v("التليفون:")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.editForm.phone),
-      expression: "editForm.phone"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "type": "text",
-      "id": "phone",
-      "name": "phone"
-    },
-    domProps: {
-      "value": (_vm.editForm.phone)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.editForm.phone = $event.target.value
-      }
-    }
-  }), _vm._v(" "), (_vm.editForm.errors.has('phone')) ? _c('span', {
-    staticClass: "alert-danger",
-    domProps: {
-      "textContent": _vm._s(_vm.editForm.errors.get('phone'))
-    }
-  }) : _vm._e()]), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
-  }, [_c('label', {
-    staticClass: "label",
-    attrs: {
-      "for": "idenity"
-    }
-  }, [_vm._v("الرقم القومى:")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.editForm.idenity),
-      expression: "editForm.idenity"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "type": "text",
-      "id": "idenity",
-      "name": "idenity"
-    },
-    domProps: {
-      "value": (_vm.editForm.idenity)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.editForm.idenity = $event.target.value
-      }
-    }
-  }), _vm._v(" "), (_vm.editForm.errors.has('idenity')) ? _c('span', {
-    staticClass: "alert-danger",
-    domProps: {
-      "textContent": _vm._s(_vm.editForm.errors.get('idenity'))
-    }
-  }) : _vm._e()]), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
-  }, [_c('label', {
-    staticClass: "label",
-    attrs: {
-      "for": "is_client"
-    }
-  }, [_vm._v("الحاله:")]), _vm._v(" "), _c('select', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.editForm.is_client),
-      expression: "editForm.is_client"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "id": "is_client",
-      "name": "is_client"
-    },
-    on: {
-      "change": function($event) {
-        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
-          return o.selected
-        }).map(function(o) {
-          var val = "_value" in o ? o._value : o.value;
-          return val
-        });
-        _vm.editForm.is_client = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-      }
-    }
-  }, [_c('option', {
-    attrs: {
-      "value": "1",
-      "selected": ""
-    }
-  }, [_vm._v("مــوكــل")]), _vm._v(" "), _c('option', {
-    attrs: {
-      "value": "0"
-    }
-  }, [_vm._v("لــيــس مــوكــل")])]), _vm._v(" "), (_vm.editForm.errors.has('is_client')) ? _c('span', {
-    staticClass: "alert-danger",
-    domProps: {
-      "textContent": _vm._s(_vm.editForm.errors.get('is_client'))
-    }
-  }) : _vm._e()]), _vm._v(" "), _c('div', {
-    staticClass: "form-group heading"
-  }, [_c('button', {
-    staticClass: "button btn-lg btn-success",
-    attrs: {
-      "disabled": _vm.editForm.errors.any()
-    }
-  }, [_vm._v("تـعــديــل")])])])])])])])
+  return _vm._m(0)
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "modal-header"
-  }, [_c('button', {
-    staticClass: "close",
-    attrs: {
-      "type": "button",
-      "data-dismiss": "modal",
-      "aria-label": "Close"
-    }
-  }, [_c('span', {
-    attrs: {
-      "aria-hidden": "true"
-    }
-  }, [_vm._v("×")])]), _vm._v(" "), _c('span', {
-    staticClass: "form-control-static pull-left"
-  }, [_c('h4', {
-    staticClass: "modal-title",
-    attrs: {
-      "id": "myModalLabel"
-    }
-  }, [_vm._v(" اضافة شخص ")])])])
+  return _c('span', [_vm._v(" edit contract "), _c('br')])
 }]}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-3548378e", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-acac79a4", module.exports)
   }
 }
 

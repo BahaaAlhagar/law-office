@@ -13,15 +13,15 @@
 		يمكنك اضافة او تعديل او حذف التوكيلات فى هذه الصفحة
 </div>
 
-<div id="managePeople">
+<div id="manageContracts">
 		<div class="heading col-md-12 print-hidden">
 			اعرض 
-			<select v-model="current_view" @change="fetchPPLData()">
+			<select v-model="current_view" @change="fetchContractsData()">
 				<option value="all">الكل</option>
-				<option value="clients">التوكيلات العاة</option>
-				<option value="notClients">التوكيلات الخاصة</option>
-				<option value="trashed">عقود الوكالة</option>
-				<option value="trashed">الحذوفة</option>
+				<option value="1">التوكيلات العامة</option>
+				<option value="2">التوكيلات الخاصة</option>
+				<option value="3">عقود الوكالة</option>
+				<option value="trashed">المحذوفة</option>
 			</select>
 		</div>
 		<table v-if="contracts.length" class="table table-responsive table-striped table-bordered main-table">
@@ -43,16 +43,39 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr v-for="contract in people" :key="contract.id">
-					<td><a :href="'/people/' + contract.id"> @{{ contract.name }} </a></td>
-					<td> @{{ contract.location }} </td>
-					<td> @{{ contract.phone }} </td>
-					<td v-if="current_view == 'all' && contract.is_client">
-						<span class="green"> مــوكـل </span> 
+				<tr v-for="contract in contracts" :key="contract.id">
+					<td> 
+						@{{ contract.number }} لسنة @{{ contract.year }}<br>
+						حرف @{{ contract.letter }}
 					</td>
-					<td v-if="current_view == 'all' && !contract.is_client">
-						<span class="red"> ليس مـــوكــل </span> 
+
+					<td v-if="contract.type == 1">
+						<span class="brown">
+							توكيل عام <br>
+						</span>
+					 	@{{ contract.office }} 
 					</td>
+					<td v-if="contract.type == 2">
+						<span class="blue">
+							توكيل خاص <br>
+						</span>
+					 	@{{ contract.office }} 
+					</td>
+					<td v-if="contract.type == 3">
+						<span class="green">
+							عقد وكالة <br>
+						</span>
+					 	@{{ contract.office }} 
+					</td>
+
+					<td> @{{ contract.archive_number }} </td>
+
+					<td>
+						<ul>
+							<li v-for="person in contract.people">@{{ person.name }}</li>
+						</ul>
+					</td>
+
 					<td v-if="current_view != 'trashed'" class="print-hidden">
 						<button @click="editContract(contract)" data-toggle="modal" class="btn btn-sm btn-info" type="button">تـعــديل</button>
 						<button @click="deleteContract(contract)" class="btn btn-sm btn-danger" type="button">حـذف</button>

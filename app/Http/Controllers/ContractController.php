@@ -20,12 +20,13 @@ class ContractController extends Controller
 
         if($type >= 1 && $type <= 3)
         {
-            $contracts = $contracts->where('type', $type)->paginate(10);
+            $contracts = Contract::with('people')
+                ->where('type', $type)->paginate(10);
         }
 
         if($type == 'trashed')
         {
-            $contracts = Contract::onlyTrashed()->load('contracts')
+            $contracts = Contract::onlyTrashed()->load('people')
                             ->latest()->paginate(10);
         }
 

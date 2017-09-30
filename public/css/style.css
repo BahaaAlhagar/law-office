@@ -75,13 +75,21 @@ table a {
   color: green;
 }
 
+.blue {
+  color: blue;
+}
+
+.brown {
+  color: brown;
+}
+
 textarea {
   resize: none;
 }
 
 
 td ul li {
-  margin: 25px auto;
+  list-style-type:none;
 }
 
 
