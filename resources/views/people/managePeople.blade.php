@@ -31,7 +31,7 @@
 			</span>
 			<span class="mr-auto">
 			<button class="btn btn-sm btn-success pull-left" data-toggle="modal" data-target="#addPerson">اضافة شخص</button>
-			<button @click.prevent="printTable()" class="btn btn-sm btn-info pull-left">طباعة الجدول</button>
+			<button @click="printTable()" class="btn btn-sm btn-info pull-left">طباعة الجدول</button>
 			</span>
 			<thead class="thead-inverse">
 				<tr>
