@@ -20,9 +20,27 @@ class PersonController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($filter = null)
     {
-        $people = Person::orderBy('name')->paginate(10);
+        $people = Person::orderBy('name')->paginate(15);
+
+        if($filter == 'clients')
+        {
+        $people = Person::where('is_client', 1)
+            ->orderBy('name')->paginate(15);
+        }
+
+        if($filter == 'notclients')
+        {
+        $people = Person::where('is_client', 0)
+            ->orderBy('name')->paginate(15);
+        }
+
+        if($filter == 'trashed')
+        {
+        $people = Person::onlyTrashed()
+            ->orderBy('name')->paginate(15);
+        }
 
         return $this->makeResponse('people/managePeople', compact('people'));
     }

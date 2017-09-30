@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Cairo:400,700');
+@import url('https://fonts.googleapis.com/css?family=Amiri:700');
 
 html {
   position: relative;
@@ -86,11 +87,13 @@ td ul li {
 
 .btn {
   font-weight: bold;
+  margin: 0 5px;
 }
 
 .heading {
   text-align: center;
   font-weight: bold;
+  font-family: 'Amiri', sans-serif, arial;
 }
 
 .modal {

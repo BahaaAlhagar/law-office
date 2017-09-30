@@ -36,8 +36,7 @@ const managePeople = new Vue({
     el: '#managePeople',
     data: {
     	people: [],
-    	person: [],
-    	current_view: '',
+    	current_view: 'all',
     	resource_url: '/people',
     	options: {
               remote_data: 'people.data',

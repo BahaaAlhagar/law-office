@@ -11118,12 +11118,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_person_addPerson_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_person_addPerson_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_person_editPerson_vue__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_person_editPerson_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_person_editPerson_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__partials_Form__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__partials_Form__ = __webpack_require__(43);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jquery__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_jquery__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_toastr__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_toastr__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_toastr___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_toastr__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_bootstrap__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_bootstrap__ = __webpack_require__(47);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_bootstrap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_bootstrap__);
 
 /**
@@ -11157,8 +11157,7 @@ var managePeople = new Vue({
   el: '#managePeople',
   data: {
     people: [],
-    person: [],
-    current_view: '',
+    current_view: 'all',
     resource_url: '/people',
     options: {
       remote_data: 'people.data',
@@ -24669,9 +24668,9 @@ if (false) {
 var disposed = false
 var Component = __webpack_require__(7)(
   /* script */
-  __webpack_require__(47),
-  /* template */
   __webpack_require__(41),
+  /* template */
+  __webpack_require__(42),
   /* styles */
   null,
   /* scopeId */
@@ -24704,6 +24703,130 @@ module.exports = Component.exports
 
 /***/ }),
 /* 41 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            editForm: new Form({
+                name: '',
+                location: '',
+                phone: '',
+                idenity: '',
+                is_client: ''
+            }),
+            id: ''
+        };
+    },
+
+    methods: {
+        onPersonUpdate: function onPersonUpdate() {
+            this.editForm.patch('/people/' + this.id).then(function (response) {
+                return eventBus.$emit('personUpdated', response);
+            });
+        },
+        editPersonModal: function editPersonModal(person) {
+            this.editForm.name = person.name;
+            this.editForm.location = person.location;
+            this.editForm.phone = person.phone;
+            this.editForm.idenity = person.idenity;
+            this.editForm.is_client = person.is_client;
+            this.id = person.id;
+        }
+    },
+    created: function created() {
+        var _this = this;
+
+        eventBus.$on('editPerson', function (person) {
+            return _this.editPersonModal(person);
+        });
+    }
+});
+
+/***/ }),
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -24960,11 +25083,11 @@ if (false) {
 }
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Errors__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Errors__ = __webpack_require__(44);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -25126,7 +25249,7 @@ var Form = function () {
 /* harmony default export */ __webpack_exports__["a"] = (Form);
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -25218,7 +25341,7 @@ var Errors = function () {
 /* harmony default export */ __webpack_exports__["a"] = (Errors);
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
@@ -25650,11 +25773,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
         })();
     }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-}(__webpack_require__(45)));
+}(__webpack_require__(46)));
 
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports) {
 
 module.exports = function() {
@@ -25663,7 +25786,7 @@ module.exports = function() {
 
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports) {
 
 /*!
@@ -29497,130 +29620,6 @@ var Popover = function ($) {
 
 
 })();
-
-/***/ }),
-/* 47 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            editForm: new Form({
-                name: '',
-                location: '',
-                phone: '',
-                idenity: '',
-                is_client: ''
-            }),
-            id: ''
-        };
-    },
-
-    methods: {
-        onPersonUpdate: function onPersonUpdate() {
-            this.editForm.patch('/people/' + this.id).then(function (response) {
-                return eventBus.$emit('personUpdated', response);
-            });
-        },
-        editPersonModal: function editPersonModal(person) {
-            this.editForm.name = person.name;
-            this.editForm.location = person.location;
-            this.editForm.phone = person.phone;
-            this.editForm.idenity = person.idenity;
-            this.editForm.is_client = person.is_client;
-            this.id = person.id;
-        }
-    },
-    created: function created() {
-        var _this = this;
-
-        eventBus.$on('editPerson', function (person) {
-            return _this.editPersonModal(person);
-        });
-    }
-});
 
 /***/ })
 /******/ ]);

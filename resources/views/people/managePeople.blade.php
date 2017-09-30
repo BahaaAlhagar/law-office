@@ -9,12 +9,29 @@
 
 @section('content')
 
+<div class="col-md-12 alert alert-success heading">
+	يمكنك التحكم فى الاشخاص فى هذه الصفحة<br>
+	يتم استخدام الاشخاص كاطراف فى القضايا فيما بعد سواء كانوا موكلين او خصوم او اطراف اخرى فى الخصومة
+</div>
+
 <div id="managePeople">
+		<div class="heading col-md-12">
+			اعرض 
+			<select v-model="current_view">
+				<option value="all">الكل</option>
+				<option value="clients">الموكلين</option>
+				<option value="notClients">الاطراف الاخرى</option>
+				<option value="trashed">المحذوفين</option>
+			</select>
+		</div>
 		<table v-if="people.length" class="table table-responsive table-striped table-bordered main-table">
 
-			<span class="heading col-md-12">
+			<span class="heading mr-auto">
 				قائمة الاشخاص المضافة فى التطبيق
+			</span>
+			<span class="mr-auto">
 			<button class="btn btn-sm btn-success pull-left" data-toggle="modal" data-target="#addPerson">اضافة شخص</button>
+			<button class="btn btn-sm btn-info pull-left">طباعة الجدول</button>
 			</span>
 			<thead class="thead-inverse">
 				<tr>

@@ -19,5 +19,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+route::get('/filtered-ppl/{filter?}', 'PersonController@index');
 
 route::resource('people', 'PersonController', ['except' => ['create', 'edit']]);

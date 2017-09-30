@@ -7,7 +7,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav navbar-right">
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('people.index') }}"> الافراد <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="{{ route('people.index') }}"> الاشخاص </a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Link</a>
