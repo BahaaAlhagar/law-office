@@ -9,13 +9,13 @@
 
 @section('content')
 
-<div class="col-md-12 alert alert-success heading">
+<div class="col-md-12 alert alert-success heading print-hidden">
 	يمكنك التحكم فى الاشخاص فى هذه الصفحة<br>
 	يتم استخدام الاشخاص كاطراف فى القضايا فيما بعد سواء كانوا موكلين او خصوم او اطراف اخرى فى الخصومة
 </div>
 
 <div id="managePeople">
-		<div class="heading col-md-12">
+		<div class="heading col-md-12 print-hidden">
 			اعرض 
 			<select v-model="current_view" @change="fetchPPLData()">
 				<option value="all">الكل</option>
@@ -31,7 +31,7 @@
 			</span>
 			<span class="mr-auto">
 			<button class="btn btn-sm btn-success pull-left" data-toggle="modal" data-target="#addPerson">اضافة شخص</button>
-			<button class="btn btn-sm btn-info pull-left">طباعة الجدول</button>
+			<button @click.prevent="printTable()" class="btn btn-sm btn-info pull-left">طباعة الجدول</button>
 			</span>
 			<thead class="thead-inverse">
 				<tr>
@@ -57,7 +57,7 @@
 						<button @click="editPerson(person)" data-toggle="modal" class="btn btn-sm btn-info" type="button">تـعــديل</button>
 						<button @click="deletePerson(person)" class="btn btn-sm btn-danger" type="button">حـذف</button>
 					</td>
-					<td v-else>
+					<td v-else class="print-hidden">
 						<button @click="restore(person)" data-toggle="modal" class="btn btn-sm btn-success" type="button">استرجاع</button>
 					</td>
 				</tr>

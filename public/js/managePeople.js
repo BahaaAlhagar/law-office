@@ -11241,6 +11241,13 @@ var managePeople = new Vue({
     personRestored: function personRestored(response) {
       this.reloadData();
       __WEBPACK_IMPORTED_MODULE_6_toastr___default.a.success(response.data.message);
+    },
+    printTable: function printTable() {
+      $('.print-hidden').hide();
+      $('.btn').hide();
+      window.print();
+      $('.print-hidden').show();
+      $('.btn').show();
     }
   },
   components: {

@@ -22,24 +22,24 @@ class PersonController extends Controller
      */
     public function index($filter = null)
     {
-        $people = Person::orderBy('name')->paginate(15);
+        $people = Person::orderBy('name')->paginate(14);
 
         if($filter == 'clients')
         {
         $people = Person::where('is_client', 1)
-            ->orderBy('name')->paginate(15);
+            ->orderBy('name')->paginate(14);
         }
 
         if($filter == 'notclients')
         {
         $people = Person::where('is_client', 0)
-            ->orderBy('name')->paginate(15);
+            ->orderBy('name')->paginate(14);
         }
 
         if($filter == 'trashed')
         {
         $people = Person::onlyTrashed()
-            ->orderBy('name')->paginate(15);
+            ->orderBy('name')->paginate(14);
         }
 
         return $this->makeResponse('people/managePeople', compact('people'));

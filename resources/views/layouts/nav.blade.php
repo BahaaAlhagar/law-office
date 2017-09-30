@@ -1,4 +1,4 @@
-<nav id="navigation-menu" class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+<nav id="navigation-menu" class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark  print-hidden">
   <a class="navbar-brand" href="/">الرئيسية</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>

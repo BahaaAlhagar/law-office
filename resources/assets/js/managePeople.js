@@ -108,6 +108,13 @@ const managePeople = new Vue({
       personRestored(response){
         this.reloadData();
         toastr.success(response.data.message);
+      },
+      printTable(){
+        $('.print-hidden').hide()
+        $('.btn').hide()
+        window.print()
+        $('.print-hidden').show()
+        $('.btn').show()
       }
    	},
     components: {
