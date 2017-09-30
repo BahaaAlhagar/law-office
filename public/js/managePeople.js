@@ -11185,7 +11185,7 @@ var managePeople = new Vue({
     afterPersonUpdated: function afterPersonUpdated(response) {
       $('#editPerson').modal('hide');
       __WEBPACK_IMPORTED_MODULE_6_toastr___default.a.info(response.message);
-      this.$refs.VP.fetchData('/people?page=' + this.$refs.VP.current_page);
+      this.reloadData();
     },
     deletePerson: function deletePerson(person) {
       var _this = this;
@@ -11197,8 +11197,50 @@ var managePeople = new Vue({
       }
     },
     onPersonDelete: function onPersonDelete(response) {
-      this.$refs.VP.fetchData('/people?page=' + this.$refs.VP.current_page);
+      this.reloadData();
       __WEBPACK_IMPORTED_MODULE_6_toastr___default.a.warning(response.data.message);
+    },
+    fetchPPLData: function fetchPPLData() {
+      var _this2 = this;
+
+      if (this.current_view == 'all') {
+        axios.get('/people').then(function (response) {
+          return _this2.people = response.data.people.data;
+        });
+        this.resource_url = '/people';
+      }
+      if (this.current_view == 'clients') {
+        axios.get('/filtered-ppl/clients').then(function (response) {
+          return _this2.people = response.data.people.data;
+        });
+        this.resource_url = '/filtered-ppl/clients';
+      }
+      if (this.current_view == 'notClients') {
+        axios.get('/filtered-ppl/notclients').then(function (response) {
+          return _this2.people = response.data.people.data;
+        });
+        this.resource_url = '/filtered-ppl/notclients';
+      }
+      if (this.current_view == 'trashed') {
+        axios.get('/filtered-ppl/trashed').then(function (response) {
+          return _this2.people = response.data.people.data;
+        });
+        this.resource_url = '/filtered-ppl/trashed';
+      }
+    },
+    reloadData: function reloadData() {
+      this.$refs.VP.fetchData(this.resource_url + '?page=' + this.$refs.VP.current_page);
+    },
+    restore: function restore(person) {
+      var _this3 = this;
+
+      axios.get('/people/' + person.id + '/restore').then(function (response) {
+        return _this3.personRestored(response);
+      });
+    },
+    personRestored: function personRestored(response) {
+      this.reloadData();
+      __WEBPACK_IMPORTED_MODULE_6_toastr___default.a.success(response.data.message);
     }
   },
   components: {
@@ -11207,18 +11249,16 @@ var managePeople = new Vue({
     VPaginator: __WEBPACK_IMPORTED_MODULE_1_vuejs_paginator___default.a
   },
   created: function created() {
-    var _this2 = this;
+    var _this4 = this;
 
-    axios.get('/people').then(function (response) {
-      return _this2.people = response.data.people.data;
-    });
+    this.fetchPPLData();
 
     eventBus.$on('personAdded', function (response) {
-      return _this2.afterPersonAdded(response);
+      return _this4.afterPersonAdded(response);
     });
 
     eventBus.$on('personUpdated', function (response) {
-      return _this2.afterPersonUpdated(response);
+      return _this4.afterPersonUpdated(response);
     });
   }
 });

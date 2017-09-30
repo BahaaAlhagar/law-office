@@ -95,4 +95,17 @@ class PersonController extends Controller
         $person->delete();
         return ['message' => 'تم حذف الشخص بنجاح'];
     }
+
+    /**
+     * restore soft deleted user.
+     *
+     * @param  $person
+     * @return \Illuminate\Http\Response
+     */
+    public function restore($id)
+    {
+        $person = Person::onlyTrashed()
+        ->where('id', $id)->restore();
+        return ['message' => 'تم استرجاع الشخص بنجاح'];
+    }
 }

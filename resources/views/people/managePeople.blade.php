@@ -17,7 +17,7 @@
 <div id="managePeople">
 		<div class="heading col-md-12">
 			اعرض 
-			<select v-model="current_view">
+			<select v-model="current_view" @change="fetchPPLData()">
 				<option value="all">الكل</option>
 				<option value="clients">الموكلين</option>
 				<option value="notClients">الاطراف الاخرى</option>
@@ -38,7 +38,7 @@
 				<th>الاسم</th>
 				<th>العنوان</th>
 				<th>التليفون</th>
-				<th>الحاله</th>
+				<th v-if="current_view == 'all'">الحاله</th>
 				<th class="print-hidden">الاعدادات</th>
 				</tr>
 			</thead>
@@ -47,15 +47,18 @@
 					<td><a :href="'/people/' + person.id"> @{{ person.name }} </a></td>
 					<td> @{{ person.location }} </td>
 					<td> @{{ person.phone }} </td>
-					<td v-if="person.is_client">
+					<td v-if="current_view == 'all' && person.is_client">
 						<span class="green"> مــوكـل </span> 
 					</td>
-					<td v-else>
+					<td v-if="current_view == 'all' && !person.is_client">
 						<span class="red"> ليس مـــوكــل </span> 
 					</td>
-					<td class="print-hidden">
+					<td v-if="current_view != 'trashed'" class="print-hidden">
 						<button @click="editPerson(person)" data-toggle="modal" class="btn btn-sm btn-info" type="button">تـعــديل</button>
 						<button @click="deletePerson(person)" class="btn btn-sm btn-danger" type="button">حـذف</button>
+					</td>
+					<td v-else>
+						<button @click="restore(person)" data-toggle="modal" class="btn btn-sm btn-success" type="button">استرجاع</button>
 					</td>
 				</tr>
 			</tbody>

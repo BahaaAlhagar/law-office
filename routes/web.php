@@ -21,4 +21,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 route::get('/filtered-ppl/{filter?}', 'PersonController@index');
 
+route::get('/people/{person}/restore', 'PersonController@restore');
+
 route::resource('people', 'PersonController', ['except' => ['create', 'edit']]);

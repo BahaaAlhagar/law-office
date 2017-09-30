@@ -64,7 +64,7 @@ const managePeople = new Vue({
       afterPersonUpdated(response){
         $('#editPerson').modal('hide');
         toastr.info(response.message);
-        this.$refs.VP.fetchData('/people?page=' + this.$refs.VP.current_page);
+        this.reloadData();
       },
       deletePerson(person){
         if(confirm('هل انت متاكد من حذف هذا الشخص')){
@@ -73,8 +73,41 @@ const managePeople = new Vue({
       }
     },
       onPersonDelete(response){
-        this.$refs.VP.fetchData('/people?page=' + this.$refs.VP.current_page);
+        this.reloadData();
         toastr.warning(response.data.message);
+      },
+      fetchPPLData(){
+        if(this.current_view == 'all'){
+          axios.get('/people')
+          .then(response => this.people = response.data.people.data);
+          this.resource_url = '/people';
+        }
+        if(this.current_view == 'clients'){
+          axios.get('/filtered-ppl/clients')
+          .then(response => this.people = response.data.people.data);
+          this.resource_url = '/filtered-ppl/clients';
+        }
+        if(this.current_view == 'notClients'){
+          axios.get('/filtered-ppl/notclients')
+          .then(response => this.people = response.data.people.data);
+          this.resource_url = '/filtered-ppl/notclients';
+        }
+        if(this.current_view == 'trashed'){
+          axios.get('/filtered-ppl/trashed')
+          .then(response => this.people = response.data.people.data);
+          this.resource_url = '/filtered-ppl/trashed';
+        }
+      },
+      reloadData(){
+        this.$refs.VP.fetchData(this.resource_url + '?page=' + this.$refs.VP.current_page);
+      },
+      restore(person){
+        axios.get('/people/' + person.id + '/restore')
+          .then(response => this.personRestored(response));
+      },
+      personRestored(response){
+        this.reloadData();
+        toastr.success(response.data.message);
       }
    	},
     components: {
@@ -83,8 +116,7 @@ const managePeople = new Vue({
     	VPaginator: VuePaginator
     },
     created() {
-    	axios.get('/people')
-   		.then(response => this.people = response.data.people.data);
+      this.fetchPPLData();
 
       eventBus.$on('personAdded', response => this.afterPersonAdded(response));
       
