@@ -24,3 +24,7 @@ route::get('/filtered-ppl/{filter?}', 'PersonController@index');
 route::get('/people/{person}/restore', 'PersonController@restore');
 
 route::resource('people', 'PersonController', ['except' => ['create', 'edit']]);
+
+route::get('contract/{type?}', 'ContractController@index');
+
+route::resource('contracts', 'ContractController', ['except' => ['create', 'edit']]);

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Contract;
+use App\Person;
 use Illuminate\Http\Request;
 
 class ContractController extends Controller
@@ -12,9 +13,23 @@ class ContractController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($type = null)
     {
-        //
+        $people = Person::orderBy('name')->get();
+        $contracts = Contract::with('people')->latest()->paginate(10);
+
+        if($type >= 1 && $type <= 3)
+        {
+            $contracts = $contracts->where('type', $type)->paginate(10);
+        }
+
+        if($type == 'trashed')
+        {
+            $contracts = Contract::onlyTrashed()->load('contracts')
+                            ->latest()->paginate(10);
+        }
+
+        return $this->makeResponse('contracts/manageContracts', compact('contracts', 'people'));
     }
 
     /**
