@@ -14,9 +14,6 @@ import VuePaginator from 'vuejs-paginator';
 
 Vue.use(VueResource);
 
-import addContract from './components/contract/addContract.vue';
-import editContract from './components/contract/editContract.vue';
-
 
 import Form from './partials/Form';
 window.Form = Form;
@@ -26,9 +23,10 @@ import jquery from 'jquery';
 import toastr from 'toastr';
 import bootstrap from 'bootstrap';
 
+window.select2 = require('select2');
 
-
-
+import addContract from './components/contract/addContract.vue';
+import editContract from './components/contract/editContract.vue';
 
 window.eventBus = new Vue();
 

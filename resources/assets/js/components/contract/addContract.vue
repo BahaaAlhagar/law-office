@@ -46,7 +46,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="type" class="label">حرف السجل:</label>
+                        <label for="type" class="label">نوع التوكيل:</label>
                         
                         <select name="type" id="type" class="form-control" v-model="form.type">
                         	<option value="1">توكيل عام</option>
@@ -66,6 +66,20 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="people" class="label">الموكل / الموكلين:</label>
+                        
+                        <multiselect name="people[]" id="people" 
+                        v-model="form.people"   
+                        :options="people"
+                        :multiple="true"
+                        track-by="name"
+                        :custom-label="customLabel">
+                        </multiselect> 
+
+                        <span class="alert-danger" v-if="form.errors.has('people')" v-text="form.errors.get('people')"></span>
+                    </div>
+
+                    <div class="form-group">
                         <label for="archive_number" class="label">الرقم بفهرس المكتب:</label>
                         
                         <input type="text" id="archive_number" name="archive_number" class="form-control" v-model="form.archive_number"> 
@@ -74,7 +88,7 @@
                     </div>
 
                     <div class="form-group heading">
-                        <button class="button btn-lg btn-success" :disabled="form.errors.any()">تعديل</button>
+                        <button class="button btn-lg btn-success" :disabled="form.errors.any()">اضافة</button>
                     </div>
                 </form>
 
@@ -88,6 +102,7 @@
 </template>
 
 <script>
+	import Multiselect from 'vue-multiselect'
     export default {
         data() {
         return {
@@ -99,16 +114,28 @@
                 office: '',
                 archive_number: '',
                 people: []
-            })
+            }),
         };
         },
-        props : ['people'],
+        props : {
+            people: {
+                type: Array,
+                default: function() {
+                    return [];
+                    }
+                }
+        },
         methods: {
-        onContractCreate() {
-            this.form.post('/people')
-                .then(response => eventBus.$emit('contractAdded', response));
+            onContractCreate() {
+                this.form.post('/people')
+                    .then(response => eventBus.$emit('contractAdded', response));
+            },
+            customLabel(option) {
+                return `${option.name}`;
             }
-        }
-
+        },
+        components: { Multiselect }
     }
 </script>
+
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>

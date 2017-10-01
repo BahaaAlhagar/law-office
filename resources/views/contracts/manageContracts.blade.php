@@ -94,7 +94,7 @@
 
 	  		<!-- Create Contract Modal -->
 
-	  		<add-contract></add-contract>
+	  		<add-contract :people="people"></add-contract>
 	  		
 	  		<!-- edit Contract Modal -->
 

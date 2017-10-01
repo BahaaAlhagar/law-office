@@ -8,6 +8,14 @@ use Illuminate\Http\Request;
 
 class ContractController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('admin');
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +23,9 @@ class ContractController extends Controller
      */
     public function index($type = null)
     {
-        $people = Person::orderBy('name')->get();
+        $fetchedPeople = Person::orderBy('name')->get();
+        $people = $this->mapForSelect($fetchedPeople);
+        
         $contracts = Contract::with('people')->latest()->paginate(10);
 
         if($type >= 1 && $type <= 3)

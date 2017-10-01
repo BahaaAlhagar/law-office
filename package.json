@@ -17,6 +17,11 @@
   },
   "dependencies": {
     "bootstrap": "^4.0.0-beta",
-    "popper.js": "^1.12.5"
+    "install": "^0.10.1",
+    "npm": "^5.4.2",
+    "popper.js": "^1.12.5",
+    "select2": "^4.0.3",
+    "v-select2": "^1.0.1",
+    "vue-select": "github:sagalbot/vue-select"
   }
 }

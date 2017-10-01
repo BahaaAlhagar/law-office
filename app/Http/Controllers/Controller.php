@@ -29,4 +29,19 @@ class Controller extends BaseController
 
     	return response()->json($data);
     }
+
+    protected function mapForSelect($array)
+    {
+        $mapped_array = $array->map(
+            function($object) {
+                return [
+                    "value" => $object->id,
+                    "name" => $object->name
+                    ];
+                }
+            );
+        return $mapped_array;
+    }
+
+
 }
