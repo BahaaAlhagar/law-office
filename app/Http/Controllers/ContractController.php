@@ -23,8 +23,7 @@ class ContractController extends Controller
      */
     public function index($type = null)
     {
-        $fetchedPeople = Person::orderBy('name')->get();
-        $people = $this->mapForSelect($fetchedPeople);
+        $people = Person::orderBy('name')->select('id', 'name', 'location')->get();
         
         $contracts = Contract::with('people')->latest()->paginate(10);
 
@@ -43,15 +42,6 @@ class ContractController extends Controller
         return $this->makeResponse('contracts/manageContracts', compact('contracts', 'people'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -61,7 +51,14 @@ class ContractController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $people = array_column(request('people'), 'id');
+
+        $contract = Contract::create(
+            request(['number', 'year', 'letter', 'type', 'office', 'archive_number']
+                ))->people()->attach($people);
+
+
+        return ['message' => 'تم اضافة التوكيل بنجاح!'];
     }
 
     /**

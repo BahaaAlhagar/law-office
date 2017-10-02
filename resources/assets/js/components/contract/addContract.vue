@@ -1,7 +1,7 @@
 <template>
         <div class="modal fade" id="addContract" role="dialog" aria-labelledby="myModalLabel">
 
-          <div class="modal-dialog" role="document">
+          <div class="modal-dialog modal-lg" role="document">
 
             <div class="modal-content">
 
@@ -9,7 +9,7 @@
 
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                 <span class="form-control-static pull-left">
-                    <h4 class="modal-title" id="myModalLabel"> اضافة شخص </h4>
+                    <h4 class="modal-title" id="myModalLabel"> اضافة توكيل </h4>
                 </span>
               </div>
 
@@ -50,8 +50,8 @@
                         
                         <select name="type" id="type" class="form-control" v-model="form.type">
                         	<option value="1">توكيل عام</option>
-                        	<option value="1">توكيل خاص</option>
-                        	<option value="1">عقد وكالة</option>
+                        	<option value="2">توكيل خاص</option>
+                        	<option value="3">عقد وكالة</option>
                         </select> 
 
                         <span class="alert-danger" v-if="form.errors.has('type')" v-text="form.errors.get('type')"></span>
@@ -69,10 +69,10 @@
                         <label for="people" class="label">الموكل / الموكلين:</label>
                         
                         <multiselect name="people[]" id="people" 
-                        v-model="form.people"   
-                        :options="people"
-                        :multiple="true"
-                        track-by="name"
+                        v-model="form.people" 
+                        :options="people" 
+                        :multiple="true" 
+                        track-by="id" 
                         :custom-label="customLabel">
                         </multiselect> 
 
@@ -127,11 +127,11 @@
         },
         methods: {
             onContractCreate() {
-                this.form.post('/people')
+                this.form.post('/contracts')
                     .then(response => eventBus.$emit('contractAdded', response));
             },
             customLabel(option) {
-                return `${option.name}`;
+                return `${option.name} - ${option.location}`;
             }
         },
         components: { Multiselect }

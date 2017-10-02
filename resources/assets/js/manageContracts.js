@@ -51,12 +51,12 @@ const manageContracts = new Vue({
    		updateResource(data){
   			this.contracts = data;
   		},
-/*      afterPersonAdded(response){
-        this.contracts.unshift(response.item);
-        $('#addPerson').modal('hide');
+      afterContractAdded(response){
+        $('#addContract').modal('hide');
         toastr.success(response.message);
+        this.reloadData();
       },
-      editPerson(person){
+/*      editPerson(person){
         eventBus.$emit('editPerson', person);
         $('#editPerson').modal('show');
       },
@@ -133,7 +133,7 @@ const manageContracts = new Vue({
     created() {
       this.fetchContractsData();
 
-      eventBus.$on('personAdded', response => this.afterPersonAdded(response));
+      eventBus.$on('contractAdded', response => this.afterContractAdded(response));
       
       eventBus.$on('personUpdated', response => this.afterPersonUpdated(response));
     }

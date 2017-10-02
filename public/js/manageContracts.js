@@ -28751,13 +28751,13 @@ var manageContracts = new Vue({
     updateResource: function updateResource(data) {
       this.contracts = data;
     },
+    afterContractAdded: function afterContractAdded(response) {
+      $('#addContract').modal('hide');
+      __WEBPACK_IMPORTED_MODULE_4_toastr___default.a.success(response.message);
+      this.reloadData();
+    },
 
-    /*      afterPersonAdded(response){
-            this.contracts.unshift(response.item);
-            $('#addPerson').modal('hide');
-            toastr.success(response.message);
-          },
-          editPerson(person){
+    /*      editPerson(person){
             eventBus.$emit('editPerson', person);
             $('#editPerson').modal('show');
           },
@@ -28844,8 +28844,8 @@ var manageContracts = new Vue({
 
     this.fetchContractsData();
 
-    eventBus.$on('personAdded', function (response) {
-      return _this2.afterPersonAdded(response);
+    eventBus.$on('contractAdded', function (response) {
+      return _this2.afterContractAdded(response);
     });
 
     eventBus.$on('personUpdated', function (response) {
@@ -35150,12 +35150,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     methods: {
         onContractCreate: function onContractCreate() {
-            this.form.post('/people').then(function (response) {
+            this.form.post('/contracts').then(function (response) {
                 return eventBus.$emit('contractAdded', response);
             });
         },
         customLabel: function customLabel(option) {
-            return '' + option.name;
+            return option.name + ' - ' + option.location;
         }
     },
     components: { Multiselect: __WEBPACK_IMPORTED_MODULE_0_vue_multiselect___default.a }
@@ -35180,7 +35180,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "aria-labelledby": "myModalLabel"
     }
   }, [_c('div', {
-    staticClass: "modal-dialog",
+    staticClass: "modal-dialog modal-lg",
     attrs: {
       "role": "document"
     }
@@ -35343,11 +35343,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v("توكيل عام")]), _vm._v(" "), _c('option', {
     attrs: {
-      "value": "1"
+      "value": "2"
     }
   }, [_vm._v("توكيل خاص")]), _vm._v(" "), _c('option', {
     attrs: {
-      "value": "1"
+      "value": "3"
     }
   }, [_vm._v("عقد وكالة")])]), _vm._v(" "), (_vm.form.errors.has('type')) ? _c('span', {
     staticClass: "alert-danger",
@@ -35401,7 +35401,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "id": "people",
       "options": _vm.people,
       "multiple": true,
-      "track-by": "name",
+      "track-by": "id",
       "custom-label": _vm.customLabel
     },
     model: {
@@ -35479,7 +35479,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "id": "myModalLabel"
     }
-  }, [_vm._v(" اضافة شخص ")])])])
+  }, [_vm._v(" اضافة توكيل ")])])])
 }]}
 module.exports.render._withStripped = true
 if (false) {
