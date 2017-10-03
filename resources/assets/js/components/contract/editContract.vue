@@ -69,7 +69,7 @@
                         <label for="people" class="label">الموكل / الموكلين:</label>
                         
                         <multiselect name="people[]" id="people" 
-                        
+                        @input="editForm.errors.clear('people')"
                         v-model="editForm.people" 
                         :options="people" 
                         :multiple="true" 

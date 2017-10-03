@@ -35783,6 +35783,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "placeholder": "اختر الموكل - الموكلين",
       "custom-label": _vm.customLabel
     },
+    on: {
+      "input": function($event) {
+        _vm.editForm.errors.clear('people')
+      }
+    },
     model: {
       value: (_vm.editForm.people),
       callback: function($$v) {

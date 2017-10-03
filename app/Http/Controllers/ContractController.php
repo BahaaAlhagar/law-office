@@ -90,7 +90,7 @@ class ContractController extends Controller
      * @param  \App\Contract  $contract
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Contract $contract)
+    public function update(storeContractRequest $request, Contract $contract)
     {
         $people = array_column(request('people'), 'id');
 
