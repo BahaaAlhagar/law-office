@@ -29658,7 +29658,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "id": "myModalLabel"
     }
-  }, [_vm._v(" اضافة شخص ")])])])
+  }, [_vm._v(" تعديل شخص ")])])])
 }]}
 module.exports.render._withStripped = true
 if (false) {

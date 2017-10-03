@@ -23,9 +23,13 @@ class ContractController extends Controller
      */
     public function index($type = null)
     {
-        $people = Person::orderBy('name')->select('id', 'name', 'location')->get();
+        $people = Person::orderBy('name')
+            ->select('id', 'name', 'location')->get();
+
         
-        $contracts = Contract::with('people')->latest()->paginate(10);
+        $contracts = Contract::latest()
+                ->with('people')->paginate(10);
+
 
         if($type >= 1 && $type <= 3)
         {
@@ -33,11 +37,14 @@ class ContractController extends Controller
                 ->where('type', $type)->paginate(10);
         }
 
+
         if($type == 'trashed')
         {
-            $contracts = Contract::onlyTrashed()->with('people')
-                            ->latest()->paginate(10);
+            $contracts = Contract::onlyTrashed()
+                ->with('people')
+                ->latest()->paginate(10);
         }
+
 
         return $this->makeResponse('contracts/manageContracts', compact('contracts', 'people'));
     }
@@ -57,8 +64,9 @@ class ContractController extends Controller
             request(['number', 'year', 'letter', 'type', 'office', 'archive_number']
                 ))->people()->attach($people);
 
+        $contract = Contract::latest()->with('people')->first();
 
-        return ['message' => 'تم اضافة التوكيل بنجاح!'];
+        return $this->respondWithMessage('تم اضافة التوكيل بنجاح!', $contract);
     }
 
     /**

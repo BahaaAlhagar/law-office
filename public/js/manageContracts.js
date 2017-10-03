@@ -28752,9 +28752,9 @@ var manageContracts = new Vue({
       this.contracts = data;
     },
     afterContractAdded: function afterContractAdded(response) {
+      this.contracts.unshift(response.item);
       $('#addContract').modal('hide');
       __WEBPACK_IMPORTED_MODULE_4_toastr___default.a.success(response.message);
-      this.reloadData();
     },
 
     /*      editPerson(person){

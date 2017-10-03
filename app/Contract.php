@@ -17,6 +17,6 @@ class Contract extends Model
 
     public function people()
     {
-    	return $this->belongsToMany(Person::class);
+    	return $this->belongsToMany(Person::class)->select('id', 'name', 'location');
     }
 }

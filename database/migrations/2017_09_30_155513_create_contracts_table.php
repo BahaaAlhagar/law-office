@@ -26,7 +26,6 @@ class CreateContractsTable extends Migration
         });
 
         Schema::create('contract_person', function (Blueprint $table) {
-            $table->increments('id');
             $table->integer('contract_id')->unsigned()->index();
             $table->foreign('contract_id')->references('id')->on('contracts');
             $table->integer('person_id')->unsigned()->index();

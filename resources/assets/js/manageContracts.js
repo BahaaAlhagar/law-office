@@ -52,9 +52,9 @@ const manageContracts = new Vue({
   			this.contracts = data;
   		},
       afterContractAdded(response){
+        this.contracts.unshift(response.item);
         $('#addContract').modal('hide');
         toastr.success(response.message);
-        this.reloadData();
       },
 /*      editPerson(person){
         eventBus.$emit('editPerson', person);
