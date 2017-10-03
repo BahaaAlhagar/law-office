@@ -40,7 +40,7 @@
                     <div class="form-group">
                         <label for="phone" class="label">التليفون:</label>
                         
-                        <input type="text" id="phone" name="phone" class="form-control" v-model="editForm.phone"> 
+                        <input type="text" id="phone" name="phone" class="form-control" v-model.number="editForm.phone"> 
 
                         <span class="alert-danger" v-if="editForm.errors.has('phone')" v-text="editForm.errors.get('phone')"></span>
                     </div>

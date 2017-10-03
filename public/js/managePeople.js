@@ -24181,7 +24181,7 @@ var Form = function () {
         key: 'reset',
         value: function reset() {
             for (var field in this.originalData) {
-                this[field] = '';
+                this[field] = null;
             }
 
             this.errors.clear();
@@ -29174,9 +29174,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v("الحاله:")]), _vm._v(" "), _c('select', {
     directives: [{
       name: "model",
-      rawName: "v-model",
+      rawName: "v-model.number",
       value: (_vm.form.is_client),
-      expression: "form.is_client"
+      expression: "form.is_client",
+      modifiers: {
+        "number": true
+      }
     }],
     staticClass: "form-control",
     attrs: {
@@ -29189,7 +29192,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           return o.selected
         }).map(function(o) {
           var val = "_value" in o ? o._value : o.value;
-          return val
+          return _vm._n(val)
         });
         _vm.form.is_client = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
       }
@@ -29215,7 +29218,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "disabled": _vm.form.errors.any()
     }
-  }, [_vm._v("تعديل")])])])])])])])
+  }, [_vm._v("اضافة")])])])])])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "modal-header"
@@ -29527,9 +29530,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v("التليفون:")]), _vm._v(" "), _c('input', {
     directives: [{
       name: "model",
-      rawName: "v-model",
+      rawName: "v-model.number",
       value: (_vm.editForm.phone),
-      expression: "editForm.phone"
+      expression: "editForm.phone",
+      modifiers: {
+        "number": true
+      }
     }],
     staticClass: "form-control",
     attrs: {
@@ -29543,7 +29549,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.editForm.phone = $event.target.value
+        _vm.editForm.phone = _vm._n($event.target.value)
+      },
+      "blur": function($event) {
+        _vm.$forceUpdate()
       }
     }
   }), _vm._v(" "), (_vm.editForm.errors.has('phone')) ? _c('span', {

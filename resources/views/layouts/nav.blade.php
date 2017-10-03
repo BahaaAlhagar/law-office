@@ -10,7 +10,7 @@
         <a class="nav-link" href="{{ route('people.index') }}"> الاشخاص </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
+        <a class="nav-link" href="{{ route('contracts.index') }}"> التوكيلات </a>
       </li>
       <li class="nav-item">
         <a class="nav-link disabled" href="#">Disabled</a>

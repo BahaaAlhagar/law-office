@@ -55,7 +55,7 @@
                     <div class="form-group">
                         <label for="is_client" class="label">الحاله:</label>
                         
-                        <select id="is_client" name="is_client" class="form-control" v-model="form.is_client">
+                        <select id="is_client" name="is_client" class="form-control" v-model.number="form.is_client">
                             <option value="1" selected>مــوكــل</option>
                             <option value="0">لــيــس مــوكــل</option>
                         </select>
@@ -64,7 +64,7 @@
                     </div>
 
                     <div class="form-group heading">
-                        <button class="button btn-lg btn-success" :disabled="form.errors.any()">تعديل</button>
+                        <button class="button btn-lg btn-success" :disabled="form.errors.any()">اضافة</button>
                     </div>
                 </form>
 

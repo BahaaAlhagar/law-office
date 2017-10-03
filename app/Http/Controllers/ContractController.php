@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Contract;
 use App\Person;
+use App\Http\Requests\storeContractRequest;
 use Illuminate\Http\Request;
+
 
 class ContractController extends Controller
 {
@@ -56,7 +58,7 @@ class ContractController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(storeContractRequest $request)
     {
         $people = array_column(request('people'), 'id');
 

@@ -24181,7 +24181,7 @@ var Form = function () {
         key: 'reset',
         value: function reset() {
             for (var field in this.originalData) {
-                this[field] = '';
+                this[field] = null;
             }
 
             this.errors.clear();
