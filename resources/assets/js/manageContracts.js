@@ -109,14 +109,14 @@ const manageContracts = new Vue({
       reloadData(){
           this.$refs.VP.fetchData(this.resource_url + '?page=' + this.$refs.VP.current_page);
       },
-/*      restore(person){
-        axios.get('/contracts/' + person.id + '/restore')
-          .then(response => this.personRestored(response));
+      restore(contract){
+        axios.get('/contracts/' + contract.id + '/restore')
+          .then(response => this.contractRestored(response));
       },
-      personRestored(response){
+      contractRestored(response){
         this.reloadData();
         toastr.success(response.data.message);
-      },*/
+      },
       printTable(){
         $('.print-hidden').hide()
         $('.btn').hide()

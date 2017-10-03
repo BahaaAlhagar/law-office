@@ -28819,15 +28819,17 @@ var manageContracts = new Vue({
     reloadData: function reloadData() {
       this.$refs.VP.fetchData(this.resource_url + '?page=' + this.$refs.VP.current_page);
     },
+    restore: function restore(contract) {
+      var _this3 = this;
 
-    /*      restore(person){
-            axios.get('/contracts/' + person.id + '/restore')
-              .then(response => this.personRestored(response));
-          },
-          personRestored(response){
-            this.reloadData();
-            toastr.success(response.data.message);
-          },*/
+      axios.get('/contracts/' + contract.id + '/restore').then(function (response) {
+        return _this3.contractRestored(response);
+      });
+    },
+    contractRestored: function contractRestored(response) {
+      this.reloadData();
+      __WEBPACK_IMPORTED_MODULE_4_toastr___default.a.success(response.data.message);
+    },
     printTable: function printTable() {
       $('.print-hidden').hide();
       $('.btn').hide();
@@ -28842,16 +28844,16 @@ var manageContracts = new Vue({
     VPaginator: __WEBPACK_IMPORTED_MODULE_1_vuejs_paginator___default.a
   },
   created: function created() {
-    var _this3 = this;
+    var _this4 = this;
 
     this.fetchContractsData();
 
     eventBus.$on('contractAdded', function (response) {
-      return _this3.afterContractAdded(response);
+      return _this4.afterContractAdded(response);
     });
 
     eventBus.$on('contractUpdated', function (response) {
-      return _this3.afterContractUpdated(response);
+      return _this4.afterContractUpdated(response);
     });
   }
 });

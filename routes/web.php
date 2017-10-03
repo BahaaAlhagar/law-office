@@ -27,4 +27,6 @@ route::resource('people', 'PersonController', ['except' => ['create', 'edit']]);
 
 route::get('contract/{type?}', 'ContractController@index');
 
+route::get('/contracts/{contract}/restore', 'ContractController@restore');
+
 route::resource('contracts', 'ContractController', ['except' => ['create', 'edit']]);

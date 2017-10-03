@@ -113,4 +113,20 @@ class ContractController extends Controller
 
         return ['message' => 'تم حذف التوكيل بنجاح!'];
     }
+
+    /**
+     * restore the specified resource to storage.
+     *
+     * @param    $id
+     * @return \Illuminate\Http\Response
+     */
+    public function restore($id)
+    {
+        
+        $contract = Contract::onlyTrashed()
+                            ->where('id', $id)
+                            ->restore();
+
+        return ['message' => 'تم استرجاع التوكيل بنجاح!'];
+    }
 }
