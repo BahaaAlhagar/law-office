@@ -16,8 +16,8 @@
               <div class="modal-body">
 
 
-                <form method="POST" action="/contracts" @submit.prevent="onContractCreate" @keydown="form.errors.clear($event.target.name)"
-                @change="form.errors.clear($event.target.name)"
+                <form method="POST" action="/contracts" @submit.prevent="onContractCreate" @keydown="form.errors.clear($event.target.name)" 
+                @change="form.errors.clear($event.target.name)" 
                 >
                     
                     <div class="form-group">
@@ -69,10 +69,12 @@
                         <label for="people" class="label">الموكل / الموكلين:</label>
                         
                         <multiselect name="people[]" id="people" 
+                        @input="form.errors.clear('people')"
                         v-model="form.people" 
                         :options="people" 
                         :multiple="true" 
                         track-by="id" 
+                        placeholder="اختر الموكل - الموكلين"
                         :custom-label="customLabel">
                         </multiselect> 
 

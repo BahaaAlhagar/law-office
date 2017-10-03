@@ -98,7 +98,7 @@
 	  		
 	  		<!-- edit Contract Modal -->
 
-	  		<edit-contract></edit-contract>
+	  		<edit-contract :people="people"></edit-contract>
 </div>
 
 

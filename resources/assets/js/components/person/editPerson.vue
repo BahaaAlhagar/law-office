@@ -55,7 +55,7 @@
                     <div class="form-group">
                         <label for="is_client" class="label">الحاله:</label>
                         
-                        <select id="is_client" name="is_client" class="form-control" v-model="editForm.is_client">
+                        <select id="is_client" name="is_client" class="form-control" v-model.number="editForm.is_client">
                             <option value="1" selected>مــوكــل</option>
                             <option value="0">لــيــس مــوكــل</option>
                         </select>

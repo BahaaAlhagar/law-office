@@ -62,9 +62,8 @@ class ContractController extends Controller
     {
         $people = array_column(request('people'), 'id');
 
-        $contract = Contract::create(
-            request(['number', 'year', 'letter', 'type', 'office', 'archive_number']
-                ))->people()->attach($people);
+        $contract = Contract::create(request()->except('people'))
+                    ->people()->attach($people);
 
         $contract = Contract::latest()->with('people')->first();
 
@@ -82,16 +81,7 @@ class ContractController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Contract  $contract
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Contract $contract)
-    {
-        //
-    }
+
 
     /**
      * Update the specified resource in storage.
@@ -102,7 +92,13 @@ class ContractController extends Controller
      */
     public function update(Request $request, Contract $contract)
     {
-        //
+        $people = array_column(request('people'), 'id');
+
+        $contract->update(request()->except('people'));
+
+        $contract->people()->sync($people);
+
+        return ['message' => 'تم تحديث بيانات التوكيل بنجاح'];
     }
 
     /**
@@ -113,6 +109,8 @@ class ContractController extends Controller
      */
     public function destroy(Contract $contract)
     {
-        //
+        $contract->delete();
+
+        return ['message' => 'تم حذف التوكيل بنجاح!'];
     }
 }

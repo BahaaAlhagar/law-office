@@ -29604,9 +29604,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v("الحاله:")]), _vm._v(" "), _c('select', {
     directives: [{
       name: "model",
-      rawName: "v-model",
+      rawName: "v-model.number",
       value: (_vm.editForm.is_client),
-      expression: "editForm.is_client"
+      expression: "editForm.is_client",
+      modifiers: {
+        "number": true
+      }
     }],
     staticClass: "form-control",
     attrs: {
@@ -29619,7 +29622,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           return o.selected
         }).map(function(o) {
           var val = "_value" in o ? o._value : o.value;
-          return val
+          return _vm._n(val)
         });
         _vm.editForm.is_client = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
       }

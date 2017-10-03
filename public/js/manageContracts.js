@@ -28756,56 +28756,58 @@ var manageContracts = new Vue({
       $('#addContract').modal('hide');
       __WEBPACK_IMPORTED_MODULE_4_toastr___default.a.success(response.message);
     },
-
-    /*      editPerson(person){
-            eventBus.$emit('editPerson', person);
-            $('#editPerson').modal('show');
-          },
-          afterPersonUpdated(response){
-            $('#editPerson').modal('hide');
-            toastr.info(response.message);
-            this.reloadData();
-          },
-          deletePerson(person){
-            if(confirm('هل انت متاكد من حذف هذا الشخص')){
-            axios.delete('/contracts/' + person.id)
-            .then(response => this.onPersonDelete(response));
-          }
-          },
-          onPersonDelete(response){
-            this.reloadData();
-            toastr.warning(response.data.message);
-          },*/
-    fetchContractsData: function fetchContractsData() {
+    editContract: function editContract(contract) {
+      eventBus.$emit('editContract', contract);
+      $('#editContract').modal('show');
+    },
+    afterContractUpdated: function afterContractUpdated(response) {
+      $('#editContract').modal('hide');
+      __WEBPACK_IMPORTED_MODULE_4_toastr___default.a.info(response.message);
+      this.reloadData();
+    },
+    deleteContract: function deleteContract(contract) {
       var _this = this;
+
+      if (confirm('هل انت متاكد من حذف هذا التوكيل')) {
+        axios.delete('/contracts/' + contract.id).then(function (response) {
+          return _this.onContractDelete(response);
+        });
+      }
+    },
+    onContractDelete: function onContractDelete(response) {
+      this.reloadData();
+      __WEBPACK_IMPORTED_MODULE_4_toastr___default.a.warning(response.data.message);
+    },
+    fetchContractsData: function fetchContractsData() {
+      var _this2 = this;
 
       if (this.current_view == 'all') {
         axios.get('/contracts').then(function (response) {
-          return _this.assignData(response);
+          return _this2.assignData(response);
         });
         this.resource_url = '/contracts';
       }
       if (this.current_view == '1') {
         axios.get('/contract/1').then(function (response) {
-          return _this.assignData(response);
+          return _this2.assignData(response);
         });
         this.resource_url = '/contract/1';
       }
       if (this.current_view == '2') {
         axios.get('/contract/2').then(function (response) {
-          return _this.assignData(response);
+          return _this2.assignData(response);
         });
         this.resource_url = '/contract/2';
       }
       if (this.current_view == '3') {
         axios.get('/contract/3').then(function (response) {
-          return _this.assignData(response);
+          return _this2.assignData(response);
         });
         this.resource_url = '/contract/3';
       }
       if (this.current_view == 'trashed') {
         axios.get('/contract/trashed').then(function (response) {
-          return _this.contracts = response.data.contracts.data;
+          return _this2.contracts = response.data.contracts.data;
         });
         this.resource_url = '/contract/trashed';
       }
@@ -28840,16 +28842,16 @@ var manageContracts = new Vue({
     VPaginator: __WEBPACK_IMPORTED_MODULE_1_vuejs_paginator___default.a
   },
   created: function created() {
-    var _this2 = this;
+    var _this3 = this;
 
     this.fetchContractsData();
 
     eventBus.$on('contractAdded', function (response) {
-      return _this2.afterContractAdded(response);
+      return _this3.afterContractAdded(response);
     });
 
-    eventBus.$on('personUpdated', function (response) {
-      return _this2.afterPersonUpdated(response);
+    eventBus.$on('contractUpdated', function (response) {
+      return _this3.afterContractUpdated(response);
     });
   }
 });
@@ -35123,6 +35125,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -35402,7 +35406,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "options": _vm.people,
       "multiple": true,
       "track-by": "id",
+      "placeholder": "اختر الموكل - الموكلين",
       "custom-label": _vm.customLabel
+    },
+    on: {
+      "input": function($event) {
+        _vm.form.errors.clear('people')
+      }
     },
     model: {
       value: (_vm.form.people),
@@ -35494,13 +35504,17 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(62)
+}
 var Component = __webpack_require__(8)(
   /* script */
-  null,
+  __webpack_require__(64),
   /* template */
   __webpack_require__(61),
   /* styles */
-  null,
+  injectStyle,
   /* scopeId */
   null,
   /* moduleIdentifier (server only) */
@@ -35534,9 +35548,315 @@ module.exports = Component.exports
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _vm._m(0)
+  return _c('div', {
+    staticClass: "modal fade",
+    attrs: {
+      "id": "editContract",
+      "role": "dialog",
+      "aria-labelledby": "myModalLabel"
+    }
+  }, [_c('div', {
+    staticClass: "modal-dialog modal-lg",
+    attrs: {
+      "role": "document"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "modal-body"
+  }, [_c('form', {
+    attrs: {
+      "method": "POST",
+      "action": "/contracts"
+    },
+    on: {
+      "submit": function($event) {
+        $event.preventDefault();
+        _vm.onContractUpdate($event)
+      },
+      "keydown": function($event) {
+        _vm.editForm.errors.clear($event.target.name)
+      },
+      "change": function($event) {
+        _vm.editForm.errors.clear($event.target.name)
+      }
+    }
+  }, [_c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "number"
+    }
+  }, [_vm._v("رقم التوكيل:")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editForm.number),
+      expression: "editForm.number"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "number",
+      "name": "number"
+    },
+    domProps: {
+      "value": (_vm.editForm.number)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.editForm.number = $event.target.value
+      }
+    }
+  }), _vm._v(" "), (_vm.editForm.errors.has('number')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.editForm.errors.get('number'))
+    }
+  }) : _vm._e()]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "year"
+    }
+  }, [_vm._v("سنة الاصدار:")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editForm.year),
+      expression: "editForm.year"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "year",
+      "name": "year"
+    },
+    domProps: {
+      "value": (_vm.editForm.year)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.editForm.year = $event.target.value
+      }
+    }
+  }), _vm._v(" "), (_vm.editForm.errors.has('year')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.editForm.errors.get('year'))
+    }
+  }) : _vm._e()]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "letter"
+    }
+  }, [_vm._v("حرف السجل:")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editForm.letter),
+      expression: "editForm.letter"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "letter",
+      "name": "letter"
+    },
+    domProps: {
+      "value": (_vm.editForm.letter)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.editForm.letter = $event.target.value
+      }
+    }
+  }), _vm._v(" "), (_vm.editForm.errors.has('letter')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.editForm.errors.get('letter'))
+    }
+  }) : _vm._e()]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "type"
+    }
+  }, [_vm._v("نوع التوكيل:")]), _vm._v(" "), _c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editForm.type),
+      expression: "editForm.type"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "name": "type",
+      "id": "type"
+    },
+    on: {
+      "change": function($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        });
+        _vm.editForm.type = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+      }
+    }
+  }, [_c('option', {
+    attrs: {
+      "value": "1"
+    }
+  }, [_vm._v("توكيل عام")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "2"
+    }
+  }, [_vm._v("توكيل خاص")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "3"
+    }
+  }, [_vm._v("عقد وكالة")])]), _vm._v(" "), (_vm.editForm.errors.has('type')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.editForm.errors.get('type'))
+    }
+  }) : _vm._e()]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "office"
+    }
+  }, [_vm._v("مكتب الاصدار:")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editForm.office),
+      expression: "editForm.office"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "office",
+      "name": "office"
+    },
+    domProps: {
+      "value": (_vm.editForm.office)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.editForm.office = $event.target.value
+      }
+    }
+  }), _vm._v(" "), (_vm.editForm.errors.has('office')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.editForm.errors.get('office'))
+    }
+  }) : _vm._e()]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "people"
+    }
+  }, [_vm._v("الموكل / الموكلين:")]), _vm._v(" "), _c('multiselect', {
+    attrs: {
+      "name": "people[]",
+      "id": "people",
+      "options": _vm.people,
+      "multiple": true,
+      "track-by": "id",
+      "placeholder": "اختر الموكل - الموكلين",
+      "custom-label": _vm.customLabel
+    },
+    model: {
+      value: (_vm.editForm.people),
+      callback: function($$v) {
+        _vm.editForm.people = $$v
+      },
+      expression: "editForm.people"
+    }
+  }), _vm._v(" "), (_vm.editForm.errors.has('people')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.editForm.errors.get('people'))
+    }
+  }) : _vm._e()], 1), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "archive_number"
+    }
+  }, [_vm._v("الرقم بفهرس المكتب:")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editForm.archive_number),
+      expression: "editForm.archive_number"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "archive_number",
+      "name": "archive_number"
+    },
+    domProps: {
+      "value": (_vm.editForm.archive_number)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.editForm.archive_number = $event.target.value
+      }
+    }
+  }), _vm._v(" "), (_vm.editForm.errors.has('archive_number')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.editForm.errors.get('archive_number'))
+    }
+  }) : _vm._e()]), _vm._v(" "), _c('div', {
+    staticClass: "form-group heading"
+  }, [_c('button', {
+    staticClass: "button btn-lg btn-success",
+    attrs: {
+      "disabled": _vm.editForm.errors.any()
+    }
+  }, [_vm._v("تعديل")])])])])])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('span', [_vm._v(" edit contract "), _c('br')])
+  return _c('div', {
+    staticClass: "modal-header"
+  }, [_c('button', {
+    staticClass: "close",
+    attrs: {
+      "type": "button",
+      "data-dismiss": "modal",
+      "aria-label": "Close"
+    }
+  }, [_c('span', {
+    attrs: {
+      "aria-hidden": "true"
+    }
+  }, [_vm._v("×")])]), _vm._v(" "), _c('span', {
+    staticClass: "form-control-static pull-left"
+  }, [_c('h4', {
+    staticClass: "modal-title",
+    attrs: {
+      "id": "myModalLabel"
+    }
+  }, [_vm._v(" تعديل توكيل ")])])])
 }]}
 module.exports.render._withStripped = true
 if (false) {
@@ -35545,6 +35865,216 @@ if (false) {
      require("vue-hot-reload-api").rerender("data-v-acac79a4", module.exports)
   }
 }
+
+/***/ }),
+/* 62 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(63);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(55)("a1d876a8", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../css-loader/index.js!../../vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-acac79a4\",\"scoped\":false,\"hasInlineConfig\":true}!./vue-multiselect.min.css", function() {
+     var newContent = require("!!../../css-loader/index.js!../../vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-acac79a4\",\"scoped\":false,\"hasInlineConfig\":true}!./vue-multiselect.min.css");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 63 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(54)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\nfieldset[disabled] .multiselect{pointer-events:none\n}\n.multiselect__spinner{position:absolute;right:1px;top:1px;width:48px;height:35px;background:#fff;display:block\n}\n.multiselect__spinner:after,.multiselect__spinner:before{position:absolute;content:\"\";top:50%;left:50%;margin:-8px 0 0 -8px;width:16px;height:16px;border-radius:100%;border-color:#41b883 transparent transparent;border-style:solid;border-width:2px;box-shadow:0 0 0 1px transparent\n}\n.multiselect__spinner:before{animation:a 2.4s cubic-bezier(.41,.26,.2,.62);animation-iteration-count:infinite\n}\n.multiselect__spinner:after{animation:a 2.4s cubic-bezier(.51,.09,.21,.8);animation-iteration-count:infinite\n}\n.multiselect__loading-enter-active,.multiselect__loading-leave-active{transition:opacity .4s ease-in-out;opacity:1\n}\n.multiselect__loading-enter,.multiselect__loading-leave-active{opacity:0\n}\n.multiselect,.multiselect__input,.multiselect__single{font-family:inherit;font-size:14px;-ms-touch-action:manipulation;touch-action:manipulation\n}\n.multiselect{box-sizing:content-box;display:block;position:relative;width:100%;min-height:40px;text-align:left;color:#35495e\n}\n.multiselect *{box-sizing:border-box\n}\n.multiselect:focus{outline:none\n}\n.multiselect--disabled{opacity:.6\n}\n.multiselect--active{z-index:1\n}\n.multiselect--active:not(.multiselect--above) .multiselect__current,.multiselect--active:not(.multiselect--above) .multiselect__input,.multiselect--active:not(.multiselect--above) .multiselect__tags{border-bottom-left-radius:0;border-bottom-right-radius:0\n}\n.multiselect--active .multiselect__select{transform:rotate(180deg)\n}\n.multiselect--above.multiselect--active .multiselect__current,.multiselect--above.multiselect--active .multiselect__input,.multiselect--above.multiselect--active .multiselect__tags{border-top-left-radius:0;border-top-right-radius:0\n}\n.multiselect__input,.multiselect__single{position:relative;display:inline-block;min-height:20px;line-height:20px;border:none;border-radius:5px;background:#fff;padding:1px 0 0 5px;width:100%;transition:border .1s ease;box-sizing:border-box;margin-bottom:8px\n}\n.multiselect__tag~.multiselect__input,.multiselect__tag~.multiselect__single{width:auto\n}\n.multiselect__input:hover,.multiselect__single:hover{border-color:#cfcfcf\n}\n.multiselect__input:focus,.multiselect__single:focus{border-color:#a8a8a8;outline:none\n}\n.multiselect__single{padding-left:6px;margin-bottom:8px\n}\n.multiselect__tags-wrap{display:inline\n}\n.multiselect__tags{min-height:40px;display:block;padding:8px 40px 0 8px;border-radius:5px;border:1px solid #e8e8e8;background:#fff\n}\n.multiselect__tag{position:relative;display:inline-block;padding:4px 26px 4px 10px;border-radius:5px;margin-right:10px;color:#fff;line-height:1;background:#41b883;margin-bottom:8px;white-space:nowrap\n}\n.multiselect__tag-icon{cursor:pointer;margin-left:7px;position:absolute;right:0;top:0;bottom:0;font-weight:700;font-style:normal;width:22px;text-align:center;line-height:22px;transition:all .2s ease;border-radius:5px\n}\n.multiselect__tag-icon:after{content:\"\\D7\";color:#266d4d;font-size:14px\n}\n.multiselect__tag-icon:focus,.multiselect__tag-icon:hover{background:#369a6e\n}\n.multiselect__tag-icon:focus:after,.multiselect__tag-icon:hover:after{color:#fff\n}\n.multiselect__current{min-height:40px;overflow:hidden;padding:8px 12px 0;padding-right:30px;white-space:nowrap;border-radius:5px;border:1px solid #e8e8e8\n}\n.multiselect__current,.multiselect__select{line-height:16px;box-sizing:border-box;display:block;margin:0;text-decoration:none;cursor:pointer\n}\n.multiselect__select{position:absolute;width:40px;height:38px;right:1px;top:1px;padding:4px 8px;text-align:center;transition:transform .2s ease\n}\n.multiselect__select:before{position:relative;right:0;top:65%;color:#999;margin-top:4px;border-style:solid;border-width:5px 5px 0;border-color:#999 transparent transparent;content:\"\"\n}\n.multiselect__placeholder{color:#adadad;display:inline-block;margin-bottom:10px;padding-top:2px\n}\n.multiselect--active .multiselect__placeholder{display:none\n}\n.multiselect__content-wrapper{position:absolute;display:block;background:#fff;width:100%;max-height:240px;overflow:auto;border:1px solid #e8e8e8;border-top:none;border-bottom-left-radius:5px;border-bottom-right-radius:5px;z-index:1;-webkit-overflow-scrolling:touch\n}\n.multiselect__content{list-style:none;display:inline-block;padding:0;margin:0;min-width:100%;vertical-align:top\n}\n.multiselect--above .multiselect__content-wrapper{bottom:100%;border-bottom-left-radius:0;border-bottom-right-radius:0;border-top-left-radius:5px;border-top-right-radius:5px;border-bottom:none;border-top:1px solid #e8e8e8\n}\n.multiselect__content::webkit-scrollbar{display:none\n}\n.multiselect__element{display:block\n}\n.multiselect__option{display:block;padding:12px;min-height:40px;line-height:16px;text-decoration:none;text-transform:none;vertical-align:middle;position:relative;cursor:pointer;white-space:nowrap\n}\n.multiselect__option:after{top:0;right:0;position:absolute;line-height:40px;padding-right:12px;padding-left:20px\n}\n.multiselect__option--highlight{background:#41b883;outline:none;color:#fff\n}\n.multiselect__option--highlight:after{content:attr(data-select);background:#41b883;color:#fff\n}\n.multiselect__option--selected{background:#f3f3f3;color:#35495e;font-weight:700\n}\n.multiselect__option--selected:after{content:attr(data-selected);color:silver\n}\n.multiselect__option--selected.multiselect__option--highlight{background:#ff6a6a;color:#fff\n}\n.multiselect__option--selected.multiselect__option--highlight:after{background:#ff6a6a;content:attr(data-deselect);color:#fff\n}\n.multiselect--disabled{background:#ededed;pointer-events:none\n}\n.multiselect--disabled .multiselect__current,.multiselect--disabled .multiselect__select,.multiselect__option--disabled{background:#ededed;color:#a6a6a6\n}\n.multiselect__option--disabled{cursor:text;pointer-events:none\n}\n.multiselect__option--disabled.multiselect__option--highlight{background:#dedede!important\n}\n.multiselect-enter-active,.multiselect-leave-active{transition:all .15s ease\n}\n.multiselect-enter,.multiselect-leave-active{opacity:0\n}\n.multiselect__strong{margin-bottom:10px;display:inline-block\n}\n[dir=rtl] .multiselect{text-align:right\n}\n[dir=rtl] .multiselect__select{right:auto;left:1px\n}\n[dir=rtl] .multiselect__tags{padding:8px 8px 0 40px\n}\n[dir=rtl] .multiselect__content{text-align:right\n}\n[dir=rtl] .multiselect__option:after{right:auto;left:0\n}\n[dir=rtl] .multiselect__clear{right:auto;left:12px\n}\n[dir=rtl] .multiselect__spinner{right:auto;left:1px\n}\n@keyframes a{\n0%{transform:rotate(0)\n}\nto{transform:rotate(2turn)\n}\n}", ""]);
+
+// exports
+
+
+/***/ }),
+/* 64 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_multiselect__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_multiselect___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_multiselect__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            editForm: new Form({
+                number: '',
+                year: '',
+                letter: '',
+                type: '',
+                office: '',
+                archive_number: '',
+                people: []
+            }),
+            id: ''
+        };
+    },
+
+    props: {
+        people: {
+            type: Array,
+            default: function _default() {
+                return [];
+            }
+        }
+    },
+    methods: {
+        onContractUpdate: function onContractUpdate() {
+            this.editForm.patch('/contracts/' + this.id).then(function (response) {
+                return eventBus.$emit('contractUpdated', response);
+            });
+        },
+        editContractModal: function editContractModal(contract) {
+            this.editForm.number = contract.number;
+            this.editForm.year = contract.year;
+            this.editForm.letter = contract.letter;
+            this.editForm.type = contract.type;
+            this.editForm.office = contract.office;
+            this.editForm.people = contract.people;
+            this.editForm.archive_number = contract.archive_number;
+            this.id = contract.id;
+        },
+        customLabel: function customLabel(option) {
+            return option.name + ' - ' + option.location;
+        }
+    },
+    created: function created() {
+        var _this = this;
+
+        eventBus.$on('editContract', function (contract) {
+            return _this.editContractModal(contract);
+        });
+    },
+
+    components: { Multiselect: __WEBPACK_IMPORTED_MODULE_0_vue_multiselect___default.a }
+});
 
 /***/ })
 /******/ ]);

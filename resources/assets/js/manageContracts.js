@@ -56,25 +56,25 @@ const manageContracts = new Vue({
         $('#addContract').modal('hide');
         toastr.success(response.message);
       },
-/*      editPerson(person){
-        eventBus.$emit('editPerson', person);
-        $('#editPerson').modal('show');
+      editContract(contract){
+        eventBus.$emit('editContract', contract);
+        $('#editContract').modal('show');
       },
-      afterPersonUpdated(response){
-        $('#editPerson').modal('hide');
+      afterContractUpdated(response){
+        $('#editContract').modal('hide');
         toastr.info(response.message);
         this.reloadData();
       },
-      deletePerson(person){
-        if(confirm('هل انت متاكد من حذف هذا الشخص')){
-        axios.delete('/contracts/' + person.id)
-        .then(response => this.onPersonDelete(response));
+      deleteContract(contract){
+        if(confirm('هل انت متاكد من حذف هذا التوكيل')){
+        axios.delete('/contracts/' + contract.id)
+        .then(response => this.onContractDelete(response));
       }
       },
-      onPersonDelete(response){
+      onContractDelete(response){
         this.reloadData();
         toastr.warning(response.data.message);
-      },*/
+      },
       fetchContractsData(){
         if(this.current_view == 'all'){
           axios.get('/contracts')
@@ -135,7 +135,7 @@ const manageContracts = new Vue({
 
       eventBus.$on('contractAdded', response => this.afterContractAdded(response));
       
-      eventBus.$on('personUpdated', response => this.afterPersonUpdated(response));
+      eventBus.$on('contractUpdated', response => this.afterContractUpdated(response));
     }
 
 });
