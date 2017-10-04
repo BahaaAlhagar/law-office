@@ -67,7 +67,9 @@ class PersonController extends Controller
      */
     public function show(Person $person)
     {
-
+        $person->load('contracts');
+        
+        return $this->makeResponse('people/personProfile', compact('person'));
     }
 
 

@@ -70,8 +70,8 @@ const managePeople = new Vue({
         if(confirm('هل انت متاكد من حذف هذا الشخص')){
         axios.delete('/people/' + person.id)
         .then(response => this.onPersonDelete(response));
-      }
-    },
+        }
+      },
       onPersonDelete(response){
         this.reloadData();
         toastr.warning(response.data.message);

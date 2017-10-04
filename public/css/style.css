@@ -148,3 +148,20 @@ td ul li {
 
 
 
+/**
+ * Panels
+ */
+/*** General styles ***/
+.card {
+  box-shadow: none;
+  margin-bottom: 15px;
+}
+.card-header {
+  border-bottom: 0;
+}
+.panel-body *:first-child {
+  margin-top: 0;
+}
+.card-footer {
+  border-top: 0;
+}
