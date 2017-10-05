@@ -5,21 +5,17 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Person extends Model
+class Issue extends Model
 {
     use SoftDeletes;
-
+    
     protected $dates = ['deleted_at'];
 
     protected $guarded = ['id'];
 
-    public function contracts()
+    public function people()
     {
-    	return $this->belongsToMany(Contract::class);
+    	return $this->belongsToMany(Person::class);
     }
 
-    public function issues()
-    {
-    	return $this->belongsToMany(Issue::class);
-    }
 }

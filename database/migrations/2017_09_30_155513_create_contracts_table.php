@@ -40,7 +40,7 @@ class CreateContractsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contracts');
         Schema::dropIfExists('contract_person');
+        Schema::dropIfExists('contracts');
     }
 }
