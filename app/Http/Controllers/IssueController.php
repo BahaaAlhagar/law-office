@@ -14,7 +14,9 @@ class IssueController extends Controller
      */
     public function index()
     {
-        //
+        $issues = Issue::latest()->with('people')->get();
+
+        return $this->makeResponse('issues/manageIssues', compact('issues'));
     }
 
     /**
