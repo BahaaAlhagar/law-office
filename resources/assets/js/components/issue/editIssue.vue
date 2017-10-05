@@ -1,7 +1,7 @@
 <template>
-        <div class="modal fade" id="addContract" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal fade" id="editIssue" role="dialog" aria-labelledby="myModalLabel">
 
-          <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-dialog" role="document">
 
             <div class="modal-content">
 
@@ -9,88 +9,78 @@
 
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                 <span class="form-control-static pull-left">
-                    <h4 class="modal-title" id="myModalLabel"> اضافة توكيل </h4>
+                    <h4 class="modal-title" id="myModalLabel"> تعديل قضية قضية </h4>
                 </span>
               </div>
 
               <div class="modal-body">
 
 
-                <form method="POST" action="/contracts" @submit.prevent="onContractCreate" @keydown="form.errors.clear($event.target.name)" 
-                @change="form.errors.clear($event.target.name)" 
+                <form method="POST" action="/contracts" @submit.prevent="onIssueCreate" @keydown="editFrom.errors.clear($event.target.name)" 
+                @change="editFrom.errors.clear($event.target.name)" 
                 >
                     
-                    <div class="form-group">
-                        <label for="number" class="label">رقم التوكيل:</label>
+                    <div class="form-group col-lg-6">
+                        <label for="number" class="label">رقم القضية الجزئى:</label>
                         
-                        <input type="text" id="number" name="number" class="form-control" v-model="form.number"> 
+                        <input type="text" id="number" name="number" class="form-control" v-model="editFrom.number"> 
 
-                        <span class="alert-danger" v-if="form.errors.has('number')" v-text="form.errors.get('number')"></span>
+                        <span class="alert-danger" v-if="editFrom.errors.has('number')" v-text="editFrom.errors.get('number')"></span>
+                    </div>
+
+                    <div class="form-group col-lg-6">
+                        <label for="year" class="label">لسنة:</label>
+                        
+                        <input type="text" id="year" name="year" class="form-control" v-model="editFrom.year"> 
+
+                        <span class="alert-danger" v-if="editFrom.errors.has('year')" v-text="editFrom.errors.get('year')"></span>
+                    </div>   
+
+
+                    <div class="form-group col-lg-6">
+                        <label for="adv_number" class="label">رقم القضية المستانف:</label>
+                        
+                        <input type="text" id="adv_number" name="adv_number" class="form-control" v-model="editFrom.adv_number"> 
+
+                        <span class="alert-danger" v-if="editFrom.errors.has('adv_number')" v-text="editFrom.errors.get('adv_number')"></span>
+                    </div>
+
+                    <div class="form-group col-lg-6">
+                        <label for="adv_year" class="label">لسنة (مستانف):</label>
+                        
+                        <input type="text" id="adv_year" name="adv_year" class="form-control" v-model="editFrom.adv_year"> 
+
+                        <span class="alert-danger" v-if="editFrom.errors.has('adv_year')" v-text="editFrom.errors.get('adv_year')"></span>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="subject" class="label">موضوع الدعوى:</label>
+                        
+                        <input type="text" id="subject" name="subject" class="form-control" v-model="editFrom.subject"> 
+
+                        <span class="alert-danger" v-if="editFrom.errors.has('subject')" v-text="editFrom.errors.get('subject')"></span>
                     </div>
 
                     <div class="form-group">
-                        <label for="year" class="label">سنة الاصدار:</label>
+                        <label for="court" class="label">المحكمة:</label>
                         
-                        <input type="text" id="year" name="year" class="form-control" v-model="form.year"> 
+                        <input type="text" id="court" name="court" class="form-control" v-model="editFrom.court"> 
 
-                        <span class="alert-danger" v-if="form.errors.has('year')" v-text="form.errors.get('year')"></span>
+                        <span class="alert-danger" v-if="editFrom.errors.has('court')" v-text="editFrom.errors.get('court')"></span>
                     </div>
 
 
                     <div class="form-group">
-                        <label for="letter" class="label">حرف السجل:</label>
+                        <label for="room" class="label">الدائرة:</label>
                         
-                        <input type="text" id="letter" name="letter" class="form-control" v-model="form.letter"> 
+                        <input type="text" id="room" name="room" class="form-control" v-model="editFrom.room"> 
 
-                        <span class="alert-danger" v-if="form.errors.has('letter')" v-text="form.errors.get('letter')"></span>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="type" class="label">نوع التوكيل:</label>
-                        
-                        <select name="type" id="type" class="form-control" v-model="form.type">
-                        	<option value="1">توكيل عام</option>
-                        	<option value="2">توكيل خاص</option>
-                        	<option value="3">عقد وكالة</option>
-                        </select> 
-
-                        <span class="alert-danger" v-if="form.errors.has('type')" v-text="form.errors.get('type')"></span>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="office" class="label">مكتب الاصدار:</label>
-                        
-                        <input type="text" id="office" name="office" class="form-control" v-model="form.office"> 
-
-                        <span class="alert-danger" v-if="form.errors.has('office')" v-text="form.errors.get('office')"></span>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="people" class="label">الموكل / الموكلين:</label>
-                        
-                        <multiselect name="people[]" id="people" 
-                        @input="form.errors.clear('people')"
-                        v-model="form.people" 
-                        :options="people" 
-                        :multiple="true" 
-                        track-by="id" 
-                        placeholder="اختر الموكل - الموكلين"
-                        :custom-label="customLabel">
-                        </multiselect> 
-
-                        <span class="alert-danger" v-if="form.errors.has('people')" v-text="form.errors.get('people')"></span>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="archive_number" class="label">الرقم بفهرس المكتب:</label>
-                        
-                        <input type="text" id="archive_number" name="archive_number" class="form-control" v-model="form.archive_number"> 
-
-                        <span class="alert-danger" v-if="form.errors.has('archive_number')" v-text="form.errors.get('archive_number')"></span>
+                        <span class="alert-danger" v-if="editFrom.errors.has('room')" v-text="editFrom.errors.get('room')"></span>
                     </div>
 
                     <div class="form-group heading">
-                        <button class="button btn-lg btn-success" :disabled="form.errors.any()">اضافة</button>
+                        <button class="button btn-lg btn-success" :disabled="editFrom.errors.any()">تعديل</button>
                     </div>
                 </form>
 
@@ -104,40 +94,40 @@
 </template>
 
 <script>
-	import Multiselect from 'vue-multiselect'
     export default {
         data() {
         return {
-            form: new Form({
+            editFrom: new Form({
                 number: '',
                 year: '',
-                letter: '',
-                type: '',
-                office: '',
-                archive_number: '',
-                people: []
+                adv_number: '',
+                adv_year: '',
+                subject: '',
+                court: '',
+                room: ''
             }),
+            id: ''
         };
         },
-        props : {
-            people: {
-                type: Array,
-                default: function() {
-                    return [];
-                    }
-                }
-        },
         methods: {
-            onContractCreate() {
-                this.form.post('/contracts')
-                    .then(response => eventBus.$emit('contractAdded', response));
+            onIssueCreate() {
+                this.editFrom.patch('/issues/' + this.id)
+                    .then(response => eventBus.$emit('IssueUpdated', response));
             },
-            customLabel(option) {
-                return `${option.name} - ${option.location}`;
+            editIssueModal(issue){
+                this.editFrom.number = issue.number;
+                this.editFrom.year = issue.year;
+                this.editFrom.adv_number = issue.adv_number;
+                this.editFrom.adv_year = issue.adv_year;
+                this.editFrom.subject = issue.subject;
+                this.editFrom.court = issue.court;
+                this.editFrom.room = issue.room;
+                this.id = issue.id;
             }
         },
-        components: { Multiselect }
+        created() {
+            eventBus.$on('editIssue', issue => this.editIssueModal(issue));
+        }
     }
 </script>
 
-<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>

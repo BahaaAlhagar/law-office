@@ -49,16 +49,16 @@ const manageIssues = new Vue({
         $('#addIssue').modal('hide');
         toastr.success(response.message);
       },
-/*    editContract(contract){
-        eventBus.$emit('editContract', contract);
-        $('#editContract').modal('show');
+      editIssue(issue){
+        eventBus.$emit('editIssue', issue);
+        $('#editIssue').modal('show');
       },
-      afterContractUpdated(response){
-        $('#editContract').modal('hide');
+      afterIssueUpdated(response){
+        $('#editIssue').modal('hide');
         toastr.info(response.message);
         this.reloadData();
       },
-      deleteContract(contract){
+/*      deleteIssue(contract){
         if(confirm('هل انت متاكد من حذف هذا التوكيل')){
         axios.delete('/contracts/' + contract.id)
         .then(response => this.onContractDelete(response));
@@ -113,7 +113,7 @@ const manageIssues = new Vue({
 
       eventBus.$on('IssueAdded', response => this.afterIssueAdded(response));
       
-      eventBus.$on('contractUpdated', response => this.afterContractUpdated(response));
+      eventBus.$on('IssueUpdated', response => this.afterIssueUpdated(response));
     }
 
 });

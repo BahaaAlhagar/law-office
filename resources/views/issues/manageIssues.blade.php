@@ -54,8 +54,10 @@
 			<tbody>
 				<tr v-for="issue in issues" :key="issue.id">
 					<td> 
-						@{{ issue.number }} لسنة @{{ issue.year }}<br>
-						@{{ issue.adv_number }} لسنة @{{ issue.adv_year }} س
+						<span v-if="issue.number">
+							@{{ issue.number }} لسنة @{{ issue.year }}<br>
+							@{{ issue.adv_number }} لسنة @{{ issue.adv_year }} س
+						</span>
 					</td>
 
 					<td>
