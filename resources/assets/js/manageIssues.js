@@ -44,12 +44,12 @@ const manageIssues = new Vue({
    		updateResource(data){
   			this.issues = data;
   		},
-/*      afterContractAdded(response){
-        this.contracts.unshift(response.item);
-        $('#addContract').modal('hide');
+      afterIssueAdded(response){
+        this.issues.unshift(response.item);
+        $('#addIssue').modal('hide');
         toastr.success(response.message);
       },
-      editContract(contract){
+/*    editContract(contract){
         eventBus.$emit('editContract', contract);
         $('#editContract').modal('show');
       },
@@ -111,7 +111,7 @@ const manageIssues = new Vue({
     created() {
       this.fetchIssuesData();
 
-      eventBus.$on('contractAdded', response => this.afterContractAdded(response));
+      eventBus.$on('IssueAdded', response => this.afterIssueAdded(response));
       
       eventBus.$on('contractUpdated', response => this.afterContractUpdated(response));
     }

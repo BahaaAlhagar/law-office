@@ -18,6 +18,7 @@
 			اعرض 
 			<select v-model="current_view" @change="fetchIssuesData()">
 				<option value="all">الكل</option>
+			    <option value="1">جــنــح</option>
 			    <option value="2">جـنــايــات</option>
 			    <option value="3">مــخــالفــات</option>
 			    <option value="4">أدارى</option>

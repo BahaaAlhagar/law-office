@@ -45,15 +45,6 @@ class IssueController extends Controller
         return $this->makeResponse('issues/manageIssues', compact('issues', 'people'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -63,7 +54,9 @@ class IssueController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $issue = Issue::create($request->all());
+
+        return $this->respondWithMessage('تم اضافة القضية بنجاح!', $issue);
     }
 
     /**

@@ -29098,13 +29098,13 @@ var manageIssues = new Vue({
     updateResource: function updateResource(data) {
       this.issues = data;
     },
+    afterIssueAdded: function afterIssueAdded(response) {
+      this.issues.unshift(response.item);
+      $('#addIssue').modal('hide');
+      __WEBPACK_IMPORTED_MODULE_4_toastr___default.a.success(response.message);
+    },
 
-    /*      afterContractAdded(response){
-            this.contracts.unshift(response.item);
-            $('#addContract').modal('hide');
-            toastr.success(response.message);
-          },
-          editContract(contract){
+    /*    editContract(contract){
             eventBus.$emit('editContract', contract);
             $('#editContract').modal('show');
           },
@@ -29172,8 +29172,8 @@ var manageIssues = new Vue({
 
     this.fetchIssuesData();
 
-    eventBus.$on('contractAdded', function (response) {
-      return _this2.afterContractAdded(response);
+    eventBus.$on('IssueAdded', function (response) {
+      return _this2.afterIssueAdded(response);
     });
 
     eventBus.$on('contractUpdated', function (response) {
@@ -29196,17 +29196,13 @@ __WEBPACK_IMPORTED_MODULE_4_toastr___default.a.options = {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(73)
-}
 var Component = __webpack_require__(8)(
   /* script */
   __webpack_require__(75),
   /* template */
   __webpack_require__(76),
   /* styles */
-  injectStyle,
+  null,
   /* scopeId */
   null,
   /* moduleIdentifier (server only) */
@@ -29236,53 +29232,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 73 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(74);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(41)("481d7acc", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../css-loader/index.js!../../vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-03547969\",\"scoped\":false,\"hasInlineConfig\":true}!./vue-multiselect.min.css", function() {
-     var newContent = require("!!../../css-loader/index.js!../../vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-03547969\",\"scoped\":false,\"hasInlineConfig\":true}!./vue-multiselect.min.css");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 74 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(40)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, "\nfieldset[disabled] .multiselect{pointer-events:none\n}\n.multiselect__spinner{position:absolute;right:1px;top:1px;width:48px;height:35px;background:#fff;display:block\n}\n.multiselect__spinner:after,.multiselect__spinner:before{position:absolute;content:\"\";top:50%;left:50%;margin:-8px 0 0 -8px;width:16px;height:16px;border-radius:100%;border-color:#41b883 transparent transparent;border-style:solid;border-width:2px;box-shadow:0 0 0 1px transparent\n}\n.multiselect__spinner:before{animation:a 2.4s cubic-bezier(.41,.26,.2,.62);animation-iteration-count:infinite\n}\n.multiselect__spinner:after{animation:a 2.4s cubic-bezier(.51,.09,.21,.8);animation-iteration-count:infinite\n}\n.multiselect__loading-enter-active,.multiselect__loading-leave-active{transition:opacity .4s ease-in-out;opacity:1\n}\n.multiselect__loading-enter,.multiselect__loading-leave-active{opacity:0\n}\n.multiselect,.multiselect__input,.multiselect__single{font-family:inherit;font-size:14px;-ms-touch-action:manipulation;touch-action:manipulation\n}\n.multiselect{box-sizing:content-box;display:block;position:relative;width:100%;min-height:40px;text-align:left;color:#35495e\n}\n.multiselect *{box-sizing:border-box\n}\n.multiselect:focus{outline:none\n}\n.multiselect--disabled{opacity:.6\n}\n.multiselect--active{z-index:1\n}\n.multiselect--active:not(.multiselect--above) .multiselect__current,.multiselect--active:not(.multiselect--above) .multiselect__input,.multiselect--active:not(.multiselect--above) .multiselect__tags{border-bottom-left-radius:0;border-bottom-right-radius:0\n}\n.multiselect--active .multiselect__select{transform:rotate(180deg)\n}\n.multiselect--above.multiselect--active .multiselect__current,.multiselect--above.multiselect--active .multiselect__input,.multiselect--above.multiselect--active .multiselect__tags{border-top-left-radius:0;border-top-right-radius:0\n}\n.multiselect__input,.multiselect__single{position:relative;display:inline-block;min-height:20px;line-height:20px;border:none;border-radius:5px;background:#fff;padding:1px 0 0 5px;width:100%;transition:border .1s ease;box-sizing:border-box;margin-bottom:8px\n}\n.multiselect__tag~.multiselect__input,.multiselect__tag~.multiselect__single{width:auto\n}\n.multiselect__input:hover,.multiselect__single:hover{border-color:#cfcfcf\n}\n.multiselect__input:focus,.multiselect__single:focus{border-color:#a8a8a8;outline:none\n}\n.multiselect__single{padding-left:6px;margin-bottom:8px\n}\n.multiselect__tags-wrap{display:inline\n}\n.multiselect__tags{min-height:40px;display:block;padding:8px 40px 0 8px;border-radius:5px;border:1px solid #e8e8e8;background:#fff\n}\n.multiselect__tag{position:relative;display:inline-block;padding:4px 26px 4px 10px;border-radius:5px;margin-right:10px;color:#fff;line-height:1;background:#41b883;margin-bottom:8px;white-space:nowrap\n}\n.multiselect__tag-icon{cursor:pointer;margin-left:7px;position:absolute;right:0;top:0;bottom:0;font-weight:700;font-style:normal;width:22px;text-align:center;line-height:22px;transition:all .2s ease;border-radius:5px\n}\n.multiselect__tag-icon:after{content:\"\\D7\";color:#266d4d;font-size:14px\n}\n.multiselect__tag-icon:focus,.multiselect__tag-icon:hover{background:#369a6e\n}\n.multiselect__tag-icon:focus:after,.multiselect__tag-icon:hover:after{color:#fff\n}\n.multiselect__current{min-height:40px;overflow:hidden;padding:8px 12px 0;padding-right:30px;white-space:nowrap;border-radius:5px;border:1px solid #e8e8e8\n}\n.multiselect__current,.multiselect__select{line-height:16px;box-sizing:border-box;display:block;margin:0;text-decoration:none;cursor:pointer\n}\n.multiselect__select{position:absolute;width:40px;height:38px;right:1px;top:1px;padding:4px 8px;text-align:center;transition:transform .2s ease\n}\n.multiselect__select:before{position:relative;right:0;top:65%;color:#999;margin-top:4px;border-style:solid;border-width:5px 5px 0;border-color:#999 transparent transparent;content:\"\"\n}\n.multiselect__placeholder{color:#adadad;display:inline-block;margin-bottom:10px;padding-top:2px\n}\n.multiselect--active .multiselect__placeholder{display:none\n}\n.multiselect__content-wrapper{position:absolute;display:block;background:#fff;width:100%;max-height:240px;overflow:auto;border:1px solid #e8e8e8;border-top:none;border-bottom-left-radius:5px;border-bottom-right-radius:5px;z-index:1;-webkit-overflow-scrolling:touch\n}\n.multiselect__content{list-style:none;display:inline-block;padding:0;margin:0;min-width:100%;vertical-align:top\n}\n.multiselect--above .multiselect__content-wrapper{bottom:100%;border-bottom-left-radius:0;border-bottom-right-radius:0;border-top-left-radius:5px;border-top-right-radius:5px;border-bottom:none;border-top:1px solid #e8e8e8\n}\n.multiselect__content::webkit-scrollbar{display:none\n}\n.multiselect__element{display:block\n}\n.multiselect__option{display:block;padding:12px;min-height:40px;line-height:16px;text-decoration:none;text-transform:none;vertical-align:middle;position:relative;cursor:pointer;white-space:nowrap\n}\n.multiselect__option:after{top:0;right:0;position:absolute;line-height:40px;padding-right:12px;padding-left:20px\n}\n.multiselect__option--highlight{background:#41b883;outline:none;color:#fff\n}\n.multiselect__option--highlight:after{content:attr(data-select);background:#41b883;color:#fff\n}\n.multiselect__option--selected{background:#f3f3f3;color:#35495e;font-weight:700\n}\n.multiselect__option--selected:after{content:attr(data-selected);color:silver\n}\n.multiselect__option--selected.multiselect__option--highlight{background:#ff6a6a;color:#fff\n}\n.multiselect__option--selected.multiselect__option--highlight:after{background:#ff6a6a;content:attr(data-deselect);color:#fff\n}\n.multiselect--disabled{background:#ededed;pointer-events:none\n}\n.multiselect--disabled .multiselect__current,.multiselect--disabled .multiselect__select,.multiselect__option--disabled{background:#ededed;color:#a6a6a6\n}\n.multiselect__option--disabled{cursor:text;pointer-events:none\n}\n.multiselect__option--disabled.multiselect__option--highlight{background:#dedede!important\n}\n.multiselect-enter-active,.multiselect-leave-active{transition:all .15s ease\n}\n.multiselect-enter,.multiselect-leave-active{opacity:0\n}\n.multiselect__strong{margin-bottom:10px;display:inline-block\n}\n[dir=rtl] .multiselect{text-align:right\n}\n[dir=rtl] .multiselect__select{right:auto;left:1px\n}\n[dir=rtl] .multiselect__tags{padding:8px 8px 0 40px\n}\n[dir=rtl] .multiselect__content{text-align:right\n}\n[dir=rtl] .multiselect__option:after{right:auto;left:0\n}\n[dir=rtl] .multiselect__clear{right:auto;left:12px\n}\n[dir=rtl] .multiselect__spinner{right:auto;left:1px\n}\n@keyframes a{\n0%{transform:rotate(0)\n}\nto{transform:rotate(2turn)\n}\n}", ""]);
-
-// exports
-
-
-/***/ }),
+/* 73 */,
+/* 74 */,
 /* 75 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_multiselect__ = __webpack_require__(42);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_multiselect___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_multiselect__);
 //
 //
 //
@@ -29388,7 +29344,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -29396,34 +29361,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             form: new Form({
                 number: '',
                 year: '',
-                letter: '',
+                adv_number: '',
+                adv_year: '',
                 type: '',
-                office: '',
-                archive_number: '',
-                people: []
+                subject: '',
+                court: '',
+                room: ''
             })
         };
     },
 
-    props: {
-        people: {
-            type: Array,
-            default: function _default() {
-                return [];
-            }
-        }
-    },
     methods: {
-        onContractCreate: function onContractCreate() {
-            this.form.post('/contracts').then(function (response) {
-                return eventBus.$emit('contractAdded', response);
+        onIssueCreate: function onIssueCreate() {
+            this.form.post('/issues').then(function (response) {
+                return eventBus.$emit('IssueAdded', response);
             });
-        },
-        customLabel: function customLabel(option) {
-            return option.name + ' - ' + option.location;
         }
-    },
-    components: { Multiselect: __WEBPACK_IMPORTED_MODULE_0_vue_multiselect___default.a }
+    }
 });
 
 /***/ }),
@@ -29434,12 +29388,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   return _c('div', {
     staticClass: "modal fade",
     attrs: {
-      "id": "addContract",
+      "id": "addIssue",
       "role": "dialog",
       "aria-labelledby": "myModalLabel"
     }
   }, [_c('div', {
-    staticClass: "modal-dialog modal-lg",
+    staticClass: "modal-dialog",
     attrs: {
       "role": "document"
     }
@@ -29455,7 +29409,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "submit": function($event) {
         $event.preventDefault();
-        _vm.onContractCreate($event)
+        _vm.onIssueCreate($event)
       },
       "keydown": function($event) {
         _vm.form.errors.clear($event.target.name)
@@ -29465,13 +29419,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }
   }, [_c('div', {
-    staticClass: "form-group"
+    staticClass: "form-group col-lg-6"
   }, [_c('label', {
     staticClass: "label",
     attrs: {
       "for": "number"
     }
-  }, [_vm._v("رقم التوكيل:")]), _vm._v(" "), _c('input', {
+  }, [_vm._v("رقم القضية الجزئى:")]), _vm._v(" "), _c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -29499,13 +29453,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "textContent": _vm._s(_vm.form.errors.get('number'))
     }
   }) : _vm._e()]), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
+    staticClass: "form-group col-lg-6"
   }, [_c('label', {
     staticClass: "label",
     attrs: {
       "for": "year"
     }
-  }, [_vm._v("سنة الاصدار:")]), _vm._v(" "), _c('input', {
+  }, [_vm._v("لسنة:")]), _vm._v(" "), _c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -29533,47 +29487,76 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "textContent": _vm._s(_vm.form.errors.get('year'))
     }
   }) : _vm._e()]), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
+    staticClass: "form-group col-lg-6"
   }, [_c('label', {
     staticClass: "label",
     attrs: {
-      "for": "letter"
+      "for": "adv_number"
     }
-  }, [_vm._v("حرف السجل:")]), _vm._v(" "), _c('input', {
+  }, [_vm._v("رقم القضية المستانف:")]), _vm._v(" "), _c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.form.letter),
-      expression: "form.letter"
+      value: (_vm.form.adv_number),
+      expression: "form.adv_number"
     }],
     staticClass: "form-control",
     attrs: {
       "type": "text",
-      "id": "letter",
-      "name": "letter"
+      "id": "adv_number",
+      "name": "adv_number"
     },
     domProps: {
-      "value": (_vm.form.letter)
+      "value": (_vm.form.adv_number)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.form.letter = $event.target.value
+        _vm.form.adv_number = $event.target.value
       }
     }
-  }), _vm._v(" "), (_vm.form.errors.has('letter')) ? _c('span', {
+  }), _vm._v(" "), (_vm.form.errors.has('adv_number')) ? _c('span', {
     staticClass: "alert-danger",
     domProps: {
-      "textContent": _vm._s(_vm.form.errors.get('letter'))
+      "textContent": _vm._s(_vm.form.errors.get('adv_number'))
     }
   }) : _vm._e()]), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
+    staticClass: "form-group col-lg-6"
   }, [_c('label', {
     staticClass: "label",
     attrs: {
-      "for": "type"
+      "for": "adv_year"
     }
-  }, [_vm._v("نوع التوكيل:")]), _vm._v(" "), _c('select', {
+  }, [_vm._v("لسنة (مستانف):")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.form.adv_year),
+      expression: "form.adv_year"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "adv_year",
+      "name": "adv_year"
+    },
+    domProps: {
+      "value": (_vm.form.adv_year)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.form.adv_year = $event.target.value
+      }
+    }
+  }), _vm._v(" "), (_vm.form.errors.has('adv_year')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.form.errors.get('adv_year'))
+    }
+  }) : _vm._e()]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_vm._m(1), _vm._v(" "), _c('select', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -29600,15 +29583,51 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "value": "1"
     }
-  }, [_vm._v("توكيل عام")]), _vm._v(" "), _c('option', {
+  }, [_vm._v("جــنــح")]), _vm._v(" "), _c('option', {
     attrs: {
       "value": "2"
     }
-  }, [_vm._v("توكيل خاص")]), _vm._v(" "), _c('option', {
+  }, [_vm._v("جـنــايــات")]), _vm._v(" "), _c('option', {
     attrs: {
       "value": "3"
     }
-  }, [_vm._v("عقد وكالة")])]), _vm._v(" "), (_vm.form.errors.has('type')) ? _c('span', {
+  }, [_vm._v("مــخــالفــات")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "4"
+    }
+  }, [_vm._v("أدارى")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "5"
+    }
+  }, [_vm._v("مــدنـى جــزئى")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "6"
+    }
+  }, [_vm._v("مــدنـى كــلـى")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "7"
+    }
+  }, [_vm._v("صــحــة توقيــع")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "8"
+    }
+  }, [_vm._v("أســـرة")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "9"
+    }
+  }, [_vm._v("وراثــــات")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "10"
+    }
+  }, [_vm._v("تـجـــارى")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "11"
+    }
+  }, [_vm._v("أدارى(مجلــس الدولة)")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "12"
+    }
+  }, [_vm._v("اقتصـــادية")])]), _vm._v(" "), (_vm.form.errors.has('type')) ? _c('span', {
     staticClass: "alert-danger",
     domProps: {
       "textContent": _vm._s(_vm.form.errors.get('type'))
@@ -29618,102 +29637,102 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('label', {
     staticClass: "label",
     attrs: {
-      "for": "office"
+      "for": "subject"
     }
-  }, [_vm._v("مكتب الاصدار:")]), _vm._v(" "), _c('input', {
+  }, [_vm._v("موضوع الدعوى:")]), _vm._v(" "), _c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.form.office),
-      expression: "form.office"
+      value: (_vm.form.subject),
+      expression: "form.subject"
     }],
     staticClass: "form-control",
     attrs: {
       "type": "text",
-      "id": "office",
-      "name": "office"
+      "id": "subject",
+      "name": "subject"
     },
     domProps: {
-      "value": (_vm.form.office)
+      "value": (_vm.form.subject)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.form.office = $event.target.value
+        _vm.form.subject = $event.target.value
       }
     }
-  }), _vm._v(" "), (_vm.form.errors.has('office')) ? _c('span', {
+  }), _vm._v(" "), (_vm.form.errors.has('subject')) ? _c('span', {
     staticClass: "alert-danger",
     domProps: {
-      "textContent": _vm._s(_vm.form.errors.get('office'))
+      "textContent": _vm._s(_vm.form.errors.get('subject'))
     }
   }) : _vm._e()]), _vm._v(" "), _c('div', {
     staticClass: "form-group"
   }, [_c('label', {
     staticClass: "label",
     attrs: {
-      "for": "people"
+      "for": "court"
     }
-  }, [_vm._v("الموكل / الموكلين:")]), _vm._v(" "), _c('multiselect', {
-    attrs: {
-      "name": "people[]",
-      "id": "people",
-      "options": _vm.people,
-      "multiple": true,
-      "track-by": "id",
-      "placeholder": "اختر الموكل - الموكلين",
-      "custom-label": _vm.customLabel
-    },
-    on: {
-      "input": function($event) {
-        _vm.form.errors.clear('people')
-      }
-    },
-    model: {
-      value: (_vm.form.people),
-      callback: function($$v) {
-        _vm.form.people = $$v
-      },
-      expression: "form.people"
-    }
-  }), _vm._v(" "), (_vm.form.errors.has('people')) ? _c('span', {
-    staticClass: "alert-danger",
-    domProps: {
-      "textContent": _vm._s(_vm.form.errors.get('people'))
-    }
-  }) : _vm._e()], 1), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
-  }, [_c('label', {
-    staticClass: "label",
-    attrs: {
-      "for": "archive_number"
-    }
-  }, [_vm._v("الرقم بفهرس المكتب:")]), _vm._v(" "), _c('input', {
+  }, [_vm._v("المحكمة:")]), _vm._v(" "), _c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.form.archive_number),
-      expression: "form.archive_number"
+      value: (_vm.form.court),
+      expression: "form.court"
     }],
     staticClass: "form-control",
     attrs: {
       "type": "text",
-      "id": "archive_number",
-      "name": "archive_number"
+      "id": "court",
+      "name": "court"
     },
     domProps: {
-      "value": (_vm.form.archive_number)
+      "value": (_vm.form.court)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.form.archive_number = $event.target.value
+        _vm.form.court = $event.target.value
       }
     }
-  }), _vm._v(" "), (_vm.form.errors.has('archive_number')) ? _c('span', {
+  }), _vm._v(" "), (_vm.form.errors.has('court')) ? _c('span', {
     staticClass: "alert-danger",
     domProps: {
-      "textContent": _vm._s(_vm.form.errors.get('archive_number'))
+      "textContent": _vm._s(_vm.form.errors.get('court'))
+    }
+  }) : _vm._e()]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "room"
+    }
+  }, [_vm._v("الدائرة:")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.form.room),
+      expression: "form.room"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "room",
+      "name": "room"
+    },
+    domProps: {
+      "value": (_vm.form.room)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.form.room = $event.target.value
+      }
+    }
+  }), _vm._v(" "), (_vm.form.errors.has('room')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.form.errors.get('room'))
     }
   }) : _vm._e()]), _vm._v(" "), _c('div', {
     staticClass: "form-group heading"
@@ -29744,7 +29763,16 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "id": "myModalLabel"
     }
-  }, [_vm._v(" اضافة توكيل ")])])])
+  }, [_vm._v(" اضافة قضية ")])])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "type"
+    }
+  }, [_vm._v("نوع القضية "), _c('span', {
+    staticClass: "red"
+  }, [_vm._v("(لا يمكنك تغيره فيما بعد)")]), _vm._v(":")])
 }]}
 module.exports.render._withStripped = true
 if (false) {

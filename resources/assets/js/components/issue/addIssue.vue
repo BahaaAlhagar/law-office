@@ -1,7 +1,7 @@
 <template>
-        <div class="modal fade" id="addContract" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal fade" id="addIssue" role="dialog" aria-labelledby="myModalLabel">
 
-          <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-dialog" role="document">
 
             <div class="modal-content">
 
@@ -9,84 +9,94 @@
 
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                 <span class="form-control-static pull-left">
-                    <h4 class="modal-title" id="myModalLabel"> اضافة توكيل </h4>
+                    <h4 class="modal-title" id="myModalLabel"> اضافة قضية </h4>
                 </span>
               </div>
 
               <div class="modal-body">
 
 
-                <form method="POST" action="/contracts" @submit.prevent="onContractCreate" @keydown="form.errors.clear($event.target.name)" 
+                <form method="POST" action="/contracts" @submit.prevent="onIssueCreate" @keydown="form.errors.clear($event.target.name)" 
                 @change="form.errors.clear($event.target.name)" 
                 >
                     
-                    <div class="form-group">
-                        <label for="number" class="label">رقم التوكيل:</label>
+                    <div class="form-group col-lg-6">
+                        <label for="number" class="label">رقم القضية الجزئى:</label>
                         
                         <input type="text" id="number" name="number" class="form-control" v-model="form.number"> 
 
                         <span class="alert-danger" v-if="form.errors.has('number')" v-text="form.errors.get('number')"></span>
                     </div>
 
-                    <div class="form-group">
-                        <label for="year" class="label">سنة الاصدار:</label>
+                    <div class="form-group col-lg-6">
+                        <label for="year" class="label">لسنة:</label>
                         
                         <input type="text" id="year" name="year" class="form-control" v-model="form.year"> 
 
                         <span class="alert-danger" v-if="form.errors.has('year')" v-text="form.errors.get('year')"></span>
-                    </div>
+                    </div>   
 
 
-                    <div class="form-group">
-                        <label for="letter" class="label">حرف السجل:</label>
+                    <div class="form-group col-lg-6">
+                        <label for="adv_number" class="label">رقم القضية المستانف:</label>
                         
-                        <input type="text" id="letter" name="letter" class="form-control" v-model="form.letter"> 
+                        <input type="text" id="adv_number" name="adv_number" class="form-control" v-model="form.adv_number"> 
 
-                        <span class="alert-danger" v-if="form.errors.has('letter')" v-text="form.errors.get('letter')"></span>
+                        <span class="alert-danger" v-if="form.errors.has('adv_number')" v-text="form.errors.get('adv_number')"></span>
+                    </div>
+
+                    <div class="form-group col-lg-6">
+                        <label for="adv_year" class="label">لسنة (مستانف):</label>
+                        
+                        <input type="text" id="adv_year" name="adv_year" class="form-control" v-model="form.adv_year"> 
+
+                        <span class="alert-danger" v-if="form.errors.has('adv_year')" v-text="form.errors.get('adv_year')"></span>
                     </div>
 
                     <div class="form-group">
-                        <label for="type" class="label">نوع التوكيل:</label>
+                        <label for="type" class="label">نوع القضية <span class="red">(لا يمكنك تغيره فيما بعد)</span>:</label>
                         
                         <select name="type" id="type" class="form-control" v-model="form.type">
-                        	<option value="1">توكيل عام</option>
-                        	<option value="2">توكيل خاص</option>
-                        	<option value="3">عقد وكالة</option>
+                        <option value="1">جــنــح</option>
+                        <option value="2">جـنــايــات</option>
+                        <option value="3">مــخــالفــات</option>
+                        <option value="4">أدارى</option>
+                        <option value="5">مــدنـى جــزئى</option>
+                        <option value="6">مــدنـى كــلـى</option>
+                        <option value="7">صــحــة توقيــع</option>
+                        <option value="8">أســـرة</option>
+                        <option value="9">وراثــــات</option>
+                        <option value="10">تـجـــارى</option>
+                        <option value="11">أدارى(مجلــس الدولة)</option>
+                        <option value="12">اقتصـــادية</option>
                         </select> 
 
                         <span class="alert-danger" v-if="form.errors.has('type')" v-text="form.errors.get('type')"></span>
                     </div>
 
                     <div class="form-group">
-                        <label for="office" class="label">مكتب الاصدار:</label>
+                        <label for="subject" class="label">موضوع الدعوى:</label>
                         
-                        <input type="text" id="office" name="office" class="form-control" v-model="form.office"> 
+                        <input type="text" id="subject" name="subject" class="form-control" v-model="form.subject"> 
 
-                        <span class="alert-danger" v-if="form.errors.has('office')" v-text="form.errors.get('office')"></span>
+                        <span class="alert-danger" v-if="form.errors.has('subject')" v-text="form.errors.get('subject')"></span>
                     </div>
 
                     <div class="form-group">
-                        <label for="people" class="label">الموكل / الموكلين:</label>
+                        <label for="court" class="label">المحكمة:</label>
                         
-                        <multiselect name="people[]" id="people" 
-                        @input="form.errors.clear('people')"
-                        v-model="form.people" 
-                        :options="people" 
-                        :multiple="true" 
-                        track-by="id" 
-                        placeholder="اختر الموكل - الموكلين"
-                        :custom-label="customLabel">
-                        </multiselect> 
+                        <input type="text" id="court" name="court" class="form-control" v-model="form.court"> 
 
-                        <span class="alert-danger" v-if="form.errors.has('people')" v-text="form.errors.get('people')"></span>
+                        <span class="alert-danger" v-if="form.errors.has('court')" v-text="form.errors.get('court')"></span>
                     </div>
 
-                    <div class="form-group">
-                        <label for="archive_number" class="label">الرقم بفهرس المكتب:</label>
-                        
-                        <input type="text" id="archive_number" name="archive_number" class="form-control" v-model="form.archive_number"> 
 
-                        <span class="alert-danger" v-if="form.errors.has('archive_number')" v-text="form.errors.get('archive_number')"></span>
+                    <div class="form-group">
+                        <label for="room" class="label">الدائرة:</label>
+                        
+                        <input type="text" id="room" name="room" class="form-control" v-model="form.room"> 
+
+                        <span class="alert-danger" v-if="form.errors.has('room')" v-text="form.errors.get('room')"></span>
                     </div>
 
                     <div class="form-group heading">
@@ -104,40 +114,27 @@
 </template>
 
 <script>
-	import Multiselect from 'vue-multiselect'
     export default {
         data() {
         return {
             form: new Form({
                 number: '',
                 year: '',
-                letter: '',
+                adv_number: '',
+                adv_year: '',
                 type: '',
-                office: '',
-                archive_number: '',
-                people: []
+                subject: '',
+                court: '',
+                room: ''
             }),
         };
         },
-        props : {
-            people: {
-                type: Array,
-                default: function() {
-                    return [];
-                    }
-                }
-        },
         methods: {
-            onContractCreate() {
-                this.form.post('/contracts')
-                    .then(response => eventBus.$emit('contractAdded', response));
-            },
-            customLabel(option) {
-                return `${option.name} - ${option.location}`;
+            onIssueCreate() {
+                this.form.post('/issues')
+                    .then(response => eventBus.$emit('IssueAdded', response));
             }
-        },
-        components: { Multiselect }
+        }
     }
 </script>
 
-<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
