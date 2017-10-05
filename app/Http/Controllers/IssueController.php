@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Issue;
 use App\Person;
+use App\Http\Requests\storeIssueRequest;
 use Illuminate\Http\Request;
 
 class IssueController extends Controller
@@ -52,7 +53,7 @@ class IssueController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(storeIssueRequest $request)
     {
         $issue = Issue::create($request->all());
 
