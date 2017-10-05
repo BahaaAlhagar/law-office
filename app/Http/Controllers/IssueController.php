@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Issue;
 use App\Person;
 use App\Http\Requests\storeIssueRequest;
+use App\Http\Requests\updateIssueRequest;
 use Illuminate\Http\Request;
 
 class IssueController extends Controller
@@ -78,7 +79,7 @@ class IssueController extends Controller
      * @param  \App\Issue  $issue
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Issue $issue)
+    public function update(updateIssueRequest $request, Issue $issue)
     {
         $issue->update($request->all());
 
@@ -93,6 +94,22 @@ class IssueController extends Controller
      */
     public function destroy(Issue $issue)
     {
-        //
+        $issue->delete();
+
+        return ['message' => 'تم حذف القضية.'];
+    }
+
+    /**
+     * restore the specified resource from storage.
+     *
+     * @param  \App\Issue  $issue
+     * @return \Illuminate\Http\Response
+     */
+    public function restore($id)
+    {
+        $issue = Issue::onlyTrashed()
+                ->where('id', $id)->restore();
+
+        return ['message' => 'تم استعادة القضية بنجاح.'];
     }
 }

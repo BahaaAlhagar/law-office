@@ -20,7 +20,7 @@
                 @change="editFrom.errors.clear($event.target.name)" 
                 >
                     
-                    <div class="form-group col-lg-6">
+                    <div class="form-group">
                         <label for="number" class="label">رقم القضية الجزئى:</label>
                         
                         <input type="text" id="number" name="number" class="form-control" v-model="editFrom.number"> 
@@ -28,7 +28,7 @@
                         <span class="alert-danger" v-if="editFrom.errors.has('number')" v-text="editFrom.errors.get('number')"></span>
                     </div>
 
-                    <div class="form-group col-lg-6">
+                    <div class="form-group">
                         <label for="year" class="label">لسنة:</label>
                         
                         <input type="text" id="year" name="year" class="form-control" v-model="editFrom.year"> 
@@ -37,7 +37,7 @@
                     </div>   
 
 
-                    <div class="form-group col-lg-6">
+                    <div class="form-group">
                         <label for="adv_number" class="label">رقم القضية المستانف:</label>
                         
                         <input type="text" id="adv_number" name="adv_number" class="form-control" v-model="editFrom.adv_number"> 
@@ -45,7 +45,7 @@
                         <span class="alert-danger" v-if="editFrom.errors.has('adv_number')" v-text="editFrom.errors.get('adv_number')"></span>
                     </div>
 
-                    <div class="form-group col-lg-6">
+                    <div class="form-group">
                         <label for="adv_year" class="label">لسنة (مستانف):</label>
                         
                         <input type="text" id="adv_year" name="adv_year" class="form-control" v-model="editFrom.adv_year"> 
@@ -115,6 +115,7 @@
                     .then(response => eventBus.$emit('IssueUpdated', response));
             },
             editIssueModal(issue){
+                this.editFrom.reset();
                 this.editFrom.number = issue.number;
                 this.editFrom.year = issue.year;
                 this.editFrom.adv_number = issue.adv_number;

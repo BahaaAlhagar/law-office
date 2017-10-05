@@ -26993,6 +26993,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         editPersonModal: function editPersonModal(person) {
+            this.editFrom.reset();
             this.editForm.name = person.name;
             this.editForm.location = person.location;
             this.editForm.phone = person.phone;

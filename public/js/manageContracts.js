@@ -29803,6 +29803,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         editContractModal: function editContractModal(contract) {
+            this.editFrom.reset();
             this.editForm.number = contract.number;
             this.editForm.year = contract.year;
             this.editForm.letter = contract.letter;

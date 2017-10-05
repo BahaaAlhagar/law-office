@@ -28774,28 +28774,30 @@ var manageIssues = new Vue({
       __WEBPACK_IMPORTED_MODULE_4_toastr___default.a.info(response.message);
       this.reloadData();
     },
-
-    /*      deleteIssue(contract){
-            if(confirm('هل انت متاكد من حذف هذا التوكيل')){
-            axios.delete('/contracts/' + contract.id)
-            .then(response => this.onContractDelete(response));
-          }
-          },
-          onContractDelete(response){
-            this.reloadData();
-            toastr.warning(response.data.message);
-          },*/
-    fetchIssuesData: function fetchIssuesData() {
+    deleteIssue: function deleteIssue(issue) {
       var _this = this;
+
+      if (confirm('هل انت متاكد من حذف هذا التوكيل')) {
+        axios.delete('/issues/' + issue.id).then(function (response) {
+          return _this.onIssueDelete(response);
+        });
+      }
+    },
+    onIssueDelete: function onIssueDelete(response) {
+      this.reloadData();
+      __WEBPACK_IMPORTED_MODULE_4_toastr___default.a.warning(response.data.message);
+    },
+    fetchIssuesData: function fetchIssuesData() {
+      var _this2 = this;
 
       if (this.current_view == 'all') {
         axios.get('/issues').then(function (response) {
-          return _this.assignData(response);
+          return _this2.assignData(response);
         });
         this.resource_url = '/issues';
       } else {
         axios.get('/issue/' + this.current_view).then(function (response) {
-          return _this.assignData(response);
+          return _this2.assignData(response);
         });
         this.resource_url = '/issue/' + this.current_view;
       }
@@ -28807,15 +28809,17 @@ var manageIssues = new Vue({
     reloadData: function reloadData() {
       this.$refs.VP.fetchData(this.resource_url + '?page=' + this.$refs.VP.current_page);
     },
+    restore: function restore(issue) {
+      var _this3 = this;
 
-    /*      restore(contract){
-            axios.get('/contracts/' + contract.id + '/restore')
-              .then(response => this.contractRestored(response));
-          },
-          contractRestored(response){
-            this.reloadData();
-            toastr.success(response.data.message);
-          },*/
+      axios.get('/issues/' + issue.id + '/restore').then(function (response) {
+        return _this3.issueRestored(response);
+      });
+    },
+    issueRestored: function issueRestored(response) {
+      this.reloadData();
+      __WEBPACK_IMPORTED_MODULE_4_toastr___default.a.success(response.data.message);
+    },
     printTable: function printTable() {
       $('.print-hidden').hide();
       $('.btn').hide();
@@ -28830,16 +28834,16 @@ var manageIssues = new Vue({
     VPaginator: __WEBPACK_IMPORTED_MODULE_1_vuejs_paginator___default.a
   },
   created: function created() {
-    var _this2 = this;
+    var _this4 = this;
 
     this.fetchIssuesData();
 
     eventBus.$on('IssueAdded', function (response) {
-      return _this2.afterIssueAdded(response);
+      return _this4.afterIssueAdded(response);
     });
 
     eventBus.$on('IssueUpdated', function (response) {
-      return _this2.afterIssueUpdated(response);
+      return _this4.afterIssueUpdated(response);
     });
   }
 });
@@ -29081,7 +29085,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }
   }, [_c('div', {
-    staticClass: "form-group col-lg-6"
+    staticClass: "form-group"
   }, [_c('label', {
     staticClass: "label",
     attrs: {
@@ -29115,7 +29119,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "textContent": _vm._s(_vm.form.errors.get('number'))
     }
   }) : _vm._e()]), _vm._v(" "), _c('div', {
-    staticClass: "form-group col-lg-6"
+    staticClass: "form-group"
   }, [_c('label', {
     staticClass: "label",
     attrs: {
@@ -29149,7 +29153,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "textContent": _vm._s(_vm.form.errors.get('year'))
     }
   }) : _vm._e()]), _vm._v(" "), _c('div', {
-    staticClass: "form-group col-lg-6"
+    staticClass: "form-group"
   }, [_c('label', {
     staticClass: "label",
     attrs: {
@@ -29183,7 +29187,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "textContent": _vm._s(_vm.form.errors.get('adv_number'))
     }
   }) : _vm._e()]), _vm._v(" "), _c('div', {
-    staticClass: "form-group col-lg-6"
+    staticClass: "form-group"
   }, [_c('label', {
     staticClass: "label",
     attrs: {
@@ -29611,6 +29615,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         editIssueModal: function editIssueModal(issue) {
+            this.editFrom.reset();
             this.editFrom.number = issue.number;
             this.editFrom.year = issue.year;
             this.editFrom.adv_number = issue.adv_number;
@@ -29669,7 +29674,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }
   }, [_c('div', {
-    staticClass: "form-group col-lg-6"
+    staticClass: "form-group"
   }, [_c('label', {
     staticClass: "label",
     attrs: {
@@ -29703,7 +29708,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "textContent": _vm._s(_vm.editFrom.errors.get('number'))
     }
   }) : _vm._e()]), _vm._v(" "), _c('div', {
-    staticClass: "form-group col-lg-6"
+    staticClass: "form-group"
   }, [_c('label', {
     staticClass: "label",
     attrs: {
@@ -29737,7 +29742,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "textContent": _vm._s(_vm.editFrom.errors.get('year'))
     }
   }) : _vm._e()]), _vm._v(" "), _c('div', {
-    staticClass: "form-group col-lg-6"
+    staticClass: "form-group"
   }, [_c('label', {
     staticClass: "label",
     attrs: {
@@ -29771,7 +29776,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "textContent": _vm._s(_vm.editFrom.errors.get('adv_number'))
     }
   }) : _vm._e()]), _vm._v(" "), _c('div', {
-    staticClass: "form-group col-lg-6"
+    staticClass: "form-group"
   }, [_c('label', {
     staticClass: "label",
     attrs: {

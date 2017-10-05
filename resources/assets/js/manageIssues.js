@@ -58,16 +58,16 @@ const manageIssues = new Vue({
         toastr.info(response.message);
         this.reloadData();
       },
-/*      deleteIssue(contract){
+      deleteIssue(issue){
         if(confirm('هل انت متاكد من حذف هذا التوكيل')){
-        axios.delete('/contracts/' + contract.id)
-        .then(response => this.onContractDelete(response));
+        axios.delete('/issues/' + issue.id)
+        .then(response => this.onIssueDelete(response));
       }
       },
-      onContractDelete(response){
+      onIssueDelete(response){
         this.reloadData();
         toastr.warning(response.data.message);
-      },*/
+      },
       fetchIssuesData(){
         if(this.current_view == 'all'){
           axios.get('/issues')
@@ -87,14 +87,14 @@ const manageIssues = new Vue({
       reloadData(){
           this.$refs.VP.fetchData(this.resource_url + '?page=' + this.$refs.VP.current_page);
       },
-/*      restore(contract){
-        axios.get('/contracts/' + contract.id + '/restore')
-          .then(response => this.contractRestored(response));
+      restore(issue){
+        axios.get('/issues/' + issue.id + '/restore')
+          .then(response => this.issueRestored(response));
       },
-      contractRestored(response){
+      issueRestored(response){
         this.reloadData();
         toastr.success(response.data.message);
-      },*/
+      },
       printTable(){
         $('.print-hidden').hide()
         $('.btn').hide()
