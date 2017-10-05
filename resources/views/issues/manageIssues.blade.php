@@ -18,8 +18,17 @@
 			اعرض 
 			<select v-model="current_view" @change="fetchIssuesData()">
 				<option value="all">الكل</option>
-				<option value="criminal">القضايا الجنائية</option>
-				<option value="civil">القضايا المدنية و الادارية</option>
+			    <option value="2">جـنــايــات</option>
+			    <option value="3">مــخــالفــات</option>
+			    <option value="4">أدارى</option>
+			    <option value="5">مــدنـى جــزئى</option>
+			    <option value="6">مــدنـى كــلـى</option>
+			    <option value="7">صــحــة توقيــع</option>
+			    <option value="8">أســـرة</option>
+			    <option value="9">وراثــــات</option>
+			    <option value="10">تـجـــارى</option>
+			    <option value="11">أدارى(مجلــس الدولة)</option>
+			    <option value="12">اقتصـــادية</option>
 				<option value="trashed">المحذوفة</option>
 			</select>
 		</div>

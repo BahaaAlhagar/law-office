@@ -29131,24 +29131,11 @@ var manageIssues = new Vue({
           return _this.assignData(response);
         });
         this.resource_url = '/issues';
-      }
-      if (this.current_view == 'criminal') {
-        axios.get('/issue/criminal').then(function (response) {
+      } else {
+        axios.get('/issue/' + this.current_view).then(function (response) {
           return _this.assignData(response);
         });
-        this.resource_url = '/issue/criminal';
-      }
-      if (this.current_view == 'civil') {
-        axios.get('/issue/civil').then(function (response) {
-          return _this.assignData(response);
-        });
-        this.resource_url = '/issue/civil';
-      }
-      if (this.current_view == 'trashed') {
-        axios.get('/issue/trashed').then(function (response) {
-          return _this.assignData(response);
-        });
-        this.resource_url = '/issue/trashed';
+        this.resource_url = '/issue/' + this.current_view;
       }
     },
     assignData: function assignData(response) {

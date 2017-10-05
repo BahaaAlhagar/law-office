@@ -28,17 +28,10 @@ class IssueController extends Controller
 
         $issues = Issue::latest()->with('people')->paginate(10);
 
-        if($type == 'criminal')
+        if($type)
         {
             $issues = Issue::latest()
-                        ->where('type', '<', 4)
-                        ->with('people')->paginate(10);
-        }
-
-        if($type == 'civil')
-        {
-            $issues = Issue::latest()
-                        ->where('type', '>=', 4)
+                        ->where('type', $type)
                         ->with('people')->paginate(10);
         }
 

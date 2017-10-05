@@ -73,22 +73,12 @@ const manageIssues = new Vue({
           axios.get('/issues')
           .then(response => this.assignData(response));
           this.resource_url = '/issues';
-        }
-        if(this.current_view == 'criminal'){
-          axios.get('/issue/criminal')
+        } else {
+          axios.get('/issue/' + this.current_view)
           .then(response => this.assignData(response));
-          this.resource_url = '/issue/criminal';
+          this.resource_url = '/issue/' + this.current_view;
         }
-        if(this.current_view == 'civil'){
-          axios.get('/issue/civil')
-          .then(response => this.assignData(response));
-          this.resource_url = '/issue/civil';
-        }
-        if(this.current_view == 'trashed'){
-          axios.get('/issue/trashed')
-          .then(response => this.assignData(response));
-          this.resource_url = '/issue/trashed';
-        }
+        
       },
       assignData(response){
           this.issues = response.data.issues.data;
