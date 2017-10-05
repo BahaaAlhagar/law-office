@@ -45,8 +45,10 @@
 			<tbody>
 				<tr v-for="contract in contracts" :key="contract.id">
 					<td> 
+						<a :href="/contracts/ + contract.id">
 						@{{ contract.number }} لسنة @{{ contract.year }}<br>
 						حرف @{{ contract.letter }}
+						</a>
 					</td>
 
 					<td v-if="contract.type == 1">

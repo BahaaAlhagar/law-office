@@ -18,7 +18,7 @@
 		<div class="heading col-md-12 print-hidden">
 			اعرض 
 			<select v-model="current_view" @change="fetchPPLData()">
-				<option value="">الكل</option>
+				<option value="all">الكل</option>
 				<option value="clients">الموكلين</option>
 				<option value="notClients">الاطراف الاخرى</option>
 				<option value="trashed">المحذوفين</option>

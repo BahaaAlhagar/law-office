@@ -7,7 +7,9 @@
             <table class="table">
               <tbody>
                 <tr v-for="contract in contracts">
-                  <td>{{ contract.number }} لسنة {{ contract.year }} <br> حرف {{ contract.letter }}</td>
+                  <td>
+                    <a :href="/contracts/ + contract.id">{{ contract.number }} لسنة {{ contract.year }} <br> حرف {{ contract.letter }} </a>
+                  </td>
                   <td v-if="contract.type == 1" class="brown">توكيل عام</td>
                   <td v-if="contract.type == 2" class="blue">توكيل خاص</td>
                   <td v-if="contract.type == 3" class="green">عقد وكالة</td>

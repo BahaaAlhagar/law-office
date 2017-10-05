@@ -134,7 +134,7 @@
                 .then(response => eventBus.$emit('contractUpdated', response));
             },
         editContractModal(contract){
-            this.editFrom.reset();
+            this.editForm.reset();
         	this.editForm.number = contract.number;
         	this.editForm.year 	 = contract.year;
         	this.editForm.letter = contract.letter;

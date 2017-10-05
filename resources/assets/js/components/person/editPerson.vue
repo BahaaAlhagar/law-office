@@ -97,7 +97,7 @@
                 .then(response => eventBus.$emit('personUpdated', response));
             },
         editPersonModal(person){
-            this.editFrom.reset();
+            this.editForm.reset();
         	this.editForm.name = person.name;
         	this.editForm.location = person.location;
         	this.editForm.phone = person.phone;

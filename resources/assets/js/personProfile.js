@@ -56,3 +56,8 @@ const personProfile = new Vue({
 	    	eventBus.$on('personUpdated', response => this.afterPersonUpdated(response));
 	    }
     });
+
+
+toastr.options = {
+  "positionClass": "toast-bottom-right",
+}

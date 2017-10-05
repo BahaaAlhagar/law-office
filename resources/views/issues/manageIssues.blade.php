@@ -55,7 +55,10 @@
 				<tr v-for="issue in issues" :key="issue.id">
 					<td> 
 						<span v-if="issue.number">
-							@{{ issue.number }} لسنة @{{ issue.year }}<br>
+							@{{ issue.number }} لسنة @{{ issue.year }}
+						</span>
+						<span v-if="issue.adv_number">
+							<br>
 							@{{ issue.adv_number }} لسنة @{{ issue.adv_year }} س
 						</span>
 					</td>
@@ -97,8 +100,10 @@
 						<span v-if="issue.type == 12" class="blue">
 							اقتصـــادية <br>
 						</span>
-
-					 	@{{ issue.subject }} 
+						
+						<a :href="/issues/ + issue.id">
+					 		@{{ issue.subject }} 
+					 	</a>
 					</td>
 
 					<td> @{{ issue.court }} <br> @{{ issue.room }} </td>

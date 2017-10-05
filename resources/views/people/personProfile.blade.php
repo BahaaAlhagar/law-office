@@ -6,6 +6,10 @@
     {{ $person->name }}
 @endsection
 
+@section('css')
+    <link href="{{ URL::asset('css/toastr.min.css') }}" rel="stylesheet">
+@endsection
+
 @section('content')
 
       <div id="personProfile">

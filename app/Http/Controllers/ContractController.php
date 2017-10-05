@@ -78,7 +78,12 @@ class ContractController extends Controller
      */
     public function show(Contract $contract)
     {
-        //
+        $people = Person::orderBy('name')
+            ->select('id', 'name', 'location')->get();
+        
+        $contract->load('people');
+        
+        return $this->makeResponse('contracts/contractProfile', compact('contract', 'people'));
     }
 
 
@@ -98,7 +103,9 @@ class ContractController extends Controller
 
         $contract->people()->sync($people);
 
-        return ['message' => 'تم تحديث بيانات التوكيل بنجاح'];
+        $contract->load('people');
+
+        return $this->respondWithMessage('تم تحديث بيانات التوكيل بنجاح', $contract);
     }
 
     /**
