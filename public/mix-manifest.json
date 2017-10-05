@@ -1,5 +1,6 @@
 {
     "/js/manageContracts.js": "/js/manageContracts.js",
+    "/js/manageIssues.js": "/js/manageIssues.js",
     "/js/managePeople.js": "/js/managePeople.js",
     "/js/personProfile.js": "/js/personProfile.js"
 }

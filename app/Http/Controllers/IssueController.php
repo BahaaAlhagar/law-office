@@ -3,20 +3,53 @@
 namespace App\Http\Controllers;
 
 use App\Issue;
+use App\Person;
 use Illuminate\Http\Request;
 
 class IssueController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('admin');
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($type = null)
     {
-        $issues = Issue::latest()->with('people')->get();
 
-        return $this->makeResponse('issues/manageIssues', compact('issues'));
+        $people = Person::orderBy('name')
+            ->select('id', 'name', 'location')->get();
+
+        $issues = Issue::latest()->with('people')->paginate(10);
+
+        if($type == 'criminal')
+        {
+            $issues = Issue::latest()
+                        ->where('type', '<', 4)
+                        ->with('people')->paginate(10);
+        }
+
+        if($type == 'civil')
+        {
+            $issues = Issue::latest()
+                        ->where('type', '>=', 4)
+                        ->with('people')->paginate(10);
+        }
+
+        if($type == 'trashed')
+        {
+            $issues = Issue::latest()
+                        ->onlyTrashed()
+                        ->with('people')->paginate(10);
+        }
+
+        return $this->makeResponse('issues/manageIssues', compact('issues', 'people'));
     }
 
     /**

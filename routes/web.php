@@ -30,3 +30,9 @@ route::get('contract/{type?}', 'ContractController@index');
 route::get('/contracts/{contract}/restore', 'ContractController@restore');
 
 route::resource('contracts', 'ContractController', ['except' => ['create', 'edit']]);
+
+route::get('issue/{type?}', 'IssueController@index');
+
+route::get('/issues/{issue}/restore', 'IssueController@restore');
+
+route::resource('issues', 'IssueController', ['except' => ['create', 'edit']]);

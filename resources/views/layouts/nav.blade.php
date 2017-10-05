@@ -13,6 +13,9 @@
         <a class="nav-link" href="{{ route('contracts.index') }}"> التوكيلات </a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" href="{{ route('issues.index') }}"> القضايا </a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link disabled" href="#">Disabled</a>
       </li>
       <li class="nav-item dropdown">

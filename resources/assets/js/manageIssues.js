@@ -18,33 +18,33 @@ import toastr from 'toastr';
 import bootstrap from 'bootstrap';
 
 
-import addContract from './components/contract/addContract.vue';
-import editContract from './components/contract/editContract.vue';
+import addIssue from './components/issue/addIssue.vue';
+import editIssue from './components/issue/editIssue.vue';
 
 window.eventBus = new Vue();
 
-const manageContracts = new Vue({
-    el: '#manageContracts',
+const manageIssues = new Vue({
+    el: '#manageIssues',
     data: {
-    	contracts: [],
+    	issues: [],
       people: [],
     	current_view: 'all',
-    	resource_url: '/contracts',
+    	resource_url: '/issues',
     	options: {
-              remote_data: 'contracts.data',
-              remote_current_page: 'contracts.current_page',
-              remote_last_page: 'contracts.last_page',
-              remote_next_page_url: 'contracts.next_page_url',
-              remote_prev_page_url: 'contracts.prev_page_url',
+              remote_data: 'issues.data',
+              remote_current_page: 'issues.current_page',
+              remote_last_page: 'issues.last_page',
+              remote_next_page_url: 'issues.next_page_url',
+              remote_prev_page_url: 'issues.prev_page_url',
               next_button_text: 'التالى',
               previous_button_text: 'السابق'
             },
     },
    	methods: {
    		updateResource(data){
-  			this.contracts = data;
+  			this.issues = data;
   		},
-      afterContractAdded(response){
+/*      afterContractAdded(response){
         this.contracts.unshift(response.item);
         $('#addContract').modal('hide');
         toastr.success(response.message);
@@ -67,49 +67,44 @@ const manageContracts = new Vue({
       onContractDelete(response){
         this.reloadData();
         toastr.warning(response.data.message);
-      },
-      fetchContractsData(){
+      },*/
+      fetchIssuesData(){
         if(this.current_view == 'all'){
-          axios.get('/contracts')
+          axios.get('/issues')
           .then(response => this.assignData(response));
-          this.resource_url = '/contracts';
+          this.resource_url = '/issues';
         }
-        if(this.current_view == '1'){
-          axios.get('/contract/1')
+        if(this.current_view == 'criminal'){
+          axios.get('/issue/criminal')
           .then(response => this.assignData(response));
-          this.resource_url = '/contract/1';
+          this.resource_url = '/issue/criminal';
         }
-        if(this.current_view == '2'){
-          axios.get('/contract/2')
+        if(this.current_view == 'civil'){
+          axios.get('/issue/civil')
           .then(response => this.assignData(response));
-          this.resource_url = '/contract/2';
-        }
-        if(this.current_view == '3'){
-          axios.get('/contract/3')
-          .then(response => this.assignData(response));
-          this.resource_url = '/contract/3';
+          this.resource_url = '/issue/civil';
         }
         if(this.current_view == 'trashed'){
-          axios.get('/contract/trashed')
+          axios.get('/issue/trashed')
           .then(response => this.assignData(response));
-          this.resource_url = '/contract/trashed';
+          this.resource_url = '/issue/trashed';
         }
       },
       assignData(response){
-          this.contracts = response.data.contracts.data;
+          this.issues = response.data.issues.data;
           this.people = response.data.people;
       },
       reloadData(){
           this.$refs.VP.fetchData(this.resource_url + '?page=' + this.$refs.VP.current_page);
       },
-      restore(contract){
+/*      restore(contract){
         axios.get('/contracts/' + contract.id + '/restore')
           .then(response => this.contractRestored(response));
       },
       contractRestored(response){
         this.reloadData();
         toastr.success(response.data.message);
-      },
+      },*/
       printTable(){
         $('.print-hidden').hide()
         $('.btn').hide()
@@ -119,12 +114,12 @@ const manageContracts = new Vue({
       }
    	},
     components: {
-    	addContract,
-    	editContract,
+    	addIssue,
+    	editIssue,
     	VPaginator: VuePaginator
     },
     created() {
-      this.fetchContractsData();
+      this.fetchIssuesData();
 
       eventBus.$on('contractAdded', response => this.afterContractAdded(response));
       
