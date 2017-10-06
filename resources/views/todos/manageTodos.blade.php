@@ -62,7 +62,7 @@
 
 	  		<!-- Create todo Modal -->
 
-	  		<add-person></add-person>
+	  		<add-todo></add-todo>
 	  		
 	  		<!-- edit todo Modal -->
 
@@ -73,5 +73,24 @@
 @endsection
 
 @section('js')
-	<script src="{{ URL::asset('js/manageTodos.js') }}"></script>
+	    <script type="text/javascript">
+            $(document).ready(function(){
+              var date_input=$('input[name="date"]'); //our date input has the name "date"
+              var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+              var options={
+                format: "yyyy-mm-dd",
+                language: "ar",
+                weekStart: 6,
+                maxViewMode: 3,
+                todayBtn: "linked",
+                orientation: "bottom auto",
+                daysOfWeekDisabled: "5",
+                daysOfWeekHighlighted: "5",
+                autoclose: true
+              };
+              date_input.datepicker(options);
+            })
+        </script>
+        
+		<script src="{{ URL::asset('js/manageTodos.js') }}"></script>
 @endsection

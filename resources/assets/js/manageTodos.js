@@ -8,7 +8,7 @@ import VuePaginator from 'vuejs-paginator';
 
 Vue.use(VueResource);
 
-import addPerson from './components/person/addPerson.vue';
+import addTodo from './components/todo/addTodo.vue';
 import editPerson from './components/person/editPerson.vue';
 
 
@@ -87,7 +87,7 @@ const manageTodos = new Vue({
       }
    	},
     components: {
-    	addPerson,
+    	addTodo,
     	editPerson,
     	VPaginator: VuePaginator
     },
