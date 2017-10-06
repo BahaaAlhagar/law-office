@@ -20,11 +20,12 @@ class TodoController extends Controller
      */
     public function index($completed = null)
     {
-        $todos = Todo::orderBy('name')->paginate(15);
+        $todos = Todo::orderBy('date')
+                        ->where('completed', 0)->paginate(15);
 
         if($completed)
         {
-            $todos = Todo::orderBy('name')
+            $todos = Todo::orderBy('date')
                             ->where('completed', $completed)->paginate(15);
         }
         

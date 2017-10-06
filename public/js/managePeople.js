@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 52);
+/******/ 	return __webpack_require__(__webpack_require__.s = 55);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -28666,18 +28666,15 @@ return /******/ (function(modules) { // webpackBootstrap
 //# sourceMappingURL=vuejs-paginator.js.map
 
 /***/ }),
-/* 40 */,
-/* 41 */,
-/* 42 */,
-/* 43 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var Component = __webpack_require__(8)(
   /* script */
-  __webpack_require__(44),
+  __webpack_require__(41),
   /* template */
-  __webpack_require__(45),
+  __webpack_require__(42),
   /* styles */
   null,
   /* scopeId */
@@ -28709,7 +28706,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 44 */
+/* 41 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -28834,7 +28831,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 45 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -29100,191 +29097,18 @@ if (false) {
 }
 
 /***/ }),
-/* 46 */,
-/* 47 */,
-/* 48 */,
-/* 49 */,
-/* 50 */,
-/* 51 */,
-/* 52 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(53);
-
-
-/***/ }),
-/* 53 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_resource__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuejs_paginator__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuejs_paginator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vuejs_paginator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_person_addPerson_vue__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_person_addPerson_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_person_addPerson_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_person_editPerson_vue__ = __webpack_require__(43);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_person_editPerson_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_person_editPerson_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__partials_Form__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jquery__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_jquery__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_toastr__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_toastr___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_toastr__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_bootstrap__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_bootstrap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_bootstrap__);
-
-__webpack_require__(9);
-
-window.Vue = __webpack_require__(30);
-
-
-
-
-Vue.use(__WEBPACK_IMPORTED_MODULE_0_vue_resource__["a" /* default */]);
-
-
-
-
-
-window.Form = __WEBPACK_IMPORTED_MODULE_4__partials_Form__["a" /* default */];
-
-
-
-
-
-window.eventBus = new Vue();
-
-var managePeople = new Vue({
-  el: '#managePeople',
-  data: {
-    people: [],
-    current_view: 'all',
-    resource_url: '/people',
-    options: {
-      remote_data: 'people.data',
-      remote_current_page: 'people.current_page',
-      remote_last_page: 'people.last_page',
-      remote_next_page_url: 'people.next_page_url',
-      remote_prev_page_url: 'people.prev_page_url',
-      next_button_text: 'التالى',
-      previous_button_text: 'السابق'
-    }
-  },
-  methods: {
-    updateResource: function updateResource(data) {
-      this.people = data;
-    },
-    afterPersonAdded: function afterPersonAdded(response) {
-      this.people.unshift(response.item);
-      $('#addPerson').modal('hide');
-      __WEBPACK_IMPORTED_MODULE_6_toastr___default.a.success(response.message);
-    },
-    editPerson: function editPerson(person) {
-      eventBus.$emit('editPerson', person);
-      $('#editPerson').modal('show');
-    },
-    afterPersonUpdated: function afterPersonUpdated(response) {
-      $('#editPerson').modal('hide');
-      __WEBPACK_IMPORTED_MODULE_6_toastr___default.a.info(response.message);
-      this.reloadData();
-    },
-    deletePerson: function deletePerson(person) {
-      var _this = this;
-
-      if (confirm('هل انت متاكد من حذف هذا الشخص')) {
-        axios.delete('/people/' + person.id).then(function (response) {
-          return _this.onPersonDelete(response);
-        });
-      }
-    },
-    onPersonDelete: function onPersonDelete(response) {
-      this.reloadData();
-      __WEBPACK_IMPORTED_MODULE_6_toastr___default.a.warning(response.data.message);
-    },
-    fetchPPLData: function fetchPPLData() {
-      var _this2 = this;
-
-      if (this.current_view == 'all') {
-        axios.get('/people').then(function (response) {
-          return _this2.people = response.data.people.data;
-        });
-        this.resource_url = '/people';
-      }
-      if (this.current_view == 'clients') {
-        axios.get('/filtered-ppl/clients').then(function (response) {
-          return _this2.people = response.data.people.data;
-        });
-        this.resource_url = '/filtered-ppl/clients';
-      }
-      if (this.current_view == 'notClients') {
-        axios.get('/filtered-ppl/notclients').then(function (response) {
-          return _this2.people = response.data.people.data;
-        });
-        this.resource_url = '/filtered-ppl/notclients';
-      }
-      if (this.current_view == 'trashed') {
-        axios.get('/filtered-ppl/trashed').then(function (response) {
-          return _this2.people = response.data.people.data;
-        });
-        this.resource_url = '/filtered-ppl/trashed';
-      }
-    },
-    reloadData: function reloadData() {
-      this.$refs.VP.fetchData(this.resource_url + '?page=' + this.$refs.VP.current_page);
-    },
-    restore: function restore(person) {
-      var _this3 = this;
-
-      axios.get('/people/' + person.id + '/restore').then(function (response) {
-        return _this3.personRestored(response);
-      });
-    },
-    personRestored: function personRestored(response) {
-      this.reloadData();
-      __WEBPACK_IMPORTED_MODULE_6_toastr___default.a.success(response.data.message);
-    },
-    printTable: function printTable() {
-      $('.print-hidden').hide();
-      $('.btn').hide();
-      window.print();
-      $('.print-hidden').show();
-      $('.btn').show();
-    }
-  },
-  components: {
-    addPerson: __WEBPACK_IMPORTED_MODULE_2__components_person_addPerson_vue___default.a,
-    editPerson: __WEBPACK_IMPORTED_MODULE_3__components_person_editPerson_vue___default.a,
-    VPaginator: __WEBPACK_IMPORTED_MODULE_1_vuejs_paginator___default.a
-  },
-  created: function created() {
-    var _this4 = this;
-
-    this.fetchPPLData();
-
-    eventBus.$on('personAdded', function (response) {
-      return _this4.afterPersonAdded(response);
-    });
-
-    eventBus.$on('personUpdated', function (response) {
-      return _this4.afterPersonUpdated(response);
-    });
-  }
-});
-
-__WEBPACK_IMPORTED_MODULE_6_toastr___default.a.options = {
-  "positionClass": "toast-bottom-right"
-};
-
-/***/ }),
-/* 54 */
+/* 43 */,
+/* 44 */,
+/* 45 */,
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var Component = __webpack_require__(8)(
   /* script */
-  __webpack_require__(55),
+  __webpack_require__(47),
   /* template */
-  __webpack_require__(56),
+  __webpack_require__(48),
   /* styles */
   null,
   /* scopeId */
@@ -29316,7 +29140,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 55 */
+/* 47 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -29425,7 +29249,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 56 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -29683,6 +29507,182 @@ if (false) {
      require("vue-hot-reload-api").rerender("data-v-fc654cd2", module.exports)
   }
 }
+
+/***/ }),
+/* 49 */,
+/* 50 */,
+/* 51 */,
+/* 52 */,
+/* 53 */,
+/* 54 */,
+/* 55 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(56);
+
+
+/***/ }),
+/* 56 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_resource__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuejs_paginator__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuejs_paginator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vuejs_paginator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_person_addPerson_vue__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_person_addPerson_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_person_addPerson_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_person_editPerson_vue__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_person_editPerson_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_person_editPerson_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__partials_Form__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jquery__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_jquery__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_toastr__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_toastr___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_toastr__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_bootstrap__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_bootstrap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_bootstrap__);
+
+__webpack_require__(9);
+
+window.Vue = __webpack_require__(30);
+
+
+
+
+Vue.use(__WEBPACK_IMPORTED_MODULE_0_vue_resource__["a" /* default */]);
+
+
+
+
+
+window.Form = __WEBPACK_IMPORTED_MODULE_4__partials_Form__["a" /* default */];
+
+
+
+
+
+window.eventBus = new Vue();
+
+var managePeople = new Vue({
+  el: '#managePeople',
+  data: {
+    people: [],
+    current_view: 'all',
+    resource_url: '/people',
+    options: {
+      remote_data: 'people.data',
+      remote_current_page: 'people.current_page',
+      remote_last_page: 'people.last_page',
+      remote_next_page_url: 'people.next_page_url',
+      remote_prev_page_url: 'people.prev_page_url',
+      next_button_text: 'التالى',
+      previous_button_text: 'السابق'
+    }
+  },
+  methods: {
+    updateResource: function updateResource(data) {
+      this.people = data;
+    },
+    afterPersonAdded: function afterPersonAdded(response) {
+      this.people.unshift(response.item);
+      $('#addPerson').modal('hide');
+      __WEBPACK_IMPORTED_MODULE_6_toastr___default.a.success(response.message);
+    },
+    editPerson: function editPerson(person) {
+      eventBus.$emit('editPerson', person);
+      $('#editPerson').modal('show');
+    },
+    afterPersonUpdated: function afterPersonUpdated(response) {
+      $('#editPerson').modal('hide');
+      __WEBPACK_IMPORTED_MODULE_6_toastr___default.a.info(response.message);
+      this.reloadData();
+    },
+    deletePerson: function deletePerson(person) {
+      var _this = this;
+
+      if (confirm('هل انت متاكد من حذف هذا الشخص')) {
+        axios.delete('/people/' + person.id).then(function (response) {
+          return _this.onPersonDelete(response);
+        });
+      }
+    },
+    onPersonDelete: function onPersonDelete(response) {
+      this.reloadData();
+      __WEBPACK_IMPORTED_MODULE_6_toastr___default.a.warning(response.data.message);
+    },
+    fetchPPLData: function fetchPPLData() {
+      var _this2 = this;
+
+      if (this.current_view == 'all') {
+        axios.get('/people').then(function (response) {
+          return _this2.people = response.data.people.data;
+        });
+        this.resource_url = '/people';
+      }
+      if (this.current_view == 'clients') {
+        axios.get('/filtered-ppl/clients').then(function (response) {
+          return _this2.people = response.data.people.data;
+        });
+        this.resource_url = '/filtered-ppl/clients';
+      }
+      if (this.current_view == 'notClients') {
+        axios.get('/filtered-ppl/notclients').then(function (response) {
+          return _this2.people = response.data.people.data;
+        });
+        this.resource_url = '/filtered-ppl/notclients';
+      }
+      if (this.current_view == 'trashed') {
+        axios.get('/filtered-ppl/trashed').then(function (response) {
+          return _this2.people = response.data.people.data;
+        });
+        this.resource_url = '/filtered-ppl/trashed';
+      }
+    },
+    reloadData: function reloadData() {
+      this.$refs.VP.fetchData(this.resource_url + '?page=' + this.$refs.VP.current_page);
+    },
+    restore: function restore(person) {
+      var _this3 = this;
+
+      axios.get('/people/' + person.id + '/restore').then(function (response) {
+        return _this3.personRestored(response);
+      });
+    },
+    personRestored: function personRestored(response) {
+      this.reloadData();
+      __WEBPACK_IMPORTED_MODULE_6_toastr___default.a.success(response.data.message);
+    },
+    printTable: function printTable() {
+      $('.print-hidden').hide();
+      $('.btn').hide();
+      window.print();
+      $('.print-hidden').show();
+      $('.btn').show();
+    }
+  },
+  components: {
+    addPerson: __WEBPACK_IMPORTED_MODULE_2__components_person_addPerson_vue___default.a,
+    editPerson: __WEBPACK_IMPORTED_MODULE_3__components_person_editPerson_vue___default.a,
+    VPaginator: __WEBPACK_IMPORTED_MODULE_1_vuejs_paginator___default.a
+  },
+  created: function created() {
+    var _this4 = this;
+
+    this.fetchPPLData();
+
+    eventBus.$on('personAdded', function (response) {
+      return _this4.afterPersonAdded(response);
+    });
+
+    eventBus.$on('personUpdated', function (response) {
+      return _this4.afterPersonUpdated(response);
+    });
+  }
+});
+
+__WEBPACK_IMPORTED_MODULE_6_toastr___default.a.options = {
+  "positionClass": "toast-bottom-right"
+};
 
 /***/ })
 /******/ ]);

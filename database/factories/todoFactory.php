@@ -5,7 +5,7 @@ use Faker\Generator as Faker;
 $factory->define(App\Todo::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
-        'location' => $faker->city,
+        'notes' => $faker->sentence,
         'date' => $faker->date,
         'completed' => $faker->boolean
     ];
