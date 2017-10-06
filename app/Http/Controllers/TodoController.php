@@ -7,14 +7,28 @@ use Illuminate\Http\Request;
 
 class TodoController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('admin');
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($completed = null)
     {
-        //
+        $todos = Todo::orderBy('name')->paginate(15);
+
+        if($completed)
+        {
+            $todos = Todo::orderBy('name')
+                            ->where('completed', $completed)->paginate(15);
+        }
+        
+        return $this->makeResponse('todos/manageTodos', compact('todos'));
     }
 
     /**

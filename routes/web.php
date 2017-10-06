@@ -36,3 +36,7 @@ route::get('issue/{type?}', 'IssueController@index');
 route::get('/issues/{issue}/restore', 'IssueController@restore');
 
 route::resource('issues', 'IssueController', ['except' => ['create', 'edit']]);
+
+route::get('todo/{completed?}', 'TodoController@index');
+
+route::resource('todos', 'TodoController', ['except' => ['create', 'edit']]);
