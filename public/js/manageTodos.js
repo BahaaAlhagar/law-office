@@ -30994,7 +30994,7 @@ __webpack_require__(310);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Hindi = __webpack_require__(312).ar;
+var Arabic = __webpack_require__(312).ar;
 
 exports.default = {
     data: function data() {
@@ -31003,7 +31003,10 @@ exports.default = {
                 name: '',
                 date: '',
                 notes: ''
-            })
+            }),
+            config: {
+                locale: Arabic
+            }
         };
     },
 
@@ -31107,6 +31110,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v("التاريخ:")]), _vm._v(" "), _c('flat-pickr', {
     attrs: {
       "name": "date",
+      "config": _vm.config,
       "placeholder": "اختر التاريخ"
     },
     model: {

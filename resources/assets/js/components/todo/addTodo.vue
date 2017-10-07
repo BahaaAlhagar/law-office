@@ -33,6 +33,7 @@
                         
                         <flat-pickr v-model="form.date" 
                         name="date" 
+                        :config="config" 
                         placeholder="اختر التاريخ">
                         </flat-pickr>
 
@@ -66,7 +67,7 @@
   import flatPickr from 'vue-flatpickr-component';
   import 'flatpickr/dist/flatpickr.css';
 
-  const Hindi = require("flatpickr/dist/l10n/ar.js").ar;
+  const Arabic = require("flatpickr/dist/l10n/ar.js").ar;
 
     export default {
         data() {
@@ -75,7 +76,10 @@
                 name: '',
                 date: '',
                 notes: ''
-            })
+            }),
+            config: {
+                locale: Arabic
+            }
         };
         },
         methods: {
