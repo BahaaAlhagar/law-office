@@ -27,7 +27,7 @@
 				الاعمال الادارية المضافة فى التطبيق
 			</span>
 			<span class="mr-auto">
-			<button class="btn btn-sm btn-success pull-left" data-toggle="modal" data-target="#addTodo">اضافة عما ادارى</button>
+			<button class="btn btn-sm btn-success pull-left" data-toggle="modal" data-target="#addTodo">اضافة عمل ادارى</button>
 			<button v-if="todos.length && current_view == 0" @click="printTable()" class="btn btn-sm btn-info pull-left">طباعة الجدول</button>
 			</span>
 			<thead class="thead-inverse">
@@ -73,24 +73,6 @@
 @endsection
 
 @section('js')
-	    <script type="text/javascript">
-            $(document).ready(function(){
-              var date_input=$('input[name="date"]'); //our date input has the name "date"
-              var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-              var options={
-                format: "yyyy-mm-dd",
-                language: "ar",
-                weekStart: 6,
-                maxViewMode: 3,
-                todayBtn: "linked",
-                orientation: "bottom auto",
-                daysOfWeekDisabled: "5",
-                daysOfWeekHighlighted: "5",
-                autoclose: true
-              };
-              date_input.datepicker(options);
-            })
-        </script>
         
 		<script src="{{ URL::asset('js/manageTodos.js') }}"></script>
 @endsection

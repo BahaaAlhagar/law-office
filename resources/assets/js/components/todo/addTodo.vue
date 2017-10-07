@@ -21,7 +21,7 @@
                 >
                     
                     <div class="form-group">
-                        <label for="name" class="label">الاسم:</label>
+                        <label for="name" class="label">العمل الادارى:</label>
                         
                         <input type="text" id="name" name="name" class="form-control" v-model="form.name"> 
 
@@ -31,7 +31,10 @@
                     <div class="form-group">
                         <label for="date" class="label">التاريخ:</label>
                         
-                        <input type="text" id="date" name="date" class="form-control" v-model="form.date"> 
+                        <flat-pickr v-model="form.date" 
+                        name="date" 
+                        placeholder="اختر التاريخ">
+                        </flat-pickr>
 
                         <span class="alert-danger" v-if="form.errors.has('date')" v-text="form.errors.get('date')"></span>
                     </div>
@@ -60,6 +63,11 @@
 </template>
 
 <script>
+  import flatPickr from 'vue-flatpickr-component';
+  import 'flatpickr/dist/flatpickr.css';
+
+  const Hindi = require("flatpickr/dist/l10n/ar.js").ar;
+
     export default {
         data() {
         return {
@@ -75,6 +83,9 @@
             this.form.post('/todos')
                 .then(response => eventBus.$emit('todoAdded', response));
             }
+        },
+        components: {
+            flatPickr
         }
 
     }

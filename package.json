@@ -11,6 +11,7 @@
   },
   "devDependencies": {
     "axios": "^0.16.2",
+    "babel-preset-stage-2": "^6.24.1",
     "jquery": "^3.1.1",
     "laravel-mix": "^1.0",
     "vue": "^2.1.10"
@@ -18,10 +19,18 @@
   "dependencies": {
     "bootstrap": "^4.0.0-beta",
     "install": "^0.10.1",
+    "moment": "^2.18.1",
     "npm": "^5.4.2",
     "popper.js": "^1.12.5",
     "select2": "^4.0.3",
+    "simple-vue-datepicker": "0.0.14",
     "v-select2": "^1.0.1",
-    "vue-select": "github:sagalbot/vue-select"
+    "vue-bootstrap-datetimepicker": "^3.1.2",
+    "vue-datetime-picker": "^0.2.1",
+    "vue-flatpickr-component": "^3.1.2",
+    "vue-md-date-picker": "^1.0.9",
+    "vue-select": "github:sagalbot/vue-select",
+    "vue-strap": "github:wffranco/vue-strap",
+    "vuejs-simple-datepicker": "^0.2.2"
   }
 }
