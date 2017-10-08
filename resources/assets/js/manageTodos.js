@@ -9,7 +9,8 @@ import VuePaginator from 'vuejs-paginator';
 Vue.use(VueResource);
 
 import addTodo from './components/todo/addTodo.vue';
-import editPerson from './components/person/editPerson.vue';
+import editTodo from './components/todo/editTodo.vue';
+
 
 
 import Form from './partials/Form';
@@ -51,16 +52,16 @@ const manageTodos = new Vue({
         $('#addTodo').modal('hide');
         toastr.success(response.message);
       },
-/*      editPerson(person){
-        eventBus.$emit('editPerson', person);
-        $('#editPerson').modal('show');
+      editTodo(todo){
+        eventBus.$emit('editTodo', todo);
+        $('#editTodo').modal('show');
       },
-      afterPersonUpdated(response){
-        $('#editPerson').modal('hide');
+      afterTodoUpdated(response){
+        $('#editTodo').modal('hide');
         toastr.info(response.message);
         this.reloadData();
       },
-      deletePerson(person){
+/*      deletePerson(person){
         if(confirm('هل انت متاكد من حذف هذا الشخص')){
         axios.delete('/todos/' + person.id)
         .then(response => this.onPersonDelete(response));
@@ -88,7 +89,7 @@ const manageTodos = new Vue({
    	},
     components: {
     	addTodo,
-    	editPerson,
+    	editTodo,
     	VPaginator: VuePaginator
     },
     created() {
@@ -96,7 +97,7 @@ const manageTodos = new Vue({
 
       eventBus.$on('todoAdded', response => this.afterTodoAdded(response));
       
-      eventBus.$on('personUpdated', response => this.afterPersonUpdated(response));
+      eventBus.$on('todoUpdated', response => this.afterTodoUpdated(response));
     }
 
 });

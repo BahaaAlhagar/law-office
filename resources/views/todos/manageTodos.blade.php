@@ -66,7 +66,7 @@
 	  		
 	  		<!-- edit todo Modal -->
 
-	  		<edit-person></edit-person>
+	  		<edit-todo></edit-todo>
 </div>
 
 

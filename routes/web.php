@@ -39,4 +39,4 @@ route::resource('issues', 'IssueController', ['except' => ['create', 'edit']]);
 
 route::get('todo/{completed?}', 'TodoController@index');
 
-route::resource('todos', 'TodoController', ['except' => ['create', 'edit']]);
+route::resource('todos', 'TodoController', ['except' => ['create', 'edit', 'show']]);

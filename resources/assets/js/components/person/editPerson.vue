@@ -18,6 +18,7 @@
 
                 <form method="POST" action="/people" @submit.prevent="onPersonUpdate" @keydown="editForm.errors.clear($event.target.name)"
                 @change="editForm.errors.clear($event.target.name)"
+                @input="editForm.errors.clear($event.target.name)"
                 >
                     
                     <div class="form-group">
@@ -56,7 +57,7 @@
                         <label for="is_client" class="label">الحاله:</label>
                         
                         <select id="is_client" name="is_client" class="form-control" v-model.number="editForm.is_client">
-                            <option value="1" selected>مــوكــل</option>
+                            <option value="1">مــوكــل</option>
                             <option value="0">لــيــس مــوكــل</option>
                         </select>
 

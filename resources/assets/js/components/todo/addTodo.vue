@@ -18,6 +18,7 @@
 
                 <form method="POST" action="/people" @submit.prevent="onTodoCreate" @keydown="form.errors.clear($event.target.name)"
                 @change="form.errors.clear($event.target.name)"
+                @input="editForm.errors.clear($event.target.name)"
                 >
                     
                     <div class="form-group">

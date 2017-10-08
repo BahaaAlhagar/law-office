@@ -29064,6 +29064,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       },
       "change": function($event) {
         _vm.editForm.errors.clear($event.target.name)
+      },
+      "input": function($event) {
+        _vm.editForm.errors.clear($event.target.name)
       }
     }
   }, [_c('div', {
