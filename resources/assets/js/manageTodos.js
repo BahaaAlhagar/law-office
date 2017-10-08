@@ -43,6 +43,11 @@ const manageTodos = new Vue({
               previous_button_text: 'السابق'
             },
     },
+    components: {
+      addTodo,
+      editTodo,
+      VPaginator: VuePaginator
+    },
    	methods: {
    		updateResource(data){
   			this.todos = data;
@@ -85,13 +90,15 @@ const manageTodos = new Vue({
         window.print()
         $('.print-hidden').show()
         $('.btn').show()
+      },
+      updateTodo(todo, $event)
+      {
+        this.$refs.editTodo.editTodoModal(todo);
+        this.$refs.editTodo.editForm.completed = $event.target.checked;
+        this.$refs.editTodo.onTodoUpdate();
+
       }
    	},
-    components: {
-    	addTodo,
-    	editTodo,
-    	VPaginator: VuePaginator
-    },
     created() {
       this.fetchTodosData();
 

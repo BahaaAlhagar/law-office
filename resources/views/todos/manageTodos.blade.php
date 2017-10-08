@@ -45,7 +45,7 @@
 					<td> @{{ todo.date }} </td>
 					<td> @{{ todo.notes }} </td>
 					<td class="print-hidden">
-						<input type="checkbox" id="checkbox" :checked="todo.completed"> 
+						<input type="checkbox" id="checkbox" @click="updateTodo(todo, $event)" :checked="todo.completed"> 
 					</td>
 					<td class="print-hidden">
 						<button @click="editTodo(todo)" data-toggle="modal" class="btn btn-sm btn-info" type="button">تـعــديل</button>
@@ -66,7 +66,7 @@
 	  		
 	  		<!-- edit todo Modal -->
 
-	  		<edit-todo></edit-todo>
+	  		<edit-todo ref="editTodo"></edit-todo>
 </div>
 
 

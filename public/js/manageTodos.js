@@ -30536,6 +30536,11 @@ var manageTodos = new Vue({
       previous_button_text: 'السابق'
     }
   },
+  components: {
+    addTodo: _addTodo2.default,
+    editTodo: _editTodo2.default,
+    VPaginator: _vuejsPaginator2.default
+  },
   methods: {
     updateResource: function updateResource(data) {
       this.todos = data;
@@ -30584,12 +30589,12 @@ var manageTodos = new Vue({
       window.print();
       $('.print-hidden').show();
       $('.btn').show();
+    },
+    updateTodo: function updateTodo(todo, $event) {
+      this.$refs.editTodo.editTodoModal(todo);
+      this.$refs.editTodo.editForm.completed = $event.target.checked;
+      this.$refs.editTodo.onTodoUpdate();
     }
-  },
-  components: {
-    addTodo: _addTodo2.default,
-    editTodo: _editTodo2.default,
-    VPaginator: _vuejsPaginator2.default
   },
   created: function created() {
     var _this3 = this;
