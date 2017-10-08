@@ -61,16 +61,16 @@ const manageTodos = new Vue({
         toastr.info(response.message);
         this.reloadData();
       },
-/*      deletePerson(person){
-        if(confirm('هل انت متاكد من حذف هذا الشخص')){
-        axios.delete('/todos/' + person.id)
-        .then(response => this.onPersonDelete(response));
+      deleteTodo(todo){
+        if(confirm('هل انت متاكد من حذف هذا العمل الادارى - لن تستطيع استرجاعه ثانيا')){
+        axios.delete('/todos/' + todo.id)
+        .then(response => this.onTodoDelete(response));
         }
       },
-      onPersonDelete(response){
+      onTodoDelete(response){
         this.reloadData();
         toastr.warning(response.data.message);
-      },*/
+      },
       fetchTodosData(){
         axios.get('/todo/' + this.current_view)
         .then(response => this.todos = response.data.todos.data);

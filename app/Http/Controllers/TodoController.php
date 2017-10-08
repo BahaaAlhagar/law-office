@@ -68,6 +68,8 @@ class TodoController extends Controller
      */
     public function destroy(Todo $todo)
     {
-        //
+        $todo->delete();
+
+        return ['message' => 'تم حذف العمل الادارى!'];
     }
 }

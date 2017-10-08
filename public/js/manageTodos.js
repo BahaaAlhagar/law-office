@@ -30554,11 +30554,24 @@ var manageTodos = new Vue({
       _toastr2.default.info(response.message);
       this.reloadData();
     },
-    fetchTodosData: function fetchTodosData() {
+    deleteTodo: function deleteTodo(todo) {
       var _this = this;
 
+      if (confirm('هل انت متاكد من حذف هذا العمل الادارى - لن تستطيع استرجاعه ثانيا')) {
+        axios.delete('/todos/' + todo.id).then(function (response) {
+          return _this.onTodoDelete(response);
+        });
+      }
+    },
+    onTodoDelete: function onTodoDelete(response) {
+      this.reloadData();
+      _toastr2.default.warning(response.data.message);
+    },
+    fetchTodosData: function fetchTodosData() {
+      var _this2 = this;
+
       axios.get('/todo/' + this.current_view).then(function (response) {
-        return _this.todos = response.data.todos.data;
+        return _this2.todos = response.data.todos.data;
       });
       this.resource_url = '/todo/' + this.current_view;
     },
@@ -30579,16 +30592,16 @@ var manageTodos = new Vue({
     VPaginator: _vuejsPaginator2.default
   },
   created: function created() {
-    var _this2 = this;
+    var _this3 = this;
 
     this.fetchTodosData();
 
     eventBus.$on('todoAdded', function (response) {
-      return _this2.afterTodoAdded(response);
+      return _this3.afterTodoAdded(response);
     });
 
     eventBus.$on('todoUpdated', function (response) {
-      return _this2.afterTodoUpdated(response);
+      return _this3.afterTodoUpdated(response);
     });
   }
 });
