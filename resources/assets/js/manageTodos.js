@@ -46,12 +46,12 @@ const manageTodos = new Vue({
    		updateResource(data){
   			this.todos = data;
   		},
-/*      afterPersonAdded(response){
-        this.todos.unshift(response.item);
-        $('#addPerson').modal('hide');
+      afterTodoAdded(response){
+        this.reloadData();
+        $('#addTodo').modal('hide');
         toastr.success(response.message);
       },
-      editPerson(person){
+/*      editPerson(person){
         eventBus.$emit('editPerson', person);
         $('#editPerson').modal('show');
       },
@@ -94,7 +94,7 @@ const manageTodos = new Vue({
     created() {
       this.fetchTodosData();
 
-      eventBus.$on('personAdded', response => this.afterPersonAdded(response));
+      eventBus.$on('todoAdded', response => this.afterTodoAdded(response));
       
       eventBus.$on('personUpdated', response => this.afterPersonUpdated(response));
     }
