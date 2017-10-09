@@ -22,4 +22,9 @@ class Person extends Model
     {
     	return $this->belongsToMany(Issue::class);
     }
+
+    public function files()
+    {
+        return $this->morphMany(File::class, 'fileable');
+    }
 }

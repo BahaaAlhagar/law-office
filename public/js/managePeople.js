@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 131);
+/******/ 	return __webpack_require__(__webpack_require__.s = 134);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -30351,15 +30351,17 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ }),
 /* 119 */,
-/* 120 */
+/* 120 */,
+/* 121 */,
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var Component = __webpack_require__(47)(
   /* script */
-  __webpack_require__(121),
+  __webpack_require__(123),
   /* template */
-  __webpack_require__(122),
+  __webpack_require__(124),
   /* styles */
   null,
   /* scopeId */
@@ -30391,7 +30393,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 121 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30440,7 +30442,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 122 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -30708,22 +30710,23 @@ if (false) {
 }
 
 /***/ }),
-/* 123 */,
-/* 124 */,
 /* 125 */,
 /* 126 */,
 /* 127 */,
 /* 128 */,
 /* 129 */,
 /* 130 */,
-/* 131 */
+/* 131 */,
+/* 132 */,
+/* 133 */,
+/* 134 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(132);
+module.exports = __webpack_require__(135);
 
 
 /***/ }),
-/* 132 */
+/* 135 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30737,11 +30740,11 @@ var _vuejsPaginator = __webpack_require__(118);
 
 var _vuejsPaginator2 = _interopRequireDefault(_vuejsPaginator);
 
-var _addPerson = __webpack_require__(133);
+var _addPerson = __webpack_require__(136);
 
 var _addPerson2 = _interopRequireDefault(_addPerson);
 
-var _editPerson = __webpack_require__(120);
+var _editPerson = __webpack_require__(122);
 
 var _editPerson2 = _interopRequireDefault(_editPerson);
 
@@ -30895,15 +30898,15 @@ _toastr2.default.options = {
 };
 
 /***/ }),
-/* 133 */
+/* 136 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var Component = __webpack_require__(47)(
   /* script */
-  __webpack_require__(134),
+  __webpack_require__(137),
   /* template */
-  __webpack_require__(135),
+  __webpack_require__(138),
   /* styles */
   null,
   /* scopeId */
@@ -30935,7 +30938,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 134 */
+/* 137 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30968,7 +30971,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 135 */
+/* 138 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;

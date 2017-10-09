@@ -18,4 +18,9 @@ class Issue extends Model
     	return $this->belongsToMany(Person::class);
     }
 
+    public function files()
+    {
+        return $this->morphMany(File::class, 'fileable');
+    }
+
 }
