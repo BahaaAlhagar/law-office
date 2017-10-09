@@ -16,7 +16,13 @@
         <!-- Person info -->
         <div class="card text-center mr-auto">
           <div class="card-header">
-          <h4 class="card-title">ادارة ملفات - {{ $person->name }}</h4>
+          <h4 class="card-title">
+              ادارة ملفات - 
+              <a :href="'/people/' + person.id">
+                @{{ person.name }}
+              </a>
+              <button class="btn pull-left btn-dark">اضافة ملف</button>
+          </h4>
           </div>
           <div class="panel-body">
             <table class="table table-striped table-bordered table-responsive">
@@ -37,45 +43,36 @@
                 </tr>
             </thead>
             <tbody>
-
-                @foreach ($person->files as $file)
-                <tr>
+                <tr v-for="file in files">
                   <td>
-                  {{ $file->name }}
-                  </td>
-                  <td>{{ $file->size }} kb</td>
-                  <td>
-                  <a target="_blank" href="{{ URL::asset('storage/Clients/'.$Client->id.'/'.$file->link) }}" target="_blank">
-                    <button><i class="fa fa-download" aria-hidden="true"></i></button>
-                  </a>
+                      @{{ file.name }}
                   </td>
                   <td>
-                    <a href="/file/{{ $file->id }}/delete">
-                      <button class="btn btn-danger btn-sm delete-file" type="button"><i class="fa fa-times" aria-hidden="true"></i></button>
-                      </a> 
+                      @{{ file.size }} kb <br>
+                      @{{ file.type }}
+                  </td>
+                  <td>
+                      <a target="_blank" :href="'/storage/people/' + person.id + '/' + file.link" target="_blank">
+                        <button><i class="fa fa-download" aria-hidden="true"></i></button>
+                      </a>
+                  </td>
+                  <td>
+                      <button class="btn btn-info" @click="editFile(file)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                      <button class="btn btn-danger" @click="deleteFile(file)"><i class="fa fa-times" aria-hidden="true"></i></button>
                   </td>
                 </tr>
-                @endforeach
-                
-
             </tbody>
             </table>
-            <div class="mr-auto card-footer">
-                <button class="btn btn-info" @click="editFile(file)">تعديل بيانات الملف</button>
-                <button class="btn btn-danger" @click="deleteFile(file)">حذف الملف</button>
-            </div>
+            <v-paginator class="heading" v-if="files.length" :options="options" ref="VP"  :resource_url="resource_url" @update="updateResource"></v-paginator>
           </div>
         </div>
         
 
-        <contracts :contracts="contracts"></contracts>
-
-        <edit-person></edit-person>
       </div>
 @endsection
 
 
 @section('js')
 
-<script src="{{ URL::asset('js/personProfile.js') }}"></script>
+<script src="{{ URL::asset('js/personFiles.js') }}"></script>
 @endsection

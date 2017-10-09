@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\File;
 use App\Person;
 use Illuminate\Http\Request;
 use App\Http\Requests\createPersonRequest;
@@ -118,9 +119,11 @@ class PersonController extends Controller
      */
     public function filesIndex(Person $person)
     {
-        $person->load('files');
+        $files = File::where('fileable_id', $person->id)
+                        ->where('fileable_type', 'person')
+                        ->paginate(15);
 
-        return $this->makeResponse('people/managePersonFiles', compact('person'));
+        return $this->makeResponse('people/managePersonFiles', compact('person', 'files'));
     }
 
 

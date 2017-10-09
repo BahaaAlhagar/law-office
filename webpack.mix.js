@@ -16,4 +16,5 @@ mix.js('resources/assets/js/managePeople.js', 'public/js')
 	.js('resources/assets/js/manageIssues.js', 'public/js')
 	.js('resources/assets/js/manageTodos.js', 'public/js')
 	.js('resources/assets/js/personProfile.js', 'public/js')
+	.js('resources/assets/js/personFiles.js', 'public/js')
 	.js('resources/assets/js/contractProfile.js', 'public/js');

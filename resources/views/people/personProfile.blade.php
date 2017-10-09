@@ -48,7 +48,9 @@
                 <button class="btn btn-info" @click="editPerson(person)">تعديل البيانات</button>
                 <button class="btn btn-dark" >عرض الدعاوى</button>
                 <button class="btn btn-info" >عرض الاحكام</button>
-                <button class="btn btn-primary" >مستندات الشخص</button>
+                <a :href="'/personfiles/' + person.id">
+                  <button class="btn btn-primary">مستندات الشخص</button>
+                </a>
                 <button class="btn btn-danger" @click="deletePerson(person)">حذف الشخص</button>
             </div>
           </div>
