@@ -40,3 +40,9 @@ route::resource('issues', 'IssueController', ['except' => ['create', 'edit']]);
 route::get('todo/{completed?}', 'TodoController@index');
 
 route::resource('todos', 'TodoController', ['except' => ['create', 'edit', 'show']]);
+
+route::resource('files', 'FileController', ['only' => ['update', 'delete']]);
+
+route::get('personfiles/{person}', 'PersonController@filesIndex');
+
+route::post('personfiles//{person}', 'PersonController@storeFile');

@@ -110,4 +110,18 @@ class PersonController extends Controller
         ->where('id', $id)->restore();
         return ['message' => 'تم استرجاع الشخص بنجاح'];
     }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function filesIndex(Person $person)
+    {
+        $person->load('files');
+
+        return $this->makeResponse('people/managePersonFiles', compact('person'));
+    }
+
+
 }
