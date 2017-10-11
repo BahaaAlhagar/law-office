@@ -37,8 +37,6 @@
 </template>
 
 <script>
-
-
 export default {
   name: 'fileUploader',
   data() {
@@ -51,13 +49,11 @@ export default {
       
     };
   },
-  components: {
-      Dropzone
-    }
 }
 
 Dropzone.options.myDropzone = {
       acceptedFiles: '.jpg, .jpeg, .jpe, .png, .gif, .bmp, .doc, .docx, .dot, .word, .pdf, .xls, .ppt, .rar, .zip, .txt',
+      paramName: 'file',
       headers: {
           'X-CSRFToken': $('meta[name="token"]').attr('content')
       },

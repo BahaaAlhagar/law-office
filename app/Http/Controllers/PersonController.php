@@ -7,6 +7,7 @@ use App\Person;
 use Illuminate\Http\Request;
 use App\Http\Requests\createPersonRequest;
 use App\Http\Requests\updatePersonRequest;
+use App\Http\Requests\uploadFileRequest;
 
 class PersonController extends Controller
 {
@@ -126,8 +127,14 @@ class PersonController extends Controller
         return $this->makeResponse('people/managePersonFiles', compact('person', 'files'));
     }
 
-    public function storeFile(Request $request, Person $person)
+    public function storeFile(uploadFileRequest $request, Person $person)
     {
+
+        if ($request->hasFile('file')) 
+        {
+            $path = $request->file->storeAs('images', 'filename.jpg');
+        }
+
         return 'its working';
     }
 
