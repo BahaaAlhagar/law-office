@@ -128,8 +128,6 @@ class PersonController extends Controller
 
     public function storeFile(Request $request, Person $person)
     {
-        dd($request->file('file'));
-
         return 'its working';
     }
 

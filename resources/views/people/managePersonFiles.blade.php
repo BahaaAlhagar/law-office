@@ -10,6 +10,7 @@
 
 @section('css')
     <link href="{{ URL::asset('css/toastr.min.css') }}" rel="stylesheet">
+    <link href="{{ URL::asset('css/dropzone.min.css') }}" rel="stylesheet">
 @endsection
 
 @section('content')
@@ -77,5 +78,6 @@
 
 @section('js')
 
+<script src="{{ URL::asset('js/dropzone.min.js') }}"></script>
 <script src="{{ URL::asset('js/personFiles.js') }}"></script>
 @endsection
