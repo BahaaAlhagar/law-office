@@ -126,5 +126,12 @@ class PersonController extends Controller
         return $this->makeResponse('people/managePersonFiles', compact('person', 'files'));
     }
 
+    public function storeFile(Request $request, Person $person)
+    {
+        dd($request->file('file'));
+
+        return 'its working';
+    }
+
 
 }

@@ -1,6 +1,8 @@
 @extends('layouts/master')
 
-
+@section('meta')
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+@endsection
 
 @section('title')
     الملفات - {{ $person->name }}
@@ -21,7 +23,7 @@
               <a :href="'/people/' + person.id">
                 @{{ person.name }}
               </a>
-              <button class="btn pull-left btn-dark">اضافة ملف</button>
+              <button class="btn pull-left btn-dark" data-toggle="modal" data-target="#fileUploader">اضافة ملف</button>
           </h4>
           </div>
           <div class="panel-body">
@@ -67,6 +69,7 @@
           </div>
         </div>
         
+        <file-uploader></fileUploader>
 
       </div>
 @endsection

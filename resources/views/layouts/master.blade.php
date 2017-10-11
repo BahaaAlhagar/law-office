@@ -8,7 +8,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <!-- first mobile meta -->
     	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+        @yield('meta')
 
         <title>برنامج ادارة مكاتب المحاماة -  @yield('title')</title>
 

@@ -23,6 +23,10 @@ route::get('/filtered-ppl/{filter?}', 'PersonController@index');
 
 route::get('/people/{person}/restore', 'PersonController@restore');
 
+route::post('people/{person}/files', 'PersonController@storeFile');
+
+route::get('people/{person}/files', 'PersonController@filesIndex');
+
 route::resource('people', 'PersonController', ['except' => ['create', 'edit']]);
 
 route::get('contract/{type?}', 'ContractController@index');
@@ -43,6 +47,3 @@ route::resource('todos', 'TodoController', ['except' => ['create', 'edit', 'show
 
 route::resource('files', 'FileController', ['only' => ['update', 'delete']]);
 
-route::get('personfiles/{person}', 'PersonController@filesIndex');
-
-route::post('personfiles//{person}', 'PersonController@storeFile');

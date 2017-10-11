@@ -8,7 +8,7 @@ import VuePaginator from 'vuejs-paginator';
 Vue.use(VueResource);
 
 
-// import editPerson from './components/person/editPerson.vue';
+ import fileUploader from './components/fileUploader.vue';
 // import Contracts from './components/person/contracts.vue';
 
 import Form from './partials/Form';
@@ -34,7 +34,7 @@ const personFiles = new Vue({
 	              remote_prev_page_url: 'files.prev_page_url',
 	              next_button_text: 'التالى',
 	              previous_button_text: 'السابق'
-	            }
+	            },
 	    	},
 	    methods: {
 	      assignData(response){
@@ -65,12 +65,13 @@ const personFiles = new Vue({
 	      }*/
 	    },
 	    components: {
-	    	VPaginator: VuePaginator
+	    	VPaginator: VuePaginator,
+	    	'file-uploader': fileUploader
 	    },
 	    created(){
 	    	axios.get(window.location.pathname)
 	    	.then(response => this.assignData(response));
-
+	    	
 	    	// eventBus.$on('personUpdated', response => this.afterPersonUpdated(response));
 	    }
     });
