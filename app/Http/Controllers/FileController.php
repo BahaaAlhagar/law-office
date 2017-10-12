@@ -4,60 +4,14 @@ namespace App\Http\Controllers;
 
 use App\File;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class FileController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function __construct()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\File  $file
-     * @return \Illuminate\Http\Response
-     */
-    public function show(File $file)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\File  $file
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(File $file)
-    {
-        //
+        $this->middleware('auth');
+        $this->middleware('admin');
     }
 
     /**
@@ -69,7 +23,14 @@ class FileController extends Controller
      */
     public function update(Request $request, File $file)
     {
-        //
+        request()->validate([
+            'name' => 'required'
+        ]);
+
+        $file->name = $request->name;
+        $file->save();
+
+        return ['message' => 'تم تحديث بيانات الملف بنجاح!'];
     }
 
     /**
@@ -80,6 +41,10 @@ class FileController extends Controller
      */
     public function destroy(File $file)
     {
-        //
+        Storage::delete('public/'.$file->link);
+
+        $file->delete();
+        
+        return ['message' => 'تم حذف الملف!'];
     }
 }

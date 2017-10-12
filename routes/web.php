@@ -45,5 +45,5 @@ route::get('todo/{completed?}', 'TodoController@index');
 
 route::resource('todos', 'TodoController', ['except' => ['create', 'edit', 'show']]);
 
-route::resource('files', 'FileController', ['only' => ['update', 'delete']]);
+route::resource('files', 'FileController', ['only' => ['update', 'destroy']]);
 

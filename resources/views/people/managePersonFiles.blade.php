@@ -27,7 +27,7 @@
           </h4>
           </div>
           <div class="panel-body">
-            <table class="table table-striped table-bordered table-responsive">
+            <table v-if="files.length" class="table table-striped table-bordered table-responsive">
               <thead class="thead-inverse">
                 <tr>
                   <th float="right">
@@ -69,7 +69,8 @@
           </div>
         </div>
         
-        <file-uploader></fileUploader>
+        <file-uploader></file-uploader>
+        <edit-file></edit-file>
 
       </div>
 @endsection

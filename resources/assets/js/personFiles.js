@@ -8,8 +8,9 @@ import VuePaginator from 'vuejs-paginator';
 Vue.use(VueResource);
 
 
- import fileUploader from './components/fileUploader.vue';
-// import Contracts from './components/person/contracts.vue';
+import fileUploader from './components/files/fileUploader.vue';
+import editFile from './components/files/editFile.vue';
+
 
 import Form from './partials/Form';
 window.Form = Form;
@@ -49,37 +50,41 @@ const personFiles = new Vue({
 	  		this.files = data;
 	  	  },
 	  	  fileAdded(){
-	  	  	this.fetchFiles();
+	  	  	this.reloadData();
 	  	  	toastr.success('تم اضافة الملف بنجاح!');
 	  	  },
-/*	      editPerson(person){
-	        eventBus.$emit('editPerson', person);
-	        $('#editPerson').modal('show');
+	      editFile(file){
+	        eventBus.$emit('editFile', file);
+	        $('#editFile').modal('show');
 	      },
-	      afterPersonUpdated(response){
-	        $('#editPerson').modal('hide');
+	      afterFileUpdated(response){
+	        $('#editFile').modal('hide');
 	        toastr.info(response.message);
-	        this.person = response.item;
+	        this.reloadData();
 	      },
-	      deletePerson(person){
-		    if(confirm('هل انت متاكد من حذف هذا الشخص')){
-	        axios.delete('/people/' + person.id)
-	        .then(response => this.onPersonDelete(response));
-			   }
+		  reloadData(){
+	        this.$refs.VP.fetchData(this.resource_url + '?page=' + this.$refs.VP.current_page);
+	      },
+	      deleteFile(file){
+	    	if(confirm('هل انت متاكد من حذف هذا الملف - لن تتمكن من استرجاعه فيما بعد!')){
+        	axios.delete('/files/' + file.id)
+        	.then(response => this.onFileDelete(response));
+		   }
 		  },
-	      onPersonDelete(response){
+	      onFileDelete(response){
 	        toastr.warning(response.data.message);
-	        window.location.replace('/people/');
-	      }*/
+	        this.reloadData();
+	      }
 	    },
 	    components: {
 	    	VPaginator: VuePaginator,
-	    	'file-uploader': fileUploader
+	    	'file-uploader': fileUploader,
+	    	'edit-file': editFile
 	    },
 	    created(){
 	    	this.fetchFiles();
 	    	eventBus.$on('fileUploaded', event => this.fileAdded());
-	    	// eventBus.$on('personUpdated', response => this.afterPersonUpdated(response));
+	    	eventBus.$on('fileUpdated', response => this.afterFileUpdated(response));
 	    }
     });
 

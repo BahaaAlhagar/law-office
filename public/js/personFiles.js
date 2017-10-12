@@ -30756,9 +30756,13 @@ var _vuejsPaginator = __webpack_require__(118);
 
 var _vuejsPaginator2 = _interopRequireDefault(_vuejsPaginator);
 
-var _fileUploader = __webpack_require__(173);
+var _fileUploader = __webpack_require__(186);
 
 var _fileUploader2 = _interopRequireDefault(_fileUploader);
+
+var _editFile = __webpack_require__(194);
+
+var _editFile2 = _interopRequireDefault(_editFile);
 
 var _Form = __webpack_require__(48);
 
@@ -30820,20 +30824,49 @@ var personFiles = new Vue({
 			this.files = data;
 		},
 		fileAdded: function fileAdded() {
-			this.fetchFiles();
+			this.reloadData();
 			_toastr2.default.success('تم اضافة الملف بنجاح!');
+		},
+		editFile: function editFile(file) {
+			eventBus.$emit('editFile', file);
+			$('#editFile').modal('show');
+		},
+		afterFileUpdated: function afterFileUpdated(response) {
+			$('#editFile').modal('hide');
+			_toastr2.default.info(response.message);
+			this.reloadData();
+		},
+		reloadData: function reloadData() {
+			this.$refs.VP.fetchData(this.resource_url + '?page=' + this.$refs.VP.current_page);
+		},
+		deleteFile: function deleteFile(file) {
+			var _this2 = this;
+
+			if (confirm('هل انت متاكد من حذف هذا الملف - لن تتمكن من استرجاعه فيما بعد!')) {
+				axios.delete('/files/' + file.id).then(function (response) {
+					return _this2.onFileDelete(response);
+				});
+			}
+		},
+		onFileDelete: function onFileDelete(response) {
+			_toastr2.default.warning(response.data.message);
+			this.reloadData();
 		}
 	},
 	components: {
 		VPaginator: _vuejsPaginator2.default,
-		'file-uploader': _fileUploader2.default
+		'file-uploader': _fileUploader2.default,
+		'edit-file': _editFile2.default
 	},
 	created: function created() {
-		var _this2 = this;
+		var _this3 = this;
 
 		this.fetchFiles();
 		eventBus.$on('fileUploaded', function (event) {
-			return _this2.fileAdded();
+			return _this3.fileAdded();
+		});
+		eventBus.$on('fileUpdated', function (response) {
+			return _this3.afterFileUpdated(response);
 		});
 	}
 });
@@ -30843,159 +30876,11 @@ _toastr2.default.options = {
 };
 
 /***/ }),
-/* 173 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var Component = __webpack_require__(47)(
-  /* script */
-  __webpack_require__(174),
-  /* template */
-  __webpack_require__(183),
-  /* styles */
-  null,
-  /* scopeId */
-  null,
-  /* moduleIdentifier (server only) */
-  null
-)
-Component.options.__file = "D:\\www\\law-office\\resources\\assets\\js\\components\\fileUploader.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] fileUploader.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-2c0d1b05", Component.options)
-  } else {
-    hotAPI.reload("data-v-2c0d1b05", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 174 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _customDropzone = __webpack_require__(175);
-
-var _customDropzone2 = _interopRequireDefault(_customDropzone);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = {
-  name: 'fileUploader',
-  components: {
-    Dropzone: _customDropzone2.default
-  },
-  methods: {
-    showSuccess: function showSuccess() {
-      eventBus.$emit('fileUploaded');
-    }
-  }
-};
-
-/***/ }),
-/* 175 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(176)
-}
-var Component = __webpack_require__(47)(
-  /* script */
-  __webpack_require__(179),
-  /* template */
-  __webpack_require__(182),
-  /* styles */
-  injectStyle,
-  /* scopeId */
-  "data-v-571a08cc",
-  /* moduleIdentifier (server only) */
-  null
-)
-Component.options.__file = "D:\\www\\law-office\\resources\\assets\\js\\components\\custom-dropzone.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] custom-dropzone.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-571a08cc", Component.options)
-  } else {
-    hotAPI.reload("data-v-571a08cc", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 176 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(177);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(120)("39fa2482", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-571a08cc\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./custom-dropzone.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-571a08cc\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./custom-dropzone.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 177 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(119)(undefined);
-// imports
-exports.i(__webpack_require__(178), "");
-
-// module
-exports.push([module.i, "\n", ""]);
-
-// exports
-
-
-/***/ }),
+/* 173 */,
+/* 174 */,
+/* 175 */,
+/* 176 */,
+/* 177 */,
 /* 178 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -31010,105 +30895,7 @@ exports.push([module.i, "/*\n * The MIT License\n * Copyright (c) 2012 Matias Me
 
 
 /***/ }),
-/* 179 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.default = {
-    data: function data() {
-        return {
-            id: 'myDropzone',
-            url: window.location.pathname,
-            csrfToken: $('meta[name="csrf-token"]').attr('content')
-        };
-    },
-    mounted: function mounted() {
-        var Dropzone = __webpack_require__(180);
-        Dropzone.autoDiscover = false;
-
-        var element = document.getElementById(this.id);
-        this.dropzone = new Dropzone(element, {
-            acceptedFiles: '.jpg, .jpeg, .jpe, .png, .gif, .bmp, .doc, .docx, .dot, .word, .pdf, .xls, .ppt, .rar, .zip, .txt',
-            paramName: 'file',
-            headers: {
-                'X-CSRFToken': $('meta[name="token"]').attr('content')
-            },
-            dictResponseError: 'خطأ فى رفع الملف!',
-            addRemoveLinks: true
-        });
-
-        var vm = this;
-
-        this.dropzone.on('thumbnail', function (file, dataUrl) {
-            vm.$emit('vdropzone-thumbnail', file, dataUrl);
-        });
-
-        this.dropzone.on('addedfiles', function (files) {
-            vm.$emit('vdropzone-files-added', files);
-        });
-
-        this.dropzone.on('removedfile', function (file) {
-            vm.$emit('vdropzone-removed-file', file);
-        });
-
-        this.dropzone.on('success', function (file, response) {
-            vm.$emit('vdropzone-success', file, response);
-        });
-
-        this.dropzone.on('successmultiple', function (file, response) {
-            vm.$emit('vdropzone-success-multiple', file, response);
-        });
-
-        this.dropzone.on('error', function (file, error, xhr) {
-            vm.$emit('vdropzone-error', file, error, xhr);
-        });
-
-        this.dropzone.on('sending', function (file, xhr, formData) {
-            vm.$emit('vdropzone-sending', file, xhr, formData);
-        });
-
-        this.dropzone.on('sendingmultiple', function (file, xhr, formData) {
-            vm.$emit('vdropzone-sending-multiple', file, xhr, formData);
-        });
-
-        this.dropzone.on('queuecomplete', function (file, xhr, formData) {
-            vm.$emit('vdropzone-queue-complete', file, xhr, formData);
-        });
-
-        this.dropzone.on('drop', function (event) {
-            vm.$emit('vdropzone-drop', event);
-        });
-
-        this.dropzone.on('dragstart', function (event) {
-            vm.$emit('vdropzone-drag-start', event);
-        });
-
-        this.dropzone.on('dragend', function (event) {
-            vm.$emit('vdropzone-drag-end', event);
-        });
-
-        this.dropzone.on('dragenter', function (event) {
-            vm.$emit('vdropzone-drag-enter', event);
-        });
-
-        this.dropzone.on('dragover', function (event) {
-            vm.$emit('vdropzone-drag-over', event);
-        });
-
-        this.dropzone.on('dragleave', function (event) {
-            vm.$emit('vdropzone-drag-leave', event);
-        });
-
-        vm.$emit('vdropzone-mounted');
-    }
-};
-
-/***/ }),
+/* 179 */,
 /* 180 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -34649,7 +34436,263 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 182 */
+/* 182 */,
+/* 183 */,
+/* 184 */,
+/* 185 */,
+/* 186 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(47)(
+  /* script */
+  __webpack_require__(187),
+  /* template */
+  __webpack_require__(193),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "D:\\www\\law-office\\resources\\assets\\js\\components\\files\\fileUploader.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] fileUploader.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-22bda95d", Component.options)
+  } else {
+    hotAPI.reload("data-v-22bda95d", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 187 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _customDropzone = __webpack_require__(188);
+
+var _customDropzone2 = _interopRequireDefault(_customDropzone);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  name: 'fileUploader',
+  components: {
+    Dropzone: _customDropzone2.default
+  },
+  methods: {
+    showSuccess: function showSuccess() {
+      eventBus.$emit('fileUploaded');
+    }
+  }
+};
+
+/***/ }),
+/* 188 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(189)
+}
+var Component = __webpack_require__(47)(
+  /* script */
+  __webpack_require__(191),
+  /* template */
+  __webpack_require__(192),
+  /* styles */
+  injectStyle,
+  /* scopeId */
+  "data-v-39c28918",
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "D:\\www\\law-office\\resources\\assets\\js\\components\\files\\custom-dropzone.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] custom-dropzone.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-39c28918", Component.options)
+  } else {
+    hotAPI.reload("data-v-39c28918", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 189 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(190);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(120)("71a22bd4", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-39c28918\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./custom-dropzone.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-39c28918\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./custom-dropzone.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 190 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(119)(undefined);
+// imports
+exports.i(__webpack_require__(178), "");
+
+// module
+exports.push([module.i, "\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 191 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = {
+    data: function data() {
+        return {
+            id: 'myDropzone',
+            url: window.location.pathname,
+            csrfToken: $('meta[name="csrf-token"]').attr('content')
+        };
+    },
+    mounted: function mounted() {
+        var Dropzone = __webpack_require__(180);
+        Dropzone.autoDiscover = false;
+
+        var element = document.getElementById(this.id);
+        this.dropzone = new Dropzone(element, {
+            acceptedFiles: '.jpg, .jpeg, .jpe, .png, .gif, .bmp, .doc, .docx, .dot, .word, .pdf, .xls, .ppt, .rar, .zip, .txt',
+            paramName: 'file',
+            headers: {
+                'X-CSRFToken': $('meta[name="token"]').attr('content')
+            },
+            dictResponseError: 'خطأ فى رفع الملف!',
+            addRemoveLinks: true
+        });
+
+        var vm = this;
+
+        this.dropzone.on('thumbnail', function (file, dataUrl) {
+            vm.$emit('vdropzone-thumbnail', file, dataUrl);
+        });
+
+        this.dropzone.on('addedfiles', function (files) {
+            vm.$emit('vdropzone-files-added', files);
+        });
+
+        this.dropzone.on('removedfile', function (file) {
+            vm.$emit('vdropzone-removed-file', file);
+        });
+
+        this.dropzone.on('success', function (file, response) {
+            vm.$emit('vdropzone-success', file, response);
+        });
+
+        this.dropzone.on('successmultiple', function (file, response) {
+            vm.$emit('vdropzone-success-multiple', file, response);
+        });
+
+        this.dropzone.on('error', function (file, error, xhr) {
+            vm.$emit('vdropzone-error', file, error, xhr);
+        });
+
+        this.dropzone.on('sending', function (file, xhr, formData) {
+            vm.$emit('vdropzone-sending', file, xhr, formData);
+        });
+
+        this.dropzone.on('sendingmultiple', function (file, xhr, formData) {
+            vm.$emit('vdropzone-sending-multiple', file, xhr, formData);
+        });
+
+        this.dropzone.on('queuecomplete', function (file, xhr, formData) {
+            vm.$emit('vdropzone-queue-complete', file, xhr, formData);
+        });
+
+        this.dropzone.on('drop', function (event) {
+            vm.$emit('vdropzone-drop', event);
+        });
+
+        this.dropzone.on('dragstart', function (event) {
+            vm.$emit('vdropzone-drag-start', event);
+        });
+
+        this.dropzone.on('dragend', function (event) {
+            vm.$emit('vdropzone-drag-end', event);
+        });
+
+        this.dropzone.on('dragenter', function (event) {
+            vm.$emit('vdropzone-drag-enter', event);
+        });
+
+        this.dropzone.on('dragover', function (event) {
+            vm.$emit('vdropzone-drag-over', event);
+        });
+
+        this.dropzone.on('dragleave', function (event) {
+            vm.$emit('vdropzone-drag-leave', event);
+        });
+
+        vm.$emit('vdropzone-mounted');
+    }
+};
+
+/***/ }),
+/* 192 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -34683,12 +34726,12 @@ module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-571a08cc", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-39c28918", module.exports)
   }
 }
 
 /***/ }),
-/* 183 */
+/* 193 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -34745,9 +34788,205 @@ module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-2c0d1b05", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-22bda95d", module.exports)
   }
 }
+
+/***/ }),
+/* 194 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(47)(
+  /* script */
+  __webpack_require__(196),
+  /* template */
+  __webpack_require__(195),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "D:\\www\\law-office\\resources\\assets\\js\\components\\files\\editFile.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] editFile.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-eda1d10e", Component.options)
+  } else {
+    hotAPI.reload("data-v-eda1d10e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 195 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "modal fade",
+    attrs: {
+      "id": "editFile",
+      "role": "dialog",
+      "aria-labelledby": "myModalLabel"
+    }
+  }, [_c('div', {
+    staticClass: "modal-dialog",
+    attrs: {
+      "role": "document"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "modal-body"
+  }, [_c('form', {
+    attrs: {
+      "method": "POST",
+      "action": "/people",
+      "enctype": "multipart/form-data"
+    },
+    on: {
+      "submit": function($event) {
+        $event.preventDefault();
+        _vm.onFileUpdate($event)
+      },
+      "keydown": function($event) {
+        _vm.editForm.errors.clear($event.target.name)
+      },
+      "change": function($event) {
+        _vm.editForm.errors.clear($event.target.name)
+      },
+      "input": function($event) {
+        _vm.editForm.errors.clear($event.target.name)
+      }
+    }
+  }, [_c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "name"
+    }
+  }, [_vm._v("الاسم:")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editForm.name),
+      expression: "editForm.name"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "name",
+      "name": "name"
+    },
+    domProps: {
+      "value": (_vm.editForm.name)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.editForm.name = $event.target.value
+      }
+    }
+  }), _vm._v(" "), (_vm.editForm.errors.has('name')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.editForm.errors.get('name'))
+    }
+  }) : _vm._e()]), _vm._v(" "), _c('div', {
+    staticClass: "form-group heading"
+  }, [_c('button', {
+    staticClass: "button btn-lg btn-success",
+    attrs: {
+      "disabled": _vm.editForm.errors.any()
+    }
+  }, [_vm._v("تـعــديــل")])])])])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "modal-header"
+  }, [_c('button', {
+    staticClass: "close",
+    attrs: {
+      "type": "button",
+      "data-dismiss": "modal",
+      "aria-label": "Close"
+    }
+  }, [_c('span', {
+    attrs: {
+      "aria-hidden": "true"
+    }
+  }, [_vm._v("×")])]), _vm._v(" "), _c('span', {
+    staticClass: "form-control-static pull-left"
+  }, [_c('h4', {
+    staticClass: "modal-title",
+    attrs: {
+      "id": "myModalLabel"
+    }
+  }, [_vm._v(" تعديل ملف ")])])])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-eda1d10e", module.exports)
+  }
+}
+
+/***/ }),
+/* 196 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = {
+    data: function data() {
+        return {
+            editForm: new Form({
+                name: ''
+            }),
+            id: ''
+        };
+    },
+
+    methods: {
+        onFileUpdate: function onFileUpdate() {
+            this.editForm.patch('/files/' + this.id).then(function (response) {
+                return eventBus.$emit('fileUpdated', response);
+            });
+        },
+        editFileModal: function editFileModal(file) {
+            this.editForm.reset();
+            this.editForm.name = file.name;
+            this.id = file.id;
+        }
+    },
+    created: function created() {
+        var _this = this;
+
+        eventBus.$on('editFile', function (file) {
+            return _this.editFileModal(file);
+        });
+    }
+};
 
 /***/ })
 /******/ ]);
