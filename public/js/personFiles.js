@@ -30821,7 +30821,7 @@ var personFiles = new Vue({
 		},
 		fileAdded: function fileAdded() {
 			this.fetchFiles();
-			_toastr2.default.info(response.message);
+			_toastr2.default.success('تم اضافة الملف بنجاح!');
 		}
 	},
 	components: {
@@ -30832,7 +30832,7 @@ var personFiles = new Vue({
 		var _this2 = this;
 
 		this.fetchFiles();
-		eventBus.$on('fileUploaded', function (file) {
+		eventBus.$on('fileUploaded', function (event) {
 			return _this2.fileAdded();
 		});
 	}
@@ -30905,8 +30905,8 @@ exports.default = {
     Dropzone: _customDropzone2.default
   },
   methods: {
-    showSuccess: function showSuccess(file) {
-      eventBus.$emit('fileUploaded', file);
+    showSuccess: function showSuccess() {
+      eventBus.$emit('fileUploaded');
     }
   }
 };
@@ -31029,6 +31029,8 @@ exports.default = {
     },
     mounted: function mounted() {
         var Dropzone = __webpack_require__(180);
+        Dropzone.autoDiscover = false;
+
         var element = document.getElementById(this.id);
         this.dropzone = new Dropzone(element, {
             acceptedFiles: '.jpg, .jpeg, .jpe, .png, .gif, .bmp, .doc, .docx, .dot, .word, .pdf, .xls, .ppt, .rar, .zip, .txt',
@@ -34709,7 +34711,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('dropzone', {
     ref: "myVueDropzone",
     on: {
-      "vdropzone-files-added": _vm.showSuccess
+      "vdropzone-success": _vm.showSuccess
     }
   }), _vm._v(" "), _vm._m(1)], 1)])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;

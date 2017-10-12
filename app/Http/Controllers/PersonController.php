@@ -132,7 +132,7 @@ class PersonController extends Controller
     {
         if ($request->hasFile('file')) 
         {
-            $relatedFile = $this->handleUploadFile($request, $person, 'people');
+            $relatedFile = $this->handleUploadFile($request, $person, 'people_files');
             $person->files()->create($relatedFile);
 
             return ['message' => 'file Uploaded Successfully!'];

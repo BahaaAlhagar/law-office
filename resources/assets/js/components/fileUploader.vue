@@ -15,7 +15,7 @@
 
               <div class="modal-body">
 
-              <dropzone ref="myVueDropzone" v-on:vdropzone-files-added="showSuccess">
+              <dropzone ref="myVueDropzone" v-on:vdropzone-success="showSuccess">
               </dropzone>
 
               <div class="heading alert alert-info" >
@@ -42,8 +42,8 @@ export default {
     Dropzone
   },
   methods: {
-    showSuccess(file) {
-      eventBus.$emit('fileUploaded', file);
+    showSuccess() {
+      eventBus.$emit('fileUploaded');
     }
   }
 }

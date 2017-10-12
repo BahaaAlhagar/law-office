@@ -54,7 +54,7 @@
                       @{{ file.type }}
                   </td>
                   <td>
-                      <a target="_blank" :href="'/storage/people/' + person.id + '/' + file.link" target="_blank">
+                      <a target="_blank" :href="'/storage/' + file.link">
                         <button><i class="fa fa-download" aria-hidden="true"></i></button>
                       </a>
                   </td>

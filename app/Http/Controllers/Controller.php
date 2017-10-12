@@ -39,7 +39,7 @@ class Controller extends BaseController
             $size = $file->getClientSize() / 1024;
             $name =  $file->getClientOriginalName();
             $storeName = random_int(1, 99999).'_'.str_slug($name).'.'.$extention;
-            $file->storeAs($folder.'/'.$owner->id, $storeName);
+            $file->storeAs('/public/'.$folder.'/'.$owner->id, $storeName);
             $link = $folder.'/'.$owner->id.'/'.$storeName;
 
             $storedFile = [

@@ -50,7 +50,7 @@ const personFiles = new Vue({
 	  	  },
 	  	  fileAdded(){
 	  	  	this.fetchFiles();
-	        toastr.info(response.message);
+	  	  	toastr.success('تم اضافة الملف بنجاح!');
 	  	  },
 /*	      editPerson(person){
 	        eventBus.$emit('editPerson', person);
@@ -78,7 +78,7 @@ const personFiles = new Vue({
 	    },
 	    created(){
 	    	this.fetchFiles();
-	    	eventBus.$on('fileUploaded', file => this.fileAdded());
+	    	eventBus.$on('fileUploaded', event => this.fileAdded());
 	    	// eventBus.$on('personUpdated', response => this.afterPersonUpdated(response));
 	    }
     });

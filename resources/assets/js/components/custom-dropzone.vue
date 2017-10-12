@@ -16,6 +16,8 @@
         },
         mounted () {
             let Dropzone = require('dropzone');
+            Dropzone.autoDiscover = false;
+            
             let element = document.getElementById(this.id);
             this.dropzone = new Dropzone(element, {
                 acceptedFiles: '.jpg, .jpeg, .jpe, .png, .gif, .bmp, .doc, .docx, .dot, .word, .pdf, .xls, .ppt, .rar, .zip, .txt',
