@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class File extends Model
 {
-	protected $guard = ['id'];
+	protected $guarded = ['id'];
 	
     public function fileable()
     {

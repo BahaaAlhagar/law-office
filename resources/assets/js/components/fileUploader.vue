@@ -15,11 +15,8 @@
 
               <div class="modal-body">
 
-              <form id="myDropzone" class="dropzone" method="post" :action="url"  enctype="multipart/form-data">
-              <input type="hidden" id="csrf-token" name="_token" :value="csrfToken">
-
-              <div class="dz-message" data-dz-message><span>اضغط هنا او اسحب الملفات للرفع</span></div>
-              </form>
+              <dropzone ref="myVueDropzone" v-on:vdropzone-files-added="showSuccess">
+              </dropzone>
 
               <div class="heading alert alert-info" >
                 الامتدادات المدعومة<br>
@@ -37,28 +34,17 @@
 </template>
 
 <script>
+import Dropzone from './custom-dropzone';
+
 export default {
   name: 'fileUploader',
-  data() {
-    return {
-      csrfToken: $('meta[name="csrf-token"]').attr('content'),
-      csrfHeader: {
-          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      },
-      url: window.location.pathname,
-      
-    };
+  components: {
+    Dropzone
   },
+  methods: {
+    showSuccess(file) {
+      eventBus.$emit('fileUploaded', file);
+    }
+  }
 }
-
-Dropzone.options.myDropzone = {
-      acceptedFiles: '.jpg, .jpeg, .jpe, .png, .gif, .bmp, .doc, .docx, .dot, .word, .pdf, .xls, .ppt, .rar, .zip, .txt',
-      paramName: 'file',
-      headers: {
-          'X-CSRFToken': $('meta[name="token"]').attr('content')
-      },
-      dictResponseError: 'خطأ فى رفع الملف!',
-      addRemoveLinks : true
-    };
-
 </script>

@@ -120,7 +120,8 @@ class PersonController extends Controller
      */
     public function filesIndex(Person $person)
     {
-        $files = File::where('fileable_id', $person->id)
+        $files = File::latest()
+                        ->where('fileable_id', $person->id)
                         ->where('fileable_type', 'person')
                         ->paginate(15);
 
@@ -129,13 +130,15 @@ class PersonController extends Controller
 
     public function storeFile(uploadFileRequest $request, Person $person)
     {
-
         if ($request->hasFile('file')) 
         {
-            $path = $request->file->storeAs('images', 'filename.jpg');
+            $relatedFile = $this->handleUploadFile($request, $person, 'people');
+            $person->files()->create($relatedFile);
+
+            return ['message' => 'file Uploaded Successfully!'];
         }
 
-        return 'its working';
+        return ['message' => 'something went Wrong'];
     }
 
 

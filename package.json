@@ -18,7 +18,9 @@
   },
   "dependencies": {
     "bootstrap": "^4.0.0-beta",
+    "dropzone": "^5.2.0",
     "install": "^0.10.1",
+    "less-loader": "^4.0.5",
     "moment": "^2.18.1",
     "npm": "^5.4.2",
     "popper.js": "^1.12.5",

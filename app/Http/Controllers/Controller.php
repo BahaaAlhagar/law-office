@@ -30,4 +30,27 @@ class Controller extends BaseController
     	return response()->json($data);
     }
 
+    public function handleUploadFile($request, $owner, string $folder)
+    {
+        $file = $request->file('file');
+
+        if ($file->isValid()) {
+            $extention = $file->extension();
+            $size = $file->getClientSize() / 1024;
+            $name =  $file->getClientOriginalName();
+            $storeName = random_int(1, 99999).'_'.str_slug($name).'.'.$extention;
+            $file->storeAs($folder.'/'.$owner->id, $storeName);
+            $link = $folder.'/'.$owner->id.'/'.$storeName;
+
+            $storedFile = [
+                'name' => $name,
+                'link' => $link,
+                'size' => $size,
+                'type' => $extention,
+            ];
+
+            return $storedFile;
+        }
+    }
+
 }

@@ -37,12 +37,20 @@ const personFiles = new Vue({
 	            },
 	    	},
 	    methods: {
+	      fetchFiles(){
+	      	axios.get(window.location.pathname)
+	    		.then(response => this.assignData(response));
+	      },
 	      assignData(response){
 	      	this.person = response.data.person;
 	      	this.files = response.data.files.data;
 	      },
 	   	  updateResource(data){
 	  		this.files = data;
+	  	  },
+	  	  fileAdded(){
+	  	  	this.fetchFiles();
+	        toastr.info(response.message);
 	  	  },
 /*	      editPerson(person){
 	        eventBus.$emit('editPerson', person);
@@ -69,9 +77,8 @@ const personFiles = new Vue({
 	    	'file-uploader': fileUploader
 	    },
 	    created(){
-	    	axios.get(window.location.pathname)
-	    	.then(response => this.assignData(response));
-	    	
+	    	this.fetchFiles();
+	    	eventBus.$on('fileUploaded', file => this.fileAdded());
 	    	// eventBus.$on('personUpdated', response => this.afterPersonUpdated(response));
 	    }
     });
