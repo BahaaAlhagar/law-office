@@ -55,11 +55,15 @@
 				<tr v-for="issue in issues" :key="issue.id">
 					<td> 
 						<span v-if="issue.number">
+							<a :href="/issues/ + issue.id">
 							@{{ issue.number }} لسنة @{{ issue.year }}
+							</a>
 						</span>
 						<span v-if="issue.adv_number">
 							<br>
+							<a :href="/issues/ + issue.id">
 							@{{ issue.adv_number }} لسنة @{{ issue.adv_year }} س
+							</a>
 						</span>
 					</td>
 

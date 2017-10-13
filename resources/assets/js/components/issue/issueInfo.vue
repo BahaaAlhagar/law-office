@@ -2,39 +2,92 @@
         <div class="card text-center mr-auto">
           <div class="card-header">
           <h4 class="card-title">
-          ������ ������
+          بيانات القضية
           <span></span>
-          <button class="btn pull-left btn-dark" @click="printPage">����� ������</button>
+          <button class="btn pull-left btn-success" @click="printPage">طباعة الصفحة</button>
           </h4>
           </div>
           <div class="panel-body">
-            <table class="table table-striped table-bordered">
-              <button style="margin-left: 15px;" id="print-normal" class="pull-left btn btn-success printButton" onclick="printN();">����� ������</button>
+            <table class="table table-striped table-bordered table-responsive">
                 <tbody>
                   <tr>
-                    <td>��������� ���������</td>
-                    <td>{{ $Issue->subject }}</td>
+                    <td>رقم الدعـــوى</td>
+                    <td>{{ issue.number }} لسنة {{ issue.year }} {{ issueType() }}</td>
                   </tr>
                   <tr>
-                    <td>��� ���������</td>
-                    <td>@if (! is_null($Issue->number)) {{ $Issue->number }} ���� {{ $Issue->year }} {{ \App\Issue::issuetype($Issue) }} @endif</td>
+                    <td>رقم الأستئـــناف</td>
+                    <td>{{ issue.adv_number }} لسنة {{ issue.adv_year }} س</td>
                   </tr>
                   <tr>
-                    <td>��� ������������</td>
-                    <td>@if (! is_null($Issue->adv_number)) {{ $Issue->adv_number }} ���� {{ $Issue->adv_year }} �@endif</td>
-                  </tr>
-                  <tr>
-                    <td>�������</td>
-                    <td>@if (! is_null($Issue->court)) {{ $Issue->court }}@endif
-                      @if (! is_null('$Issue->room')) - ��������� {{ $Issue->room }}@endif
+                    <td>المحكمة</td>
+                    <td>{{ issue.court }} - الدائــرة {{ issue.room }}
                     </td>
+                  </tr>
+                  <tr>
+                    <td>موضــــوع الدعـــوى</td>
+                    <td>{{ issue.subject }}</td>
                   </tr>
                 </tbody>
               </table>
             <div class="mr-auto card-footer">
-                <button class="btn btn-info" @click="editPerson(person)">����� ��������</button>
-                <button class="btn btn-danger" @click="deletePerson(person)">��� �����</button>
+                <button class="btn btn-info" @click="editIssue(issue)">تعديل البيانات</button>
+                <button class="btn btn-danger" @click="deleteIssue(issue)">حذف الشخص</button>
             </div>
           </div>
         </div>
 </template>
+
+<script>
+export default{
+  props: ['issue', 'people'],
+  methods: {
+        editIssue(issue){
+          eventBus.$emit('editIssue', issue);
+          $('#editIssue').modal('show');
+        },
+        afterIssueUpdated(response){
+          $('#editIssue').modal('hide');
+          toastr.info(response.message);
+          this.issue = response.item;
+        },
+        deleteIssue(issue){
+        if(confirm('هل انت متاكد من حذف هذا الشخص')){
+          axios.delete('/issues/' + issue.id)
+          .then(response => this.onIssueDelete(response));
+         }
+        },
+        onIssueDelete(response){
+          toastr.warning(response.data.message);
+        },
+        printPage(){
+          $('.print-hidden').hide()
+          $('.btn').hide()
+          window.print()
+          $('.print-hidden').show()
+          $('.btn').show()
+        },
+        issueType(){
+          let type = this.issue.type;
+          switch(type) {
+            case 1: return 'جـنــح'; break;
+            case 2: return 'جـنــايــات'; break;
+            case 3: return 'مــخــالفــات'; break;
+            case 4: return 'أدارى'; break;
+            case 5: return 'مــدنـى جــزئى'; break;
+            case 6: return 'مــدنـى كــلـى'; break;
+            case 7: return 'صــحــة توقيــع'; break;
+            case 8: return 'أســـرة'; break;
+            case 9: return 'وراثــــات'; break;
+            case 10: return 'تـجـــارى'; break;
+            case 11: return 'أدارى(مجلــس الدولة)'; break;
+            case 12: return 'اقتصـــادية'; break;
+          }
+        }
+      },
+  mounted() {
+        eventBus.$on('issueUpdated', response => this.afterIssueUpdated(response));
+      }
+}
+
+</script>
+

@@ -18,7 +18,7 @@
 
                 <form method="POST" action="/contracts" @submit.prevent="onIssueCreate" @keydown="form.errors.clear($event.target.name)" 
                 @change="form.errors.clear($event.target.name)" 
-                @input="editForm.errors.clear($event.target.name)"
+                @input="form.errors.clear($event.target.name)"
                 >
                     
                     <div class="form-group">
