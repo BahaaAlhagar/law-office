@@ -1,5 +1,6 @@
-@import url('https://fonts.googleapis.com/css?family=Cairo:400,700');
-@import url('https://fonts.googleapis.com/css?family=Amiri:700');
+@import url('./cairo.css');
+@import url('./amiri.css');
+
 
 html {
   position: relative;

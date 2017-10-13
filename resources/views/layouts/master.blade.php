@@ -17,10 +17,6 @@
         <link rel="stylesheet" href="{{ URL::asset('css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ URL::asset('css/bootstrap_rtl.css') }}">
 
-        <!-- date-time-picker -->
-        <link rel="stylesheet" href="{{ URL::asset('css/bootstrap-datepicker3.min.css') }}">
-        <link rel="stylesheet" href="{{ URL::asset('css/bootstrap-datepicker3.min.css.map') }}">
-
         <link rel="stylesheet" href="{{ URL::asset('css/style.css') }}">
 
         @yield('css')
@@ -55,12 +51,6 @@
         
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
         <script src="{{ URL::asset('js/ie10-viewport-bug-workaround.js') }}"></script>
-
-        <!-- date-time-picker -->
-        <script src="{{ URL::asset('js/bootstrap-datepicker.min.js') }}"></script>
-        <!-- Arabic support for datepicker -->
-        <script src="{{ URL::asset('locales/bootstrap-datepicker.ar.min.js') }}"></script>
-
 
 @yield('js')
 
