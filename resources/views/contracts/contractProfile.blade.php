@@ -17,10 +17,10 @@
         <!-- contract info -->
         <div class="card text-center mr-auto">
           <div class="card-header">
-          <h4 class="card-title">بيانات الشخص</h4>
+          <h4 class="card-title">بيانات التوكيل</h4>
           </div>
           <div class="panel-body">
-            <table class="table">
+            <table class="table table-responsive">
               <tbody>
                 <tr>
                   <th><strong>الرقم</strong></th>
@@ -58,7 +58,7 @@
           <h4 class="card-title">بيانات الموكلين</h4>
           </div>
           <div class="panel-body">
-            <table class="table">
+            <table class="table table-responsive">
               <tbody>
                 <tr v-for="person in contract.people">
                   <td><a :href="/people/ + person.id">@{{ person.name }}</a></td>

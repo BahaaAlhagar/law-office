@@ -58,6 +58,8 @@ class IssueController extends Controller
     {
         $issue = Issue::create($request->all());
 
+
+
         return $this->respondWithMessage('تم اضافة القضية بنجاح!', $issue);
     }
 
@@ -69,7 +71,14 @@ class IssueController extends Controller
      */
     public function show(Issue $issue)
     {
-        //
+        $issue->load(['people' => function($query){
+            $query->orderBy('is_client', 'desc');
+        }]);
+        
+        $people = Person::orderBy('name')
+            ->select('id', 'name', 'location')->get();
+        
+        return $this->makeResponse('issues/issueProfile', compact('issue', 'people'));
     }
 
     /**

@@ -19,7 +19,7 @@
           <h4 class="card-title">بيانات الشخص</h4>
           </div>
           <div class="panel-body">
-            <table class="table">
+            <table class="table table-responsive">
               <tbody>
                 <tr>
                   <th><strong>الاسم</strong></th>

@@ -5,5 +5,6 @@
     "/js/managePeople.js": "/js/managePeople.js",
     "/js/manageIssues.js": "/js/manageIssues.js",
     "/js/contractProfile.js": "/js/contractProfile.js",
-    "/js/personProfile.js": "/js/personProfile.js"
+    "/js/personProfile.js": "/js/personProfile.js",
+    "/js/issueProfile.js": "/js/issueProfile.js"
 }

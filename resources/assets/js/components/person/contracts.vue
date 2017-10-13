@@ -4,7 +4,7 @@
           <h4 class="card-title">بيانات التوكيلات</h4>
           </div>
           <div class="panel-body">
-            <table class="table">
+            <table class="table table-responsive">
               <tbody>
                 <tr v-for="contract in contracts">
                   <td>
