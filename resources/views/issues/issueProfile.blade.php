@@ -16,7 +16,7 @@
 
       <div id="issueProfile">
         <!-- Issue info -->
-        <issue-info :issue="issue" :people="people"></issue-info>
+        <issue-info :issue="issue"></issue-info>
         
       </div>
 @endsection

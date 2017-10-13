@@ -31,16 +31,22 @@
               </table>
             <div class="mr-auto card-footer">
                 <button class="btn btn-info" @click="editIssue(issue)">تعديل البيانات</button>
-                <button class="btn btn-danger" @click="deleteIssue(issue)">حذف الشخص</button>
+                <button class="btn btn-danger" @click="deleteIssue(issue)">حذف القضية</button>
             </div>
           </div>
+          <edit-issue></edit-issue>
         </div>
 </template>
 
 <script>
+import editIssue from './editIssue.vue';
+
 export default{
   props: ['issue', 'people'],
   methods: {
+        refreshIssueData(){
+          eventBus.$emit('refetchIssueInfo');
+        },
         editIssue(issue){
           eventBus.$emit('editIssue', issue);
           $('#editIssue').modal('show');
@@ -48,16 +54,17 @@ export default{
         afterIssueUpdated(response){
           $('#editIssue').modal('hide');
           toastr.info(response.message);
-          this.issue = response.item;
+          this.refreshIssueData()
         },
         deleteIssue(issue){
-        if(confirm('هل انت متاكد من حذف هذا الشخص')){
+        if(confirm('هل انت متاكد من حذف هذه القضية')){
           axios.delete('/issues/' + issue.id)
           .then(response => this.onIssueDelete(response));
          }
         },
         onIssueDelete(response){
           toastr.warning(response.data.message);
+          window.location.replace('/issues');
         },
         printPage(){
           $('.print-hidden').hide()
@@ -84,8 +91,11 @@ export default{
           }
         }
       },
+  components: {
+        editIssue
+      },
   mounted() {
-        eventBus.$on('issueUpdated', response => this.afterIssueUpdated(response));
+        eventBus.$on('IssueUpdated', response => this.afterIssueUpdated(response));
       }
 }
 
