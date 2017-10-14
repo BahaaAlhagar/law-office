@@ -114,7 +114,7 @@
 
 					<td>
 						<ul>
-							<li v-for="person in issue.people">@{{ person.name }}</li>
+							<li v-for="person in issue.openents">@{{ person.name }}</li>
 						</ul>
 					</td>
 

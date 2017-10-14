@@ -13,7 +13,7 @@ class Issue extends Model
 
     protected $guarded = ['id'];
 
-    public function people()
+    public function openents()
     {
     	return $this->belongsToMany(Person::class);
     }

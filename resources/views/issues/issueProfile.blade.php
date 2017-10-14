@@ -18,6 +18,8 @@
         <!-- Issue info -->
         <issue-info :issue="issue"></issue-info>
         
+        <issue-openents :issue="issue" :people="people" :openents="openents"></issue-openents>
+        
       </div>
 @endsection
 

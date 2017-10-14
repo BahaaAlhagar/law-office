@@ -28,20 +28,20 @@ class IssueController extends Controller
         $people = Person::orderBy('name')
             ->select('id', 'name', 'location')->get();
 
-        $issues = Issue::latest()->with('people')->paginate(10);
+        $issues = Issue::latest()->with('openents')->paginate(10);
 
         if($type)
         {
             $issues = Issue::latest()
                         ->where('type', $type)
-                        ->with('people')->paginate(10);
+                        ->with('openents')->paginate(10);
         }
 
         if($type == 'trashed')
         {
             $issues = Issue::latest()
                         ->onlyTrashed()
-                        ->with('people')->paginate(10);
+                        ->with('openents')->paginate(10);
         }
 
         return $this->makeResponse('issues/manageIssues', compact('issues', 'people'));
@@ -71,7 +71,7 @@ class IssueController extends Controller
      */
     public function show(Issue $issue)
     {
-        $issue->load(['people' => function($query){
+        $issue->load(['openents' => function($query){
             $query->orderBy('is_client', 'desc');
         }]);
         
@@ -120,5 +120,17 @@ class IssueController extends Controller
                 ->where('id', $id)->restore();
 
         return ['message' => 'تم استعادة القضية بنجاح.'];
+    }
+
+    /**
+     * attach openent to issue.
+     *
+     * @param  \App\Issue  $issue
+     * @return \Illuminate\Http\Response
+     */
+    public function attachOpenent(request $request, Issue $issue)
+    {
+        $openent = array_column($request->openent, 'id');
+        
     }
 }

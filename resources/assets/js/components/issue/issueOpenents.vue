@@ -2,31 +2,26 @@
         <div class="card text-center mr-auto">
           <div class="card-header">
           <h4 class="card-title">
-          بيانات القضية
+          خصوم القضية
           <span></span>
-          <button class="btn pull-left btn-success" @click="printPage">طباعة الصفحة</button>
+          <button class="btn pull-left btn-dark" data-toggle="modal" data-target="#addOpenent">اضافة خصم</button>
           </h4>
           </div>
           <div class="panel-body">
             <table class="table table-striped table-bordered table-responsive">
                 <tbody>
-                  <tr>
-                    <td>رقم الدعـــوى</td>
-                    <td>{{ issue.number }} لسنة {{ issue.year }} {{ issueType() }}</td>
-                  </tr>
-                  <tr>
-                    <td>رقم الأستئـــناف</td>
-                    <td>{{ issue.adv_number }} لسنة {{ issue.adv_year }} س</td>
-                  </tr>
-                  <tr>
-                    <td>المحكمة</td>
-                    <td>{{ issue.court }} - الدائــرة {{ issue.room }}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>موضــــوع الدعـــوى</td>
-                    <td>{{ issue.subject }}</td>
-                  </tr>
+                    <tr v-if="openents.length">
+                        <th>الأسم</th>
+                        <th>الصفة</th>
+                    </tr>
+                    <tr v-else>
+                      <td colspan="2"> لا يوجد خصوم بعد </td>
+                    </tr>
+                    <tr v-for="person in openents" :key="person.id">
+                        <th>{{ person.name }}</th>
+                        <th>{{ person.pivot.type }}</th>
+                    </tr>
+
                 </tbody>
               </table>
             <div class="mr-auto card-footer">
@@ -34,15 +29,16 @@
                 <button class="btn btn-danger" @click="deleteIssue(issue)">حذف القضية</button>
             </div>
           </div>
-          <edit-issue></edit-issue>
+          <add-openent :issue="issue" :people="people"></add-openent>
         </div>
 </template>
 
 <script>
-import editIssue from './editIssue.vue';
+
+import addOpenent from './addOpenent';
 
 export default{
-  props: ['issue'],
+  props: ['issue', 'people', 'openents'],
   methods: {
         refreshIssueData(){
           eventBus.$emit('refetchIssueInfo');
@@ -92,12 +88,11 @@ export default{
         }
       },
   components: {
-        editIssue
+        'add-openent': addOpenent
       },
   mounted() {
-        eventBus.$on('IssueUpdated', response => this.afterIssueUpdated(response));
+        // eventBus.$on('IssueUpdated', response => this.afterIssueUpdated(response));
       }
 }
 
 </script>
-

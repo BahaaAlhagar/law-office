@@ -11,6 +11,7 @@ window.toastr = require('toastr');
 import bootstrap from 'bootstrap';
 
 import issueInfo from './components/issue/issueInfo.vue';
+import issueOpenents from './components/issue/issueOpenents.vue';
 
 
 window.eventBus = new Vue();
@@ -18,7 +19,8 @@ window.eventBus = new Vue();
 const issueProfile = new Vue({
 	    el: '#issueProfile',
 	    data: {
-	    	issue: [],
+	    	issue: {},
+	    	openents: [],
 	    	people: []
 	    	},
 	    methods: {
@@ -28,11 +30,13 @@ const issueProfile = new Vue({
 	      },
 	      assignData(response){
 	      	this.issue = response.data.issue;
-	      	this.people = response.data.issue.people;
+	      	this.openents = response.data.issue.openents;
+	      	this.people = response.data.people;
 	      }
 	    },
 	    components: {
-	    	issueInfo
+	    	issueInfo,
+	    	issueOpenents
 	    },
 	    created(){
 	    	this.fetchIssueInfo();

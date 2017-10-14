@@ -39,6 +39,8 @@ route::get('issue/{type?}', 'IssueController@index');
 
 route::get('/issues/{issue}/restore', 'IssueController@restore');
 
+route::post('/issues/{issue}/openents', 'IssueController@attachOpenent');
+
 route::resource('issues', 'IssueController', ['except' => ['create', 'edit']]);
 
 route::get('todo/{completed?}', 'TodoController@index');
