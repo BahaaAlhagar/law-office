@@ -159,7 +159,7 @@ class IssueController extends Controller
 
     public function updateOpenent(attachOpenentRequest $request, Issue $issue)
     {
-        // temporary
+        // temporary - we add checks later
         $openent = $request->openent['id'];
 
         $issue->openents()->detach($request->old_id);
@@ -168,5 +168,21 @@ class IssueController extends Controller
                 ->attach($openent, ['person_type' => $request->person_type]);
 
         return ['message' => 'تم تحديث بيانات الموكل'];
+    }
+
+    /**
+     * delete attached openent to issue.
+     *
+     * @param  \App\Issue  $issue
+     * @param  id  $openent
+     * @return \Illuminate\Http\Response
+     */
+
+    public function deleteOpenent(Request $request, Issue $issue, $openent)
+    {
+        // temporary - we add checks later
+        $issue->openents()->detach($openent);
+
+        return ['message' => 'تم حذف الخصم بنجاح'];
     }
 }

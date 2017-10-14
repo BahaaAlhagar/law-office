@@ -60,16 +60,16 @@ export default{
           toastr.info(response.message);
           this.refreshIssueData();
         },
-/*        deleteIssue(issue){
-        if(confirm('هل انت متاكد من حذف هذه القضية')){
-          axios.delete('/issues/' + issue.id)
-          .then(response => this.onIssueDelete(response));
+        deleteOpenent(openent){
+        if(confirm('هل انت متاكد من حذف هذا الخصم؟')){
+          axios.delete('/issues/' + this.issue.id + '/openents/' + openent.id)
+          .then(response => this.onOpenentDelete(response));
          }
         },
-        onIssueDelete(response){
+        onOpenentDelete(response){
           toastr.warning(response.data.message);
-          window.location.replace('/issues');
-        },*/
+          this.refreshIssueData();
+        },
         openentType(openent){
           let type = openent.pivot.person_type;
           switch(type) {

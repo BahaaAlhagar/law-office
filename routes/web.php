@@ -43,6 +43,8 @@ route::post('/issues/{issue}/openents', 'IssueController@attachOpenent');
 
 route::patch('/issues/{issue}/openents', 'IssueController@updateOpenent');
 
+route::delete('/issues/{issue}/openents/{openent}', 'IssueController@deleteOpenent');
+
 route::resource('issues', 'IssueController', ['except' => ['create', 'edit']]);
 
 route::get('todo/{completed?}', 'TodoController@index');

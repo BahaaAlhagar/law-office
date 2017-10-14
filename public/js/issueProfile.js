@@ -29690,6 +29690,19 @@ exports.default = {
       toastr.info(response.message);
       this.refreshIssueData();
     },
+    deleteOpenent: function deleteOpenent(openent) {
+      var _this = this;
+
+      if (confirm('هل انت متاكد من حذف هذا الخصم؟')) {
+        axios.delete('/issues/' + this.issue.id + '/openents/' + openent.id).then(function (response) {
+          return _this.onOpenentDelete(response);
+        });
+      }
+    },
+    onOpenentDelete: function onOpenentDelete(response) {
+      toastr.warning(response.data.message);
+      this.refreshIssueData();
+    },
     openentType: function openentType(openent) {
       var type = openent.pivot.person_type;
       switch (type) {
@@ -29715,13 +29728,13 @@ exports.default = {
     'edit-openent': _editOpenent2.default
   },
   mounted: function mounted() {
-    var _this = this;
+    var _this2 = this;
 
     eventBus.$on('openentAdded', function (response) {
-      return _this.afterOpenentAdded(response);
+      return _this2.afterOpenentAdded(response);
     });
     eventBus.$on('openentUpdated', function (response) {
-      return _this.afterOpenentUpdated(response);
+      return _this2.afterOpenentUpdated(response);
     });
   }
 };
