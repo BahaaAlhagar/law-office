@@ -10,8 +10,9 @@ import jquery from 'jquery';
 window.toastr = require('toastr');
 import bootstrap from 'bootstrap';
 
-import issueInfo from './components/issue/issueInfo.vue';
-import issueOpenents from './components/issue/issueOpenents.vue';
+import issueInfo from './components/issue/issueInfo';
+import issueOpenents from './components/issue/issueOpenents';
+import issueFiles from './components/issue/files/issueFiles';
 
 
 window.eventBus = new Vue();
@@ -21,7 +22,8 @@ const issueProfile = new Vue({
 	    data: {
 	    	issue: {},
 	    	openents: [],
-	    	people: []
+	    	people: [],
+	    	files: []
 	    	},
 	    methods: {
 	      fetchIssueInfo(){
@@ -32,16 +34,27 @@ const issueProfile = new Vue({
 	      	this.issue = response.data.issue;
 	      	this.openents = response.data.issue.openents;
 	      	this.people = response.data.people;
+	      },
+	      fetchIssueFiles(){
+	      	axios.get(window.location.pathname + '/files')
+	    		.then(response => this.assignFilesData(response));
+	      },
+	      assignFilesData(response){
+      		this.issue = response.data.issue;
+      		this.files = response.data.files;
 	      }
 	    },
 	    components: {
 	    	issueInfo,
-	    	issueOpenents
+	    	issueOpenents,
+	    	issueFiles
 	    },
 	    created(){
 	    	this.fetchIssueInfo();
-
 	    	eventBus.$on('refetchIssueInfo', event => this.fetchIssueInfo());
+
+	    	this.fetchIssueFiles();
+	    	eventBus.$on('refetchIssueFiles', event => this.fetchIssueFiles());
 	    }
     });
 

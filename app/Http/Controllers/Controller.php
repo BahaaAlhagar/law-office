@@ -36,7 +36,7 @@ class Controller extends BaseController
 
         if ($file->isValid()) {
             $extention = $file->extension();
-            $size = $file->getClientSize() / 1024;
+            $size = ceil($file->getClientSize() / 1024);
             $name =  $file->getClientOriginalName();
             $storeName = random_int(1, 99999).'_'.str_slug($name).'.'.$extention;
             $file->storeAs('/public/'.$folder.'/'.$owner->id, $storeName);

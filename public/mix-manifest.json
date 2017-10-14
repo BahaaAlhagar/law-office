@@ -1,10 +1,10 @@
 {
+    "/js/issueProfile.js": "/js/issueProfile.js",
     "/js/personFiles.js": "/js/personFiles.js",
     "/js/manageTodos.js": "/js/manageTodos.js",
     "/js/manageContracts.js": "/js/manageContracts.js",
     "/js/managePeople.js": "/js/managePeople.js",
     "/js/manageIssues.js": "/js/manageIssues.js",
     "/js/contractProfile.js": "/js/contractProfile.js",
-    "/js/personProfile.js": "/js/personProfile.js",
-    "/js/issueProfile.js": "/js/issueProfile.js"
+    "/js/personProfile.js": "/js/personProfile.js"
 }

@@ -19,6 +19,8 @@
         <issue-info :issue="issue"></issue-info>
         
         <issue-openents :issue="issue" :people="people" :openents="openents"></issue-openents>
+
+        <issue-files :issue="issue" :people="people" :files="files"></issue-files>
         
       </div>
 @endsection

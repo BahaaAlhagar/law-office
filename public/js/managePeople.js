@@ -28524,7 +28524,8 @@ module.exports = g;
 
 
 /***/ }),
-/* 116 */
+/* 116 */,
+/* 117 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -29626,7 +29627,7 @@ var xhrClient = function (request) {
 
 var nodeClient = function (request) {
 
-    var client = __webpack_require__(117);
+    var client = __webpack_require__(118);
 
     return new PromiseObj(function (resolve) {
 
@@ -30102,13 +30103,13 @@ if (typeof window !== 'undefined' && window.Vue) {
 
 
 /***/ }),
-/* 117 */
+/* 118 */
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
-/* 118 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -30350,7 +30351,6 @@ return /******/ (function(modules) { // webpackBootstrap
 //# sourceMappingURL=vuejs-paginator.js.map
 
 /***/ }),
-/* 119 */,
 /* 120 */,
 /* 121 */,
 /* 122 */,
@@ -30735,11 +30735,11 @@ module.exports = __webpack_require__(138);
 "use strict";
 
 
-var _vueResource = __webpack_require__(116);
+var _vueResource = __webpack_require__(117);
 
 var _vueResource2 = _interopRequireDefault(_vueResource);
 
-var _vuejsPaginator = __webpack_require__(118);
+var _vuejsPaginator = __webpack_require__(119);
 
 var _vuejsPaginator2 = _interopRequireDefault(_vuejsPaginator);
 

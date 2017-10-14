@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\File;
 use App\Issue;
 use App\Person;
 use App\Http\Requests\storeIssueRequest;
 use App\Http\Requests\updateIssueRequest;
 use App\Http\Requests\attachOpenentRequest;
+use App\Http\Requests\uploadFileRequest;
 use Illuminate\Http\Request;
 
 class IssueController extends Controller
@@ -184,5 +186,34 @@ class IssueController extends Controller
         $issue->openents()->detach($openent);
 
         return ['message' => 'تم حذف الخصم بنجاح'];
+    }
+
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function filesIndex(Issue $issue)
+    {
+        $files = File::latest()
+                        ->where('fileable_id', $issue->id)
+                        ->where('fileable_type', 'issue')
+                        ->get();
+
+        return $this->makeResponse('issues/issueProfile', compact('issue', 'files'));
+    }
+
+    public function storeFile(uploadFileRequest $request, Issue $issue)
+    {
+        if ($request->hasFile('file')) 
+        {
+            $relatedFile = $this->handleUploadFile($request, $issue, 'issues_files');
+            $issue->files()->create($relatedFile);
+
+            return ['message' => 'file Uploaded Successfully!'];
+        }
+
+        return ['message' => 'something went Wrong'];
     }
 }
