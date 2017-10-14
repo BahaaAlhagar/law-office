@@ -149,4 +149,24 @@ class IssueController extends Controller
 
         return ['message' => 'تم اضافة الخصم بنجاح!'];
     }
+
+    /**
+     * update attached openent to issue.
+     *
+     * @param  \App\Issue  $issue
+     * @return \Illuminate\Http\Response
+     */
+
+    public function updateOpenent(attachOpenentRequest $request, Issue $issue)
+    {
+        // temporary
+        $openent = $request->openent['id'];
+
+        $issue->openents()->detach($request->old_id);
+
+        $issue->openents()
+                ->attach($openent, ['person_type' => $request->person_type]);
+
+        return ['message' => 'تم تحديث بيانات الموكل'];
+    }
 }

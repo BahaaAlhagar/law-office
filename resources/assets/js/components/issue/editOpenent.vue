@@ -1,0 +1,108 @@
+<template>
+        <div class="modal fade" id="editOpenent" role="dialog" aria-labelledby="myModalLabel">
+
+          <div class="modal-dialog modal-lg" role="document">
+
+            <div class="modal-content">
+
+              <div class="modal-header">
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <span class="form-control-static pull-left">
+                    <h4 class="modal-title" id="myModalLabel"> تعديل خصم فى قضية </h4>
+                </span>
+              </div>
+
+              <div class="modal-body">
+
+
+                <form method="POST" action="/" 
+                @submit.prevent="onOpenentUpdate" @keydown="editOpenentForm.errors.clear($event.target.name)" 
+                @change="editOpenentForm.errors.clear($event.target.name)" 
+                @input="editOpenentForm.errors.clear($event.target.name)"
+                >
+
+
+                    <div class="form-group">
+                        <label for="openent" class="label">
+                        الخصم: 
+                        <span class="brown">يجب اضافة الخصم فى الاشخاص ليظهر هنا</span>
+                        </label>
+                        
+                        <multiselect name="openent" id="openent" 
+                        @input="editOpenentForm.errors.clear('openent')"
+                        v-model="editOpenentForm.openent" 
+                        :options="people" 
+                        track-by="id" 
+                        placeholder="اختر الخصم"
+                        :custom-label="customLabel">
+                        </multiselect> 
+
+                        <span class="alert-danger" v-if="editOpenentForm.errors.has('openent')" v-text="editOpenentForm.errors.get('openent')"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="person_type" class="label">صفة الخصم:</label>
+                        
+                        <select name="person_type" id="person_type" class="form-control" v-model.number="editOpenentForm.person_type">
+                            <option v-if="issue.type <= 3" value="1">متـهـم</option>
+                            <option v-if="issue.type <= 3" value="2">مجنى عليه</option>
+                            <option v-if="issue.type <= 3" value="3">مدعى بالحق المدنى</option>
+                            <option v-if="issue.type >= 5" value="4">مدعى</option>
+                            <option v-if="issue.type >= 5" value="5">مدعى عليه</option>
+                            <option v-if="issue.type == 4" value="6">شاكى</option>
+                            <option v-if="issue.type == 4" value="7">مشكو فى حقه</option>
+                        </select>
+
+                        <span class="alert-danger" v-if="editOpenentForm.errors.has('person_type')" v-text="editOpenentForm.errors.get('person_type')"></span>
+                    </div>
+
+                    <div class="form-group heading">
+                        <button class="button btn-lg btn-success" :disabled="editOpenentForm.errors.any()">تعديل</button>
+                    </div>
+                </form>
+
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+</template>
+
+<script>
+	import Multiselect from 'vue-multiselect'
+    export default {
+        data() {
+        return {
+            editOpenentForm: new Form({
+                person_type: '',
+                openent: '',
+                old_id: ''
+            }),
+        };
+        },
+        props : ['issue', 'people'],
+        methods: {
+        onOpenentUpdate() {
+            this.editOpenentForm.patch('/issues/' + this.issue.id + '/openents')
+                .then(response => eventBus.$emit('openentUpdated', response));
+            },
+        editOpenentModal(openent){
+            this.editOpenentForm.reset();
+            this.editOpenentForm.openent = openent;
+            this.editOpenentForm.old_id = openent.id;
+            this.editOpenentForm.person_type = openent.pivot.person_type;
+        },
+        customLabel(option) {
+                return `${option.name} - ${option.location}`;
+            }
+        },
+        created(){
+            eventBus.$on('editOpenent', openent => this.editOpenentModal(openent));
+        },
+        components: { Multiselect }
+    }
+</script>
+
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>

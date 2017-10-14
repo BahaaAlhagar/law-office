@@ -11,31 +11,33 @@
             <table class="table table-striped table-bordered table-responsive">
                 <tbody>
                     <tr v-if="openents.length">
-                        <th>الأسم</th>
-                        <th>الصفة</th>
+                        <th class="brown">الأسم</th>
+                        <th class="brown">الصفة</th>
                     </tr>
                     <tr v-else>
                       <td colspan="2"> لا يوجد خصوم بعد </td>
                     </tr>
-                    <tr v-for="person in openents" :key="person.id">
-                        <th>{{ person.name }}</th>
-                        <th>{{ person.pivot.person_type }}</th>
+                    <tr v-for="openent in openents" :key="openent.id">
+                        <td>
+                        {{ openent.name }}
+                        <button class="btn btn-sm btn-danger pull-left" @click="deleteOpenent(openent)"><i class="fa fa-times" aria-hidden="true"></i></button>
+                        <button class="btn btn-sm btn-info pull-left" @click="editOpenent(openent)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                        </td>
+                        <td>{{ openentType(openent) }}</td>
                     </tr>
 
                 </tbody>
               </table>
-            <div class="mr-auto card-footer">
-                <button class="btn btn-info" @click="editIssue(issue)">تعديل البيانات</button>
-                <button class="btn btn-danger" @click="deleteIssue(issue)">حذف القضية</button>
-            </div>
           </div>
           <add-openent :issue="issue" :people="people"></add-openent>
+          <edit-openent :issue="issue" :people="people"></edit-openent>
         </div>
 </template>
 
 <script>
 
 import addOpenent from './addOpenent';
+import editOpenent from './editOpenent';
 
 export default{
   props: ['issue', 'people', 'openents'],
@@ -49,16 +51,16 @@ export default{
           toastr.success(response.message);
           this.refreshIssueData();
         },
-/*        editIssue(issue){
-          eventBus.$emit('editIssue', issue);
-          $('#editIssue').modal('show');
+        editOpenent(openent){
+          eventBus.$emit('editOpenent', openent);
+          $('#editOpenent').modal('show');
         },
-        afterIssueUpdated(response){
-          $('#editIssue').modal('hide');
+        afterOpenentUpdated(response){
+          $('#editOpenent').modal('hide');
           toastr.info(response.message);
           this.refreshIssueData();
         },
-        deleteIssue(issue){
+/*        deleteIssue(issue){
         if(confirm('هل انت متاكد من حذف هذه القضية')){
           axios.delete('/issues/' + issue.id)
           .then(response => this.onIssueDelete(response));
@@ -68,29 +70,26 @@ export default{
           toastr.warning(response.data.message);
           window.location.replace('/issues');
         },*/
-        issueType(){
-          let type = this.issue.type;
+        openentType(openent){
+          let type = openent.pivot.person_type;
           switch(type) {
-            case 1: return 'جـنــح'; break;
-            case 2: return 'جـنــايــات'; break;
-            case 3: return 'مــخــالفــات'; break;
-            case 4: return 'أدارى'; break;
-            case 5: return 'مــدنـى جــزئى'; break;
-            case 6: return 'مــدنـى كــلـى'; break;
-            case 7: return 'صــحــة توقيــع'; break;
-            case 8: return 'أســـرة'; break;
-            case 9: return 'وراثــــات'; break;
-            case 10: return 'تـجـــارى'; break;
-            case 11: return 'أدارى(مجلــس الدولة)'; break;
-            case 12: return 'اقتصـــادية'; break;
+            case 1: return "مــتــهــم"; break;
+            case 2: return "مجنى عليه"; break;
+            case 3: return "مدعى بالحق المدنى"; break;
+            case 4: return "مدعى"; break;
+            case 5: return "مدعى عليه"; break;
+            case 6: return "شــاكى"; break;
+            case 7: return "مشكو فى حقه"; break;
           }
         }
       },
   components: {
-        'add-openent': addOpenent
+        'add-openent': addOpenent,
+        'edit-openent': editOpenent
       },
   mounted() {
         eventBus.$on('openentAdded', response => this.afterOpenentAdded(response));
+        eventBus.$on('openentUpdated', response => this.afterOpenentUpdated(response));
       }
 }
 
