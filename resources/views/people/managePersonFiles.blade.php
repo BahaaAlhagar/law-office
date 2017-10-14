@@ -65,7 +65,8 @@
                 </tr>
             </tbody>
             </table>
-            <v-paginator class="heading" v-if="files.length" :options="options" ref="VP"  :resource_url="resource_url" @update="updateResource"></v-paginator>
+            <div v-if="!files.length" class="heading"> لا يوجد ملفات لهذا الشخص </div>
+            <v-paginator v-show="files.length" class="heading" :options="options" ref="VP" :resource_url="resource_url" @update="updateResource"></v-paginator>
           </div>
         </div>
         

@@ -55,7 +55,7 @@
 			</tbody>
 		</table>
 		<br>
-		<v-paginator class="heading" v-if="todos.length" :options="options" ref="VP"  :resource_url="resource_url" @update="updateResource"></v-paginator>
+		<v-paginator class="heading" v-show="todos.length" :options="options" ref="VP"  :resource_url="resource_url" @update="updateResource"></v-paginator>
 		<br>
 
 
