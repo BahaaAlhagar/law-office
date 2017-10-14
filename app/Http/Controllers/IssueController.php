@@ -6,6 +6,7 @@ use App\Issue;
 use App\Person;
 use App\Http\Requests\storeIssueRequest;
 use App\Http\Requests\updateIssueRequest;
+use App\Http\Requests\attachOpenentRequest;
 use Illuminate\Http\Request;
 
 class IssueController extends Controller
@@ -128,7 +129,7 @@ class IssueController extends Controller
      * @param  \App\Issue  $issue
      * @return \Illuminate\Http\Response
      */
-    public function attachOpenent(request $request, Issue $issue)
+    public function attachOpenent(attachOpenentRequest $request, Issue $issue)
     {
         $openent = $request->openent['id'];
 
@@ -145,7 +146,7 @@ class IssueController extends Controller
 
         $issue->openents()
                 ->attach($openent, ['person_type' => $request->person_type]);
-                
+
         return ['message' => 'تم اضافة الخصم بنجاح!'];
     }
 }
