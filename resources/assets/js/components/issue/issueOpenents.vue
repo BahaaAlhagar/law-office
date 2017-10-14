@@ -19,7 +19,7 @@
                     </tr>
                     <tr v-for="person in openents" :key="person.id">
                         <th>{{ person.name }}</th>
-                        <th>{{ person.pivot.type }}</th>
+                        <th>{{ person.pivot.person_type }}</th>
                     </tr>
 
                 </tbody>
@@ -43,14 +43,20 @@ export default{
         refreshIssueData(){
           eventBus.$emit('refetchIssueInfo');
         },
-        editIssue(issue){
+        afterOpenentAdded(response)
+        {
+          $('#addOpenent').modal('hide');
+          toastr.success(response.message);
+          this.refreshIssueData();
+        },
+/*        editIssue(issue){
           eventBus.$emit('editIssue', issue);
           $('#editIssue').modal('show');
         },
         afterIssueUpdated(response){
           $('#editIssue').modal('hide');
           toastr.info(response.message);
-          this.refreshIssueData()
+          this.refreshIssueData();
         },
         deleteIssue(issue){
         if(confirm('هل انت متاكد من حذف هذه القضية')){
@@ -61,14 +67,7 @@ export default{
         onIssueDelete(response){
           toastr.warning(response.data.message);
           window.location.replace('/issues');
-        },
-        printPage(){
-          $('.print-hidden').hide()
-          $('.btn').hide()
-          window.print()
-          $('.print-hidden').show()
-          $('.btn').show()
-        },
+        },*/
         issueType(){
           let type = this.issue.type;
           switch(type) {
@@ -91,7 +90,7 @@ export default{
         'add-openent': addOpenent
       },
   mounted() {
-        // eventBus.$on('IssueUpdated', response => this.afterIssueUpdated(response));
+        eventBus.$on('openentAdded', response => this.afterOpenentAdded(response));
       }
 }
 

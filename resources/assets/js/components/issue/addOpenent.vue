@@ -16,10 +16,10 @@
               <div class="modal-body">
 
 
-                <form method="POST" action="/" 
-                @submit.prevent="onOpenentAdd" @keydown="form.errors.clear($event.target.name)" 
-                @change="form.errors.clear($event.target.name)" 
-                @input="form.errors.clear($event.target.name)"
+                <form method="POST" action="/contracts" 
+                @submit.prevent="onOpenentAdd" @keydown="addOpenentForm.errors.clear($event.target.name)" 
+                @change="addOpenentForm.errors.clear($event.target.name)" 
+                @input="addOpenentForm.errors.clear($event.target.name)"
                 >
 
 
@@ -30,21 +30,21 @@
                         </label>
                         
                         <multiselect name="openent" id="openent" 
-                        @input="form.errors.clear('openent')"
-                        v-model="form.openent" 
+                        @input="addOpenentForm.errors.clear('openent')"
+                        v-model="addOpenentForm.openent" 
                         :options="people" 
                         track-by="id" 
                         placeholder="اختر الخصم"
                         :custom-label="customLabel">
                         </multiselect> 
 
-                        <span class="alert-danger" v-if="form.errors.has('openent')" v-text="form.errors.get('openent')"></span>
+                        <span class="alert-danger" v-if="addOpenentForm.errors.has('openent')" v-text="addOpenentForm.errors.get('openent')"></span>
                     </div>
 
                     <div class="form-group">
-                        <label for="type" class="label">صفة الخصم:</label>
+                        <label for="person_type" class="label">صفة الخصم:</label>
                         
-                        <select name="type" id="type" class="form-control" v-model.number="form.type">
+                        <select name="person_type" id="person_type" class="form-control" v-model.number="addOpenentForm.person_type">
                             <option v-if="issue.type <= 3" value="1">متـهـم</option>
                             <option v-if="issue.type <= 3" value="2">مجنى عليه</option>
                             <option v-if="issue.type <= 3" value="3">مدعى بالحق المدنى</option>
@@ -54,11 +54,11 @@
                             <option v-if="issue.type == 4" value="7">مشكو فى حقه</option>
                         </select>
 
-                        <span class="alert-danger" v-if="form.errors.has('type')" v-text="form.errors.get('type')"></span>
+                        <span class="alert-danger" v-if="addOpenentForm.errors.has('person_type')" v-text="addOpenentForm.errors.get('person_type')"></span>
                     </div>
 
                     <div class="form-group heading">
-                        <button class="button btn-lg btn-success" :disabled="form.errors.any()">اضافة</button>
+                        <button class="button btn-lg btn-success" :disabled="addOpenentForm.errors.any()">اضافة</button>
                     </div>
                 </form>
 
@@ -73,11 +73,10 @@
 <script>
 	import Multiselect from 'vue-multiselect'
     export default {
-        name: 'addOpenent',
         data() {
         return {
-            form: new Form({
-                type: '',
+            addOpenentForm: new Form({
+                person_type: '',
                 openent: ''
             }),
         };
@@ -85,7 +84,7 @@
         props : ['issue', 'people'],
         methods: {
             onOpenentAdd() {
-                this.form.post('/issue/' + issue.id + '/openents')
+                this.addOpenentForm.post('/issues/' + this.issue.id + '/openents')
                     .then(response => eventBus.$emit('openentAdded', response));
             },
             customLabel(option) {

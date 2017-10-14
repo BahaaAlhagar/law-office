@@ -20,7 +20,7 @@ class Person extends Model
 
     public function issues()
     {
-    	return $this->belongsToMany(Issue::class);
+    	return $this->belongsToMany(Issue::class)->withPivot('person_type');
     }
 
     public function files()

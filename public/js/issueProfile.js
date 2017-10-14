@@ -29672,34 +29672,10 @@ exports.default = {
     refreshIssueData: function refreshIssueData() {
       eventBus.$emit('refetchIssueInfo');
     },
-    editIssue: function editIssue(issue) {
-      eventBus.$emit('editIssue', issue);
-      $('#editIssue').modal('show');
-    },
-    afterIssueUpdated: function afterIssueUpdated(response) {
-      $('#editIssue').modal('hide');
-      toastr.info(response.message);
+    afterOpenentAdded: function afterOpenentAdded(response) {
+      $('#addOpenent').modal('hide');
+      toastr.success(response.message);
       this.refreshIssueData();
-    },
-    deleteIssue: function deleteIssue(issue) {
-      var _this = this;
-
-      if (confirm('هل انت متاكد من حذف هذه القضية')) {
-        axios.delete('/issues/' + issue.id).then(function (response) {
-          return _this.onIssueDelete(response);
-        });
-      }
-    },
-    onIssueDelete: function onIssueDelete(response) {
-      toastr.warning(response.data.message);
-      window.location.replace('/issues');
-    },
-    printPage: function printPage() {
-      $('.print-hidden').hide();
-      $('.btn').hide();
-      window.print();
-      $('.print-hidden').show();
-      $('.btn').show();
     },
     issueType: function issueType() {
       var type = this.issue.type;
@@ -29734,7 +29710,13 @@ exports.default = {
   components: {
     'add-openent': _addOpenent2.default
   },
-  mounted: function mounted() {}
+  mounted: function mounted() {
+    var _this = this;
+
+    eventBus.$on('openentAdded', function (response) {
+      return _this.afterOpenentAdded(response);
+    });
+  }
 };
 
 /***/ }),
@@ -29755,7 +29737,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v(" لا يوجد خصوم بعد ")])]), _vm._v(" "), _vm._l((_vm.openents), function(person) {
     return _c('tr', {
       key: person.id
-    }, [_c('th', [_vm._v(_vm._s(person.name))]), _vm._v(" "), _c('th', [_vm._v(_vm._s(person.pivot.type))])])
+    }, [_c('th', [_vm._v(_vm._s(person.name))]), _vm._v(" "), _c('th', [_vm._v(_vm._s(person.pivot.person_type))])])
   })], 2)]), _vm._v(" "), _c('div', {
     staticClass: "mr-auto card-footer"
   }, [_c('button', {
@@ -29901,11 +29883,10 @@ var _vueMultiselect2 = _interopRequireDefault(_vueMultiselect);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
-    name: 'addOpenent',
     data: function data() {
         return {
-            form: new Form({
-                type: '',
+            addOpenentForm: new Form({
+                person_type: '',
                 openent: ''
             })
         };
@@ -29914,7 +29895,7 @@ exports.default = {
     props: ['issue', 'people'],
     methods: {
         onOpenentAdd: function onOpenentAdd() {
-            this.form.post('/issue/' + issue.id + '/openents').then(function (response) {
+            this.addOpenentForm.post('/issues/' + this.issue.id + '/openents').then(function (response) {
                 return eventBus.$emit('openentAdded', response);
             });
         },
@@ -29949,7 +29930,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('form', {
     attrs: {
       "method": "POST",
-      "action": "/"
+      "action": "/contracts"
     },
     on: {
       "submit": function($event) {
@@ -29957,13 +29938,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.onOpenentAdd($event)
       },
       "keydown": function($event) {
-        _vm.form.errors.clear($event.target.name)
+        _vm.addOpenentForm.errors.clear($event.target.name)
       },
       "change": function($event) {
-        _vm.form.errors.clear($event.target.name)
+        _vm.addOpenentForm.errors.clear($event.target.name)
       },
       "input": function($event) {
-        _vm.form.errors.clear($event.target.name)
+        _vm.addOpenentForm.errors.clear($event.target.name)
       }
     }
   }, [_c('div', {
@@ -29979,42 +29960,42 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     on: {
       "input": function($event) {
-        _vm.form.errors.clear('openent')
+        _vm.addOpenentForm.errors.clear('openent')
       }
     },
     model: {
-      value: (_vm.form.openent),
+      value: (_vm.addOpenentForm.openent),
       callback: function($$v) {
-        _vm.form.openent = $$v
+        _vm.addOpenentForm.openent = $$v
       },
-      expression: "form.openent"
+      expression: "addOpenentForm.openent"
     }
-  }), _vm._v(" "), (_vm.form.errors.has('openent')) ? _c('span', {
+  }), _vm._v(" "), (_vm.addOpenentForm.errors.has('openent')) ? _c('span', {
     staticClass: "alert-danger",
     domProps: {
-      "textContent": _vm._s(_vm.form.errors.get('openent'))
+      "textContent": _vm._s(_vm.addOpenentForm.errors.get('openent'))
     }
   }) : _vm._e()], 1), _vm._v(" "), _c('div', {
     staticClass: "form-group"
   }, [_c('label', {
     staticClass: "label",
     attrs: {
-      "for": "type"
+      "for": "person_type"
     }
   }, [_vm._v("صفة الخصم:")]), _vm._v(" "), _c('select', {
     directives: [{
       name: "model",
       rawName: "v-model.number",
-      value: (_vm.form.type),
-      expression: "form.type",
+      value: (_vm.addOpenentForm.person_type),
+      expression: "addOpenentForm.person_type",
       modifiers: {
         "number": true
       }
     }],
     staticClass: "form-control",
     attrs: {
-      "name": "type",
-      "id": "type"
+      "name": "person_type",
+      "id": "person_type"
     },
     on: {
       "change": function($event) {
@@ -30024,7 +30005,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           var val = "_value" in o ? o._value : o.value;
           return _vm._n(val)
         });
-        _vm.form.type = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+        _vm.addOpenentForm.person_type = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
       }
     }
   }, [(_vm.issue.type <= 3) ? _c('option', {
@@ -30055,17 +30036,17 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "value": "7"
     }
-  }, [_vm._v("مشكو فى حقه")]) : _vm._e()]), _vm._v(" "), (_vm.form.errors.has('type')) ? _c('span', {
+  }, [_vm._v("مشكو فى حقه")]) : _vm._e()]), _vm._v(" "), (_vm.addOpenentForm.errors.has('person_type')) ? _c('span', {
     staticClass: "alert-danger",
     domProps: {
-      "textContent": _vm._s(_vm.form.errors.get('type'))
+      "textContent": _vm._s(_vm.addOpenentForm.errors.get('person_type'))
     }
   }) : _vm._e()]), _vm._v(" "), _c('div', {
     staticClass: "form-group heading"
   }, [_c('button', {
     staticClass: "button btn-lg btn-success",
     attrs: {
-      "disabled": _vm.form.errors.any()
+      "disabled": _vm.addOpenentForm.errors.any()
     }
   }, [_vm._v("اضافة")])])])])])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;

@@ -130,7 +130,22 @@ class IssueController extends Controller
      */
     public function attachOpenent(request $request, Issue $issue)
     {
-        $openent = array_column($request->openent, 'id');
-        
+        $openent = $request->openent['id'];
+
+        if(!is_null($issue->openents()->where('id', $openent)->first()))
+        {
+            $errors = [
+                'errors' => [
+                'openent' => ['هذا الخصم مضاف من قبل.']
+                ]
+            ];
+
+            return response()->json($errors, 422);
+        }
+
+        $issue->openents()
+                ->attach($openent, ['person_type' => $request->person_type]);
+                
+        return ['message' => 'تم اضافة الخصم بنجاح!'];
     }
 }
