@@ -12,6 +12,7 @@
                 <tbody>
                     <tr v-if="openents.length">
                         <th class="brown">الأسم</th>
+                        <th class="brown">التوكيل</th>
                         <th class="brown">الصفة</th>
                     </tr>
                     <tr v-else>
@@ -22,6 +23,13 @@
                         {{ openent.name }}
                         <button class="btn btn-sm btn-danger pull-left" @click="deleteOpenent(openent)"><i class="fa fa-times" aria-hidden="true"></i></button>
                         <button class="btn btn-sm btn-info pull-left" @click="editOpenent(openent)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                        </td>
+                        <td>
+                          <ul>
+                            <li v-for="contract in openent.contracts">
+                              <a :href="'/contracts/' + contract.id">{{ contract.number }} لسنة {{ contract.year }} {{ contractType(contract) }}</a>
+                            </li>
+                          </ul>
                         </td>
                         <td>{{ openentType(openent) }}</td>
                     </tr>
@@ -80,6 +88,14 @@ export default{
             case 5: return "مدعى عليه"; break;
             case 6: return "شــاكى"; break;
             case 7: return "مشكو فى حقه"; break;
+          }
+        },
+        contractType(contract){
+          let type = contract.type;
+          switch(type) {
+            case 1: return "ت . ع"; break;
+            case 2: return "ت . خ"; break;
+            case 3: return "ع . و"; break;
           }
         }
       },

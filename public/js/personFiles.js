@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 189);
+/******/ 	return __webpack_require__(__webpack_require__.s = 206);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -28607,6 +28607,227 @@ function toComment(sourceMap) {
 
 /***/ }),
 /* 117 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*
+  MIT License http://www.opensource.org/licenses/mit-license.php
+  Author Tobias Koppers @sokra
+  Modified by Evan You @yyx990803
+*/
+
+var hasDocument = typeof document !== 'undefined'
+
+if (typeof DEBUG !== 'undefined' && DEBUG) {
+  if (!hasDocument) {
+    throw new Error(
+    'vue-style-loader cannot be used in a non-browser environment. ' +
+    "Use { target: 'node' } in your Webpack config to indicate a server-rendering environment."
+  ) }
+}
+
+var listToStyles = __webpack_require__(121)
+
+/*
+type StyleObject = {
+  id: number;
+  parts: Array<StyleObjectPart>
+}
+
+type StyleObjectPart = {
+  css: string;
+  media: string;
+  sourceMap: ?string
+}
+*/
+
+var stylesInDom = {/*
+  [id: number]: {
+    id: number,
+    refs: number,
+    parts: Array<(obj?: StyleObjectPart) => void>
+  }
+*/}
+
+var head = hasDocument && (document.head || document.getElementsByTagName('head')[0])
+var singletonElement = null
+var singletonCounter = 0
+var isProduction = false
+var noop = function () {}
+
+// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+// tags it will allow on a page
+var isOldIE = typeof navigator !== 'undefined' && /msie [6-9]\b/.test(navigator.userAgent.toLowerCase())
+
+module.exports = function (parentId, list, _isProduction) {
+  isProduction = _isProduction
+
+  var styles = listToStyles(parentId, list)
+  addStylesToDom(styles)
+
+  return function update (newList) {
+    var mayRemove = []
+    for (var i = 0; i < styles.length; i++) {
+      var item = styles[i]
+      var domStyle = stylesInDom[item.id]
+      domStyle.refs--
+      mayRemove.push(domStyle)
+    }
+    if (newList) {
+      styles = listToStyles(parentId, newList)
+      addStylesToDom(styles)
+    } else {
+      styles = []
+    }
+    for (var i = 0; i < mayRemove.length; i++) {
+      var domStyle = mayRemove[i]
+      if (domStyle.refs === 0) {
+        for (var j = 0; j < domStyle.parts.length; j++) {
+          domStyle.parts[j]()
+        }
+        delete stylesInDom[domStyle.id]
+      }
+    }
+  }
+}
+
+function addStylesToDom (styles /* Array<StyleObject> */) {
+  for (var i = 0; i < styles.length; i++) {
+    var item = styles[i]
+    var domStyle = stylesInDom[item.id]
+    if (domStyle) {
+      domStyle.refs++
+      for (var j = 0; j < domStyle.parts.length; j++) {
+        domStyle.parts[j](item.parts[j])
+      }
+      for (; j < item.parts.length; j++) {
+        domStyle.parts.push(addStyle(item.parts[j]))
+      }
+      if (domStyle.parts.length > item.parts.length) {
+        domStyle.parts.length = item.parts.length
+      }
+    } else {
+      var parts = []
+      for (var j = 0; j < item.parts.length; j++) {
+        parts.push(addStyle(item.parts[j]))
+      }
+      stylesInDom[item.id] = { id: item.id, refs: 1, parts: parts }
+    }
+  }
+}
+
+function createStyleElement () {
+  var styleElement = document.createElement('style')
+  styleElement.type = 'text/css'
+  head.appendChild(styleElement)
+  return styleElement
+}
+
+function addStyle (obj /* StyleObjectPart */) {
+  var update, remove
+  var styleElement = document.querySelector('style[data-vue-ssr-id~="' + obj.id + '"]')
+
+  if (styleElement) {
+    if (isProduction) {
+      // has SSR styles and in production mode.
+      // simply do nothing.
+      return noop
+    } else {
+      // has SSR styles but in dev mode.
+      // for some reason Chrome can't handle source map in server-rendered
+      // style tags - source maps in <style> only works if the style tag is
+      // created and inserted dynamically. So we remove the server rendered
+      // styles and inject new ones.
+      styleElement.parentNode.removeChild(styleElement)
+    }
+  }
+
+  if (isOldIE) {
+    // use singleton mode for IE9.
+    var styleIndex = singletonCounter++
+    styleElement = singletonElement || (singletonElement = createStyleElement())
+    update = applyToSingletonTag.bind(null, styleElement, styleIndex, false)
+    remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true)
+  } else {
+    // use multi-style-tag mode in all other cases
+    styleElement = createStyleElement()
+    update = applyToTag.bind(null, styleElement)
+    remove = function () {
+      styleElement.parentNode.removeChild(styleElement)
+    }
+  }
+
+  update(obj)
+
+  return function updateStyle (newObj /* StyleObjectPart */) {
+    if (newObj) {
+      if (newObj.css === obj.css &&
+          newObj.media === obj.media &&
+          newObj.sourceMap === obj.sourceMap) {
+        return
+      }
+      update(obj = newObj)
+    } else {
+      remove()
+    }
+  }
+}
+
+var replaceText = (function () {
+  var textStore = []
+
+  return function (index, replacement) {
+    textStore[index] = replacement
+    return textStore.filter(Boolean).join('\n')
+  }
+})()
+
+function applyToSingletonTag (styleElement, index, remove, obj) {
+  var css = remove ? '' : obj.css
+
+  if (styleElement.styleSheet) {
+    styleElement.styleSheet.cssText = replaceText(index, css)
+  } else {
+    var cssNode = document.createTextNode(css)
+    var childNodes = styleElement.childNodes
+    if (childNodes[index]) styleElement.removeChild(childNodes[index])
+    if (childNodes.length) {
+      styleElement.insertBefore(cssNode, childNodes[index])
+    } else {
+      styleElement.appendChild(cssNode)
+    }
+  }
+}
+
+function applyToTag (styleElement, obj) {
+  var css = obj.css
+  var media = obj.media
+  var sourceMap = obj.sourceMap
+
+  if (media) {
+    styleElement.setAttribute('media', media)
+  }
+
+  if (sourceMap) {
+    // https://developer.chrome.com/devtools/docs/javascript-debugging
+    // this makes source maps inside style tags work properly in Chrome
+    css += '\n/*# sourceURL=' + sourceMap.sources[0] + ' */'
+    // http://stackoverflow.com/a/26603875
+    css += '\n/*# sourceMappingURL=data:application/json;base64,' + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + ' */'
+  }
+
+  if (styleElement.styleSheet) {
+    styleElement.styleSheet.cssText = css
+  } else {
+    while (styleElement.firstChild) {
+      styleElement.removeChild(styleElement.firstChild)
+    }
+    styleElement.appendChild(document.createTextNode(css))
+  }
+}
+
+
+/***/ }),
+/* 118 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -29708,7 +29929,7 @@ var xhrClient = function (request) {
 
 var nodeClient = function (request) {
 
-    var client = __webpack_require__(118);
+    var client = __webpack_require__(119);
 
     return new PromiseObj(function (resolve) {
 
@@ -30184,13 +30405,13 @@ if (typeof window !== 'undefined' && window.Vue) {
 
 
 /***/ }),
-/* 118 */
+/* 119 */
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
-/* 119 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -30432,227 +30653,6 @@ return /******/ (function(modules) { // webpackBootstrap
 //# sourceMappingURL=vuejs-paginator.js.map
 
 /***/ }),
-/* 120 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/*
-  MIT License http://www.opensource.org/licenses/mit-license.php
-  Author Tobias Koppers @sokra
-  Modified by Evan You @yyx990803
-*/
-
-var hasDocument = typeof document !== 'undefined'
-
-if (typeof DEBUG !== 'undefined' && DEBUG) {
-  if (!hasDocument) {
-    throw new Error(
-    'vue-style-loader cannot be used in a non-browser environment. ' +
-    "Use { target: 'node' } in your Webpack config to indicate a server-rendering environment."
-  ) }
-}
-
-var listToStyles = __webpack_require__(121)
-
-/*
-type StyleObject = {
-  id: number;
-  parts: Array<StyleObjectPart>
-}
-
-type StyleObjectPart = {
-  css: string;
-  media: string;
-  sourceMap: ?string
-}
-*/
-
-var stylesInDom = {/*
-  [id: number]: {
-    id: number,
-    refs: number,
-    parts: Array<(obj?: StyleObjectPart) => void>
-  }
-*/}
-
-var head = hasDocument && (document.head || document.getElementsByTagName('head')[0])
-var singletonElement = null
-var singletonCounter = 0
-var isProduction = false
-var noop = function () {}
-
-// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
-// tags it will allow on a page
-var isOldIE = typeof navigator !== 'undefined' && /msie [6-9]\b/.test(navigator.userAgent.toLowerCase())
-
-module.exports = function (parentId, list, _isProduction) {
-  isProduction = _isProduction
-
-  var styles = listToStyles(parentId, list)
-  addStylesToDom(styles)
-
-  return function update (newList) {
-    var mayRemove = []
-    for (var i = 0; i < styles.length; i++) {
-      var item = styles[i]
-      var domStyle = stylesInDom[item.id]
-      domStyle.refs--
-      mayRemove.push(domStyle)
-    }
-    if (newList) {
-      styles = listToStyles(parentId, newList)
-      addStylesToDom(styles)
-    } else {
-      styles = []
-    }
-    for (var i = 0; i < mayRemove.length; i++) {
-      var domStyle = mayRemove[i]
-      if (domStyle.refs === 0) {
-        for (var j = 0; j < domStyle.parts.length; j++) {
-          domStyle.parts[j]()
-        }
-        delete stylesInDom[domStyle.id]
-      }
-    }
-  }
-}
-
-function addStylesToDom (styles /* Array<StyleObject> */) {
-  for (var i = 0; i < styles.length; i++) {
-    var item = styles[i]
-    var domStyle = stylesInDom[item.id]
-    if (domStyle) {
-      domStyle.refs++
-      for (var j = 0; j < domStyle.parts.length; j++) {
-        domStyle.parts[j](item.parts[j])
-      }
-      for (; j < item.parts.length; j++) {
-        domStyle.parts.push(addStyle(item.parts[j]))
-      }
-      if (domStyle.parts.length > item.parts.length) {
-        domStyle.parts.length = item.parts.length
-      }
-    } else {
-      var parts = []
-      for (var j = 0; j < item.parts.length; j++) {
-        parts.push(addStyle(item.parts[j]))
-      }
-      stylesInDom[item.id] = { id: item.id, refs: 1, parts: parts }
-    }
-  }
-}
-
-function createStyleElement () {
-  var styleElement = document.createElement('style')
-  styleElement.type = 'text/css'
-  head.appendChild(styleElement)
-  return styleElement
-}
-
-function addStyle (obj /* StyleObjectPart */) {
-  var update, remove
-  var styleElement = document.querySelector('style[data-vue-ssr-id~="' + obj.id + '"]')
-
-  if (styleElement) {
-    if (isProduction) {
-      // has SSR styles and in production mode.
-      // simply do nothing.
-      return noop
-    } else {
-      // has SSR styles but in dev mode.
-      // for some reason Chrome can't handle source map in server-rendered
-      // style tags - source maps in <style> only works if the style tag is
-      // created and inserted dynamically. So we remove the server rendered
-      // styles and inject new ones.
-      styleElement.parentNode.removeChild(styleElement)
-    }
-  }
-
-  if (isOldIE) {
-    // use singleton mode for IE9.
-    var styleIndex = singletonCounter++
-    styleElement = singletonElement || (singletonElement = createStyleElement())
-    update = applyToSingletonTag.bind(null, styleElement, styleIndex, false)
-    remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true)
-  } else {
-    // use multi-style-tag mode in all other cases
-    styleElement = createStyleElement()
-    update = applyToTag.bind(null, styleElement)
-    remove = function () {
-      styleElement.parentNode.removeChild(styleElement)
-    }
-  }
-
-  update(obj)
-
-  return function updateStyle (newObj /* StyleObjectPart */) {
-    if (newObj) {
-      if (newObj.css === obj.css &&
-          newObj.media === obj.media &&
-          newObj.sourceMap === obj.sourceMap) {
-        return
-      }
-      update(obj = newObj)
-    } else {
-      remove()
-    }
-  }
-}
-
-var replaceText = (function () {
-  var textStore = []
-
-  return function (index, replacement) {
-    textStore[index] = replacement
-    return textStore.filter(Boolean).join('\n')
-  }
-})()
-
-function applyToSingletonTag (styleElement, index, remove, obj) {
-  var css = remove ? '' : obj.css
-
-  if (styleElement.styleSheet) {
-    styleElement.styleSheet.cssText = replaceText(index, css)
-  } else {
-    var cssNode = document.createTextNode(css)
-    var childNodes = styleElement.childNodes
-    if (childNodes[index]) styleElement.removeChild(childNodes[index])
-    if (childNodes.length) {
-      styleElement.insertBefore(cssNode, childNodes[index])
-    } else {
-      styleElement.appendChild(cssNode)
-    }
-  }
-}
-
-function applyToTag (styleElement, obj) {
-  var css = obj.css
-  var media = obj.media
-  var sourceMap = obj.sourceMap
-
-  if (media) {
-    styleElement.setAttribute('media', media)
-  }
-
-  if (sourceMap) {
-    // https://developer.chrome.com/devtools/docs/javascript-debugging
-    // this makes source maps inside style tags work properly in Chrome
-    css += '\n/*# sourceURL=' + sourceMap.sources[0] + ' */'
-    // http://stackoverflow.com/a/26603875
-    css += '\n/*# sourceMappingURL=data:application/json;base64,' + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + ' */'
-  }
-
-  if (styleElement.styleSheet) {
-    styleElement.styleSheet.cssText = css
-  } else {
-    while (styleElement.firstChild) {
-      styleElement.removeChild(styleElement.firstChild)
-    }
-    styleElement.appendChild(document.createTextNode(css))
-  }
-}
-
-
-/***/ }),
 /* 121 */
 /***/ (function(module, exports) {
 
@@ -30698,211 +30698,15 @@ module.exports = function listToStyles (parentId, list) {
 /* 131 */,
 /* 132 */,
 /* 133 */,
-/* 134 */,
-/* 135 */,
-/* 136 */,
-/* 137 */,
-/* 138 */,
-/* 139 */,
-/* 140 */,
-/* 141 */,
-/* 142 */,
-/* 143 */,
-/* 144 */,
-/* 145 */,
-/* 146 */,
-/* 147 */,
-/* 148 */,
-/* 149 */,
-/* 150 */,
-/* 151 */,
-/* 152 */,
-/* 153 */,
-/* 154 */,
-/* 155 */,
-/* 156 */,
-/* 157 */,
-/* 158 */,
-/* 159 */,
-/* 160 */,
-/* 161 */,
-/* 162 */,
-/* 163 */,
-/* 164 */,
-/* 165 */,
-/* 166 */,
-/* 167 */,
-/* 168 */,
-/* 169 */,
-/* 170 */,
-/* 171 */,
-/* 172 */,
-/* 173 */,
-/* 174 */,
-/* 175 */,
-/* 176 */,
-/* 177 */,
-/* 178 */,
-/* 179 */,
-/* 180 */,
-/* 181 */,
-/* 182 */,
-/* 183 */,
-/* 184 */,
-/* 185 */,
-/* 186 */,
-/* 187 */,
-/* 188 */,
-/* 189 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(190);
-
-
-/***/ }),
-/* 190 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _vueResource = __webpack_require__(117);
-
-var _vueResource2 = _interopRequireDefault(_vueResource);
-
-var _vuejsPaginator = __webpack_require__(119);
-
-var _vuejsPaginator2 = _interopRequireDefault(_vuejsPaginator);
-
-var _fileUploader = __webpack_require__(191);
-
-var _fileUploader2 = _interopRequireDefault(_fileUploader);
-
-var _editFile = __webpack_require__(202);
-
-var _editFile2 = _interopRequireDefault(_editFile);
-
-var _Form = __webpack_require__(48);
-
-var _Form2 = _interopRequireDefault(_Form);
-
-var _jquery = __webpack_require__(42);
-
-var _jquery2 = _interopRequireDefault(_jquery);
-
-var _toastr = __webpack_require__(90);
-
-var _toastr2 = _interopRequireDefault(_toastr);
-
-var _bootstrap = __webpack_require__(92);
-
-var _bootstrap2 = _interopRequireDefault(_bootstrap);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-__webpack_require__(93);
-
-window.Vue = __webpack_require__(114);
-
-Vue.use(_vueResource2.default);
-
-window.Form = _Form2.default;
-
-window.eventBus = new Vue();
-
-var personFiles = new Vue({
-	el: '#personFiles',
-	data: {
-		person: [],
-		files: [],
-		resource_url: '',
-		options: {
-			remote_data: 'files.data',
-			remote_current_page: 'files.current_page',
-			remote_last_page: 'files.last_page',
-			remote_next_page_url: 'files.next_page_url',
-			remote_prev_page_url: 'files.prev_page_url',
-			next_button_text: 'التالى',
-			previous_button_text: 'السابق'
-		}
-	},
-	methods: {
-		fetchFiles: function fetchFiles() {
-			var _this = this;
-
-			axios.get(window.location.pathname).then(function (response) {
-				return _this.assignData(response);
-			});
-		},
-		assignData: function assignData(response) {
-			this.person = response.data.person;
-			this.files = response.data.files.data;
-		},
-		updateResource: function updateResource(data) {
-			this.files = data;
-		},
-		fileAdded: function fileAdded() {
-			this.reloadData();
-			_toastr2.default.success('تم اضافة الملف بنجاح!');
-		},
-		editFile: function editFile(file) {
-			eventBus.$emit('editFile', file);
-			$('#editFile').modal('show');
-		},
-		afterFileUpdated: function afterFileUpdated(response) {
-			$('#editFile').modal('hide');
-			_toastr2.default.info(response.message);
-			this.reloadData();
-		},
-		reloadData: function reloadData() {
-			this.$refs.VP.fetchData(this.resource_url + '?page=' + this.$refs.VP.current_page);
-		},
-		deleteFile: function deleteFile(file) {
-			var _this2 = this;
-
-			if (confirm('هل انت متاكد من حذف هذا الملف - لن تتمكن من استرجاعه فيما بعد!')) {
-				axios.delete('/files/' + file.id).then(function (response) {
-					return _this2.onFileDelete(response);
-				});
-			}
-		},
-		onFileDelete: function onFileDelete(response) {
-			_toastr2.default.warning(response.data.message);
-			this.reloadData();
-		}
-	},
-	components: {
-		VPaginator: _vuejsPaginator2.default,
-		'file-uploader': _fileUploader2.default,
-		'edit-file': _editFile2.default
-	},
-	created: function created() {
-		var _this3 = this;
-
-		this.fetchFiles();
-		eventBus.$on('fileUploaded', function (event) {
-			return _this3.fileAdded();
-		});
-		eventBus.$on('fileUpdated', function (response) {
-			return _this3.afterFileUpdated(response);
-		});
-	}
-});
-
-_toastr2.default.options = {
-	"positionClass": "toast-bottom-right"
-};
-
-/***/ }),
-/* 191 */
+/* 134 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var Component = __webpack_require__(24)(
   /* script */
-  __webpack_require__(192),
+  __webpack_require__(135),
   /* template */
-  __webpack_require__(201),
+  __webpack_require__(144),
   /* styles */
   null,
   /* scopeId */
@@ -30934,7 +30738,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 192 */
+/* 135 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30944,7 +30748,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _customDropzone = __webpack_require__(193);
+var _customDropzone = __webpack_require__(136);
 
 var _customDropzone2 = _interopRequireDefault(_customDropzone);
 
@@ -30963,19 +30767,19 @@ exports.default = {
 };
 
 /***/ }),
-/* 193 */
+/* 136 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(194)
+  __webpack_require__(137)
 }
 var Component = __webpack_require__(24)(
   /* script */
-  __webpack_require__(197),
+  __webpack_require__(140),
   /* template */
-  __webpack_require__(200),
+  __webpack_require__(143),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -31007,17 +30811,17 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 194 */
+/* 137 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(195);
+var content = __webpack_require__(138);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(120)("71a22bd4", content, false);
+var update = __webpack_require__(117)("71a22bd4", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -31033,12 +30837,12 @@ if(false) {
 }
 
 /***/ }),
-/* 195 */
+/* 138 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(116)(undefined);
 // imports
-exports.i(__webpack_require__(196), "");
+exports.i(__webpack_require__(139), "");
 
 // module
 exports.push([module.i, "\n", ""]);
@@ -31047,7 +30851,7 @@ exports.push([module.i, "\n", ""]);
 
 
 /***/ }),
-/* 196 */
+/* 139 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(116)(undefined);
@@ -31061,7 +30865,7 @@ exports.push([module.i, "/*\n * The MIT License\n * Copyright (c) 2012 Matias Me
 
 
 /***/ }),
-/* 197 */
+/* 140 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31079,7 +30883,7 @@ exports.default = {
         };
     },
     mounted: function mounted() {
-        var Dropzone = __webpack_require__(198);
+        var Dropzone = __webpack_require__(141);
         Dropzone.autoDiscover = false;
 
         var element = document.getElementById(this.id);
@@ -31160,7 +30964,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 198 */
+/* 141 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34669,10 +34473,10 @@ function __guardMethod__(obj, methodName, transform) {
   }
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(199)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(142)(module)))
 
 /***/ }),
-/* 199 */
+/* 142 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -34700,7 +34504,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 200 */
+/* 143 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -34739,7 +34543,7 @@ if (false) {
 }
 
 /***/ }),
-/* 201 */
+/* 144 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -34801,15 +34605,15 @@ if (false) {
 }
 
 /***/ }),
-/* 202 */
+/* 145 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var Component = __webpack_require__(24)(
   /* script */
-  __webpack_require__(203),
+  __webpack_require__(146),
   /* template */
-  __webpack_require__(204),
+  __webpack_require__(147),
   /* styles */
   null,
   /* scopeId */
@@ -34841,7 +34645,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 203 */
+/* 146 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34882,7 +34686,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 204 */
+/* 147 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -34995,6 +34799,205 @@ if (false) {
      require("vue-hot-reload-api").rerender("data-v-eda1d10e", module.exports)
   }
 }
+
+/***/ }),
+/* 148 */,
+/* 149 */,
+/* 150 */,
+/* 151 */,
+/* 152 */,
+/* 153 */,
+/* 154 */,
+/* 155 */,
+/* 156 */,
+/* 157 */,
+/* 158 */,
+/* 159 */,
+/* 160 */,
+/* 161 */,
+/* 162 */,
+/* 163 */,
+/* 164 */,
+/* 165 */,
+/* 166 */,
+/* 167 */,
+/* 168 */,
+/* 169 */,
+/* 170 */,
+/* 171 */,
+/* 172 */,
+/* 173 */,
+/* 174 */,
+/* 175 */,
+/* 176 */,
+/* 177 */,
+/* 178 */,
+/* 179 */,
+/* 180 */,
+/* 181 */,
+/* 182 */,
+/* 183 */,
+/* 184 */,
+/* 185 */,
+/* 186 */,
+/* 187 */,
+/* 188 */,
+/* 189 */,
+/* 190 */,
+/* 191 */,
+/* 192 */,
+/* 193 */,
+/* 194 */,
+/* 195 */,
+/* 196 */,
+/* 197 */,
+/* 198 */,
+/* 199 */,
+/* 200 */,
+/* 201 */,
+/* 202 */,
+/* 203 */,
+/* 204 */,
+/* 205 */,
+/* 206 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(207);
+
+
+/***/ }),
+/* 207 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _vueResource = __webpack_require__(118);
+
+var _vueResource2 = _interopRequireDefault(_vueResource);
+
+var _vuejsPaginator = __webpack_require__(120);
+
+var _vuejsPaginator2 = _interopRequireDefault(_vuejsPaginator);
+
+var _fileUploader = __webpack_require__(134);
+
+var _fileUploader2 = _interopRequireDefault(_fileUploader);
+
+var _editFile = __webpack_require__(145);
+
+var _editFile2 = _interopRequireDefault(_editFile);
+
+var _Form = __webpack_require__(48);
+
+var _Form2 = _interopRequireDefault(_Form);
+
+var _jquery = __webpack_require__(42);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+var _toastr = __webpack_require__(90);
+
+var _toastr2 = _interopRequireDefault(_toastr);
+
+var _bootstrap = __webpack_require__(92);
+
+var _bootstrap2 = _interopRequireDefault(_bootstrap);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+__webpack_require__(93);
+
+window.Vue = __webpack_require__(114);
+
+Vue.use(_vueResource2.default);
+
+window.Form = _Form2.default;
+
+window.eventBus = new Vue();
+
+var personFiles = new Vue({
+	el: '#personFiles',
+	data: {
+		person: [],
+		files: [],
+		resource_url: '',
+		options: {
+			remote_data: 'files.data',
+			remote_current_page: 'files.current_page',
+			remote_last_page: 'files.last_page',
+			remote_next_page_url: 'files.next_page_url',
+			remote_prev_page_url: 'files.prev_page_url',
+			next_button_text: 'التالى',
+			previous_button_text: 'السابق'
+		}
+	},
+	methods: {
+		fetchFiles: function fetchFiles() {
+			var _this = this;
+
+			axios.get(window.location.pathname).then(function (response) {
+				return _this.assignData(response);
+			});
+		},
+		assignData: function assignData(response) {
+			this.person = response.data.person;
+			this.files = response.data.files.data;
+		},
+		updateResource: function updateResource(data) {
+			this.files = data;
+		},
+		fileAdded: function fileAdded() {
+			this.reloadData();
+			_toastr2.default.success('تم اضافة الملف بنجاح!');
+		},
+		editFile: function editFile(file) {
+			eventBus.$emit('editFile', file);
+			$('#editFile').modal('show');
+		},
+		afterFileUpdated: function afterFileUpdated(response) {
+			$('#editFile').modal('hide');
+			_toastr2.default.info(response.message);
+			this.reloadData();
+		},
+		reloadData: function reloadData() {
+			this.$refs.VP.fetchData(this.resource_url + '?page=' + this.$refs.VP.current_page);
+		},
+		deleteFile: function deleteFile(file) {
+			var _this2 = this;
+
+			if (confirm('هل انت متاكد من حذف هذا الملف - لن تتمكن من استرجاعه فيما بعد!')) {
+				axios.delete('/files/' + file.id).then(function (response) {
+					return _this2.onFileDelete(response);
+				});
+			}
+		},
+		onFileDelete: function onFileDelete(response) {
+			_toastr2.default.warning(response.data.message);
+			this.reloadData();
+		}
+	},
+	components: {
+		VPaginator: _vuejsPaginator2.default,
+		'file-uploader': _fileUploader2.default,
+		'edit-file': _editFile2.default
+	},
+	created: function created() {
+		var _this3 = this;
+
+		this.fetchFiles();
+		eventBus.$on('fileUploaded', function (event) {
+			return _this3.fileAdded();
+		});
+		eventBus.$on('fileUpdated', function (response) {
+			return _this3.afterFileUpdated(response);
+		});
+	}
+});
+
+_toastr2.default.options = {
+	"positionClass": "toast-bottom-right"
+};
 
 /***/ })
 /******/ ]);

@@ -15,7 +15,9 @@ class Issue extends Model
 
     public function openents()
     {
-    	return $this->belongsToMany(Person::class)->withPivot('person_type');
+    	return $this->belongsToMany(Person::class)
+                    ->withPivot('person_type')
+                    ->orderBy('is_client', 'desc');
     }
 
     public function files()

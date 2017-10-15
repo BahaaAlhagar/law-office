@@ -74,9 +74,7 @@ class IssueController extends Controller
      */
     public function show(Issue $issue)
     {
-        $issue->load(['openents' => function($query){
-            $query->orderBy('is_client', 'desc');
-        }]);
+        $issue->load('openents.contracts');
         
         $people = Person::orderBy('name')
             ->select('id', 'name', 'location')->get();
