@@ -23,4 +23,14 @@ class Issue extends Model
         return $this->morphMany(File::class, 'fileable');
     }
 
+    public function meetings()
+    {
+        return $this->hasMany(Meeting::class);
+    }
+
+    public function judgements()
+    {
+        return $this->hasMany(Judgement::class);
+    }
+
 }
