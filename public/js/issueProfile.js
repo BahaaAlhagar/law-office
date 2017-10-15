@@ -33689,7 +33689,28 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "panel-body"
   }, [_c('table', {
     staticClass: "table table-striped table-bordered table-responsive"
-  }, [_c('tbody', [_c('tr', [_c('td', [_vm._v("رقم الدعـــوى")]), _vm._v(" "), _c('td', [_vm._v(_vm._s(_vm.issue.number) + " لسنة " + _vm._s(_vm.issue.year) + " " + _vm._s(_vm.issueType()))])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v("رقم الأستئـــناف")]), _vm._v(" "), _c('td', [_vm._v(_vm._s(_vm.issue.adv_number) + " لسنة " + _vm._s(_vm.issue.adv_year) + " س")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v("المحكمة")]), _vm._v(" "), _c('td', [_vm._v(_vm._s(_vm.issue.court) + " - الدائــرة " + _vm._s(_vm.issue.room) + "\n            ")])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v("موضــــوع الدعـــوى")]), _vm._v(" "), _c('td', [_vm._v(_vm._s(_vm.issue.subject))])])])]), _vm._v(" "), _c('div', {
+  }, [_c('tbody', [_vm._m(0), _vm._v(" "), _c('tr', [_c('td', [_c('span', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.issue.number),
+      expression: "issue.number"
+    }]
+  }, [_vm._v("\n                " + _vm._s(_vm.issue.number) + " لسنة " + _vm._s(_vm.issue.year) + " " + _vm._s(_vm.issueType()) + "\n              ")])]), _vm._v(" "), _c('td', [_c('span', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.issue.adv_number),
+      expression: "issue.adv_number"
+    }]
+  }, [_vm._v("\n                " + _vm._s(_vm.issue.adv_number) + " لسنة " + _vm._s(_vm.issue.adv_year) + " س\n              ")])]), _vm._v(" "), _c('td', [_vm._v("\n            " + _vm._s(_vm.issue.court) + " \n              "), _c('span', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.issue.room),
+      expression: "issue.room"
+    }]
+  }, [_vm._v("\n                - الدائــرة " + _vm._s(_vm.issue.room) + "\n              ")])]), _vm._v(" "), _c('td', [_vm._v(_vm._s(_vm.issue.subject))])])])]), _vm._v(" "), _c('div', {
     staticClass: "mr-auto card-footer"
   }, [_c('button', {
     staticClass: "btn btn-info",
@@ -33706,7 +33727,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }
   }, [_vm._v("حذف القضية")])])]), _vm._v(" "), _c('edit-issue')], 1)
-},staticRenderFns: []}
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('tr', [_c('th', [_vm._v("رقم الدعـــوى")]), _vm._v(" "), _c('th', [_vm._v("رقم الأستئـــناف")]), _vm._v(" "), _c('th', [_vm._v("المحكمة")]), _vm._v(" "), _c('th', [_vm._v("موضــــوع الدعـــوى")])])
+}]}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()

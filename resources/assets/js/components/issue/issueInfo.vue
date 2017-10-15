@@ -11,20 +11,28 @@
             <table class="table table-striped table-bordered table-responsive">
                 <tbody>
                   <tr>
-                    <td>رقم الدعـــوى</td>
-                    <td>{{ issue.number }} لسنة {{ issue.year }} {{ issueType() }}</td>
+                    <th>رقم الدعـــوى</th>
+                    <th>رقم الأستئـــناف</th>
+                    <th>المحكمة</th>
+                    <th>موضــــوع الدعـــوى</th>
                   </tr>
                   <tr>
-                    <td>رقم الأستئـــناف</td>
-                    <td>{{ issue.adv_number }} لسنة {{ issue.adv_year }} س</td>
-                  </tr>
-                  <tr>
-                    <td>المحكمة</td>
-                    <td>{{ issue.court }} - الدائــرة {{ issue.room }}
+                    <td>
+                      <span v-show="issue.number">
+                        {{ issue.number }} لسنة {{ issue.year }} {{ issueType() }}
+                      </span>
                     </td>
-                  </tr>
-                  <tr>
-                    <td>موضــــوع الدعـــوى</td>
+                    <td>
+                      <span v-show="issue.adv_number">
+                        {{ issue.adv_number }} لسنة {{ issue.adv_year }} س
+                      </span>
+                    </td>
+                    <td>
+                    {{ issue.court }} 
+                      <span v-show="issue.room">
+                        - الدائــرة {{ issue.room }}
+                      </span>
+                    </td>
                     <td>{{ issue.subject }}</td>
                   </tr>
                 </tbody>
