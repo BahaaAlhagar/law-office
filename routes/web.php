@@ -50,6 +50,15 @@ route::get('issue/{type?}', 'IssueController@index');
 
 route::get('/issues/{issue}/restore', 'IssueController@restore');
 
+
+route::post('meetings/{meeting}/judgements', 'store@JudgementController');
+
+route::resource('judgements', 'JudgementController', ['only' => ['update', 'destroy']]);
+
+route::resource('issues/{issue}/meetings', 'MeetingController', ['only' => ['index', 'store']]);
+
+route::resource('meetings', 'MeetingController', ['only' => ['update', 'destroy']]);
+
 route::resource('issues', 'IssueController', ['except' => ['create', 'edit']]);
 
 route::get('todo/{completed?}', 'TodoController@index');
@@ -57,4 +66,3 @@ route::get('todo/{completed?}', 'TodoController@index');
 route::resource('todos', 'TodoController', ['except' => ['create', 'edit', 'show']]);
 
 route::resource('files', 'FileController', ['only' => ['update', 'destroy']]);
-

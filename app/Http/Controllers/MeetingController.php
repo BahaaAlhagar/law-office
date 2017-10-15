@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Issue;
 use App\Meeting;
 use Illuminate\Http\Request;
 
@@ -9,56 +10,34 @@ class MeetingController extends Controller
 {
     /**
      * Display a listing of the resource.
+     * @param  \App\Issue  $issue
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Issue $issue)
     {
-        //
+        $meetings = Meeting::where('issue_id', $issue->id)
+                        ->orderBy('level', 'asc')
+                        ->orderBy('date', 'asc')
+                        ->get();
+
+        return $meetings;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Issue  $issue
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Issue $issue)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Meeting  $meeting
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Meeting $meeting)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Meeting  $meeting
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Meeting $meeting)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
