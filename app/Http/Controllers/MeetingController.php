@@ -17,6 +17,7 @@ class MeetingController extends Controller
     public function index(Issue $issue)
     {
         $meetings = Meeting::where('issue_id', $issue->id)
+                        ->with('judgements')
                         ->orderBy('level', 'asc')
                         ->orderBy('date', 'asc')
                         ->get();

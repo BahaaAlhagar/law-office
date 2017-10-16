@@ -4,45 +4,37 @@
         <div class="card text-center">
           <div class="card-header">
           <h4 class="card-title">
-              ملفات القضية
-              <button class="btn pull-left btn-dark" data-toggle="modal" data-target="#fileUploader">اضافة ملف</button>
+              الـجـلــسات
+              <button v-if="!meetings.length" class="btn pull-left btn-success" data-toggle="modal" data-target="#addMeeting">اضافة جلسة</button>
           </h4>
           </div>
           <div class="panel-body">
-            <table v-if="files.length" class="table table-striped table-bordered table-responsive">
+            <table v-if="meetings.length" class="table table-striped table-bordered table-responsive">
               <thead class="thead-inverse">
                 <tr>
-                  <th float="right">
-                  اســـم الـمــستند
-                  </th>
-                  <th>
-                  حــجـــمه - امتداده
-                  </th>
-                  <th>
-                  استعراض وتحميل
-                  </th>
-                  <th>
-                  الاعدادات
-                  </th>
+                  <th>الرول</th>
+                  <th>تـــاريخ الجـــلــــسة</th>
+                  <th>القــرار</th>
+                  <th>مـــلاحــــظات</th>
+                  <th>الاحــكــــام</th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="file in files">
+                <tr v-for="meeting in meetings">
                   <td>
-                      {{ file.name }}
+                      {{ meeting.role }}
                   </td>
                   <td>
-                      {{ file.size }} kb <br>
-                      {{ file.type }}
+                      {{ meeting.date }}
                   </td>
                   <td>
-                      <a target="_blank" :href="'/storage/' + file.link">
-                        <button><i class="fa fa-download" aria-hidden="true"></i></button>
-                      </a>
+                      {{ meeting.decision }}
                   </td>
                   <td>
-                      <button class="btn btn-info" @click="editFile(file)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                      <button class="btn btn-danger" @click="deleteFile(file)"><i class="fa fa-times" aria-hidden="true"></i></button>
+                      {{ meeting.notes }}
+                  </td>
+                  <td>
+                      
                   </td>
                 </tr>
             </tbody>
@@ -50,8 +42,8 @@
           </div>
         </div>
         
-        <file-uploader></file-uploader>
-        <edit-file></edit-file>
+        <!-- <file-uploader></file-uploader> -->
+        <!-- <edit-file></edit-file> -->
 
       </div>
 
@@ -59,13 +51,25 @@
 
 
 <script>
-import fileUploader from '../../files/fileUploader';
-import editFile from '../../files/editFile';
+import addMeeting from '/addMeeting';
+// import editMeeting from '/editMeeting';
 
 export default {
-	props: ['issue', 'files'],
+  data() {
+    return {
+      meetings: []
+    };
+  },
+	props: ['issue'],
     methods: {
-  	  fileAdded(){
+      fetchIssueMeetings(){
+        axios.get(window.location.pathname + '/meetings')
+          .then(response => this.assignData(response));
+      },
+      assignData(response){
+        this.meetings = response.data;
+      }
+  	  /*fileAdded(){
   	  	this.reloadData();
   	  	toastr.success('تم اضافة الملف بنجاح!');
   	  },
@@ -90,13 +94,14 @@ export default {
       onFileDelete(response){
         toastr.warning(response.data.message);
         this.reloadData();
-      }
+      }*/
     },
     components: {
-    	'file-uploader': fileUploader,
-    	'edit-file': editFile
+    	addMeeting: addMeeting,
     },
-    created(){
+    mounted(){
+      this.fetchIssueMeetings();
+
     	eventBus.$on('fileUploaded', event => this.fileAdded());
     	eventBus.$on('fileUpdated', response => this.afterFileUpdated(response));
     }

@@ -20,7 +20,9 @@
         
         <issue-openents :issue="issue" :people="people" :openents="openents"></issue-openents>
 
-        <issue-files :issue="issue" :people="people" :files="files"></issue-files>
+        <issue-files :issue="issue" :files="files"></issue-files>
+
+        <issue-meetings :issue="issue"></issue-meetings>
         
       </div>
 @endsection

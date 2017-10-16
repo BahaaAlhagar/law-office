@@ -13,6 +13,7 @@ import bootstrap from 'bootstrap';
 import issueInfo from './components/issue/issueInfo';
 import issueOpenents from './components/issue/issueOpenents';
 import issueFiles from './components/issue/files/issueFiles';
+import issueMeetings from './components/issue/meetings/issueMeetings';
 
 
 window.eventBus = new Vue();
@@ -47,7 +48,8 @@ const issueProfile = new Vue({
 	    components: {
 	    	issueInfo,
 	    	issueOpenents,
-	    	issueFiles
+	    	issueFiles,
+	    	issueMeetings
 	    },
 	    created(){
 	    	this.fetchIssueInfo();

@@ -33465,6 +33465,10 @@ var _issueFiles = __webpack_require__(203);
 
 var _issueFiles2 = _interopRequireDefault(_issueFiles);
 
+var _issueMeetings = __webpack_require__(210);
+
+var _issueMeetings2 = _interopRequireDefault(_issueMeetings);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 __webpack_require__(93);
@@ -33514,7 +33518,8 @@ var issueProfile = new Vue({
 	components: {
 		issueInfo: _issueInfo2.default,
 		issueOpenents: _issueOpenents2.default,
-		issueFiles: _issueFiles2.default
+		issueFiles: _issueFiles2.default,
+		issueMeetings: _issueMeetings2.default
 	},
 	created: function created() {
 		var _this3 = this;
@@ -33675,7 +33680,7 @@ exports.default = {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
-    staticClass: "card text-center mr-auto"
+    staticClass: "card text-center"
   }, [_c('div', {
     staticClass: "card-header"
   }, [_c('h4', {
@@ -34516,7 +34521,7 @@ if (false) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
-    staticClass: "card text-center mr-auto"
+    staticClass: "card text-center"
   }, [_vm._m(0), _vm._v(" "), _c('div', {
     staticClass: "panel-body"
   }, [_c('table', {
@@ -34718,7 +34723,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "id": "issueFiles"
     }
   }, [_c('div', {
-    staticClass: "card text-center mr-auto"
+    staticClass: "card text-center"
   }, [_vm._m(0), _vm._v(" "), _c('div', {
     staticClass: "panel-body"
   }, [(_vm.files.length) ? _c('table', {
@@ -34788,6 +34793,146 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
      require("vue-hot-reload-api").rerender("data-v-d750c732", module.exports)
+  }
+}
+
+/***/ }),
+/* 206 */,
+/* 207 */,
+/* 208 */,
+/* 209 */,
+/* 210 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(24)(
+  /* script */
+  __webpack_require__(211),
+  /* template */
+  __webpack_require__(212),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "D:\\www\\law-office\\resources\\assets\\js\\components\\issue\\meetings\\issueMeetings.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] issueMeetings.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-237c354b", Component.options)
+  } else {
+    hotAPI.reload("data-v-237c354b", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 211 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _addMeeting = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"/addMeeting\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+
+var _addMeeting2 = _interopRequireDefault(_addMeeting);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  data: function data() {
+    return {
+      meetings: []
+    };
+  },
+
+  props: ['issue'],
+  methods: {
+    fetchIssueMeetings: function fetchIssueMeetings() {
+      var _this = this;
+
+      axios.get(window.location.pathname + '/meetings').then(function (response) {
+        return _this.assignData(response);
+      });
+    },
+    assignData: function assignData(response) {
+      this.meetings = response.data;
+    }
+  },
+  components: {
+    addMeeting: _addMeeting2.default
+  },
+  mounted: function mounted() {
+    var _this2 = this;
+
+    this.fetchIssueMeetings();
+
+    eventBus.$on('fileUploaded', function (event) {
+      return _this2.fileAdded();
+    });
+    eventBus.$on('fileUpdated', function (response) {
+      return _this2.afterFileUpdated(response);
+    });
+  }
+};
+
+/***/ }),
+/* 212 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "print-hidden",
+    attrs: {
+      "id": "issueFiles"
+    }
+  }, [_c('div', {
+    staticClass: "card text-center"
+  }, [_c('div', {
+    staticClass: "card-header"
+  }, [_c('h4', {
+    staticClass: "card-title"
+  }, [_vm._v("\n              الـجـلــسات\n              "), (!_vm.meetings.length) ? _c('button', {
+    staticClass: "btn pull-left btn-success",
+    attrs: {
+      "data-toggle": "modal",
+      "data-target": "#addMeeting"
+    }
+  }, [_vm._v("اضافة جلسة")]) : _vm._e()])]), _vm._v(" "), _c('div', {
+    staticClass: "panel-body"
+  }, [(_vm.meetings.length) ? _c('table', {
+    staticClass: "table table-striped table-bordered table-responsive"
+  }, [_vm._m(0), _vm._v(" "), _c('tbody', _vm._l((_vm.meetings), function(meeting) {
+    return _c('tr', [_c('td', [_vm._v("\n                      " + _vm._s(meeting.role) + "\n                  ")]), _vm._v(" "), _c('td', [_vm._v("\n                      " + _vm._s(meeting.date) + "\n                  ")]), _vm._v(" "), _c('td', [_vm._v("\n                      " + _vm._s(meeting.decision) + "\n                  ")]), _vm._v(" "), _c('td', [_vm._v("\n                      " + _vm._s(meeting.notes) + "\n                  ")]), _vm._v(" "), _c('td')])
+  }))]) : _vm._e()])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('thead', {
+    staticClass: "thead-inverse"
+  }, [_c('tr', [_c('th', [_vm._v("الرول")]), _vm._v(" "), _c('th', [_vm._v("تـــاريخ الجـــلــــسة")]), _vm._v(" "), _c('th', [_vm._v("القــرار")]), _vm._v(" "), _c('th', [_vm._v("مـــلاحــــظات")]), _vm._v(" "), _c('th', [_vm._v("الاحــكــــام")])])])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-237c354b", module.exports)
   }
 }
 

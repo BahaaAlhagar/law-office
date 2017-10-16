@@ -20,12 +20,12 @@ class Meeting extends Model
 
     public function parentJudgement()
     {
-    	return $this->belongsTo(judgement::class);
+    	return $this->belongsTo(Judgement::class);
     }
 
     public function judgements()
     {
-    	return $this->hasMany(judgements::class);
+    	return $this->hasMany(Judgement::class);
     }
 
     public function childMeetings()

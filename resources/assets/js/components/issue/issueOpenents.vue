@@ -1,5 +1,5 @@
 <template>
-        <div class="card text-center mr-auto">
+        <div class="card text-center">
           <div class="card-header">
           <h4 class="card-title">
           خصوم القضية
