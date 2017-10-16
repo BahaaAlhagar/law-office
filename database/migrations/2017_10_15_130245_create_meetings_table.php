@@ -19,7 +19,7 @@ class CreateMeetingsTable extends Migration
             $table->integer('person_id')->nullable()->unsigned()->index();
             $table->integer('parent_id')->nullable()->unsigned()->index();
             $table->integer('judgement_id')->nullable()->unsigned()->index();
-            $table->integer('level');
+            $table->integer('level')->default(1);
             $table->integer('role')->nullable();
             $table->date('date');
             $table->string('decision');

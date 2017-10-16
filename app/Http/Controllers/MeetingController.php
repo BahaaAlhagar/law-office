@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Issue;
 use App\Meeting;
+use App\Http\Requests\storeMeetingRequest;
 use Illuminate\Http\Request;
 
 class MeetingController extends Controller
@@ -33,7 +34,7 @@ class MeetingController extends Controller
      * @param  \App\Issue  $issue
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Issue $issue)
+    public function store(storeMeetingRequest $request, Issue $issue)
     {
         $issue->meetings()->create($request->all());
 
@@ -49,7 +50,7 @@ class MeetingController extends Controller
      * @param  \App\Meeting  $meeting
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Meeting $meeting)
+    public function update(storeMeetingRequest $request, Meeting $meeting)
     {
         //
     }
