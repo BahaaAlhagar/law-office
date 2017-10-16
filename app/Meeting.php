@@ -8,6 +8,8 @@ class Meeting extends Model
 {
     protected $guarded = ['id'];
 
+    public $timestamps = false;
+
     public function issue()
     {
     	return $this->belongsTo(Issue::class);

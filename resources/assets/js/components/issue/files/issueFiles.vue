@@ -1,7 +1,7 @@
 <template>
 	<div id="issueFiles" class="print-hidden">
         <!-- issue info -->
-        <div class="card text-center">
+        <div class="card text-center mr-auto">
           <div class="card-header">
           <h4 class="card-title">
               ملفات القضية

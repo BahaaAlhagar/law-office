@@ -30762,7 +30762,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "id": "myModalLabel"
     }
-  }, [_vm._v(" تعديل قضية قضية ")])])])
+  }, [_vm._v(" تعديل قضية ")])])])
 }]}
 module.exports.render._withStripped = true
 if (false) {

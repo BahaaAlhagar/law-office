@@ -35,7 +35,9 @@ class MeetingController extends Controller
      */
     public function store(Request $request, Issue $issue)
     {
-        //
+        $issue->meetings()->create($request->all());
+
+        return ['message' => 'تم اضافة الجلسة!'];
     }
 
 

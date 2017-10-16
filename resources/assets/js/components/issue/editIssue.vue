@@ -9,7 +9,7 @@
 
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                 <span class="form-control-static pull-left">
-                    <h4 class="modal-title" id="myModalLabel"> تعديل قضية قضية </h4>
+                    <h4 class="modal-title" id="myModalLabel"> تعديل قضية </h4>
                 </span>
               </div>
 

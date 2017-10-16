@@ -1,5 +1,5 @@
 <template>
-	<div id="issueFiles" class="print-hidden">
+	<div id="issueMeetings">
         <!-- issue info -->
         <div class="card text-center">
           <div class="card-header">
@@ -20,7 +20,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="meeting in meetings">
+                <tr v-for="meeting in meetings" :key="meeting.id">
                   <td>
                       {{ meeting.role }}
                   </td>
@@ -42,7 +42,7 @@
           </div>
         </div>
         
-        <!-- <file-uploader></file-uploader> -->
+        <add-meeting :issue="issue"></add-meeting>
         <!-- <edit-file></edit-file> -->
 
       </div>
@@ -51,7 +51,7 @@
 
 
 <script>
-import addMeeting from '/addMeeting';
+import addMeeting from './addMeeting';
 // import editMeeting from '/editMeeting';
 
 export default {
@@ -60,7 +60,7 @@ export default {
       meetings: []
     };
   },
-	props: ['issue'],
+	props: ['issue', 'openents'],
     methods: {
       fetchIssueMeetings(){
         axios.get(window.location.pathname + '/meetings')
@@ -68,12 +68,13 @@ export default {
       },
       assignData(response){
         this.meetings = response.data;
-      }
-  	  /*fileAdded(){
-  	  	this.reloadData();
-  	  	toastr.success('تم اضافة الملف بنجاح!');
+      },
+  	  afterMeetingAdded(response){
+  	  	this.fetchIssueMeetings();
+        $('#addMeeting').modal('hide');
+  	  	toastr.success(response.message);
   	  },
-      editFile(file){
+      /*editFile(file){
         eventBus.$emit('editFile', file);
         $('#editFile').modal('show');
       },
@@ -102,7 +103,7 @@ export default {
     mounted(){
       this.fetchIssueMeetings();
 
-    	eventBus.$on('fileUploaded', event => this.fileAdded());
+    	eventBus.$on('meetingAdded', response => this.afterMeetingAdded(response));
     	eventBus.$on('fileUpdated', response => this.afterFileUpdated(response));
     }
 }
