@@ -26,7 +26,7 @@
                   </td>
                   <td>
                       {{ meeting.date }}
-                      <button class="btn btn-sm btn-danger pull-left" @click="deleteMeeting(meeting)"><i class="fa fa-times" aria-hidden="true"></i></button>
+                      <button v-if="!meeting.judgemenets && !meeting.childMeetings" class="btn btn-sm btn-danger pull-left" @click="deleteMeeting(meeting)"><i class="fa fa-times" aria-hidden="true"></i></button>
                       <button class="btn btn-sm btn-info pull-left" @click="editMeeting(meeting)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                   </td>
                   <td>
@@ -85,16 +85,16 @@ export default {
         toastr.info(response.message);
         this.fetchIssueMeetings();
       },
-    /*deleteFile(file){
-    	if(confirm('هل انت متاكد من حذف هذا الملف - لن تتمكن من استرجاعه فيما بعد!')){
-    	axios.delete('/files/' + file.id)
-    	.then(response => this.onFileDelete(response));
+    deleteMeeting(meeting){
+    	if(confirm('هل انت متاكد من حذف هذه الجـــلــــسة - لن تتمكن من استرجاعها فيما بعد!')){
+    	axios.delete('/meetings/' + meeting.id)
+    	.then(response => this.onMeetingDelete(response));
 	   }
 	  },
-      onFileDelete(response){
+      onMeetingDelete(response){
         toastr.warning(response.data.message);
-        this.reloadData();
-      }*/
+        this.fetchIssueMeetings();
+      }
     },
     components: {
     	addMeeting,

@@ -18,7 +18,7 @@ class MeetingController extends Controller
     public function index(Issue $issue)
     {
         $meetings = Meeting::where('issue_id', $issue->id)
-                        ->with('judgements')
+                        ->with('judgements', 'childMeetings')
                         ->orderBy('level', 'asc')
                         ->orderBy('date', 'asc')
                         ->get();
@@ -65,6 +65,8 @@ class MeetingController extends Controller
      */
     public function destroy(Meeting $meeting)
     {
-        //
+        $meeting->delete();
+
+        return ['message' => 'تم حذف الجلسة'];
     }
 }

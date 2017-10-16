@@ -35,7 +35,7 @@
                         <flat-pickr v-model="addMeetingForm.date" 
                         name="date" 
                         :config="config" 
-                        placeholder="اختر الجلــسة">
+                        placeholder="اختر تاريخ الجلــسة">
                         </flat-pickr>
 
                         <span class="alert-danger" v-if="addMeetingForm.errors.has('date')" v-text="addMeetingForm.errors.get('date')"></span>

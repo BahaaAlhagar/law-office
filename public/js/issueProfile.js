@@ -37766,6 +37766,19 @@ exports.default = {
       $('#editMeeting').modal('hide');
       toastr.info(response.message);
       this.fetchIssueMeetings();
+    },
+    deleteMeeting: function deleteMeeting(meeting) {
+      var _this2 = this;
+
+      if (confirm('هل انت متاكد من حذف هذه الجـــلــــسة - لن تتمكن من استرجاعها فيما بعد!')) {
+        axios.delete('/meetings/' + meeting.id).then(function (response) {
+          return _this2.onMeetingDelete(response);
+        });
+      }
+    },
+    onMeetingDelete: function onMeetingDelete(response) {
+      toastr.warning(response.data.message);
+      this.fetchIssueMeetings();
     }
   },
   components: {
@@ -37773,15 +37786,15 @@ exports.default = {
     editMeeting: _editMeeting2.default
   },
   mounted: function mounted() {
-    var _this2 = this;
+    var _this3 = this;
 
     this.fetchIssueMeetings();
 
     eventBus.$on('meetingAdded', function (response) {
-      return _this2.afterMeetingAdded(response);
+      return _this3.afterMeetingAdded(response);
     });
     eventBus.$on('meetingUpdated', function (response) {
-      return _this2.afterMeetingUpdated(response);
+      return _this3.afterMeetingUpdated(response);
     });
   }
 };
@@ -37814,7 +37827,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._m(0), _vm._v(" "), _c('tbody', _vm._l((_vm.meetings), function(meeting) {
     return _c('tr', {
       key: meeting.id
-    }, [_c('td', [_vm._v("\n                      " + _vm._s(meeting.role) + "\n                  ")]), _vm._v(" "), _c('td', [_vm._v("\n                      " + _vm._s(meeting.date) + "\n                      "), _c('button', {
+    }, [_c('td', [_vm._v("\n                      " + _vm._s(meeting.role) + "\n                  ")]), _vm._v(" "), _c('td', [_vm._v("\n                      " + _vm._s(meeting.date) + "\n                      "), (!meeting.judgemenets && !meeting.childMeetings) ? _c('button', {
       staticClass: "btn btn-sm btn-danger pull-left",
       on: {
         "click": function($event) {
@@ -37826,7 +37839,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       attrs: {
         "aria-hidden": "true"
       }
-    })]), _vm._v(" "), _c('button', {
+    })]) : _vm._e(), _vm._v(" "), _c('button', {
       staticClass: "btn btn-sm btn-info pull-left",
       on: {
         "click": function($event) {
@@ -38032,7 +38045,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "name": "date",
       "config": _vm.config,
-      "placeholder": "اختر الجلــسة"
+      "placeholder": "اختر تاريخ الجلــسة"
     },
     model: {
       value: (_vm.addMeetingForm.date),
@@ -38354,7 +38367,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "name": "date",
       "config": _vm.config,
-      "placeholder": "اختر الجلــسة"
+      "placeholder": "اختر تاريخ الجلــسة"
     },
     model: {
       value: (_vm.editMeetingForm.date),
