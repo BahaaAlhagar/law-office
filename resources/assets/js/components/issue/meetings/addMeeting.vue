@@ -95,7 +95,6 @@
             }
         };
         },
-        props: ['issue'],
         methods: {
         onMeetingCreate() {
             this.addMeetingForm.post(window.location.pathname + '/meetings')

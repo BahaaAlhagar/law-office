@@ -37728,6 +37728,10 @@ var _addMeeting = __webpack_require__(213);
 
 var _addMeeting2 = _interopRequireDefault(_addMeeting);
 
+var _editMeeting = __webpack_require__(216);
+
+var _editMeeting2 = _interopRequireDefault(_editMeeting);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
@@ -37753,10 +37757,20 @@ exports.default = {
       this.fetchIssueMeetings();
       $('#addMeeting').modal('hide');
       toastr.success(response.message);
+    },
+    editMeeting: function editMeeting(meeting) {
+      eventBus.$emit('editMeeting', meeting);
+      $('#editMeeting').modal('show');
+    },
+    afterMeetingUpdated: function afterMeetingUpdated(response) {
+      $('#editMeeting').modal('hide');
+      toastr.info(response.message);
+      this.fetchIssueMeetings();
     }
   },
   components: {
-    addMeeting: _addMeeting2.default
+    addMeeting: _addMeeting2.default,
+    editMeeting: _editMeeting2.default
   },
   mounted: function mounted() {
     var _this2 = this;
@@ -37766,8 +37780,8 @@ exports.default = {
     eventBus.$on('meetingAdded', function (response) {
       return _this2.afterMeetingAdded(response);
     });
-    eventBus.$on('fileUpdated', function (response) {
-      return _this2.afterFileUpdated(response);
+    eventBus.$on('meetingUpdated', function (response) {
+      return _this2.afterMeetingUpdated(response);
     });
   }
 };
@@ -37800,12 +37814,32 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._m(0), _vm._v(" "), _c('tbody', _vm._l((_vm.meetings), function(meeting) {
     return _c('tr', {
       key: meeting.id
-    }, [_c('td', [_vm._v("\n                      " + _vm._s(meeting.role) + "\n                  ")]), _vm._v(" "), _c('td', [_vm._v("\n                      " + _vm._s(meeting.date) + "\n                  ")]), _vm._v(" "), _c('td', [_vm._v("\n                      " + _vm._s(meeting.decision) + "\n                  ")]), _vm._v(" "), _c('td', [_vm._v("\n                      " + _vm._s(meeting.notes) + "\n                  ")]), _vm._v(" "), _c('td')])
-  }))]) : _vm._e()])]), _vm._v(" "), _c('add-meeting', {
-    attrs: {
-      "issue": _vm.issue
-    }
-  })], 1)
+    }, [_c('td', [_vm._v("\n                      " + _vm._s(meeting.role) + "\n                  ")]), _vm._v(" "), _c('td', [_vm._v("\n                      " + _vm._s(meeting.date) + "\n                      "), _c('button', {
+      staticClass: "btn btn-sm btn-danger pull-left",
+      on: {
+        "click": function($event) {
+          _vm.deleteMeeting(meeting)
+        }
+      }
+    }, [_c('i', {
+      staticClass: "fa fa-times",
+      attrs: {
+        "aria-hidden": "true"
+      }
+    })]), _vm._v(" "), _c('button', {
+      staticClass: "btn btn-sm btn-info pull-left",
+      on: {
+        "click": function($event) {
+          _vm.editMeeting(meeting)
+        }
+      }
+    }, [_c('i', {
+      staticClass: "fa fa-pencil-square-o",
+      attrs: {
+        "aria-hidden": "true"
+      }
+    })])]), _vm._v(" "), _c('td', [_vm._v("\n                      " + _vm._s(meeting.decision) + "\n                  ")]), _vm._v(" "), _c('td', [_vm._v("\n                      " + _vm._s(meeting.notes) + "\n                  ")]), _vm._v(" "), _c('td')])
+  }))]) : _vm._e()])]), _vm._v(" "), _c('add-meeting'), _vm._v(" "), _c('edit-meeting')], 1)
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('thead', {
     staticClass: "thead-inverse"
@@ -37899,7 +37933,6 @@ exports.default = {
         };
     },
 
-    props: ['issue'],
     methods: {
         onMeetingCreate: function onMeetingCreate() {
             this.addMeetingForm.post(window.location.pathname + '/meetings').then(function (response) {
@@ -38118,6 +38151,328 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
      require("vue-hot-reload-api").rerender("data-v-b60f8ce0", module.exports)
+  }
+}
+
+/***/ }),
+/* 216 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(24)(
+  /* script */
+  __webpack_require__(217),
+  /* template */
+  __webpack_require__(218),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "D:\\www\\law-office\\resources\\assets\\js\\components\\issue\\meetings\\editMeeting.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] editMeeting.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0dcae90b", Component.options)
+  } else {
+    hotAPI.reload("data-v-0dcae90b", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 217 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _vueFlatpickrComponent = __webpack_require__(148);
+
+var _vueFlatpickrComponent2 = _interopRequireDefault(_vueFlatpickrComponent);
+
+__webpack_require__(149);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Arabic = __webpack_require__(150).ar;
+
+exports.default = {
+    data: function data() {
+        return {
+            editMeetingForm: new Form({
+                person_id: '',
+                parent_id: '',
+                judgement_id: '',
+                level: '',
+                role: '',
+                date: '',
+                decision: '',
+                notes: ''
+            }),
+            meeting_id: '',
+            config: {
+                locale: Arabic
+            }
+        };
+    },
+
+    methods: {
+        onMeetingUpdate: function onMeetingUpdate() {
+            this.editMeetingForm.patch('/meetings/' + this.meeting_id).then(function (response) {
+                return eventBus.$emit('meetingUpdated', response);
+            });
+        },
+        editMeetingModal: function editMeetingModal(meeting) {
+            this.editMeetingForm.reset();
+            this.editMeetingForm.person_id = meeting.person_id;
+            this.editMeetingForm.parent_id = meeting.parent_id;
+            this.editMeetingForm.judgement_id = meeting.judgement_id;
+            this.editMeetingForm.level = meeting.level;
+            this.editMeetingForm.role = meeting.role;
+            this.editMeetingForm.decision = meeting.decision;
+            this.editMeetingForm.date = meeting.date;
+            this.editMeetingForm.notes = meeting.notes;
+            this.meeting_id = meeting.id;
+        }
+    },
+    created: function created() {
+        var _this = this;
+
+        eventBus.$on('editMeeting', function (meeting) {
+            return _this.editMeetingModal(meeting);
+        });
+    },
+
+    components: {
+        flatPickr: _vueFlatpickrComponent2.default
+    }
+
+};
+
+/***/ }),
+/* 218 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "modal fade",
+    attrs: {
+      "id": "editMeeting",
+      "role": "dialog",
+      "aria-labelledby": "myModalLabel"
+    }
+  }, [_c('div', {
+    staticClass: "modal-dialog",
+    attrs: {
+      "role": "document"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "modal-body"
+  }, [_c('form', {
+    attrs: {
+      "method": "POST",
+      "action": "/people"
+    },
+    on: {
+      "submit": function($event) {
+        $event.preventDefault();
+        _vm.onMeetingUpdate($event)
+      },
+      "keydown": function($event) {
+        _vm.editMeetingForm.errors.clear($event.target.name)
+      },
+      "change": function($event) {
+        _vm.editMeetingForm.errors.clear($event.target.name)
+      },
+      "input": function($event) {
+        _vm.editMeetingForm.errors.clear($event.target.name)
+      }
+    }
+  }, [_c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "role"
+    }
+  }, [_vm._v("رقم الرول:")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editMeetingForm.role),
+      expression: "editMeetingForm.role"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "role",
+      "name": "role"
+    },
+    domProps: {
+      "value": (_vm.editMeetingForm.role)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.editMeetingForm.role = $event.target.value
+      }
+    }
+  }), _vm._v(" "), (_vm.editMeetingForm.errors.has('role')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.editMeetingForm.errors.get('role'))
+    }
+  }) : _vm._e()]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "date"
+    }
+  }, [_vm._v("التاريخ:")]), _vm._v(" "), _c('flat-pickr', {
+    attrs: {
+      "name": "date",
+      "config": _vm.config,
+      "placeholder": "اختر الجلــسة"
+    },
+    model: {
+      value: (_vm.editMeetingForm.date),
+      callback: function($$v) {
+        _vm.editMeetingForm.date = $$v
+      },
+      expression: "editMeetingForm.date"
+    }
+  }), _vm._v(" "), (_vm.editMeetingForm.errors.has('date')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.editMeetingForm.errors.get('date'))
+    }
+  }) : _vm._e()], 1), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "decision"
+    }
+  }, [_vm._v("القرار:")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editMeetingForm.decision),
+      expression: "editMeetingForm.decision"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "decision",
+      "name": "decision"
+    },
+    domProps: {
+      "value": (_vm.editMeetingForm.decision)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.editMeetingForm.decision = $event.target.value
+      }
+    }
+  }), _vm._v(" "), (_vm.editMeetingForm.errors.has('decision')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.editMeetingForm.errors.get('decision'))
+    }
+  }) : _vm._e()]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "notes"
+    }
+  }, [_vm._v("ملاحظات:")]), _vm._v(" "), _c('textarea', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editMeetingForm.notes),
+      expression: "editMeetingForm.notes"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "notes",
+      "name": "notes",
+      "rows": "5"
+    },
+    domProps: {
+      "value": (_vm.editMeetingForm.notes)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.editMeetingForm.notes = $event.target.value
+      }
+    }
+  }), _vm._v(" "), (_vm.editMeetingForm.errors.has('notes')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.editMeetingForm.errors.get('notes'))
+    }
+  }) : _vm._e()]), _vm._v(" "), _c('div', {
+    staticClass: "form-group heading"
+  }, [_c('button', {
+    staticClass: "button btn-lg btn-success",
+    attrs: {
+      "disabled": _vm.editMeetingForm.errors.any()
+    }
+  }, [_vm._v("تعديل")])])])])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "modal-header"
+  }, [_c('button', {
+    staticClass: "close",
+    attrs: {
+      "type": "button",
+      "data-dismiss": "modal",
+      "aria-label": "Close"
+    }
+  }, [_c('span', {
+    attrs: {
+      "aria-hidden": "true"
+    }
+  }, [_vm._v("×")])]), _vm._v(" "), _c('span', {
+    staticClass: "form-control-static pull-left"
+  }, [_c('h4', {
+    staticClass: "modal-title",
+    attrs: {
+      "id": "myModalLabel"
+    }
+  }, [_vm._v(" تعديل جلـــسة ")])])])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-0dcae90b", module.exports)
   }
 }
 

@@ -26,6 +26,8 @@
                   </td>
                   <td>
                       {{ meeting.date }}
+                      <button class="btn btn-sm btn-danger pull-left" @click="deleteMeeting(meeting)"><i class="fa fa-times" aria-hidden="true"></i></button>
+                      <button class="btn btn-sm btn-info pull-left" @click="editMeeting(meeting)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                   </td>
                   <td>
                       {{ meeting.decision }}
@@ -42,8 +44,8 @@
           </div>
         </div>
         
-        <add-meeting :issue="issue"></add-meeting>
-        <!-- <edit-file></edit-file> -->
+        <add-meeting></add-meeting>
+        <edit-meeting></edit-meeting>
 
       </div>
 
@@ -52,7 +54,7 @@
 
 <script>
 import addMeeting from './addMeeting';
-// import editMeeting from '/editMeeting';
+import editMeeting from './editMeeting';
 
 export default {
   data() {
@@ -74,19 +76,16 @@ export default {
         $('#addMeeting').modal('hide');
   	  	toastr.success(response.message);
   	  },
-      /*editFile(file){
-        eventBus.$emit('editFile', file);
-        $('#editFile').modal('show');
+      editMeeting(meeting){
+        eventBus.$emit('editMeeting', meeting);
+        $('#editMeeting').modal('show');
       },
-      afterFileUpdated(response){
-        $('#editFile').modal('hide');
+      afterMeetingUpdated(response){
+        $('#editMeeting').modal('hide');
         toastr.info(response.message);
-        this.reloadData();
+        this.fetchIssueMeetings();
       },
-	  reloadData(){
-        eventBus.$emit('refetchIssueFiles');
-      },
-      deleteFile(file){
+    /*deleteFile(file){
     	if(confirm('هل انت متاكد من حذف هذا الملف - لن تتمكن من استرجاعه فيما بعد!')){
     	axios.delete('/files/' + file.id)
     	.then(response => this.onFileDelete(response));
@@ -98,13 +97,14 @@ export default {
       }*/
     },
     components: {
-    	addMeeting: addMeeting,
+    	addMeeting,
+      editMeeting
     },
     mounted(){
       this.fetchIssueMeetings();
 
     	eventBus.$on('meetingAdded', response => this.afterMeetingAdded(response));
-    	eventBus.$on('fileUpdated', response => this.afterFileUpdated(response));
+    	eventBus.$on('meetingUpdated', response => this.afterMeetingUpdated(response));
     }
 }
 

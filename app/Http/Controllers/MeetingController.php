@@ -52,7 +52,9 @@ class MeetingController extends Controller
      */
     public function update(storeMeetingRequest $request, Meeting $meeting)
     {
-        //
+        $meeting->update($request->all());
+
+        return ['message' => 'تم تحديث بيانات الجلسة'];
     }
 
     /**
