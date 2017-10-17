@@ -30,7 +30,7 @@ class storeMeetingRequest extends FormRequest
         'judgement_id' => 'nullable|numeric|exists:judgements,id',
         'date' => 'required|date',
         'role' => 'nullable|numeric',
-        'level' => 'numeric',
+        'level' => 'nullable|numeric',
         'decision' => 'required|string',
         'notes' => 'nullable|string'
         ];
