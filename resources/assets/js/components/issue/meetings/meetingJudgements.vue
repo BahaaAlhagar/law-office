@@ -3,17 +3,17 @@
         <!-- meeting judgements -->
         <!-- cevil issues -->
         <span v-if="issue.type > 4">
-          <span v-show="!meeting.judgements.length && !meeting.child_meetings.length">
+          <span v-if="!meeting.judgements.length && !meeting.child_meetings.length">
             <button class="btn btn-sm btn-primary" 
             data-toggle="modal" 
             data-target="#addJudgement"> اضافة حكم </button>
             <add-judgement :issue="issue" :meeting="meeting"></add-judgement>
           </span>
 
-          <ul v-show="meeting.judgements.length" v-for="judgement in meeting.judgements">
+          <ul v-if="meeting.judgements.length" v-for="judgement in meeting.judgements">
             <li>{{ judgement.body }}</li>
 
-            <button v-show="judgement.child_meeting == undefined" class="btn btn-sm btn-dark pull-left" 
+            <button v-if="judgement.child_meeting == null" class="btn btn-sm btn-dark pull-left" 
             data-toggle="modal" 
             data-target="#addChallenge"> اضافة طعن </button>
 

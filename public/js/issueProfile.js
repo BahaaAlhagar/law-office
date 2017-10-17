@@ -38936,14 +38936,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "id": "meetingJudgements"
     }
-  }, [(_vm.issue.type > 4) ? _c('span', [_c('span', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (!_vm.meeting.judgements.length && !_vm.meeting.child_meetings.length),
-      expression: "!meeting.judgements.length && !meeting.child_meetings.length"
-    }]
-  }, [_c('button', {
+  }, [(_vm.issue.type > 4) ? _c('span', [(!_vm.meeting.judgements.length && !_vm.meeting.child_meetings.length) ? _c('span', [_c('button', {
     staticClass: "btn btn-sm btn-primary",
     attrs: {
       "data-toggle": "modal",
@@ -38954,32 +38947,19 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "issue": _vm.issue,
       "meeting": _vm.meeting
     }
-  })], 1), _vm._v(" "), _vm._l((_vm.meeting.judgements), function(judgement) {
-    return _c('ul', {
-      directives: [{
-        name: "show",
-        rawName: "v-show",
-        value: (_vm.meeting.judgements.length),
-        expression: "meeting.judgements.length"
-      }]
-    }, [_c('li', [_vm._v(_vm._s(judgement.body))]), _vm._v(" "), _c('button', {
-      directives: [{
-        name: "show",
-        rawName: "v-show",
-        value: (judgement.child_meeting == undefined),
-        expression: "judgement.child_meeting == undefined"
-      }],
+  })], 1) : _vm._e(), _vm._v(" "), _vm._l((_vm.meeting.judgements), function(judgement) {
+    return (_vm.meeting.judgements.length) ? _c('ul', [_c('li', [_vm._v(_vm._s(judgement.body))]), _vm._v(" "), (judgement.child_meeting == null) ? _c('button', {
       staticClass: "btn btn-sm btn-dark pull-left",
       attrs: {
         "data-toggle": "modal",
         "data-target": "#addChallenge"
       }
-    }, [_vm._v(" اضافة طعن ")]), _vm._v(" "), _c('add-challenge', {
+    }, [_vm._v(" اضافة طعن ")]) : _vm._e(), _vm._v(" "), _c('add-challenge', {
       attrs: {
         "judgement": judgement,
         "issue": _vm.issue
       }
-    })], 1)
+    })], 1) : _vm._e()
   })], 2) : _vm._e(), _vm._v(" "), (_vm.issue.type < 4) ? _c('span') : _vm._e(), _vm._v(" "), (_vm.issue.type == 4) ? _c('span') : _vm._e()])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
