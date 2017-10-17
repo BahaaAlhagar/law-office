@@ -37732,6 +37732,10 @@ var _delayMeeting = __webpack_require__(219);
 
 var _delayMeeting2 = _interopRequireDefault(_delayMeeting);
 
+var _meetingJudgements = __webpack_require__(225);
+
+var _meetingJudgements2 = _interopRequireDefault(_meetingJudgements);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
@@ -37788,12 +37792,18 @@ exports.default = {
       $('#delayMeeting').modal('hide');
       toastr.info(response.message);
       this.fetchIssueMeetings();
+    },
+    afterJudgementAdded: function afterJudgementAdded(response) {
+      $('#addJudgement').modal('hide');
+      toastr.success(response.message);
+      this.fetchIssueMeetings();
     }
   },
   components: {
     addMeeting: _addMeeting2.default,
     editMeeting: _editMeeting2.default,
-    delayMeeting: _delayMeeting2.default
+    delayMeeting: _delayMeeting2.default,
+    meetingJudgements: _meetingJudgements2.default
   },
   mounted: function mounted() {
     var _this3 = this;
@@ -37809,6 +37819,10 @@ exports.default = {
 
     eventBus.$on('meetingDelayed', function (response) {
       return _this3.afterMeetingDelayed(response);
+    });
+
+    eventBus.$on('judgementAdded', function (response) {
+      return _this3.afterJudgementAdded(response);
     });
   }
 };
@@ -38464,7 +38478,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._m(0), _vm._v(" "), _c('tbody', _vm._l((_vm.meetings), function(meeting) {
     return _c('tr', {
       key: meeting.id
-    }, [_c('td', [_vm._v("\n                      " + _vm._s(meeting.role) + "\n                  ")]), _vm._v(" "), _c('td', [_vm._v("\n                      " + _vm._s(meeting.date) + "\n                      "), (!meeting.judgemenets && !meeting.childMeetings) ? _c('button', {
+    }, [_c('td', [_vm._v("\n                      " + _vm._s(meeting.role) + "\n                  ")]), _vm._v(" "), _c('td', [_vm._v("\n                      " + _vm._s(meeting.date) + "\n                      "), (!meeting.judgements.length && !meeting.child_meetings.length) ? _c('button', {
       staticClass: "btn btn-sm btn-danger pull-left",
       on: {
         "click": function($event) {
@@ -38488,14 +38502,20 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       attrs: {
         "aria-hidden": "true"
       }
-    })]), _vm._v(" "), (!meeting.judgemenets && !meeting.childMeetings) ? _c('button', {
+    })]), _vm._v(" "), (!meeting.judgements.length && !meeting.child_meetings.length) ? _c('button', {
       staticClass: "btn btn-sm btn-dark pull-left",
       on: {
         "click": function($event) {
           _vm.delayMeeting(meeting)
         }
       }
-    }, [_vm._v("تأجيل")]) : _vm._e()]), _vm._v(" "), _c('td', [_vm._v("\n                      " + _vm._s(meeting.decision) + "\n                  ")]), _vm._v(" "), _c('td', [_vm._v("\n                      " + _vm._s(meeting.notes) + "\n                  ")]), _vm._v(" "), _c('td')])
+    }, [_vm._v("تأجيل")]) : _vm._e()]), _vm._v(" "), _c('td', [_vm._v("\n                      " + _vm._s(meeting.decision) + "\n                  ")]), _vm._v(" "), _c('td', [_vm._v("\n                      " + _vm._s(meeting.notes) + "\n                  ")]), _vm._v(" "), _c('td', [_c('meeting-judgements', {
+      attrs: {
+        "issue": _vm.issue,
+        "openents": _vm.openents,
+        "meeting": meeting
+      }
+    })], 1)])
   }))]) : _vm._e()])]), _vm._v(" "), _c('add-meeting'), _vm._v(" "), _c('edit-meeting'), _vm._v(" "), _c('delay-meeting')], 1)
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('thead', {
@@ -38826,6 +38846,509 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
      require("vue-hot-reload-api").rerender("data-v-3ff307ee", module.exports)
+  }
+}
+
+/***/ }),
+/* 222 */,
+/* 223 */,
+/* 224 */,
+/* 225 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(15)(
+  /* script */
+  __webpack_require__(226),
+  /* template */
+  __webpack_require__(227),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "D:\\www\\law-office\\resources\\assets\\js\\components\\issue\\meetings\\meetingJudgements.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] meetingJudgements.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-a649151a", Component.options)
+  } else {
+    hotAPI.reload("data-v-a649151a", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 226 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _addJudgement = __webpack_require__(228);
+
+var _addJudgement2 = _interopRequireDefault(_addJudgement);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  data: function data() {
+    return {};
+  },
+
+  props: ['issue', 'openents', 'meeting'],
+  methods: {},
+  components: {
+    addJudgement: _addJudgement2.default
+  }
+};
+
+/***/ }),
+/* 227 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('span', {
+    attrs: {
+      "id": "meetingJudgements"
+    }
+  }, [(_vm.issue.type > 4) ? _c('span', [_c('button', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (!_vm.meeting.judgements.length && !_vm.meeting.child_meetings.length),
+      expression: "!meeting.judgements.length && !meeting.child_meetings.length"
+    }],
+    staticClass: "btn btn-sm btn-primary",
+    attrs: {
+      "data-toggle": "modal",
+      "data-target": "#addJudgement"
+    }
+  }, [_vm._v(" اضافة حكم ")]), _vm._v(" "), _c('add-judgement', {
+    attrs: {
+      "issue": _vm.issue,
+      "meeting": _vm.meeting
+    }
+  })], 1) : _vm._e(), _vm._v(" "), (_vm.issue.type < 4) ? _c('span') : _vm._e(), _vm._v(" "), (_vm.issue.type == 4) ? _c('span') : _vm._e()])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-a649151a", module.exports)
+  }
+}
+
+/***/ }),
+/* 228 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(15)(
+  /* script */
+  __webpack_require__(229),
+  /* template */
+  __webpack_require__(230),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "D:\\www\\law-office\\resources\\assets\\js\\components\\issue\\meetings\\addJudgement.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] addJudgement.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-44fc880a", Component.options)
+  } else {
+    hotAPI.reload("data-v-44fc880a", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 229 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _vueFlatpickrComponent = __webpack_require__(123);
+
+var _vueFlatpickrComponent2 = _interopRequireDefault(_vueFlatpickrComponent);
+
+__webpack_require__(124);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Arabic = __webpack_require__(125).ar;
+
+exports.default = {
+    props: ['issue', 'meeting'],
+    data: function data() {
+        return {
+            addJudgementForm: new Form({
+                issue_id: this.issue.id,
+                person_id: '',
+                active: 1,
+                present: '',
+                type: 1,
+                record: '',
+                year: '',
+                date: this.meeting.date,
+                body: '',
+                level: this.meeting.level
+            }),
+            config: {
+                locale: Arabic,
+                firstDayOfWeek: 2
+            }
+        };
+    },
+
+    methods: {
+        onMeetingCreate: function onMeetingCreate() {
+            this.addJudgementForm.post('/meetings/' + this.meeting.id + '/judgements').then(function (response) {
+                return eventBus.$emit('judgementAdded', response);
+            });
+        }
+    },
+    components: {
+        flatPickr: _vueFlatpickrComponent2.default
+    }
+
+};
+
+/***/ }),
+/* 230 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "modal fade",
+    attrs: {
+      "id": "addJudgement",
+      "role": "dialog",
+      "aria-labelledby": "myModalLabel"
+    }
+  }, [_c('div', {
+    staticClass: "modal-dialog",
+    attrs: {
+      "role": "document"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "modal-body"
+  }, [_c('form', {
+    attrs: {
+      "method": "POST",
+      "action": "/people"
+    },
+    on: {
+      "submit": function($event) {
+        $event.preventDefault();
+        _vm.onMeetingCreate($event)
+      },
+      "keydown": function($event) {
+        _vm.addJudgementForm.errors.clear($event.target.name)
+      },
+      "change": function($event) {
+        _vm.addJudgementForm.errors.clear($event.target.name)
+      },
+      "input": function($event) {
+        _vm.addJudgementForm.errors.clear($event.target.name)
+      }
+    }
+  }, [_c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "present"
+    }
+  }, [_vm._v("حالة الحكم:")]), _vm._v(" "), _c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.addJudgementForm.present),
+      expression: "addJudgementForm.present"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "id": "present",
+      "name": "present"
+    },
+    on: {
+      "change": function($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        });
+        _vm.addJudgementForm.present = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+      }
+    }
+  }, [_c('option', {
+    attrs: {
+      "value": "1"
+    }
+  }, [_vm._v("حــضـــورى")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "0"
+    }
+  }, [_vm._v("غــيــابــى")])]), _vm._v(" "), (_vm.addJudgementForm.errors.has('present')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.addJudgementForm.errors.get('present'))
+    }
+  }) : _vm._e()]), _vm._v(" "), (_vm.issue.type < 4) ? _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "type"
+    }
+  }, [_vm._v("نوع الحكم:")]), _vm._v(" "), _c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.addJudgementForm.type),
+      expression: "addJudgementForm.type"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "id": "type",
+      "name": "type"
+    },
+    on: {
+      "change": function($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        });
+        _vm.addJudgementForm.type = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+      }
+    }
+  }, [_c('option', {
+    attrs: {
+      "value": "1"
+    }
+  }, [_vm._v("ادانــه")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "2"
+    }
+  }, [_vm._v("براءه")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "3"
+    }
+  }, [_vm._v("ايقاف")])]), _vm._v(" "), (_vm.addJudgementForm.errors.has('type')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.addJudgementForm.errors.get('type'))
+    }
+  }) : _vm._e()]) : _vm._e(), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "date"
+    }
+  }, [_vm._v("تاريخ الحكم:")]), _vm._v(" "), _c('flat-pickr', {
+    attrs: {
+      "name": "date",
+      "config": _vm.config,
+      "placeholder": "اختر تاريخ الحكم"
+    },
+    model: {
+      value: (_vm.addJudgementForm.date),
+      callback: function($$v) {
+        _vm.addJudgementForm.date = $$v
+      },
+      expression: "addJudgementForm.date"
+    }
+  }), _vm._v(" "), (_vm.addJudgementForm.errors.has('date')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.addJudgementForm.errors.get('date'))
+    }
+  }) : _vm._e()], 1), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "body"
+    }
+  }, [_vm._v("صيغة الحكم:")]), _vm._v(" "), _c('textarea', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.addJudgementForm.body),
+      expression: "addJudgementForm.body"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "body",
+      "name": "body",
+      "rows": "5"
+    },
+    domProps: {
+      "value": (_vm.addJudgementForm.body)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.addJudgementForm.body = $event.target.value
+      }
+    }
+  }), _vm._v(" "), (_vm.addJudgementForm.errors.has('body')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.addJudgementForm.errors.get('body'))
+    }
+  }) : _vm._e()]), _vm._v(" "), (_vm.issue.type < 4) ? _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "record"
+    }
+  }, [_vm._v("رقم الحصر:")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.addJudgementForm.record),
+      expression: "addJudgementForm.record"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "record",
+      "name": "record"
+    },
+    domProps: {
+      "value": (_vm.addJudgementForm.record)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.addJudgementForm.record = $event.target.value
+      }
+    }
+  }), _vm._v(" "), (_vm.addJudgementForm.errors.has('record')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.addJudgementForm.errors.get('record'))
+    }
+  }) : _vm._e()]) : _vm._e(), _vm._v(" "), (_vm.issue.type < 4) ? _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "year"
+    }
+  }, [_vm._v("سنة الحصر:")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.addJudgementForm.year),
+      expression: "addJudgementForm.year"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "year",
+      "name": "year"
+    },
+    domProps: {
+      "value": (_vm.addJudgementForm.year)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.addJudgementForm.year = $event.target.value
+      }
+    }
+  }), _vm._v(" "), (_vm.addJudgementForm.errors.has('year')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.addJudgementForm.errors.get('year'))
+    }
+  }) : _vm._e()]) : _vm._e(), _vm._v(" "), _c('div', {
+    staticClass: "form-group heading"
+  }, [_c('button', {
+    staticClass: "button btn-lg btn-success",
+    attrs: {
+      "disabled": _vm.addJudgementForm.errors.any()
+    }
+  }, [_vm._v("اضافة الحكم")])])])])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "modal-header"
+  }, [_c('button', {
+    staticClass: "close",
+    attrs: {
+      "type": "button",
+      "data-dismiss": "modal",
+      "aria-label": "Close"
+    }
+  }, [_c('span', {
+    attrs: {
+      "aria-hidden": "true"
+    }
+  }, [_vm._v("×")])]), _vm._v(" "), _c('span', {
+    staticClass: "form-control-static pull-left"
+  }, [_c('h4', {
+    staticClass: "modal-title",
+    attrs: {
+      "id": "myModalLabel"
+    }
+  }, [_vm._v(" اضافة جلـــسة ")])])])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-44fc880a", module.exports)
   }
 }
 

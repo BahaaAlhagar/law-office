@@ -26,10 +26,9 @@
                   </td>
                   <td>
                       {{ meeting.date }}
-                      <button v-if="!meeting.judgemenets && !meeting.childMeetings" class="btn btn-sm btn-danger pull-left" @click="deleteMeeting(meeting)"><i class="fa fa-times" aria-hidden="true"></i></button>
+                      <button v-if="!meeting.judgements.length && !meeting.child_meetings.length" class="btn btn-sm btn-danger pull-left" @click="deleteMeeting(meeting)"><i class="fa fa-times" aria-hidden="true"></i></button>
                       <button class="btn btn-sm btn-info pull-left" @click="editMeeting(meeting)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                      <button v-if="!meeting.judgemenets && !meeting.childMeetings" class="btn btn-sm btn-dark pull-left" @click="delayMeeting(meeting)">تأجيل</button>
-
+                      <button v-if="!meeting.judgements.length && !meeting.child_meetings.length" class="btn btn-sm btn-dark pull-left" @click="delayMeeting(meeting)">تأجيل</button>
                   </td>
                   <td>
                       {{ meeting.decision }}
@@ -38,7 +37,7 @@
                       {{ meeting.notes }}
                   </td>
                   <td>
-                      
+                      <meeting-judgements :issue="issue" :openents="openents" :meeting="meeting"></meeting-judgements>
                   </td>
                 </tr>
             </tbody>
@@ -59,6 +58,7 @@
 import addMeeting from './addMeeting';
 import editMeeting from './editMeeting';
 import delayMeeting from './delayMeeting';
+import meetingJudgements from './meetingJudgements';
 
 export default {
   data() {
@@ -107,12 +107,18 @@ export default {
         $('#delayMeeting').modal('hide');
         toastr.info(response.message);
         this.fetchIssueMeetings();
+      },
+      afterJudgementAdded(response){
+        $('#addJudgement').modal('hide');
+        toastr.success(response.message);
+        this.fetchIssueMeetings();
       }
     },
     components: {
     	addMeeting,
       editMeeting,
-      delayMeeting
+      delayMeeting,
+      meetingJudgements
     },
     mounted(){
       this.fetchIssueMeetings();
@@ -121,6 +127,9 @@ export default {
       eventBus.$on('meetingUpdated', response => this.afterMeetingUpdated(response));
 
     	eventBus.$on('meetingDelayed', response => this.afterMeetingDelayed(response));
+
+      eventBus.$on('judgementAdded', response => this.afterJudgementAdded(response));
+
     }
 }
 

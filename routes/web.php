@@ -51,7 +51,7 @@ route::get('issue/{type?}', 'IssueController@index');
 route::get('/issues/{issue}/restore', 'IssueController@restore');
 
 
-route::post('meetings/{meeting}/judgements', 'store@JudgementController');
+route::post('meetings/{meeting}/judgements', 'JudgementController@store');
 
 route::resource('judgements', 'JudgementController', ['only' => ['update', 'destroy']]);
 

@@ -20,7 +20,7 @@ class CreateJudgementsTable extends Migration
             $table->integer('person_id')->nullable()->unsigned()->index();
             $table->boolean('active')->default(1);
             $table->boolean('present')->default(0);
-            $table->tinyInteger('type');
+            $table->tinyInteger('type')->default(1);
             $table->integer('record')->nullable();
             $table->smallInteger('year')->nullable();
             $table->date('date');

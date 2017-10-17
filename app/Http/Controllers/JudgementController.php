@@ -2,63 +2,31 @@
 
 namespace App\Http\Controllers;
 
+use App\Meeting;
 use App\Judgement;
 use Illuminate\Http\Request;
 
 class JudgementController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function __construct()
     {
-        //
+        $this->middleware('auth');
+        $this->middleware('admin');
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
+    
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Meeting $meeting, Request $request)
     {
-        //
+        $meeting->judgements()->create($request->all());
+
+        return ['message' => 'تم اضافة الحكم'];
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Judgement  $judgement
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Judgement $judgement)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Judgement  $judgement
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Judgement $judgement)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.

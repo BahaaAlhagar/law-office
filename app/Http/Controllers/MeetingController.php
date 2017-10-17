@@ -9,6 +9,12 @@ use Illuminate\Http\Request;
 
 class MeetingController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('admin');
+    }
+    
     /**
      * Display a listing of the resource.
      * @param  \App\Issue  $issue
