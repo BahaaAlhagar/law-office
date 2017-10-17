@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Meeting;
 use App\Judgement;
+use App\Http\Requests\storeJudgementRequest;
 use Illuminate\Http\Request;
 
 class JudgementController extends Controller
@@ -20,7 +21,7 @@ class JudgementController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Meeting $meeting, Request $request)
+    public function store(Meeting $meeting, storeJudgementRequest $request)
     {
         $meeting->judgements()->create($request->all());
 
@@ -35,9 +36,11 @@ class JudgementController extends Controller
      * @param  \App\Judgement  $judgement
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Judgement $judgement)
+    public function update(storeJudgementRequest $request, Judgement $judgement)
     {
-        //
+        $judgement->update($request->all());
+
+        return ['message' => 'تم تحديث بيانات الحكم'];
     }
 
     /**

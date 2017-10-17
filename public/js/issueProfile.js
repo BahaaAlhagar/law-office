@@ -37798,6 +37798,11 @@ exports.default = {
       $('#addJudgement').modal('hide');
       toastr.success(response.message);
       this.fetchIssueMeetings();
+    },
+    afterJudgementUpdated: function afterJudgementUpdated(response) {
+      $('#editJudgement').modal('hide');
+      toastr.info(response.message);
+      this.fetchIssueMeetings();
     }
   },
   components: {
@@ -37824,6 +37829,10 @@ exports.default = {
 
     eventBus.$on('judgementAdded', function (response) {
       return _this3.afterJudgementAdded(response);
+    });
+
+    eventBus.$on('judgementUpdated', function (response) {
+      return _this3.afterJudgementUpdated(response);
     });
   }
 };
@@ -38908,6 +38917,10 @@ var _addJudgement = __webpack_require__(228);
 
 var _addJudgement2 = _interopRequireDefault(_addJudgement);
 
+var _editJudgement = __webpack_require__(234);
+
+var _editJudgement2 = _interopRequireDefault(_editJudgement);
+
 var _addChallenge = __webpack_require__(231);
 
 var _addChallenge2 = _interopRequireDefault(_addChallenge);
@@ -38920,9 +38933,15 @@ exports.default = {
   },
 
   props: ['issue', 'openents', 'meeting'],
-  methods: {},
+  methods: {
+    editJudgement: function editJudgement(judgement) {
+      eventBus.$emit('editJudgement', judgement);
+      $('#editJudgement').modal('show');
+    }
+  },
   components: {
     addJudgement: _addJudgement2.default,
+    editJudgement: _editJudgement2.default,
     addChallenge: _addChallenge2.default
   }
 };
@@ -38936,7 +38955,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "id": "meetingJudgements"
     }
-  }, [(_vm.issue.type > 4) ? _c('span', [(!_vm.meeting.judgements.length && !_vm.meeting.child_meetings.length) ? _c('span', [_c('button', {
+  }, [_c('edit-judgement', {
+    attrs: {
+      "issue": _vm.issue
+    }
+  }), _vm._v(" "), (_vm.issue.type > 4) ? _c('span', [(!_vm.meeting.judgements.length && !_vm.meeting.child_meetings.length) ? _c('span', [_c('button', {
     staticClass: "btn btn-sm btn-primary",
     attrs: {
       "data-toggle": "modal",
@@ -38954,13 +38977,37 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "data-toggle": "modal",
         "data-target": "#addChallenge"
       }
-    }, [_vm._v(" اضافة طعن ")]) : _vm._e(), _vm._v(" "), _c('add-challenge', {
+    }, [_vm._v(" اضافة طعن ")]) : _vm._e(), _vm._v(" "), (judgement.child_meeting == null) ? _c('button', {
+      staticClass: "btn btn-sm btn-danger pull-left",
+      on: {
+        "click": function($event) {
+          _vm.deleteJudgement(judgement)
+        }
+      }
+    }, [_c('i', {
+      staticClass: "fa fa-times",
+      attrs: {
+        "aria-hidden": "true"
+      }
+    })]) : _vm._e(), _vm._v(" "), _c('button', {
+      staticClass: "btn btn-sm btn-info pull-left",
+      on: {
+        "click": function($event) {
+          _vm.editJudgement(judgement)
+        }
+      }
+    }, [_c('i', {
+      staticClass: "fa fa-pencil-square-o",
+      attrs: {
+        "aria-hidden": "true"
+      }
+    })]), _vm._v(" "), _c('add-challenge', {
       attrs: {
         "judgement": judgement,
         "issue": _vm.issue
       }
     })], 1) : _vm._e()
-  })], 2) : _vm._e(), _vm._v(" "), (_vm.issue.type < 4) ? _c('span') : _vm._e(), _vm._v(" "), (_vm.issue.type == 4) ? _c('span') : _vm._e()])
+  })], 2) : _vm._e(), _vm._v(" "), (_vm.issue.type < 4) ? _c('span') : _vm._e(), _vm._v(" "), (_vm.issue.type == 4) ? _c('span') : _vm._e()], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -39048,14 +39095,13 @@ exports.default = {
                 level: this.meeting.level
             }),
             config: {
-                locale: Arabic,
-                firstDayOfWeek: 2
+                locale: Arabic
             }
         };
     },
 
     methods: {
-        onMeetingCreate: function onMeetingCreate() {
+        onJudgementCreate: function onJudgementCreate() {
             this.addJudgementForm.post('/meetings/' + this.meeting.id + '/judgements').then(function (response) {
                 return eventBus.$emit('judgementAdded', response);
             });
@@ -39096,7 +39142,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "submit": function($event) {
         $event.preventDefault();
-        _vm.onMeetingCreate($event)
+        _vm.onJudgementCreate($event)
       },
       "keydown": function($event) {
         _vm.addJudgementForm.errors.clear($event.target.name)
@@ -39355,7 +39401,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "id": "myModalLabel"
     }
-  }, [_vm._v(" اضافة جلـــسة ")])])])
+  }, [_vm._v(" اضافة حكم ")])])])
 }]}
 module.exports.render._withStripped = true
 if (false) {
@@ -39652,6 +39698,416 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
      require("vue-hot-reload-api").rerender("data-v-004b7c78", module.exports)
+  }
+}
+
+/***/ }),
+/* 234 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(15)(
+  /* script */
+  __webpack_require__(235),
+  /* template */
+  __webpack_require__(236),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "D:\\www\\law-office\\resources\\assets\\js\\components\\issue\\meetings\\editJudgement.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] editJudgement.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-783d7676", Component.options)
+  } else {
+    hotAPI.reload("data-v-783d7676", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 235 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _vueFlatpickrComponent = __webpack_require__(123);
+
+var _vueFlatpickrComponent2 = _interopRequireDefault(_vueFlatpickrComponent);
+
+__webpack_require__(124);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Arabic = __webpack_require__(125).ar;
+
+exports.default = {
+    props: ['issue'],
+    data: function data() {
+        return {
+            editJudgementForm: new Form({
+                present: '',
+                active: '',
+                type: 1,
+                record: '',
+                year: '',
+                date: '',
+                body: '',
+                level: ''
+            }),
+            config: {
+                locale: Arabic
+            },
+            judgement_id: ''
+        };
+    },
+
+    methods: {
+        onJudgementUpdate: function onJudgementUpdate() {
+            this.editJudgementForm.patch('/judgements/' + this.judgement_id).then(function (response) {
+                return eventBus.$emit('judgementUpdated', response);
+            });
+        },
+        editJudgementModal: function editJudgementModal(judgement) {
+            this.editJudgementForm.present = judgement.present;
+            this.editJudgementForm.active = judgement.active;
+            this.editJudgementForm.type = judgement.type;
+            this.editJudgementForm.record = judgement.record;
+            this.editJudgementForm.year = judgement.year;
+            this.editJudgementForm.date = judgement.date;
+            this.editJudgementForm.body = judgement.body;
+            this.editJudgementForm.level = judgement.level;
+            this.judgement_id = judgement.id;
+        }
+    },
+    components: {
+        flatPickr: _vueFlatpickrComponent2.default
+    },
+    mounted: function mounted() {
+        var _this = this;
+
+        eventBus.$on('editJudgement', function (judgement) {
+            return _this.editJudgementModal(judgement);
+        });
+    }
+};
+
+/***/ }),
+/* 236 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "modal fade",
+    attrs: {
+      "id": "editJudgement",
+      "role": "dialog",
+      "aria-labelledby": "myModalLabel"
+    }
+  }, [_c('div', {
+    staticClass: "modal-dialog",
+    attrs: {
+      "role": "document"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "modal-body"
+  }, [_c('form', {
+    attrs: {
+      "method": "POST",
+      "action": "/people"
+    },
+    on: {
+      "submit": function($event) {
+        $event.preventDefault();
+        _vm.onJudgementUpdate($event)
+      },
+      "keydown": function($event) {
+        _vm.editJudgementForm.errors.clear($event.target.name)
+      },
+      "change": function($event) {
+        _vm.editJudgementForm.errors.clear($event.target.name)
+      },
+      "input": function($event) {
+        _vm.editJudgementForm.errors.clear($event.target.name)
+      }
+    }
+  }, [_c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "present"
+    }
+  }, [_vm._v("حالة الحكم:")]), _vm._v(" "), _c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editJudgementForm.present),
+      expression: "editJudgementForm.present"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "id": "present",
+      "name": "present"
+    },
+    on: {
+      "change": function($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        });
+        _vm.editJudgementForm.present = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+      }
+    }
+  }, [_c('option', {
+    attrs: {
+      "value": "1"
+    }
+  }, [_vm._v("حــضـــورى")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "0"
+    }
+  }, [_vm._v("غــيــابــى")])]), _vm._v(" "), (_vm.editJudgementForm.errors.has('present')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.editJudgementForm.errors.get('present'))
+    }
+  }) : _vm._e()]), _vm._v(" "), (_vm.issue.type < 4) ? _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "type"
+    }
+  }, [_vm._v("نوع الحكم:")]), _vm._v(" "), _c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editJudgementForm.type),
+      expression: "editJudgementForm.type"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "id": "type",
+      "name": "type"
+    },
+    on: {
+      "change": function($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        });
+        _vm.editJudgementForm.type = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+      }
+    }
+  }, [_c('option', {
+    attrs: {
+      "value": "1"
+    }
+  }, [_vm._v("ادانــه")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "2"
+    }
+  }, [_vm._v("براءه")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "3"
+    }
+  }, [_vm._v("ايقاف")])]), _vm._v(" "), (_vm.editJudgementForm.errors.has('type')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.editJudgementForm.errors.get('type'))
+    }
+  }) : _vm._e()]) : _vm._e(), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "date"
+    }
+  }, [_vm._v("تاريخ الحكم:")]), _vm._v(" "), _c('flat-pickr', {
+    attrs: {
+      "name": "date",
+      "config": _vm.config,
+      "placeholder": "اختر تاريخ الحكم"
+    },
+    model: {
+      value: (_vm.editJudgementForm.date),
+      callback: function($$v) {
+        _vm.editJudgementForm.date = $$v
+      },
+      expression: "editJudgementForm.date"
+    }
+  }), _vm._v(" "), (_vm.editJudgementForm.errors.has('date')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.editJudgementForm.errors.get('date'))
+    }
+  }) : _vm._e()], 1), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "body"
+    }
+  }, [_vm._v("صيغة الحكم:")]), _vm._v(" "), _c('textarea', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editJudgementForm.body),
+      expression: "editJudgementForm.body"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "body",
+      "name": "body",
+      "rows": "5"
+    },
+    domProps: {
+      "value": (_vm.editJudgementForm.body)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.editJudgementForm.body = $event.target.value
+      }
+    }
+  }), _vm._v(" "), (_vm.editJudgementForm.errors.has('body')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.editJudgementForm.errors.get('body'))
+    }
+  }) : _vm._e()]), _vm._v(" "), (_vm.issue.type < 4) ? _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "record"
+    }
+  }, [_vm._v("رقم الحصر:")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editJudgementForm.record),
+      expression: "editJudgementForm.record"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "record",
+      "name": "record"
+    },
+    domProps: {
+      "value": (_vm.editJudgementForm.record)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.editJudgementForm.record = $event.target.value
+      }
+    }
+  }), _vm._v(" "), (_vm.editJudgementForm.errors.has('record')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.editJudgementForm.errors.get('record'))
+    }
+  }) : _vm._e()]) : _vm._e(), _vm._v(" "), (_vm.issue.type < 4) ? _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "year"
+    }
+  }, [_vm._v("سنة الحصر:")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editJudgementForm.year),
+      expression: "editJudgementForm.year"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "year",
+      "name": "year"
+    },
+    domProps: {
+      "value": (_vm.editJudgementForm.year)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.editJudgementForm.year = $event.target.value
+      }
+    }
+  }), _vm._v(" "), (_vm.editJudgementForm.errors.has('year')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.editJudgementForm.errors.get('year'))
+    }
+  }) : _vm._e()]) : _vm._e(), _vm._v(" "), _c('div', {
+    staticClass: "form-group heading"
+  }, [_c('button', {
+    staticClass: "button btn-lg btn-success",
+    attrs: {
+      "disabled": _vm.editJudgementForm.errors.any()
+    }
+  }, [_vm._v("تعديل الحكم")])])])])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "modal-header"
+  }, [_c('button', {
+    staticClass: "close",
+    attrs: {
+      "type": "button",
+      "data-dismiss": "modal",
+      "aria-label": "Close"
+    }
+  }, [_c('span', {
+    attrs: {
+      "aria-hidden": "true"
+    }
+  }, [_vm._v("×")])]), _vm._v(" "), _c('span', {
+    staticClass: "form-control-static pull-left"
+  }, [_c('h4', {
+    staticClass: "modal-title",
+    attrs: {
+      "id": "myModalLabel"
+    }
+  }, [_vm._v(" تعديل حكم ")])])])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-783d7676", module.exports)
   }
 }
 

@@ -113,6 +113,11 @@ export default {
         $('#addJudgement').modal('hide');
         toastr.success(response.message);
         this.fetchIssueMeetings();
+      },
+      afterJudgementUpdated(response){
+        $('#editJudgement').modal('hide');
+        toastr.info(response.message);
+        this.fetchIssueMeetings();
       }
     },
     components: {
@@ -130,6 +135,8 @@ export default {
     	eventBus.$on('meetingDelayed', response => this.afterMeetingDelayed(response));
 
       eventBus.$on('judgementAdded', response => this.afterJudgementAdded(response));
+
+      eventBus.$on('judgementUpdated', response => this.afterJudgementUpdated(response));
 
     }
 }

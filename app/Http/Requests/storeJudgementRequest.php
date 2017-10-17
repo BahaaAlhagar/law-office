@@ -24,8 +24,8 @@ class storeJudgementRequest extends FormRequest
     public function rules()
     {
         return [
-        'issue_id' => 'required|numeric|exists:issues,id',
-        'meeting_id' => 'required|numeric|exists:meetings,id',
+        'issue_id' => 'numeric|exists:issues,id',
+        'meeting_id' => 'numeric|exists:meetings,id',
         'person_id' => 'nullable|numeric|exists:people,id',
         'body' => 'required|string|min:5|max:150',
         'date' => 'required|date',
@@ -33,8 +33,8 @@ class storeJudgementRequest extends FormRequest
         'present' => 'required|numeric',
         'active' => 'required|numeric',
         'type' => 'required|numeric',
-        'record' => 'required_with:year|numeric',
-        'year' => 'required_with:record|numeric'
+        'record' => 'nullable|required_with:year|numeric',
+        'year' => 'nullable|required_with:record|numeric'
         ];
     }
 }

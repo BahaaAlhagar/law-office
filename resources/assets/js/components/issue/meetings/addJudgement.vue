@@ -9,14 +9,14 @@
 
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                 <span class="form-control-static pull-left">
-                    <h4 class="modal-title" id="myModalLabel"> اضافة جلـــسة </h4>
+                    <h4 class="modal-title" id="myModalLabel"> اضافة حكم </h4>
                 </span>
               </div>
 
               <div class="modal-body">
 
 
-                <form method="POST" action="/people" @submit.prevent="onMeetingCreate" @keydown="addJudgementForm.errors.clear($event.target.name)"
+                <form method="POST" action="/people" @submit.prevent="onJudgementCreate" @keydown="addJudgementForm.errors.clear($event.target.name)"
                 @change="addJudgementForm.errors.clear($event.target.name)"
                 @input="addJudgementForm.errors.clear($event.target.name)"
                 >
@@ -117,13 +117,12 @@
                 level: this.meeting.level
             }),
             config: {
-                locale: Arabic,
-                firstDayOfWeek: 2
+                locale: Arabic
             }
         };
         },
         methods: {
-        onMeetingCreate() {
+        onJudgementCreate() {
             this.addJudgementForm.post('/meetings/' + this.meeting.id + '/judgements')
                 .then(response => eventBus.$emit('judgementAdded', response));
             }
