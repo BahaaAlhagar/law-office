@@ -78,6 +78,7 @@ export default {
   	  afterMeetingAdded(response){
   	  	this.fetchIssueMeetings();
         $('#addMeeting').modal('hide');
+        $('#addChallenge').modal('hide');
   	  	toastr.success(response.message);
   	  },
       editMeeting(meeting){

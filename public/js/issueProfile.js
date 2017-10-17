@@ -37760,6 +37760,7 @@ exports.default = {
     afterMeetingAdded: function afterMeetingAdded(response) {
       this.fetchIssueMeetings();
       $('#addMeeting').modal('hide');
+      $('#addChallenge').modal('hide');
       toastr.success(response.message);
     },
     editMeeting: function editMeeting(meeting) {
@@ -38907,6 +38908,10 @@ var _addJudgement = __webpack_require__(228);
 
 var _addJudgement2 = _interopRequireDefault(_addJudgement);
 
+var _addChallenge = __webpack_require__(231);
+
+var _addChallenge2 = _interopRequireDefault(_addChallenge);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
@@ -38917,7 +38922,8 @@ exports.default = {
   props: ['issue', 'openents', 'meeting'],
   methods: {},
   components: {
-    addJudgement: _addJudgement2.default
+    addJudgement: _addJudgement2.default,
+    addChallenge: _addChallenge2.default
   }
 };
 
@@ -38930,13 +38936,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "id": "meetingJudgements"
     }
-  }, [(_vm.issue.type > 4) ? _c('span', [_c('button', {
+  }, [(_vm.issue.type > 4) ? _c('span', [_c('span', {
     directives: [{
       name: "show",
       rawName: "v-show",
       value: (!_vm.meeting.judgements.length && !_vm.meeting.child_meetings.length),
       expression: "!meeting.judgements.length && !meeting.child_meetings.length"
-    }],
+    }]
+  }, [_c('button', {
     staticClass: "btn btn-sm btn-primary",
     attrs: {
       "data-toggle": "modal",
@@ -38947,7 +38954,33 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "issue": _vm.issue,
       "meeting": _vm.meeting
     }
-  })], 1) : _vm._e(), _vm._v(" "), (_vm.issue.type < 4) ? _c('span') : _vm._e(), _vm._v(" "), (_vm.issue.type == 4) ? _c('span') : _vm._e()])
+  })], 1), _vm._v(" "), _vm._l((_vm.meeting.judgements), function(judgement) {
+    return _c('ul', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: (_vm.meeting.judgements.length),
+        expression: "meeting.judgements.length"
+      }]
+    }, [_c('li', [_vm._v(_vm._s(judgement.body))]), _vm._v(" "), _c('button', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: (judgement.child_meeting == undefined),
+        expression: "judgement.child_meeting == undefined"
+      }],
+      staticClass: "btn btn-sm btn-dark pull-left",
+      attrs: {
+        "data-toggle": "modal",
+        "data-target": "#addChallenge"
+      }
+    }, [_vm._v(" اضافة طعن ")]), _vm._v(" "), _c('add-challenge', {
+      attrs: {
+        "judgement": judgement,
+        "issue": _vm.issue
+      }
+    })], 1)
+  })], 2) : _vm._e(), _vm._v(" "), (_vm.issue.type < 4) ? _c('span') : _vm._e(), _vm._v(" "), (_vm.issue.type == 4) ? _c('span') : _vm._e()])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -39349,6 +39382,296 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
      require("vue-hot-reload-api").rerender("data-v-44fc880a", module.exports)
+  }
+}
+
+/***/ }),
+/* 231 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(15)(
+  /* script */
+  __webpack_require__(232),
+  /* template */
+  __webpack_require__(233),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "D:\\www\\law-office\\resources\\assets\\js\\components\\issue\\meetings\\addChallenge.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] addChallenge.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-004b7c78", Component.options)
+  } else {
+    hotAPI.reload("data-v-004b7c78", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 232 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _vueFlatpickrComponent = __webpack_require__(123);
+
+var _vueFlatpickrComponent2 = _interopRequireDefault(_vueFlatpickrComponent);
+
+__webpack_require__(124);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Arabic = __webpack_require__(125).ar;
+
+exports.default = {
+    props: ['issue', 'judgement'],
+    data: function data() {
+        return {
+            addChallengeForm: new Form({
+                person_id: this.judgement.person_id,
+                parent_id: '',
+                judgement_id: this.judgement.id,
+                level: '',
+                role: '',
+                date: '',
+                decision: '',
+                notes: ''
+            }),
+            config: {
+                locale: Arabic
+            }
+        };
+    },
+
+    methods: {
+        onChallengeCreate: function onChallengeCreate() {
+            this.addChallengeForm.post(window.location.pathname + '/meetings').then(function (response) {
+                return eventBus.$emit('meetingAdded', response);
+            });
+        }
+    },
+    components: {
+        flatPickr: _vueFlatpickrComponent2.default
+    }
+
+};
+
+/***/ }),
+/* 233 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "modal fade",
+    attrs: {
+      "id": "addChallenge",
+      "role": "dialog",
+      "aria-labelledby": "myModalLabel"
+    }
+  }, [_c('div', {
+    staticClass: "modal-dialog",
+    attrs: {
+      "role": "document"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "modal-body"
+  }, [_c('form', {
+    attrs: {
+      "method": "POST",
+      "action": "/people"
+    },
+    on: {
+      "submit": function($event) {
+        $event.preventDefault();
+        _vm.onChallengeCreate($event)
+      },
+      "keydown": function($event) {
+        _vm.addChallengeForm.errors.clear($event.target.name)
+      },
+      "change": function($event) {
+        _vm.addChallengeForm.errors.clear($event.target.name)
+      },
+      "input": function($event) {
+        _vm.addChallengeForm.errors.clear($event.target.name)
+      }
+    }
+  }, [_c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "level"
+    }
+  }, [_vm._v("نوع الطعن:")]), _vm._v(" "), _c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.addChallengeForm.level),
+      expression: "addChallengeForm.level"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "id": "level",
+      "name": "level"
+    },
+    on: {
+      "change": function($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        });
+        _vm.addChallengeForm.level = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+      }
+    }
+  }, [(_vm.issue.type == 1 && _vm.judgement.level == 1 && _vm.judgement.present == 0) ? _c('option', {
+    attrs: {
+      "value": "2"
+    }
+  }, [_vm._v("مــعـــــارضة")]) : _vm._e(), _vm._v(" "), (_vm.issue.type !== 12) ? _c('option', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.judgement.level <= 2),
+      expression: "judgement.level <= 2"
+    }],
+    attrs: {
+      "value": "3"
+    }
+  }, [_vm._v("استـــئـناف")]) : _vm._e(), _vm._v(" "), (_vm.issue.type == 1 && _vm.judgement.level == 3) ? _c('option', {
+    attrs: {
+      "value": "4"
+    }
+  }, [_vm._v("معارضة استئنافية")]) : _vm._e(), _vm._v(" "), (_vm.judgement.level == 4) ? _c('option', {
+    attrs: {
+      "value": "5"
+    }
+  }, [_vm._v("نـــقـــض")]) : _vm._e()]), _vm._v(" "), (_vm.addChallengeForm.errors.has('level')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.addChallengeForm.errors.get('level'))
+    }
+  }) : _vm._e()]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "date"
+    }
+  }, [_vm._v("التاريخ:")]), _vm._v(" "), _c('flat-pickr', {
+    attrs: {
+      "name": "date",
+      "config": _vm.config,
+      "placeholder": "تاريخ الجلــسة"
+    },
+    model: {
+      value: (_vm.addChallengeForm.date),
+      callback: function($$v) {
+        _vm.addChallengeForm.date = $$v
+      },
+      expression: "addChallengeForm.date"
+    }
+  }), _vm._v(" "), (_vm.addChallengeForm.errors.has('date')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.addChallengeForm.errors.get('date'))
+    }
+  }) : _vm._e()], 1), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "decision"
+    }
+  }, [_vm._v("القرار:")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.addChallengeForm.decision),
+      expression: "addChallengeForm.decision"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "decision",
+      "name": "decision"
+    },
+    domProps: {
+      "value": (_vm.addChallengeForm.decision)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.addChallengeForm.decision = $event.target.value
+      }
+    }
+  }), _vm._v(" "), (_vm.addChallengeForm.errors.has('decision')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.addChallengeForm.errors.get('decision'))
+    }
+  }) : _vm._e()]), _vm._v(" "), _c('div', {
+    staticClass: "form-group heading"
+  }, [_c('button', {
+    staticClass: "button btn-lg btn-success",
+    attrs: {
+      "disabled": _vm.addChallengeForm.errors.any()
+    }
+  }, [_vm._v("اضافة")])])])])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "modal-header"
+  }, [_c('button', {
+    staticClass: "close",
+    attrs: {
+      "type": "button",
+      "data-dismiss": "modal",
+      "aria-label": "Close"
+    }
+  }, [_c('span', {
+    attrs: {
+      "aria-hidden": "true"
+    }
+  }, [_vm._v("×")])]), _vm._v(" "), _c('span', {
+    staticClass: "form-control-static pull-left"
+  }, [_c('h4', {
+    staticClass: "modal-title",
+    attrs: {
+      "id": "myModalLabel"
+    }
+  }, [_vm._v(" اضافة طعن ")])])])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-004b7c78", module.exports)
   }
 }
 

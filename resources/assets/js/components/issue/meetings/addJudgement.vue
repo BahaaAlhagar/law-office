@@ -25,8 +25,8 @@
                         <label for="present" class="label">حالة الحكم:</label>
                         
                         <select id="present" name="present" class="form-control" v-model="addJudgementForm.present">
-                        <option value="1">حــضـــورى</option>
-                        <option value="0">غــيــابــى</option>
+                            <option value="1">حــضـــورى</option>
+                            <option value="0">غــيــابــى</option>
                         </select>
 
                         <span class="alert-danger" v-if="addJudgementForm.errors.has('present')" v-text="addJudgementForm.errors.get('present')"></span>
@@ -36,9 +36,9 @@
                         <label for="type" class="label">نوع الحكم:</label>
                         
                         <select id="type" name="type" class="form-control" v-model="addJudgementForm.type">
-                        <option value="1">ادانــه</option>
-                        <option value="2">براءه</option>
-                        <option value="3">ايقاف</option>
+                            <option value="1">ادانــه</option>
+                            <option value="2">براءه</option>
+                            <option value="3">ايقاف</option>
                         </select>
 
                         <span class="alert-danger" v-if="addJudgementForm.errors.has('type')" v-text="addJudgementForm.errors.get('type')"></span>
