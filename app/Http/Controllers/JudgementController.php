@@ -51,6 +51,13 @@ class JudgementController extends Controller
      */
     public function destroy(Judgement $judgement)
     {
-        //
+        if(!is_null($judgement->childMeeting))
+        {
+            return ['message' => 'لا يمكنك حذف هذا الحكم لاحتواءه على طعون'];
+        }
+
+        $judgement->delete();
+
+        return ['message' => 'تم حذف الحكم بنجاح'];
     }
 }

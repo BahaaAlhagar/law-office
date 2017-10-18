@@ -118,6 +118,10 @@ export default {
         $('#editJudgement').modal('hide');
         toastr.info(response.message);
         this.fetchIssueMeetings();
+      },
+      afterJudgementDeleted(response){
+        toastr.warning(response.data.message);
+        this.fetchIssueMeetings();
       }
     },
     components: {
@@ -137,6 +141,8 @@ export default {
       eventBus.$on('judgementAdded', response => this.afterJudgementAdded(response));
 
       eventBus.$on('judgementUpdated', response => this.afterJudgementUpdated(response));
+
+      eventBus.$on('judgementDeleted', response => this.afterJudgementDeleted(response));
 
     }
 }
