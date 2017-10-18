@@ -116,6 +116,7 @@ export default {
       },
       afterJudgementUpdated(response){
         $('#editJudgement').modal('hide');
+        $('#addAnnouncement').modal('hide');
         toastr.info(response.message);
         this.fetchIssueMeetings();
       },

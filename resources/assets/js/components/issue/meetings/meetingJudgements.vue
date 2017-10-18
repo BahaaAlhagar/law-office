@@ -14,12 +14,25 @@
           <ul v-if="meeting.judgements.length" v-for="judgement in meeting.judgements">
             <li>{{ judgement.body }}</li>
 
-            <button v-if="judgement.child_meeting == null" class="btn btn-sm btn-dark pull-left" 
+            <!-- add challenge if the judgement is present and doesnt have challenge(child meeting) -->
+            <button v-if="judgement.child_meeting == null && judgement.present" class="btn btn-sm btn-dark pull-left" 
             data-toggle="modal" 
             data-target="#addChallenge"> اضافة طعن </button>
+
+            <!-- add announcement if judgement is not present and doesnt have challenge(child meeting) -->
+            <button v-if="judgement.child_meeting == null && !judgement.present" class="btn btn-sm btn-success pull-left" 
+            @click="addAnnouncement(judgement)"> اضافة اعلان </button>
+
+            <!-- add announcement component if judgement is not present and doesnt have challenge(child meeting) -->
+            <add-announcement v-if="judgement.child_meeting == null && !judgement.present"></add-announcement>
+
+            <!-- delete judgement if doesnt have challenge(child meeting) -->
             <button v-if="judgement.child_meeting == null" class="btn btn-sm btn-danger pull-left" @click="deleteJudgement(judgement)"><i class="fa fa-times" aria-hidden="true"></i></button>
+
+            <!-- edit judgement -->
             <button class="btn btn-sm btn-info pull-left" @click="editJudgement(judgement)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
 
+            <!-- add challenge component -->
             <add-challenge :judgement="judgement" :issue="issue"></add-challenge>
           </ul>
 
@@ -43,6 +56,7 @@
 import addJudgement from './addJudgement';
 import editJudgement from './editJudgement';
 import addChallenge from './addChallenge';
+import addAnnouncement from './addAnnouncement';
 
 export default {
   data() {
@@ -61,12 +75,17 @@ export default {
             axios.delete('/judgements/' + judgement.id)
                 .then(response => eventBus.$emit('judgementDeleted', response));
           }
+      },
+      addAnnouncement(judgement){
+        eventBus.$emit('addAnnouncement', judgement);
+        $('#addAnnouncement').modal('show');
       }
     },
     components: {
       addJudgement,
       editJudgement,
-      addChallenge
+      addChallenge,
+      addAnnouncement
     }
 }
 
