@@ -26,11 +26,13 @@
                         
                         <select id="level" name="level" class="form-control" v-model="addChallengeForm.level">
                             <option v-if="issue.type == 1 && judgement.level == 1 && judgement.present == 0" value="2">مــعـــــارضة</option>
-                            <option v-if="issue.type !== 12" 
-                            v-show="judgement.level <= 2" 
+
+                            <option v-if="issue.type !== 12 && judgement.level <= 2" 
                             value="3">استـــئـناف</option>
+
                             <option v-if="issue.type == 1 && judgement.level == 3" value="4">معارضة استئنافية</option>
-                            <option v-if="judgement.level == 4" value="5">نـــقـــض</option>
+
+                            <option v-if="judgement.level >= 3" value="5">نـــقـــض</option>
                         </select>
 
                         <span class="alert-danger" v-if="addChallengeForm.errors.has('level')" v-text="addChallengeForm.errors.get('level')"></span>

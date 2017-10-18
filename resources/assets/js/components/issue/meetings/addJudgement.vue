@@ -21,7 +21,7 @@
                 @input="addJudgementForm.errors.clear($event.target.name)"
                 >
                     
-                    <div class="form-group">
+                    <div v-if="issue.type > 4 && meeting.level == 1" class="form-group">
                         <label for="present" class="label">حالة الحكم:</label>
                         
                         <select id="present" name="present" class="form-control" v-model="addJudgementForm.present">
@@ -31,6 +31,18 @@
 
                         <span class="alert-danger" v-if="addJudgementForm.errors.has('present')" v-text="addJudgementForm.errors.get('present')"></span>
                     </div>
+
+                    <div v-else-if="issue.type < 4" class="form-group">
+                        <label for="present" class="label">حالة الحكم:</label>
+                        
+                        <select id="present" name="present" class="form-control" v-model="addJudgementForm.present">
+                            <option value="1">حــضـــورى</option>
+                            <option value="0">غــيــابــى</option>
+                        </select>
+
+                        <span class="alert-danger" v-if="addJudgementForm.errors.has('present')" v-text="addJudgementForm.errors.get('present')"></span>
+                    </div>
+                    
 
                     <div v-if="issue.type < 4" class="form-group">
                         <label for="type" class="label">نوع الحكم:</label>
@@ -108,7 +120,7 @@
                 issue_id: this.issue.id,
                 person_id: '',
                 active: 1,
-                present: '',
+                present: 1,
                 type: 1,
                 record: '',
                 year: '',

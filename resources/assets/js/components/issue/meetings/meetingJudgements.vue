@@ -1,8 +1,10 @@
 <template>
 	<span id="meetingJudgements">
         <!-- meeting judgements -->
-        <!-- cevil issues -->
+        
         <edit-judgement :issue="issue"></edit-judgement>
+
+        <!-- cevil issues -->
         <span v-if="issue.type > 4">
           <span v-if="!meeting.judgements.length && !meeting.child_meetings.length">
             <button class="btn btn-sm btn-primary" 
@@ -15,7 +17,7 @@
             <li>{{ judgement.body }}</li>
 
             <!-- add challenge if the judgement is present and doesnt have challenge(child meeting) -->
-            <button v-if="judgement.child_meeting == null && judgement.present" class="btn btn-sm btn-dark pull-left" 
+            <button v-if="judgement.child_meeting == null && judgement.present && judgement.level < 5" class="btn btn-sm btn-dark pull-left" 
             data-toggle="modal" 
             data-target="#addChallenge"> اضافة طعن </button>
 
@@ -23,8 +25,8 @@
             <button v-if="judgement.child_meeting == null && !judgement.present" class="btn btn-sm btn-success pull-left" 
             @click="addAnnouncement(judgement)"> اضافة اعلان </button>
 
-            <!-- add announcement component if judgement is not present and doesnt have challenge(child meeting) -->
-            <add-announcement v-if="judgement.child_meeting == null && !judgement.present"></add-announcement>
+            <!-- add announcement component if judgement is not present and doesnt have challenge(child meeting) and meeting level is 1 -->
+            <add-announcement v-if="judgement.child_meeting == null && !judgement.present && meeting.level == 1"></add-announcement>
 
             <!-- delete judgement if doesnt have challenge(child meeting) -->
             <button v-if="judgement.child_meeting == null" class="btn btn-sm btn-danger pull-left" @click="deleteJudgement(judgement)"><i class="fa fa-times" aria-hidden="true"></i></button>
@@ -32,8 +34,8 @@
             <!-- edit judgement -->
             <button class="btn btn-sm btn-info pull-left" @click="editJudgement(judgement)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
 
-            <!-- add challenge component -->
-            <add-challenge :judgement="judgement" :issue="issue"></add-challenge>
+            <!-- add challenge component if judgement doesnt have a child meeting -->
+            <add-challenge v-if="judgement.child_meeting == null && judgement.level < 5" :judgement="judgement" :issue="issue"></add-challenge>
           </ul>
 
         </span>

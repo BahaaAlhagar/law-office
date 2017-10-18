@@ -21,7 +21,7 @@
                 @input="editJudgementForm.errors.clear($event.target.name)"
                 >
                     
-                    <div class="form-group">
+                    <div v-if="issue.type > 4 && judgement.level == 1 && judgement.child_meeting == null" class="form-group">
                         <label for="present" class="label">حالة الحكم:</label>
                         
                         <select id="present" name="present" class="form-control" v-model="editJudgementForm.present">
@@ -30,6 +30,17 @@
                         </select>
 
                         <span class="alert-danger" v-if="editJudgementForm.errors.has('present')" v-text="editJudgementForm.errors.get('present')"></span>
+                    </div>
+
+                    <div v-else-if="issue.type < 4" class="form-group">
+                        <label for="present" class="label">حالة الحكم:</label>
+                        
+                        <select id="present" name="present" class="form-control" v-model="addJudgementForm.present">
+                            <option value="1">حــضـــورى</option>
+                            <option value="0">غــيــابــى</option>
+                        </select>
+
+                        <span class="alert-danger" v-if="addJudgementForm.errors.has('present')" v-text="addJudgementForm.errors.get('present')"></span>
                     </div>
 
                     <div v-if="issue.type < 4" class="form-group">
@@ -117,12 +128,12 @@
             config: {
                 locale: Arabic
             },
-            judgement_id: ''
+            judgement: []
         };
         },
         methods: {
         onJudgementUpdate() {
-            this.editJudgementForm.patch('/judgements/' + this.judgement_id)
+            this.editJudgementForm.patch('/judgements/' + this.judgement.id)
                 .then(response => eventBus.$emit('judgementUpdated', response));
             },
         editJudgementModal(judgement){
@@ -134,7 +145,7 @@
             this.editJudgementForm.date = judgement.date;
             this.editJudgementForm.body = judgement.body;
             this.editJudgementForm.level = judgement.level;
-            this.judgement_id = judgement.id;
+            this.judgement = judgement;
             }
         },
         components: {

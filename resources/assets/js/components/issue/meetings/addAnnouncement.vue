@@ -9,7 +9,7 @@
 
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                 <span class="form-control-static pull-left">
-                    <h4 class="modal-title" id="myModalLabel"> اضافة اعلان </h4>
+                    <h4 class="modal-title" id="myModalLabel"> اضافة اعلان بالحكم </h4>
                 </span>
               </div>
 
@@ -35,7 +35,7 @@
 
 
                     <div class="form-group heading">
-                        <button class="button btn-lg btn-success" :disabled="addAnnouncementForm.errors.any()">اضافة اعلان</button>
+                        <button class="button btn-lg btn-success" :disabled="addAnnouncementForm.errors.any()">اضافة اعلان بالحكم</button>
                     </div>
                 </form>
 

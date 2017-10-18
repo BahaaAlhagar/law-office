@@ -38953,7 +38953,7 @@ exports.default = {
                 issue_id: this.issue.id,
                 person_id: '',
                 active: 1,
-                present: '',
+                present: 1,
                 type: 1,
                 record: '',
                 year: '',
@@ -39021,7 +39021,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.addJudgementForm.errors.clear($event.target.name)
       }
     }
-  }, [_c('div', {
+  }, [(_vm.issue.type > 4 && _vm.meeting.level == 1) ? _c('div', {
     staticClass: "form-group"
   }, [_c('label', {
     staticClass: "label",
@@ -39064,7 +39064,50 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     domProps: {
       "textContent": _vm._s(_vm.addJudgementForm.errors.get('present'))
     }
-  }) : _vm._e()]), _vm._v(" "), (_vm.issue.type < 4) ? _c('div', {
+  }) : _vm._e()]) : (_vm.issue.type < 4) ? _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "present"
+    }
+  }, [_vm._v("حالة الحكم:")]), _vm._v(" "), _c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.addJudgementForm.present),
+      expression: "addJudgementForm.present"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "id": "present",
+      "name": "present"
+    },
+    on: {
+      "change": function($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        });
+        _vm.addJudgementForm.present = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+      }
+    }
+  }, [_c('option', {
+    attrs: {
+      "value": "1"
+    }
+  }, [_vm._v("حــضـــورى")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "0"
+    }
+  }, [_vm._v("غــيــابــى")])]), _vm._v(" "), (_vm.addJudgementForm.errors.has('present')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.addJudgementForm.errors.get('present'))
+    }
+  }) : _vm._e()]) : _vm._e(), _vm._v(" "), (_vm.issue.type < 4) ? _c('div', {
     staticClass: "form-group"
   }, [_c('label', {
     staticClass: "label",
@@ -39356,13 +39399,13 @@ exports.default = {
             config: {
                 locale: Arabic
             },
-            judgement_id: ''
+            judgement: []
         };
     },
 
     methods: {
         onJudgementUpdate: function onJudgementUpdate() {
-            this.editJudgementForm.patch('/judgements/' + this.judgement_id).then(function (response) {
+            this.editJudgementForm.patch('/judgements/' + this.judgement.id).then(function (response) {
                 return eventBus.$emit('judgementUpdated', response);
             });
         },
@@ -39375,7 +39418,7 @@ exports.default = {
             this.editJudgementForm.date = judgement.date;
             this.editJudgementForm.body = judgement.body;
             this.editJudgementForm.level = judgement.level;
-            this.judgement_id = judgement.id;
+            this.judgement = judgement;
         }
     },
     components: {
@@ -39431,7 +39474,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.editJudgementForm.errors.clear($event.target.name)
       }
     }
-  }, [_c('div', {
+  }, [(_vm.issue.type > 4 && _vm.judgement.level == 1 && _vm.judgement.child_meeting == null) ? _c('div', {
     staticClass: "form-group"
   }, [_c('label', {
     staticClass: "label",
@@ -39474,7 +39517,50 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     domProps: {
       "textContent": _vm._s(_vm.editJudgementForm.errors.get('present'))
     }
-  }) : _vm._e()]), _vm._v(" "), (_vm.issue.type < 4) ? _c('div', {
+  }) : _vm._e()]) : (_vm.issue.type < 4) ? _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "present"
+    }
+  }, [_vm._v("حالة الحكم:")]), _vm._v(" "), _c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.addJudgementForm.present),
+      expression: "addJudgementForm.present"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "id": "present",
+      "name": "present"
+    },
+    on: {
+      "change": function($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        });
+        _vm.addJudgementForm.present = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+      }
+    }
+  }, [_c('option', {
+    attrs: {
+      "value": "1"
+    }
+  }, [_vm._v("حــضـــورى")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "0"
+    }
+  }, [_vm._v("غــيــابــى")])]), _vm._v(" "), (_vm.addJudgementForm.errors.has('present')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.addJudgementForm.errors.get('present'))
+    }
+  }) : _vm._e()]) : _vm._e(), _vm._v(" "), (_vm.issue.type < 4) ? _c('div', {
     staticClass: "form-group"
   }, [_c('label', {
     staticClass: "label",
@@ -39857,13 +39943,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "value": "2"
     }
-  }, [_vm._v("مــعـــــارضة")]) : _vm._e(), _vm._v(" "), (_vm.issue.type !== 12) ? _c('option', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.judgement.level <= 2),
-      expression: "judgement.level <= 2"
-    }],
+  }, [_vm._v("مــعـــــارضة")]) : _vm._e(), _vm._v(" "), (_vm.issue.type !== 12 && _vm.judgement.level <= 2) ? _c('option', {
     attrs: {
       "value": "3"
     }
@@ -39871,7 +39951,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "value": "4"
     }
-  }, [_vm._v("معارضة استئنافية")]) : _vm._e(), _vm._v(" "), (_vm.judgement.level == 4) ? _c('option', {
+  }, [_vm._v("معارضة استئنافية")]) : _vm._e(), _vm._v(" "), (_vm.judgement.level >= 3) ? _c('option', {
     attrs: {
       "value": "5"
     }
@@ -40003,7 +40083,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "meeting": _vm.meeting
     }
   })], 1) : _vm._e(), _vm._v(" "), _vm._l((_vm.meeting.judgements), function(judgement) {
-    return (_vm.meeting.judgements.length) ? _c('ul', [_c('li', [_vm._v(_vm._s(judgement.body))]), _vm._v(" "), (judgement.child_meeting == null && judgement.present) ? _c('button', {
+    return (_vm.meeting.judgements.length) ? _c('ul', [_c('li', [_vm._v(_vm._s(judgement.body))]), _vm._v(" "), (judgement.child_meeting == null && judgement.present && judgement.level < 5) ? _c('button', {
       staticClass: "btn btn-sm btn-dark pull-left",
       attrs: {
         "data-toggle": "modal",
@@ -40016,7 +40096,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           _vm.addAnnouncement(judgement)
         }
       }
-    }, [_vm._v(" اضافة اعلان ")]) : _vm._e(), _vm._v(" "), (judgement.child_meeting == null && !judgement.present) ? _c('add-announcement') : _vm._e(), _vm._v(" "), (judgement.child_meeting == null) ? _c('button', {
+    }, [_vm._v(" اضافة اعلان ")]) : _vm._e(), _vm._v(" "), (judgement.child_meeting == null && !judgement.present && _vm.meeting.level == 1) ? _c('add-announcement') : _vm._e(), _vm._v(" "), (judgement.child_meeting == null) ? _c('button', {
       staticClass: "btn btn-sm btn-danger pull-left",
       on: {
         "click": function($event) {
@@ -40040,12 +40120,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       attrs: {
         "aria-hidden": "true"
       }
-    })]), _vm._v(" "), _c('add-challenge', {
+    })]), _vm._v(" "), (judgement.child_meeting == null && judgement.level < 5) ? _c('add-challenge', {
       attrs: {
         "judgement": judgement,
         "issue": _vm.issue
       }
-    })], 1) : _vm._e()
+    }) : _vm._e()], 1) : _vm._e()
   })], 2) : _vm._e(), _vm._v(" "), (_vm.issue.type < 4) ? _c('span') : _vm._e(), _vm._v(" "), (_vm.issue.type == 4) ? _c('span') : _vm._e()], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
@@ -40321,7 +40401,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "disabled": _vm.addAnnouncementForm.errors.any()
     }
-  }, [_vm._v("اضافة اعلان")])])])])])])])
+  }, [_vm._v("اضافة اعلان بالحكم")])])])])])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "modal-header"
@@ -40343,7 +40423,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "id": "myModalLabel"
     }
-  }, [_vm._v(" اضافة اعلان ")])])])
+  }, [_vm._v(" اضافة اعلان بالحكم ")])])])
 }]}
 module.exports.render._withStripped = true
 if (false) {
