@@ -39999,7 +39999,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "data-toggle": "modal",
         "data-target": "#addChallenge"
       }
-    }, [_vm._v(" اضافة طعن ")]) : _vm._e(), _vm._v(" "), _c('button', {
+    }, [_vm._v(" اضافة طعن ")]) : _vm._e(), _vm._v(" "), (judgement.child_meeting == null) ? _c('button', {
       staticClass: "btn btn-sm btn-danger pull-left",
       on: {
         "click": function($event) {
@@ -40011,7 +40011,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       attrs: {
         "aria-hidden": "true"
       }
-    })]), _vm._v(" "), _c('button', {
+    })]) : _vm._e(), _vm._v(" "), _c('button', {
       staticClass: "btn btn-sm btn-info pull-left",
       on: {
         "click": function($event) {

@@ -71,6 +71,11 @@ class MeetingController extends Controller
      */
     public function destroy(Meeting $meeting)
     {
+        if(!is_null($meeting->childMeetings()->first()) || !is_null($meeting->judgements()->first()))
+        {
+            return ['message' => 'لا يمكنم حذف هذه الجلسة لاحتوائها على تأجيلات او احكام'];
+        }
+
         $meeting->delete();
 
         return ['message' => 'تم حذف الجلسة'];

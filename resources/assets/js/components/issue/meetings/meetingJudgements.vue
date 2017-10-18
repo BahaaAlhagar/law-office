@@ -17,7 +17,7 @@
             <button v-if="judgement.child_meeting == null" class="btn btn-sm btn-dark pull-left" 
             data-toggle="modal" 
             data-target="#addChallenge"> اضافة طعن </button>
-            <button class="btn btn-sm btn-danger pull-left" @click="deleteJudgement(judgement)"><i class="fa fa-times" aria-hidden="true"></i></button>
+            <button v-if="judgement.child_meeting == null" class="btn btn-sm btn-danger pull-left" @click="deleteJudgement(judgement)"><i class="fa fa-times" aria-hidden="true"></i></button>
             <button class="btn btn-sm btn-info pull-left" @click="editJudgement(judgement)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
 
             <add-challenge :judgement="judgement" :issue="issue"></add-challenge>
@@ -57,7 +57,7 @@ export default {
       },
       deleteJudgement(judgement){
         if(confirm('هل انت متأكد من حذف هذا الحكم - لن تتمكن من استرجاعه فيما بعد'))
-        {
+          {
             axios.delete('/judgements/' + judgement.id)
                 .then(response => eventBus.$emit('judgementDeleted', response));
           }
