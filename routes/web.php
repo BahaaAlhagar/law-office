@@ -19,6 +19,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+
+
 route::get('/filtered-ppl/{filter?}', 'PersonController@index');
 
 route::get('/people/{person}/restore', 'PersonController@restore');
@@ -29,11 +31,14 @@ route::get('people/{person}/files', 'PersonController@filesIndex');
 
 route::resource('people', 'PersonController', ['except' => ['create', 'edit']]);
 
+
+
 route::get('contract/{type?}', 'ContractController@index');
 
 route::get('/contracts/{contract}/restore', 'ContractController@restore');
 
 route::resource('contracts', 'ContractController', ['except' => ['create', 'edit']]);
+
 
 
 route::post('/issues/{issue}/openents', 'IssueController@attachOpenent');
@@ -42,27 +47,39 @@ route::patch('/issues/{issue}/openents', 'IssueController@updateOpenent');
 
 route::delete('/issues/{issue}/openents/{openent}', 'IssueController@deleteOpenent');
 
+
+
 route::post('issues/{issue}', 'issueController@storeFile');
 
 route::get('issues/{issue}/files', 'issueController@filesIndex');
+
+route::resource('files', 'FileController', ['only' => ['update', 'destroy']]);
+
+
 
 route::get('issue/{type?}', 'IssueController@index');
 
 route::get('/issues/{issue}/restore', 'IssueController@restore');
 
 
+
 route::post('meetings/{meeting}/judgements', 'JudgementController@store');
 
 route::resource('judgements', 'JudgementController', ['only' => ['update', 'destroy']]);
+
+
 
 route::resource('issues/{issue}/meetings', 'MeetingController', ['only' => ['index', 'store']]);
 
 route::resource('meetings', 'MeetingController', ['only' => ['update', 'destroy']]);
 
+
+
 route::resource('issues', 'IssueController', ['except' => ['create', 'edit']]);
+
+
 
 route::get('todo/{completed?}', 'TodoController@index');
 
 route::resource('todos', 'TodoController', ['except' => ['create', 'edit', 'show']]);
 
-route::resource('files', 'FileController', ['only' => ['update', 'destroy']]);

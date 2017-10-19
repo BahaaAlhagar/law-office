@@ -1,11 +1,12 @@
 <template>
 	<span id="meetingJudgements">
         <!-- meeting judgements -->
-        
+        <!-- edit judgement modal out of type spans because it will be used by calling an event -->
         <edit-judgement :issue="issue"></edit-judgement>
 
         <!-- cevil issues -->
         <span v-if="issue.type > 4">
+        
           <span v-if="!meeting.judgements.length && !meeting.child_meetings.length">
             <button class="btn btn-sm btn-primary" 
             data-toggle="modal" 
@@ -42,7 +43,17 @@
 
         <!-- criminal issues -->
         <span v-if="issue.type < 4">
-          
+          <!-- add judgement component -->
+          <add-judgement :issue="issue" :meeting="meeting"></add-judgement>
+
+          <ul v-if="meeting.level == 1" v-for="openent in openents">
+            <li v-if="statusCheck(openent)">
+              {{ echoName(openent) }}
+              <button v-if=""
+              class="btn btn-sm btn-primary" 
+              @onClick=""> اضافة حكم </button>
+            </li>
+          </ul>
         </span>
 
         <!-- executive issues -->
@@ -81,6 +92,13 @@ export default {
       addAnnouncement(judgement){
         eventBus.$emit('addAnnouncement', judgement);
         $('#addAnnouncement').modal('show');
+      },
+      statusCheck(openent){
+        if(openent.pivot.person_type == 1)
+          return true;
+      },
+      echoName(openent){
+        return openent.name.slice(0, 12);
       }
     },
     components: {

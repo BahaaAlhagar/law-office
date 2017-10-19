@@ -20,7 +20,7 @@
                     </tr>
                     <tr v-for="openent in openents" :key="openent.id">
                         <td>
-                        {{ openent.name }}
+                        {{ openent.name }} <span class="green">{{ clientCheck(openent) }}</span>
                         <button class="btn btn-sm btn-danger pull-left" @click="deleteOpenent(openent)"><i class="fa fa-times" aria-hidden="true"></i></button>
                         <button class="btn btn-sm btn-info pull-left" @click="editOpenent(openent)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                         </td>
@@ -96,6 +96,11 @@ export default{
             case 1: return "ت . ع"; break;
             case 2: return "ت . خ"; break;
             case 3: return "ع . و"; break;
+          }
+        },
+        clientCheck(openent){
+          if(openent.is_client){
+            return '(موكل)';
           }
         }
       },

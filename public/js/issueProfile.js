@@ -427,7 +427,7 @@ module.exports = function (it) {
 
 var global = __webpack_require__(1);
 var core = __webpack_require__(3);
-var ctx = __webpack_require__(11);
+var ctx = __webpack_require__(12);
 var hide = __webpack_require__(6);
 var PROTOTYPE = 'prototype';
 
@@ -552,63 +552,6 @@ module.exports = {};
 
 /***/ }),
 /* 11 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// optional / simple context binding
-var aFunction = __webpack_require__(12);
-module.exports = function (fn, that, length) {
-  aFunction(fn);
-  if (that === undefined) return fn;
-  switch (length) {
-    case 1: return function (a) {
-      return fn.call(that, a);
-    };
-    case 2: return function (a, b) {
-      return fn.call(that, a, b);
-    };
-    case 3: return function (a, b, c) {
-      return fn.call(that, a, b, c);
-    };
-  }
-  return function (/* ...args */) {
-    return fn.apply(that, arguments);
-  };
-};
-
-
-/***/ }),
-/* 12 */
-/***/ (function(module, exports) {
-
-module.exports = function (it) {
-  if (typeof it != 'function') throw TypeError(it + ' is not a function!');
-  return it;
-};
-
-
-/***/ }),
-/* 13 */
-/***/ (function(module, exports) {
-
-var hasOwnProperty = {}.hasOwnProperty;
-module.exports = function (it, key) {
-  return hasOwnProperty.call(it, key);
-};
-
-
-/***/ }),
-/* 14 */
-/***/ (function(module, exports) {
-
-var toString = {}.toString;
-
-module.exports = function (it) {
-  return toString.call(it).slice(8, -1);
-};
-
-
-/***/ }),
-/* 15 */
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -705,6 +648,63 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// optional / simple context binding
+var aFunction = __webpack_require__(13);
+module.exports = function (fn, that, length) {
+  aFunction(fn);
+  if (that === undefined) return fn;
+  switch (length) {
+    case 1: return function (a) {
+      return fn.call(that, a);
+    };
+    case 2: return function (a, b) {
+      return fn.call(that, a, b);
+    };
+    case 3: return function (a, b, c) {
+      return fn.call(that, a, b, c);
+    };
+  }
+  return function (/* ...args */) {
+    return fn.apply(that, arguments);
+  };
+};
+
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports) {
+
+module.exports = function (it) {
+  if (typeof it != 'function') throw TypeError(it + ' is not a function!');
+  return it;
+};
+
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports) {
+
+var hasOwnProperty = {}.hasOwnProperty;
+module.exports = function (it, key) {
+  return hasOwnProperty.call(it, key);
+};
+
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports) {
+
+var toString = {}.toString;
+
+module.exports = function (it) {
+  return toString.call(it).slice(8, -1);
+};
+
+
+/***/ }),
 /* 16 */
 /***/ (function(module, exports) {
 
@@ -781,7 +781,7 @@ module.exports = function (key) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var def = __webpack_require__(8).f;
-var has = __webpack_require__(13);
+var has = __webpack_require__(14);
 var TAG = __webpack_require__(2)('toStringTag');
 
 module.exports = function (it, tag, stat) {
@@ -796,7 +796,7 @@ module.exports = function (it, tag, stat) {
 "use strict";
 
 // 25.4.1.5 NewPromiseCapability(C)
-var aFunction = __webpack_require__(12);
+var aFunction = __webpack_require__(13);
 
 function PromiseCapability(C) {
   var resolve, reject;
@@ -924,7 +924,7 @@ var LIBRARY = __webpack_require__(26);
 var $export = __webpack_require__(5);
 var redefine = __webpack_require__(56);
 var hide = __webpack_require__(6);
-var has = __webpack_require__(13);
+var has = __webpack_require__(14);
 var Iterators = __webpack_require__(10);
 var $iterCreate = __webpack_require__(57);
 var setToStringTag = __webpack_require__(22);
@@ -1094,7 +1094,7 @@ module.exports = function (it) {
 /***/ (function(module, exports, __webpack_require__) {
 
 // getting tag from 19.1.3.6 Object.prototype.toString()
-var cof = __webpack_require__(14);
+var cof = __webpack_require__(15);
 var TAG = __webpack_require__(2)('toStringTag');
 // ES3 wrong here
 var ARG = cof(function () { return arguments; }()) == 'Arguments';
@@ -1124,7 +1124,7 @@ module.exports = function (it) {
 
 // 7.3.20 SpeciesConstructor(O, defaultConstructor)
 var anObject = __webpack_require__(4);
-var aFunction = __webpack_require__(12);
+var aFunction = __webpack_require__(13);
 var SPECIES = __webpack_require__(2)('species');
 module.exports = function (O, D) {
   var C = anObject(O).constructor;
@@ -1137,7 +1137,7 @@ module.exports = function (O, D) {
 /* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var ctx = __webpack_require__(11);
+var ctx = __webpack_require__(12);
 var invoke = __webpack_require__(75);
 var html = __webpack_require__(33);
 var cel = __webpack_require__(19);
@@ -1180,7 +1180,7 @@ if (!setTask || !clearTask) {
     delete queue[id];
   };
   // Node.js 0.8-
-  if (__webpack_require__(14)(process) == 'process') {
+  if (__webpack_require__(15)(process) == 'process') {
     defer = function (id) {
       process.nextTick(ctx(run, id, 1));
     };
@@ -12142,7 +12142,7 @@ module.exports = __webpack_require__(7) ? Object.defineProperties : function def
 /* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var has = __webpack_require__(13);
+var has = __webpack_require__(14);
 var toIObject = __webpack_require__(20);
 var arrayIndexOf = __webpack_require__(62)(false);
 var IE_PROTO = __webpack_require__(21)('IE_PROTO');
@@ -12166,7 +12166,7 @@ module.exports = function (object, names) {
 /***/ (function(module, exports, __webpack_require__) {
 
 // fallback for non-array-like ES3 and non-enumerable old V8 strings
-var cof = __webpack_require__(14);
+var cof = __webpack_require__(15);
 // eslint-disable-next-line no-prototype-builtins
 module.exports = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
   return cof(it) == 'String' ? it.split('') : Object(it);
@@ -12220,7 +12220,7 @@ module.exports = function (index, length) {
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.9 / 15.2.3.2 Object.getPrototypeOf(O)
-var has = __webpack_require__(13);
+var has = __webpack_require__(14);
 var toObject = __webpack_require__(34);
 var IE_PROTO = __webpack_require__(21)('IE_PROTO');
 var ObjectProto = Object.prototype;
@@ -12324,11 +12324,11 @@ module.exports = function (done, value) {
 
 var LIBRARY = __webpack_require__(26);
 var global = __webpack_require__(1);
-var ctx = __webpack_require__(11);
+var ctx = __webpack_require__(12);
 var classof = __webpack_require__(35);
 var $export = __webpack_require__(5);
 var isObject = __webpack_require__(9);
-var aFunction = __webpack_require__(12);
+var aFunction = __webpack_require__(13);
 var anInstance = __webpack_require__(70);
 var forOf = __webpack_require__(71);
 var speciesConstructor = __webpack_require__(36);
@@ -12618,7 +12618,7 @@ module.exports = function (it, Constructor, name, forbiddenField) {
 /* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var ctx = __webpack_require__(11);
+var ctx = __webpack_require__(12);
 var call = __webpack_require__(72);
 var isArrayIter = __webpack_require__(73);
 var anObject = __webpack_require__(4);
@@ -12722,7 +12722,7 @@ var macrotask = __webpack_require__(37).set;
 var Observer = global.MutationObserver || global.WebKitMutationObserver;
 var process = global.process;
 var Promise = global.Promise;
-var isNode = __webpack_require__(14)(process) == 'process';
+var isNode = __webpack_require__(15)(process) == 'process';
 
 module.exports = function () {
   var head, last, notify;
@@ -28827,16 +28827,13 @@ function applyToTag (styleElement, obj) {
 
 
 /***/ }),
-/* 118 */,
-/* 119 */,
-/* 120 */,
-/* 121 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 !function(t,e){ true?module.exports=e(__webpack_require__(137)):"function"==typeof define&&define.amd?define("VueFlatpickr",["flatpickr"],e):"object"==typeof exports?exports.VueFlatpickr=e(require("flatpickr")):t.VueFlatpickr=e(t.flatpickr)}(this,function(t){return function(t){function e(r){if(n[r])return n[r].exports;var i=n[r]={i:r,l:!1,exports:{}};return t[r].call(i.exports,i,i.exports,e),i.l=!0,i.exports}var n={};return e.m=t,e.c=n,e.d=function(t,n,r){e.o(t,n)||Object.defineProperty(t,n,{configurable:!1,enumerable:!0,get:r})},e.n=function(t){var n=t&&t.__esModule?function(){return t.default}:function(){return t};return e.d(n,"a",n),n},e.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},e.p="",e(e.s=0)}([function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),n.d(e,"flatPickrPlugin",function(){return i});var r=n(1);n.d(e,"component",function(){return r.a});var i=function(t,e){var n="flat-pickr";"string"==typeof e&&(n=e),t.component(n,r.a)};r.a.install=i,e.default=r.a},function(t,e,n){"use strict";var r=n(3),i=n(5),o=n(2),a=o(r.a,i.a,null,null,null);e.a=a.exports},function(t,e){t.exports=function(t,e,n,r,i){var o,a=t=t||{},u=typeof t.default;"object"!==u&&"function"!==u||(o=t,a=t.default);var s="function"==typeof a?a.options:a;e&&(s.render=e.render,s.staticRenderFns=e.staticRenderFns),r&&(s._scopeId=r);var l;if(i?(l=function(t){t=t||this.$vnode&&this.$vnode.ssrContext||this.parent&&this.parent.$vnode&&this.parent.$vnode.ssrContext,t||"undefined"==typeof __VUE_SSR_CONTEXT__||(t=__VUE_SSR_CONTEXT__),n&&n.call(this,t),t&&t._registeredComponents&&t._registeredComponents.add(i)},s._ssrRegister=l):n&&(l=n),l){var f=s.functional,c=f?s.render:s.beforeCreate;f?s.render=function(t,e){return l.call(e),c(t,e)}:s.beforeCreate=c?[].concat(c,l):[l]}return{esModule:o,exports:a,options:s}}},function(t,e,n){"use strict";function r(t){if(Array.isArray(t)){for(var e=0,n=Array(t.length);e<t.length;e++)n[e]=t[e];return n}return Array.from(t)}var i=n(4),o=n.n(i);e.a={name:"flat-pickr",props:{value:{default:null,required:!0,validate:function(t){return null===t||t instanceof Date||"string"==typeof t||t instanceof String||t instanceof Array}},config:{type:Object,default:function(){return{wrap:!1}}},placeholder:{type:String,default:""},inputClass:{type:[String,Object],default:"form-control input"},name:{type:String,default:"date-time"},required:{type:Boolean,default:!1},id:{type:String}},data:function(){return{mutableValue:this.value,fp:null,oldOnChange:null}},mounted:function(){if(!this.fp){this.oldOnChange=this.config.onChange,this.config.onChange=this.onChange;var t=this.config.wrap?this.$el.parentNode:this.$el;this.fp=new o.a(t,this.config)}},beforeDestroy:function(){this.fp&&(this.fp.destroy(),this.fp=null,this.oldOnChange=null,this.config.onChange=null)},methods:{onChange:function(){for(var t=arguments.length,e=Array(t),n=0;n<t;n++)e[n]=arguments[n];"function"==typeof this.oldOnChange&&this.oldOnChange.apply(this,r(e)),this.$emit.apply(this,["onChange"].concat(r(e)))}},watch:{config:function(t){this.fp.config=Object.assign(this.fp.config,t),this.fp.redraw(),this.fp.setDate(this.value,!0)},mutableValue:function(t){this.$emit("input",t)},value:function(t){t!==this.mutableValue&&this.fp&&this.fp.setDate(t,!0)}}}},function(e,n){e.exports=t},function(t,e,n){"use strict";var r=function(){var t=this,e=t.$createElement;return(t._self._c||e)("input",{directives:[{name:"model",rawName:"v-model",value:t.mutableValue,expression:"mutableValue"}],class:t.inputClass,attrs:{type:"text",id:t.id,name:t.name,placeholder:t.placeholder,required:t.required,"data-input":""},domProps:{value:t.mutableValue},on:{input:function(e){e.target.composing||(t.mutableValue=e.target.value)}}})},i=[],o={render:r,staticRenderFns:i};e.a=o}])});
 
 /***/ }),
-/* 122 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
@@ -28867,7 +28864,7 @@ if(false) {
 }
 
 /***/ }),
-/* 123 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* Arabic locals for flatpickr */
@@ -28886,6 +28883,9 @@ flatpickr.l10ns.ar.months = {
 if (true) module.exports = flatpickr.l10ns;
 
 /***/ }),
+/* 121 */,
+/* 122 */,
+/* 123 */,
 /* 124 */
 /***/ (function(module, exports) {
 
@@ -28937,7 +28937,7 @@ module.exports = function listToStyles (parentId, list) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var Component = __webpack_require__(15)(
+var Component = __webpack_require__(11)(
   /* script */
   __webpack_require__(135),
   /* template */
@@ -32172,7 +32172,7 @@ module.exports = function (css) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var Component = __webpack_require__(15)(
+var Component = __webpack_require__(11)(
   /* script */
   __webpack_require__(142),
   /* template */
@@ -32245,7 +32245,7 @@ function injectStyle (ssrContext) {
   if (disposed) return
   __webpack_require__(144)
 }
-var Component = __webpack_require__(15)(
+var Component = __webpack_require__(11)(
   /* script */
   __webpack_require__(147),
   /* template */
@@ -36079,7 +36079,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var Component = __webpack_require__(15)(
+var Component = __webpack_require__(11)(
   /* script */
   __webpack_require__(153),
   /* template */
@@ -36418,7 +36418,7 @@ toastr.options = {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var Component = __webpack_require__(15)(
+var Component = __webpack_require__(11)(
   /* script */
   __webpack_require__(188),
   /* template */
@@ -36621,7 +36621,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var Component = __webpack_require__(15)(
+var Component = __webpack_require__(11)(
   /* script */
   __webpack_require__(191),
   /* template */
@@ -36739,6 +36739,11 @@ exports.default = {
         case 3:
           return "ع . و";break;
       }
+    },
+    clientCheck: function clientCheck(openent) {
+      if (openent.is_client) {
+        return '(موكل)';
+      }
     }
   },
   components: {
@@ -36766,7 +36771,7 @@ function injectStyle (ssrContext) {
   if (disposed) return
   __webpack_require__(193)
 }
-var Component = __webpack_require__(15)(
+var Component = __webpack_require__(11)(
   /* script */
   __webpack_require__(195),
   /* template */
@@ -37074,7 +37079,7 @@ function injectStyle (ssrContext) {
   if (disposed) return
   __webpack_require__(198)
 }
-var Component = __webpack_require__(15)(
+var Component = __webpack_require__(11)(
   /* script */
   __webpack_require__(200),
   /* template */
@@ -37412,7 +37417,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v(" لا يوجد خصوم بعد ")])]), _vm._v(" "), _vm._l((_vm.openents), function(openent) {
     return _c('tr', {
       key: openent.id
-    }, [_c('td', [_vm._v("\n                " + _vm._s(openent.name) + "\n                "), _c('button', {
+    }, [_c('td', [_vm._v("\n                " + _vm._s(openent.name) + " "), _c('span', {
+      staticClass: "green"
+    }, [_vm._v(_vm._s(_vm.clientCheck(openent)))]), _vm._v(" "), _c('button', {
       staticClass: "btn btn-sm btn-danger pull-left",
       on: {
         "click": function($event) {
@@ -37480,7 +37487,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var Component = __webpack_require__(15)(
+var Component = __webpack_require__(11)(
   /* script */
   __webpack_require__(204),
   /* template */
@@ -37674,11 +37681,11 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var Component = __webpack_require__(15)(
+var Component = __webpack_require__(11)(
   /* script */
   __webpack_require__(207),
   /* template */
-  __webpack_require__(229),
+  __webpack_require__(232),
   /* styles */
   null,
   /* scopeId */
@@ -37851,7 +37858,7 @@ exports.default = {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var Component = __webpack_require__(15)(
+var Component = __webpack_require__(11)(
   /* script */
   __webpack_require__(209),
   /* template */
@@ -37897,15 +37904,15 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _vueFlatpickrComponent = __webpack_require__(121);
+var _vueFlatpickrComponent = __webpack_require__(118);
 
 var _vueFlatpickrComponent2 = _interopRequireDefault(_vueFlatpickrComponent);
 
-__webpack_require__(122);
+__webpack_require__(119);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Arabic = __webpack_require__(123).ar;
+var Arabic = __webpack_require__(120).ar;
 
 exports.default = {
     data: function data() {
@@ -38152,7 +38159,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var Component = __webpack_require__(15)(
+var Component = __webpack_require__(11)(
   /* script */
   __webpack_require__(212),
   /* template */
@@ -38198,15 +38205,15 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _vueFlatpickrComponent = __webpack_require__(121);
+var _vueFlatpickrComponent = __webpack_require__(118);
 
 var _vueFlatpickrComponent2 = _interopRequireDefault(_vueFlatpickrComponent);
 
-__webpack_require__(122);
+__webpack_require__(119);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Arabic = __webpack_require__(123).ar;
+var Arabic = __webpack_require__(120).ar;
 
 exports.default = {
     data: function data() {
@@ -38474,7 +38481,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var Component = __webpack_require__(15)(
+var Component = __webpack_require__(11)(
   /* script */
   __webpack_require__(215),
   /* template */
@@ -38520,15 +38527,15 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _vueFlatpickrComponent = __webpack_require__(121);
+var _vueFlatpickrComponent = __webpack_require__(118);
 
 var _vueFlatpickrComponent2 = _interopRequireDefault(_vueFlatpickrComponent);
 
-__webpack_require__(122);
+__webpack_require__(119);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Arabic = __webpack_require__(123).ar;
+var Arabic = __webpack_require__(120).ar;
 
 exports.default = {
     data: function data() {
@@ -38789,11 +38796,11 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var Component = __webpack_require__(15)(
+var Component = __webpack_require__(11)(
   /* script */
   __webpack_require__(218),
   /* template */
-  __webpack_require__(228),
+  __webpack_require__(231),
   /* styles */
   null,
   /* scopeId */
@@ -38847,7 +38854,7 @@ var _addChallenge = __webpack_require__(225);
 
 var _addChallenge2 = _interopRequireDefault(_addChallenge);
 
-var _addAnnouncement = __webpack_require__(234);
+var _addAnnouncement = __webpack_require__(228);
 
 var _addAnnouncement2 = _interopRequireDefault(_addAnnouncement);
 
@@ -38874,6 +38881,12 @@ exports.default = {
     addAnnouncement: function addAnnouncement(judgement) {
       eventBus.$emit('addAnnouncement', judgement);
       $('#addAnnouncement').modal('show');
+    },
+    statusCheck: function statusCheck(openent) {
+      if (openent.pivot.person_type == 1) return true;
+    },
+    echoName: function echoName(openent) {
+      return openent.name.slice(0, 12);
     }
   },
   components: {
@@ -38889,7 +38902,7 @@ exports.default = {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var Component = __webpack_require__(15)(
+var Component = __webpack_require__(11)(
   /* script */
   __webpack_require__(220),
   /* template */
@@ -38935,15 +38948,15 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _vueFlatpickrComponent = __webpack_require__(121);
+var _vueFlatpickrComponent = __webpack_require__(118);
 
 var _vueFlatpickrComponent2 = _interopRequireDefault(_vueFlatpickrComponent);
 
-__webpack_require__(122);
+__webpack_require__(119);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Arabic = __webpack_require__(123).ar;
+var Arabic = __webpack_require__(120).ar;
 
 exports.default = {
     props: ['issue', 'meeting'],
@@ -39326,7 +39339,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var Component = __webpack_require__(15)(
+var Component = __webpack_require__(11)(
   /* script */
   __webpack_require__(223),
   /* template */
@@ -39372,15 +39385,15 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _vueFlatpickrComponent = __webpack_require__(121);
+var _vueFlatpickrComponent = __webpack_require__(118);
 
 var _vueFlatpickrComponent2 = _interopRequireDefault(_vueFlatpickrComponent);
 
-__webpack_require__(122);
+__webpack_require__(119);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Arabic = __webpack_require__(123).ar;
+var Arabic = __webpack_require__(120).ar;
 
 exports.default = {
     props: ['issue'],
@@ -39779,7 +39792,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var Component = __webpack_require__(15)(
+var Component = __webpack_require__(11)(
   /* script */
   __webpack_require__(226),
   /* template */
@@ -39825,15 +39838,15 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _vueFlatpickrComponent = __webpack_require__(121);
+var _vueFlatpickrComponent = __webpack_require__(118);
 
 var _vueFlatpickrComponent2 = _interopRequireDefault(_vueFlatpickrComponent);
 
-__webpack_require__(122);
+__webpack_require__(119);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Arabic = __webpack_require__(123).ar;
+var Arabic = __webpack_require__(120).ar;
 
 exports.default = {
     props: ['issue', 'judgement'],
@@ -40062,174 +40075,12 @@ if (false) {
 /* 228 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('span', {
-    attrs: {
-      "id": "meetingJudgements"
-    }
-  }, [_c('edit-judgement', {
-    attrs: {
-      "issue": _vm.issue
-    }
-  }), _vm._v(" "), (_vm.issue.type > 4) ? _c('span', [(!_vm.meeting.judgements.length && !_vm.meeting.child_meetings.length) ? _c('span', [_c('button', {
-    staticClass: "btn btn-sm btn-primary",
-    attrs: {
-      "data-toggle": "modal",
-      "data-target": "#addJudgement"
-    }
-  }, [_vm._v(" اضافة حكم ")]), _vm._v(" "), _c('add-judgement', {
-    attrs: {
-      "issue": _vm.issue,
-      "meeting": _vm.meeting
-    }
-  })], 1) : _vm._e(), _vm._v(" "), _vm._l((_vm.meeting.judgements), function(judgement) {
-    return (_vm.meeting.judgements.length) ? _c('ul', [_c('li', [_vm._v(_vm._s(judgement.body))]), _vm._v(" "), (judgement.child_meeting == null && judgement.present && judgement.level < 5) ? _c('button', {
-      staticClass: "btn btn-sm btn-dark pull-left",
-      attrs: {
-        "data-toggle": "modal",
-        "data-target": "#addChallenge"
-      }
-    }, [_vm._v(" اضافة طعن ")]) : _vm._e(), _vm._v(" "), (judgement.child_meeting == null && !judgement.present) ? _c('button', {
-      staticClass: "btn btn-sm btn-success pull-left",
-      on: {
-        "click": function($event) {
-          _vm.addAnnouncement(judgement)
-        }
-      }
-    }, [_vm._v(" اضافة اعلان ")]) : _vm._e(), _vm._v(" "), (judgement.child_meeting == null && !judgement.present && _vm.meeting.level == 1) ? _c('add-announcement') : _vm._e(), _vm._v(" "), (judgement.child_meeting == null) ? _c('button', {
-      staticClass: "btn btn-sm btn-danger pull-left",
-      on: {
-        "click": function($event) {
-          _vm.deleteJudgement(judgement)
-        }
-      }
-    }, [_c('i', {
-      staticClass: "fa fa-times",
-      attrs: {
-        "aria-hidden": "true"
-      }
-    })]) : _vm._e(), _vm._v(" "), _c('button', {
-      staticClass: "btn btn-sm btn-info pull-left",
-      on: {
-        "click": function($event) {
-          _vm.editJudgement(judgement)
-        }
-      }
-    }, [_c('i', {
-      staticClass: "fa fa-pencil-square-o",
-      attrs: {
-        "aria-hidden": "true"
-      }
-    })]), _vm._v(" "), (judgement.child_meeting == null && judgement.level < 5) ? _c('add-challenge', {
-      attrs: {
-        "judgement": judgement,
-        "issue": _vm.issue
-      }
-    }) : _vm._e()], 1) : _vm._e()
-  })], 2) : _vm._e(), _vm._v(" "), (_vm.issue.type < 4) ? _c('span') : _vm._e(), _vm._v(" "), (_vm.issue.type == 4) ? _c('span') : _vm._e()], 1)
-},staticRenderFns: []}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-a649151a", module.exports)
-  }
-}
-
-/***/ }),
-/* 229 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    attrs: {
-      "id": "issueMeetings"
-    }
-  }, [_c('div', {
-    staticClass: "card text-center"
-  }, [_c('div', {
-    staticClass: "card-header"
-  }, [_c('h4', {
-    staticClass: "card-title"
-  }, [_vm._v("\n              الـجـلــسات\n              "), (!_vm.meetings.length) ? _c('button', {
-    staticClass: "btn pull-left btn-success",
-    attrs: {
-      "data-toggle": "modal",
-      "data-target": "#addMeeting"
-    }
-  }, [_vm._v("اضافة جلسة")]) : _vm._e()])]), _vm._v(" "), _c('div', {
-    staticClass: "panel-body"
-  }, [(_vm.meetings.length) ? _c('table', {
-    staticClass: "table table-striped table-bordered table-responsive"
-  }, [_vm._m(0), _vm._v(" "), _c('tbody', _vm._l((_vm.meetings), function(meeting) {
-    return _c('tr', {
-      key: meeting.id
-    }, [_c('td', [_vm._v("\n                      " + _vm._s(meeting.role) + "\n                  ")]), _vm._v(" "), _c('td', [_vm._v("\n                      " + _vm._s(meeting.date) + "\n                      "), (!meeting.judgements.length && !meeting.child_meetings.length) ? _c('button', {
-      staticClass: "btn btn-sm btn-danger pull-left",
-      on: {
-        "click": function($event) {
-          _vm.deleteMeeting(meeting)
-        }
-      }
-    }, [_c('i', {
-      staticClass: "fa fa-times",
-      attrs: {
-        "aria-hidden": "true"
-      }
-    })]) : _vm._e(), _vm._v(" "), _c('button', {
-      staticClass: "btn btn-sm btn-info pull-left",
-      on: {
-        "click": function($event) {
-          _vm.editMeeting(meeting)
-        }
-      }
-    }, [_c('i', {
-      staticClass: "fa fa-pencil-square-o",
-      attrs: {
-        "aria-hidden": "true"
-      }
-    })]), _vm._v(" "), (!meeting.judgements.length && !meeting.child_meetings.length) ? _c('button', {
-      staticClass: "btn btn-sm btn-dark pull-left",
-      on: {
-        "click": function($event) {
-          _vm.delayMeeting(meeting)
-        }
-      }
-    }, [_vm._v("تأجيل")]) : _vm._e()]), _vm._v(" "), _c('td', [_vm._v("\n                      " + _vm._s(meeting.decision) + "\n                  ")]), _vm._v(" "), _c('td', [_vm._v("\n                      " + _vm._s(meeting.notes) + "\n                  ")]), _vm._v(" "), _c('td', [_c('meeting-judgements', {
-      attrs: {
-        "issue": _vm.issue,
-        "openents": _vm.openents,
-        "meeting": meeting
-      }
-    })], 1)])
-  }))]) : _vm._e()])]), _vm._v(" "), _c('add-meeting'), _vm._v(" "), _c('edit-meeting'), _vm._v(" "), _c('delay-meeting')], 1)
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('thead', {
-    staticClass: "thead-inverse"
-  }, [_c('tr', [_c('th', [_vm._v("الرول")]), _vm._v(" "), _c('th', [_vm._v("تـــاريخ الجـــلــــسة")]), _vm._v(" "), _c('th', [_vm._v("القــرار")]), _vm._v(" "), _c('th', [_vm._v("مـــلاحــــظات")]), _vm._v(" "), _c('th', [_vm._v("الاحــكــــام")])])])
-}]}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-237c354b", module.exports)
-  }
-}
-
-/***/ }),
-/* 230 */,
-/* 231 */,
-/* 232 */,
-/* 233 */,
-/* 234 */
-/***/ (function(module, exports, __webpack_require__) {
-
 var disposed = false
-var Component = __webpack_require__(15)(
+var Component = __webpack_require__(11)(
   /* script */
-  __webpack_require__(235),
+  __webpack_require__(229),
   /* template */
-  __webpack_require__(236),
+  __webpack_require__(230),
   /* styles */
   null,
   /* scopeId */
@@ -40261,7 +40112,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 235 */
+/* 229 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40271,15 +40122,15 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _vueFlatpickrComponent = __webpack_require__(121);
+var _vueFlatpickrComponent = __webpack_require__(118);
 
 var _vueFlatpickrComponent2 = _interopRequireDefault(_vueFlatpickrComponent);
 
-__webpack_require__(122);
+__webpack_require__(119);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Arabic = __webpack_require__(123).ar;
+var Arabic = __webpack_require__(120).ar;
 
 exports.default = {
     data: function data() {
@@ -40329,7 +40180,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 236 */
+/* 230 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -40430,6 +40281,176 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
      require("vue-hot-reload-api").rerender("data-v-54831042", module.exports)
+  }
+}
+
+/***/ }),
+/* 231 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('span', {
+    attrs: {
+      "id": "meetingJudgements"
+    }
+  }, [_c('edit-judgement', {
+    attrs: {
+      "issue": _vm.issue
+    }
+  }), _vm._v(" "), (_vm.issue.type > 4) ? _c('span', [(!_vm.meeting.judgements.length && !_vm.meeting.child_meetings.length) ? _c('span', [_c('button', {
+    staticClass: "btn btn-sm btn-primary",
+    attrs: {
+      "data-toggle": "modal",
+      "data-target": "#addJudgement"
+    }
+  }, [_vm._v(" اضافة حكم ")]), _vm._v(" "), _c('add-judgement', {
+    attrs: {
+      "issue": _vm.issue,
+      "meeting": _vm.meeting
+    }
+  })], 1) : _vm._e(), _vm._v(" "), _vm._l((_vm.meeting.judgements), function(judgement) {
+    return (_vm.meeting.judgements.length) ? _c('ul', [_c('li', [_vm._v(_vm._s(judgement.body))]), _vm._v(" "), (judgement.child_meeting == null && judgement.present && judgement.level < 5) ? _c('button', {
+      staticClass: "btn btn-sm btn-dark pull-left",
+      attrs: {
+        "data-toggle": "modal",
+        "data-target": "#addChallenge"
+      }
+    }, [_vm._v(" اضافة طعن ")]) : _vm._e(), _vm._v(" "), (judgement.child_meeting == null && !judgement.present) ? _c('button', {
+      staticClass: "btn btn-sm btn-success pull-left",
+      on: {
+        "click": function($event) {
+          _vm.addAnnouncement(judgement)
+        }
+      }
+    }, [_vm._v(" اضافة اعلان ")]) : _vm._e(), _vm._v(" "), (judgement.child_meeting == null && !judgement.present && _vm.meeting.level == 1) ? _c('add-announcement') : _vm._e(), _vm._v(" "), (judgement.child_meeting == null) ? _c('button', {
+      staticClass: "btn btn-sm btn-danger pull-left",
+      on: {
+        "click": function($event) {
+          _vm.deleteJudgement(judgement)
+        }
+      }
+    }, [_c('i', {
+      staticClass: "fa fa-times",
+      attrs: {
+        "aria-hidden": "true"
+      }
+    })]) : _vm._e(), _vm._v(" "), _c('button', {
+      staticClass: "btn btn-sm btn-info pull-left",
+      on: {
+        "click": function($event) {
+          _vm.editJudgement(judgement)
+        }
+      }
+    }, [_c('i', {
+      staticClass: "fa fa-pencil-square-o",
+      attrs: {
+        "aria-hidden": "true"
+      }
+    })]), _vm._v(" "), (judgement.child_meeting == null && judgement.level < 5) ? _c('add-challenge', {
+      attrs: {
+        "judgement": judgement,
+        "issue": _vm.issue
+      }
+    }) : _vm._e()], 1) : _vm._e()
+  })], 2) : _vm._e(), _vm._v(" "), (_vm.issue.type < 4) ? _c('span', [_c('add-judgement', {
+    attrs: {
+      "issue": _vm.issue,
+      "meeting": _vm.meeting
+    }
+  }), _vm._v(" "), _vm._l((_vm.openents), function(openent) {
+    return (_vm.meeting.level == 1) ? _c('ul', [(_vm.statusCheck(openent)) ? _c('li', [_vm._v("\n              " + _vm._s(_vm.echoName(openent)) + "\n              "), _c('button', {
+      staticClass: "btn btn-sm btn-primary",
+      on: {
+        "onClick": function($event) {}
+      }
+    }, [_vm._v(" اضافة حكم ")])]) : _vm._e()]) : _vm._e()
+  })], 2) : _vm._e(), _vm._v(" "), (_vm.issue.type == 4) ? _c('span') : _vm._e()], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-a649151a", module.exports)
+  }
+}
+
+/***/ }),
+/* 232 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    attrs: {
+      "id": "issueMeetings"
+    }
+  }, [_c('div', {
+    staticClass: "card text-center"
+  }, [_c('div', {
+    staticClass: "card-header"
+  }, [_c('h4', {
+    staticClass: "card-title"
+  }, [_vm._v("\n              الـجـلــسات\n              "), (!_vm.meetings.length) ? _c('button', {
+    staticClass: "btn pull-left btn-success",
+    attrs: {
+      "data-toggle": "modal",
+      "data-target": "#addMeeting"
+    }
+  }, [_vm._v("اضافة جلسة")]) : _vm._e()])]), _vm._v(" "), _c('div', {
+    staticClass: "panel-body"
+  }, [(_vm.meetings.length) ? _c('table', {
+    staticClass: "table table-striped table-bordered table-responsive"
+  }, [_vm._m(0), _vm._v(" "), _c('tbody', _vm._l((_vm.meetings), function(meeting) {
+    return _c('tr', {
+      key: meeting.id
+    }, [_c('td', [_vm._v("\n                      " + _vm._s(meeting.role) + "\n                  ")]), _vm._v(" "), _c('td', [_vm._v("\n                      " + _vm._s(meeting.date) + "\n                      "), (!meeting.judgements.length && !meeting.child_meetings.length) ? _c('button', {
+      staticClass: "btn btn-sm btn-danger pull-left",
+      on: {
+        "click": function($event) {
+          _vm.deleteMeeting(meeting)
+        }
+      }
+    }, [_c('i', {
+      staticClass: "fa fa-times",
+      attrs: {
+        "aria-hidden": "true"
+      }
+    })]) : _vm._e(), _vm._v(" "), _c('button', {
+      staticClass: "btn btn-sm btn-info pull-left",
+      on: {
+        "click": function($event) {
+          _vm.editMeeting(meeting)
+        }
+      }
+    }, [_c('i', {
+      staticClass: "fa fa-pencil-square-o",
+      attrs: {
+        "aria-hidden": "true"
+      }
+    })]), _vm._v(" "), (!meeting.judgements.length && !meeting.child_meetings.length) ? _c('button', {
+      staticClass: "btn btn-sm btn-dark pull-left",
+      on: {
+        "click": function($event) {
+          _vm.delayMeeting(meeting)
+        }
+      }
+    }, [_vm._v("تأجيل")]) : _vm._e()]), _vm._v(" "), _c('td', [_vm._v("\n                      " + _vm._s(meeting.decision) + "\n                  ")]), _vm._v(" "), _c('td', [_vm._v("\n                      " + _vm._s(meeting.notes) + "\n                  ")]), _vm._v(" "), _c('td', [_c('meeting-judgements', {
+      attrs: {
+        "issue": _vm.issue,
+        "openents": _vm.openents,
+        "meeting": meeting
+      }
+    })], 1)])
+  }))]) : _vm._e()])]), _vm._v(" "), _c('add-meeting'), _vm._v(" "), _c('edit-meeting'), _vm._v(" "), _c('delay-meeting')], 1)
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('thead', {
+    staticClass: "thead-inverse"
+  }, [_c('tr', [_c('th', [_vm._v("الرول")]), _vm._v(" "), _c('th', [_vm._v("تـــاريخ الجـــلــــسة")]), _vm._v(" "), _c('th', [_vm._v("القــرار")]), _vm._v(" "), _c('th', [_vm._v("مـــلاحــــظات")]), _vm._v(" "), _c('th', [_vm._v("الاحــكــــام")])])])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-237c354b", module.exports)
   }
 }
 
