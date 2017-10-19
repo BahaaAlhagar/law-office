@@ -36373,7 +36373,7 @@ var issueProfile = new Vue({
 		},
 		assignData: function assignData(response) {
 			this.issue = response.data.issue;
-			this.openents = response.data.issue.openents;
+			this.openents = response.data.openents;
 			this.people = response.data.people;
 		},
 		fetchIssueFiles: function fetchIssueFiles() {
@@ -38887,6 +38887,10 @@ exports.default = {
     },
     echoName: function echoName(openent) {
       return openent.name.slice(0, 12);
+    },
+    addCriminalJudgement: function addCriminalJudgement(openent) {
+      $('#addJudgement').modal('show');
+      eventBus.$emit('addCriminalJudgement', openent);
     }
   },
   components: {
@@ -38985,12 +38989,21 @@ exports.default = {
             this.addJudgementForm.post('/meetings/' + this.meeting.id + '/judgements').then(function (response) {
                 return eventBus.$emit('judgementAdded', response);
             });
+        },
+        addCriminalJudgementModal: function addCriminalJudgementModal(openent) {
+            this.addJudgementForm.person_id = openent.id;
         }
     },
     components: {
         flatPickr: _vueFlatpickrComponent2.default
-    }
+    },
+    mounted: function mounted() {
+        var _this = this;
 
+        eventBus.$on('addCriminalJudgement', function (openent) {
+            return _this.addCriminalJudgementModal(openent);
+        });
+    }
 };
 
 /***/ }),
@@ -39541,8 +39554,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.addJudgementForm.present),
-      expression: "addJudgementForm.present"
+      value: (_vm.editJudgementForm.present),
+      expression: "editJudgementForm.present"
     }],
     staticClass: "form-control",
     attrs: {
@@ -39557,7 +39570,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           var val = "_value" in o ? o._value : o.value;
           return val
         });
-        _vm.addJudgementForm.present = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+        _vm.editJudgementForm.present = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
       }
     }
   }, [_c('option', {
@@ -39568,10 +39581,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "value": "0"
     }
-  }, [_vm._v("غــيــابــى")])]), _vm._v(" "), (_vm.addJudgementForm.errors.has('present')) ? _c('span', {
+  }, [_vm._v("غــيــابــى")])]), _vm._v(" "), (_vm.editJudgementForm.errors.has('present')) ? _c('span', {
     staticClass: "alert-danger",
     domProps: {
-      "textContent": _vm._s(_vm.addJudgementForm.errors.get('present'))
+      "textContent": _vm._s(_vm.editJudgementForm.errors.get('present'))
     }
   }) : _vm._e()]) : _vm._e(), _vm._v(" "), (_vm.issue.type < 4) ? _c('div', {
     staticClass: "form-group"
@@ -40358,12 +40371,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "meeting": _vm.meeting
     }
   }), _vm._v(" "), _vm._l((_vm.openents), function(openent) {
-    return (_vm.meeting.level == 1) ? _c('ul', [(_vm.statusCheck(openent)) ? _c('li', [_vm._v("\n              " + _vm._s(_vm.echoName(openent)) + "\n              "), _c('button', {
+    return (_vm.meeting.level == 1) ? _c('ul', [(_vm.statusCheck(openent)) ? _c('li', [_vm._v("\n              " + _vm._s(_vm.echoName(openent)) + "\n              "), (!openent.judgements.length) ? _c('button', {
       staticClass: "btn btn-sm btn-primary",
       on: {
-        "onClick": function($event) {}
+        "click": function($event) {
+          _vm.addCriminalJudgement(openent)
+        }
       }
-    }, [_vm._v(" اضافة حكم ")])]) : _vm._e()]) : _vm._e()
+    }, [_vm._v(" اضافة حكم ")]) : _vm._e()]) : _vm._e()]) : _vm._e()
   })], 2) : _vm._e(), _vm._v(" "), (_vm.issue.type == 4) ? _c('span') : _vm._e()], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true

@@ -49,9 +49,9 @@
           <ul v-if="meeting.level == 1" v-for="openent in openents">
             <li v-if="statusCheck(openent)">
               {{ echoName(openent) }}
-              <button v-if=""
+              <button v-if="!openent.judgements.length"
               class="btn btn-sm btn-primary" 
-              @onClick=""> اضافة حكم </button>
+              @click="addCriminalJudgement(openent)"> اضافة حكم </button>
             </li>
           </ul>
         </span>
@@ -99,6 +99,10 @@ export default {
       },
       echoName(openent){
         return openent.name.slice(0, 12);
+      },
+      addCriminalJudgement(openent){
+        $('#addJudgement').modal('show');
+        eventBus.$emit('addCriminalJudgement', openent);
       }
     },
     components: {

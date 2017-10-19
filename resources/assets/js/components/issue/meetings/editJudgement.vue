@@ -35,12 +35,12 @@
                     <div v-else-if="issue.type < 4" class="form-group">
                         <label for="present" class="label">حالة الحكم:</label>
                         
-                        <select id="present" name="present" class="form-control" v-model="addJudgementForm.present">
+                        <select id="present" name="present" class="form-control" v-model="editJudgementForm.present">
                             <option value="1">حــضـــورى</option>
                             <option value="0">غــيــابــى</option>
                         </select>
 
-                        <span class="alert-danger" v-if="addJudgementForm.errors.has('present')" v-text="addJudgementForm.errors.get('present')"></span>
+                        <span class="alert-danger" v-if="editJudgementForm.errors.has('present')" v-text="editJudgementForm.errors.get('present')"></span>
                     </div>
 
                     <div v-if="issue.type < 4" class="form-group">

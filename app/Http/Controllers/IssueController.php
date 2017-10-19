@@ -74,12 +74,20 @@ class IssueController extends Controller
      */
     public function show(Issue $issue)
     {
-        $issue->load('openents.contracts');
+        global $issue_id;
+        $issue_id = $issue->id;
+        
+        $openents = $issue->openents()->with(['judgements' => function($query){
+            global $issue_id;
+            $query->where('issue_id', $issue_id);},
+             'contracts' => function($query){
+                $query->select(['id', 'number', 'year', 'type']);
+             }])->get();
         
         $people = Person::orderBy('name')
             ->select('id', 'name', 'location')->get();
         
-        return $this->makeResponse('issues/issueProfile', compact('issue', 'people'));
+        return $this->makeResponse('issues/issueProfile', compact('issue', 'people', 'openents'));
     }
 
     /**

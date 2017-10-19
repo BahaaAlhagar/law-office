@@ -33,7 +33,7 @@ const issueProfile = new Vue({
 	      },
 	      assignData(response){
 	      	this.issue = response.data.issue;
-	      	this.openents = response.data.issue.openents;
+	      	this.openents = response.data.openents;
 	      	this.people = response.data.people;
 	      },
 	      fetchIssueFiles(){
