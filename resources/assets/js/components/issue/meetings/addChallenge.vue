@@ -101,10 +101,18 @@
         onChallengeCreate() {
             this.addChallengeForm.post(window.location.pathname + '/meetings')
                 .then(response => eventBus.$emit('meetingAdded', response));
+            },
+            addChallengeModal(judgement){
+                this.addChallengeForm.person_id = judgement.person_id;
+                this.addChallengeForm.judgement_id = judgement.id;
+                this.addChallengeForm.level = judgement.level;
             }
         },
         components: {
             flatPickr
+        },
+        mounted(){
+            eventBus.$on('addCriminalChallenge', judgement => this.addChallengeModal(judgement));
         }
 
     }

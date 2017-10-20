@@ -41,6 +41,9 @@
 
         </span>
 
+
+
+
         <!-- criminal issues -->
         <span v-if="issue.type < 4">
           <!-- add judgement component -->
@@ -63,6 +66,15 @@
                   <li v-if="openentJudgement(openent).record">
                     حصر {{ openentJudgement(openent).record }} لسنة {{ openentJudgement(openent).year }}
                   </li>
+
+                  <!-- add challenge if the judgement doesnt have challenge(child meeting) - and judgement type is 1 or 2 -->
+                  <button v-if="openentJudgement(openent).child_meeting == null && openentJudgement(openent).type < 3" class="btn btn-sm btn-dark pull-left" 
+                  @click="addCriminalChallenge(judgement = openentJudgement(openent))"> اضافة طعن </button>
+
+                  <!-- add challenge component if the judgement doesnt have challenge(child meeting) - and judgement type is 1 or 2 -->
+                  <add-challenge v-if="openentJudgement(openent).child_meeting == null && openentJudgement(openent).type < 3" :judgement="openentJudgement(openent)" :issue="issue"></add-challenge>
+
+
                   <!-- delete judgement if doesnt have challenge(child meeting) -->
                   <button v-if="openentJudgement(openent).child_meeting == null" class="btn btn-sm btn-danger pull-left" @click="deleteJudgement(judgement = openentJudgement(openent))"><i class="fa fa-times" aria-hidden="true"></i></button>
 
@@ -150,6 +162,10 @@ export default {
           }
           else {return false;}
         }
+      },
+      addCriminalChallenge(judgement){
+        eventBus.$emit('addCriminalChallenge', judgement);
+        $('#addChallenge').modal('show');
       }
     },
     components: {

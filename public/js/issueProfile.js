@@ -38913,6 +38913,10 @@ exports.default = {
           return false;
         }
       }
+    },
+    addCriminalChallenge: function addCriminalChallenge(judgement) {
+      eventBus.$emit('addCriminalChallenge', judgement);
+      $('#addChallenge').modal('show');
     }
   },
   components: {
@@ -39013,7 +39017,13 @@ exports.default = {
             });
         },
         addCriminalJudgementModal: function addCriminalJudgementModal(openent) {
+            this.addJudgementForm.issue_id = this.issue.id;
             this.addJudgementForm.person_id = openent.id;
+            this.addJudgementForm.date = this.meeting.date;
+            this.addJudgementForm.level = this.meeting.level;
+            this.addJudgementForm.active = 1;
+            this.addJudgementForm.present = 1;
+            this.addJudgementForm.type = 1;
         }
     },
     components: {
@@ -39908,12 +39918,23 @@ exports.default = {
             this.addChallengeForm.post(window.location.pathname + '/meetings').then(function (response) {
                 return eventBus.$emit('meetingAdded', response);
             });
+        },
+        addChallengeModal: function addChallengeModal(judgement) {
+            this.addChallengeForm.person_id = judgement.person_id;
+            this.addChallengeForm.judgement_id = judgement.id;
+            this.addChallengeForm.level = judgement.level;
         }
     },
     components: {
         flatPickr: _vueFlatpickrComponent2.default
-    }
+    },
+    mounted: function mounted() {
+        var _this = this;
 
+        eventBus.$on('addCriminalChallenge', function (judgement) {
+            return _this.addChallengeModal(judgement);
+        });
+    }
 };
 
 /***/ }),
@@ -40402,7 +40423,19 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           _vm.addCriminalJudgement(openent)
         }
       }
-    }, [_vm._v(" اضافة حكم ")]) : _vm._e(), _vm._v(" "), (_vm.openentJudgement(openent)) ? _c('ul', [_c('li', [_vm._v("\n                  " + _vm._s(_vm.openentJudgement(openent).body) + "\n                  ")]), _vm._v(" "), (_vm.openentJudgement(openent).record) ? _c('li', [_vm._v("\n                    حصر " + _vm._s(_vm.openentJudgement(openent).record) + " لسنة " + _vm._s(_vm.openentJudgement(openent).year) + "\n                  ")]) : _vm._e(), _vm._v(" "), (_vm.openentJudgement(openent).child_meeting == null) ? _c('button', {
+    }, [_vm._v(" اضافة حكم ")]) : _vm._e(), _vm._v(" "), (_vm.openentJudgement(openent)) ? _c('ul', [_c('li', [_vm._v("\n                  " + _vm._s(_vm.openentJudgement(openent).body) + "\n                  ")]), _vm._v(" "), (_vm.openentJudgement(openent).record) ? _c('li', [_vm._v("\n                    حصر " + _vm._s(_vm.openentJudgement(openent).record) + " لسنة " + _vm._s(_vm.openentJudgement(openent).year) + "\n                  ")]) : _vm._e(), _vm._v(" "), (_vm.openentJudgement(openent).child_meeting == null && _vm.openentJudgement(openent).type < 3) ? _c('button', {
+      staticClass: "btn btn-sm btn-dark pull-left",
+      on: {
+        "click": function($event) {
+          _vm.addCriminalChallenge(_vm.judgement = _vm.openentJudgement(openent))
+        }
+      }
+    }, [_vm._v(" اضافة طعن ")]) : _vm._e(), _vm._v(" "), (_vm.openentJudgement(openent).child_meeting == null && _vm.openentJudgement(openent).type < 3) ? _c('add-challenge', {
+      attrs: {
+        "judgement": _vm.openentJudgement(openent),
+        "issue": _vm.issue
+      }
+    }) : _vm._e(), _vm._v(" "), (_vm.openentJudgement(openent).child_meeting == null) ? _c('button', {
       staticClass: "btn btn-sm btn-danger pull-left",
       on: {
         "click": function($event) {
@@ -40426,7 +40459,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       attrs: {
         "aria-hidden": "true"
       }
-    })]), _vm._v(" "), _c('br'), _c('hr')]) : _vm._e()]) : _vm._e()]) : _vm._e()
+    })]), _vm._v(" "), _c('br'), _c('hr')], 1) : _vm._e()]) : _vm._e()]) : _vm._e()
   })], 2) : _vm._e(), _vm._v(" "), (_vm.issue.type == 4) ? _c('span') : _vm._e()], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true

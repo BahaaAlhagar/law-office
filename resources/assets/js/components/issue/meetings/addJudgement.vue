@@ -139,7 +139,13 @@
                 .then(response => eventBus.$emit('judgementAdded', response));
             },
         addCriminalJudgementModal(openent){
+            this.addJudgementForm.issue_id = this.issue.id;
             this.addJudgementForm.person_id = openent.id;
+            this.addJudgementForm.date = this.meeting.date;
+            this.addJudgementForm.level = this.meeting.level;
+            this.addJudgementForm.active = 1;
+            this.addJudgementForm.present = 1;
+            this.addJudgementForm.type = 1;
             }
         },
         components: {
