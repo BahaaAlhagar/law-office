@@ -74,15 +74,10 @@ class IssueController extends Controller
      */
     public function show(Issue $issue)
     {
-        global $issue_id;
-        $issue_id = $issue->id;
-        
-        $openents = $issue->openents()->with(['judgements' => function($query){
-            global $issue_id;
-            $query->where('issue_id', $issue_id);},
-             'contracts' => function($query){
-                $query->select(['id', 'number', 'year', 'type']);
-             }])->get();
+        $openents = $issue->openents()->with(['judgements' => function($query) use ($issue)
+        {
+            $query->where('issue_id', $issue->id);
+        }, 'contracts'])->get();
         
         $people = Person::orderBy('name')
             ->select('id', 'name', 'location')->get();

@@ -22,7 +22,7 @@
 
         <issue-files :issue="issue" :files="files"></issue-files>
 
-        <issue-meetings :issue="issue" :openents="openents"></issue-meetings>
+        <issue-meetings :meetings="meetings" :issue="issue" :openents="openents"></issue-meetings>
         
       </div>
 @endsection

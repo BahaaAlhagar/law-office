@@ -61,22 +61,10 @@ import delayMeeting from './delayMeeting';
 import meetingJudgements from './meetingJudgements';
 
 export default {
-  data() {
-    return {
-      meetings: []
-    };
-  },
-	props: ['issue', 'openents'],
+	props: ['issue', 'openents', 'meetings'],
     methods: {
-      fetchIssueMeetings(){
-        axios.get(window.location.pathname + '/meetings')
-          .then(response => this.assignData(response));
-      },
-      assignData(response){
-        this.meetings = response.data;
-      },
   	  afterMeetingAdded(response){
-  	  	this.fetchIssueMeetings();
+        eventBus.$emit('refetchIssueMeetings');
         $('#addMeeting').modal('hide');
         $('#addChallenge').modal('hide');
   	  	toastr.success(response.message);
@@ -88,7 +76,7 @@ export default {
       afterMeetingUpdated(response){
         $('#editMeeting').modal('hide');
         toastr.info(response.message);
-        this.fetchIssueMeetings();
+        eventBus.$emit('refetchIssueMeetings');
       },
       deleteMeeting(meeting){
       	if(confirm('هل انت متاكد من حذف هذه الجـــلــــسة - لن تتمكن من استرجاعها فيما بعد!')){
@@ -98,7 +86,7 @@ export default {
   	  },
       onMeetingDelete(response){
         toastr.warning(response.data.message);
-        this.fetchIssueMeetings();
+        eventBus.$emit('refetchIssueMeetings');
       },
       delayMeeting(meeting){
         eventBus.$emit('delayMeeting', meeting);
@@ -107,22 +95,22 @@ export default {
       afterMeetingDelayed(response){
         $('#delayMeeting').modal('hide');
         toastr.info(response.message);
-        this.fetchIssueMeetings();
+        eventBus.$emit('refetchIssueMeetings');
       },
       afterJudgementAdded(response){
         $('#addJudgement').modal('hide');
         toastr.success(response.message);
-        this.fetchIssueMeetings();
+        eventBus.$emit('refetchIssueMeetings');
       },
       afterJudgementUpdated(response){
         $('#editJudgement').modal('hide');
         $('#addAnnouncement').modal('hide');
         toastr.info(response.message);
-        this.fetchIssueMeetings();
+        eventBus.$emit('refetchIssueMeetings');
       },
       afterJudgementDeleted(response){
         toastr.warning(response.data.message);
-        this.fetchIssueMeetings();
+        eventBus.$emit('refetchIssueMeetings');
       }
     },
     components: {
@@ -132,7 +120,6 @@ export default {
       meetingJudgements
     },
     mounted(){
-      this.fetchIssueMeetings();
 
     	eventBus.$on('meetingAdded', response => this.afterMeetingAdded(response));
       eventBus.$on('meetingUpdated', response => this.afterMeetingUpdated(response));

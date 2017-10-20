@@ -36361,7 +36361,8 @@ var issueProfile = new Vue({
 		issue: {},
 		openents: [],
 		people: [],
-		files: []
+		files: [],
+		meetings: []
 	},
 	methods: {
 		fetchIssueInfo: function fetchIssueInfo() {
@@ -36386,6 +36387,17 @@ var issueProfile = new Vue({
 		assignFilesData: function assignFilesData(response) {
 			this.issue = response.data.issue;
 			this.files = response.data.files;
+		},
+		fetchIssueMeetings: function fetchIssueMeetings() {
+			var _this3 = this;
+
+			axios.get(window.location.pathname + '/meetings').then(function (response) {
+				return _this3.assignMeetingsData(response);
+			});
+		},
+		assignMeetingsData: function assignMeetingsData(response) {
+			this.meetings = response.data.meetings;
+			this.openents = response.data.openents;
 		}
 	},
 	components: {
@@ -36395,16 +36407,21 @@ var issueProfile = new Vue({
 		issueMeetings: _issueMeetings2.default
 	},
 	created: function created() {
-		var _this3 = this;
+		var _this4 = this;
 
 		this.fetchIssueInfo();
 		eventBus.$on('refetchIssueInfo', function (event) {
-			return _this3.fetchIssueInfo();
+			return _this4.fetchIssueInfo();
 		});
 
 		this.fetchIssueFiles();
 		eventBus.$on('refetchIssueFiles', function (event) {
-			return _this3.fetchIssueFiles();
+			return _this4.fetchIssueFiles();
+		});
+
+		this.fetchIssueMeetings();
+		eventBus.$on('refetchIssueMeetings', function (event) {
+			return _this4.fetchIssueMeetings();
 		});
 	}
 });
@@ -37746,26 +37763,10 @@ var _meetingJudgements2 = _interopRequireDefault(_meetingJudgements);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
-  data: function data() {
-    return {
-      meetings: []
-    };
-  },
-
-  props: ['issue', 'openents'],
+  props: ['issue', 'openents', 'meetings'],
   methods: {
-    fetchIssueMeetings: function fetchIssueMeetings() {
-      var _this = this;
-
-      axios.get(window.location.pathname + '/meetings').then(function (response) {
-        return _this.assignData(response);
-      });
-    },
-    assignData: function assignData(response) {
-      this.meetings = response.data;
-    },
     afterMeetingAdded: function afterMeetingAdded(response) {
-      this.fetchIssueMeetings();
+      eventBus.$emit('refetchIssueMeetings');
       $('#addMeeting').modal('hide');
       $('#addChallenge').modal('hide');
       toastr.success(response.message);
@@ -37777,20 +37778,20 @@ exports.default = {
     afterMeetingUpdated: function afterMeetingUpdated(response) {
       $('#editMeeting').modal('hide');
       toastr.info(response.message);
-      this.fetchIssueMeetings();
+      eventBus.$emit('refetchIssueMeetings');
     },
     deleteMeeting: function deleteMeeting(meeting) {
-      var _this2 = this;
+      var _this = this;
 
       if (confirm('هل انت متاكد من حذف هذه الجـــلــــسة - لن تتمكن من استرجاعها فيما بعد!')) {
         axios.delete('/meetings/' + meeting.id).then(function (response) {
-          return _this2.onMeetingDelete(response);
+          return _this.onMeetingDelete(response);
         });
       }
     },
     onMeetingDelete: function onMeetingDelete(response) {
       toastr.warning(response.data.message);
-      this.fetchIssueMeetings();
+      eventBus.$emit('refetchIssueMeetings');
     },
     delayMeeting: function delayMeeting(meeting) {
       eventBus.$emit('delayMeeting', meeting);
@@ -37799,22 +37800,22 @@ exports.default = {
     afterMeetingDelayed: function afterMeetingDelayed(response) {
       $('#delayMeeting').modal('hide');
       toastr.info(response.message);
-      this.fetchIssueMeetings();
+      eventBus.$emit('refetchIssueMeetings');
     },
     afterJudgementAdded: function afterJudgementAdded(response) {
       $('#addJudgement').modal('hide');
       toastr.success(response.message);
-      this.fetchIssueMeetings();
+      eventBus.$emit('refetchIssueMeetings');
     },
     afterJudgementUpdated: function afterJudgementUpdated(response) {
       $('#editJudgement').modal('hide');
       $('#addAnnouncement').modal('hide');
       toastr.info(response.message);
-      this.fetchIssueMeetings();
+      eventBus.$emit('refetchIssueMeetings');
     },
     afterJudgementDeleted: function afterJudgementDeleted(response) {
       toastr.warning(response.data.message);
-      this.fetchIssueMeetings();
+      eventBus.$emit('refetchIssueMeetings');
     }
   },
   components: {
@@ -37824,31 +37825,29 @@ exports.default = {
     meetingJudgements: _meetingJudgements2.default
   },
   mounted: function mounted() {
-    var _this3 = this;
-
-    this.fetchIssueMeetings();
+    var _this2 = this;
 
     eventBus.$on('meetingAdded', function (response) {
-      return _this3.afterMeetingAdded(response);
+      return _this2.afterMeetingAdded(response);
     });
     eventBus.$on('meetingUpdated', function (response) {
-      return _this3.afterMeetingUpdated(response);
+      return _this2.afterMeetingUpdated(response);
     });
 
     eventBus.$on('meetingDelayed', function (response) {
-      return _this3.afterMeetingDelayed(response);
+      return _this2.afterMeetingDelayed(response);
     });
 
     eventBus.$on('judgementAdded', function (response) {
-      return _this3.afterJudgementAdded(response);
+      return _this2.afterJudgementAdded(response);
     });
 
     eventBus.$on('judgementUpdated', function (response) {
-      return _this3.afterJudgementUpdated(response);
+      return _this2.afterJudgementUpdated(response);
     });
 
     eventBus.$on('judgementDeleted', function (response) {
-      return _this3.afterJudgementDeleted(response);
+      return _this2.afterJudgementDeleted(response);
     });
   }
 };

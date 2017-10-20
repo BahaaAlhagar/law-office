@@ -24,7 +24,8 @@ const issueProfile = new Vue({
 	    	issue: {},
 	    	openents: [],
 	    	people: [],
-	    	files: []
+	    	files: [],
+	    	meetings: []
 	    	},
 	    methods: {
 	      fetchIssueInfo(){
@@ -43,7 +44,15 @@ const issueProfile = new Vue({
 	      assignFilesData(response){
       		this.issue = response.data.issue;
       		this.files = response.data.files;
-	      }
+	      },
+	      fetchIssueMeetings(){
+	        axios.get(window.location.pathname + '/meetings')
+	          .then(response => this.assignMeetingsData(response));
+	      },
+	      assignMeetingsData(response){
+	        this.meetings = response.data.meetings;
+	        this.openents = response.data.openents;
+	      },
 	    },
 	    components: {
 	    	issueInfo,
@@ -57,6 +66,9 @@ const issueProfile = new Vue({
 
 	    	this.fetchIssueFiles();
 	    	eventBus.$on('refetchIssueFiles', event => this.fetchIssueFiles());
+
+	    	this.fetchIssueMeetings();
+	    	eventBus.$on('refetchIssueMeetings', event => this.fetchIssueMeetings());
 	    }
     });
 
