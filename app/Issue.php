@@ -20,6 +20,14 @@ class Issue extends Model
                     ->orderBy('is_client', 'desc');
     }
 
+    public function accusedOpenents()
+    {
+        return $this->belongsToMany(Person::class)
+                    ->withPivot('person_type')
+                    ->wherePivot('person_type', 1)
+                    ->orderBy('is_client', 'desc');
+    }
+
     public function files()
     {
         return $this->morphMany(File::class, 'fileable');

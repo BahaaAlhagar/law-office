@@ -29,12 +29,12 @@ class MeetingController extends Controller
                         ->orderBy('date', 'asc')
                         ->get();
 
-        $openents = $issue->openents()->with(['judgements' => function($query) use ($issue)
+        $accusedOpenents = $issue->accusedOpenents()->with(['judgements' => function($query) use ($issue)
         {
             $query->where('issue_id', $issue->id);
         }, 'contracts'])->get();
 
-        return $this->makeResponse('issues/issueProfile', compact('issue', 'meetings', 'openents'));
+        return $this->makeResponse('issues/issueProfile', compact('issue', 'meetings', 'accusedOpenents'));
     }
 
 

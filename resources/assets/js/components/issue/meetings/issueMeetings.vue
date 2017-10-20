@@ -37,7 +37,7 @@
                       {{ meeting.notes }}
                   </td>
                   <td>
-                      <meeting-judgements :issue="issue" :openents="openents" :meeting="meeting"></meeting-judgements>
+                      <meeting-judgements :issue="issue" :accusedopenents="accusedopenents" :meeting="meeting"></meeting-judgements>
                   </td>
                 </tr>
             </tbody>
@@ -61,7 +61,7 @@ import delayMeeting from './delayMeeting';
 import meetingJudgements from './meetingJudgements';
 
 export default {
-	props: ['issue', 'openents', 'meetings'],
+	props: ['issue', 'accusedopenents', 'meetings'],
     methods: {
   	  afterMeetingAdded(response){
         eventBus.$emit('refetchIssueMeetings');

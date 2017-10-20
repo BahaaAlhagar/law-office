@@ -25,7 +25,8 @@ const issueProfile = new Vue({
 	    	openents: [],
 	    	people: [],
 	    	files: [],
-	    	meetings: []
+	    	meetings: [],
+	    	accusedopenents: []
 	    	},
 	    methods: {
 	      fetchIssueInfo(){
@@ -51,7 +52,7 @@ const issueProfile = new Vue({
 	      },
 	      assignMeetingsData(response){
 	        this.meetings = response.data.meetings;
-	        this.openents = response.data.openents;
+	        this.accusedopenents = response.data.accusedOpenents;
 	      },
 	    },
 	    components: {

@@ -106,6 +106,7 @@
                 this.addChallengeForm.person_id = judgement.person_id;
                 this.addChallengeForm.judgement_id = judgement.id;
                 this.addChallengeForm.level = judgement.level;
+                this.$props.judgement = judgement;
             }
         },
         components: {

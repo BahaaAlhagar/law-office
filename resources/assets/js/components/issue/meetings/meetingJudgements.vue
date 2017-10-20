@@ -22,6 +22,9 @@
             data-toggle="modal" 
             data-target="#addChallenge"> اضافة طعن </button>
 
+            <!-- add challenge component if judgement doesnt have a child meeting -->
+            <add-challenge v-if="judgement.child_meeting == null && judgement.level < 5" :judgement="judgement" :issue="issue"></add-challenge>
+
             <!-- add announcement if judgement is not present and doesnt have challenge(child meeting) -->
             <button v-if="judgement.child_meeting == null && !judgement.present" class="btn btn-sm btn-success pull-left" 
             @click="addAnnouncement(judgement)"> اضافة اعلان </button>
@@ -35,8 +38,6 @@
             <!-- edit judgement -->
             <button class="btn btn-sm btn-info pull-left" @click="editJudgement(judgement)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
 
-            <!-- add challenge component if judgement doesnt have a child meeting -->
-            <add-challenge v-if="judgement.child_meeting == null && judgement.level < 5" :judgement="judgement" :issue="issue"></add-challenge>
           </ul>
 
         </span>
@@ -46,40 +47,40 @@
 
         <!-- criminal issues -->
         <span v-if="issue.type < 4">
-          <!-- add judgement component -->
-          <add-judgement :issue="issue" :meeting="meeting"></add-judgement>
 
           <!-- level 1 is complicated so we have seprate logic for it -->
           <!-- this data appears if meetings level is 1 and the meeting isnt set for certain openent -->
-          <ul v-if="firstMeetingCheck(meeting)" v-for="openent in openents" :key="openent.id">
+          <ul v-if="firstMeetingCheck(meeting)" v-for="openent in accusedopenents" :key="openent.id">
             <!-- check the openent person_type for result 1 then echo the name  -->
-            <li v-if="statusCheck(openent)">
+            <li>
               {{ echoName(openent) }}
               <button v-if="!openent.judgements.length"
               class="btn btn-sm btn-primary" 
               @click="addCriminalJudgement(openent)"> اضافة حكم </button>
+              <!-- add judgement component -->
+              <add-judgement :issue="issue" :meeting="meeting"></add-judgement>
 
-                <ul v-if="openentJudgement(openent)">
+                <ul v-for="currentJudgement in meeting.judgements" v-if="openent.id == currentJudgement.person_id">
                   <li>
-                  {{ openentJudgement(openent).body }}
+                  {{ currentJudgement.body }}
                   </li>
-                  <li v-if="openentJudgement(openent).record">
-                    حصر {{ openentJudgement(openent).record }} لسنة {{ openentJudgement(openent).year }}
+                  <li v-if="currentJudgement.record">
+                    حصر {{ currentJudgement.record }} لسنة {{ currentJudgement.year }}
                   </li>
 
                   <!-- add challenge if the judgement doesnt have challenge(child meeting) - and judgement type is 1 or 2 -->
-                  <button v-if="openentJudgement(openent).child_meeting == null && openentJudgement(openent).type < 3" class="btn btn-sm btn-dark pull-left" 
-                  @click="addCriminalChallenge(judgement = openentJudgement(openent))"> اضافة طعن </button>
+                  <button v-if="!currentJudgement.child_meeting && currentJudgement.type < 3" class="btn btn-sm btn-dark pull-left" 
+                  @click="addCriminalChallenge(currentJudgement)"> اضافة طعن </button>
 
                   <!-- add challenge component if the judgement doesnt have challenge(child meeting) - and judgement type is 1 or 2 -->
-                  <add-challenge v-if="openentJudgement(openent).child_meeting == null && openentJudgement(openent).type < 3" :judgement="openentJudgement(openent)" :issue="issue"></add-challenge>
+                  <add-challenge v-if="currentJudgement.child_meeting == null && currentJudgement.type < 3" :judgement="currentJudgement" :issue="issue"></add-challenge>
 
 
                   <!-- delete judgement if doesnt have challenge(child meeting) -->
-                  <button v-if="openentJudgement(openent).child_meeting == null" class="btn btn-sm btn-danger pull-left" @click="deleteJudgement(judgement = openentJudgement(openent))"><i class="fa fa-times" aria-hidden="true"></i></button>
+                  <button v-if="currentJudgement.child_meeting == null" class="btn btn-sm btn-danger pull-left" @click="deleteJudgement(currentJudgement)"><i class="fa fa-times" aria-hidden="true"></i></button>
 
                   <!-- edit judgement -->
-                  <button class="btn btn-sm btn-info pull-left" @click="editJudgement(judgement = openentJudgement(openent))"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                  <button class="btn btn-sm btn-info pull-left" @click="editJudgement(currentJudgement)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                   <br><hr>
                 </ul>
             </li>
@@ -102,7 +103,12 @@ import addChallenge from './addChallenge';
 import addAnnouncement from './addAnnouncement';
 
 export default {
-	props: ['issue', 'openents', 'meeting'],
+  data(){
+    return {
+      workingOpenents: []
+    };
+  },
+	props: ['issue', 'accusedopenents', 'meeting'],
     methods: {
       editJudgement(judgement){
         eventBus.$emit('editJudgement', judgement);
@@ -139,11 +145,6 @@ export default {
             }
           } else{return false;}
       },
-      // check for guilty openents
-      statusCheck(openent){
-        if(openent.pivot.person_type == 1)
-          return true;
-      },
       // return silced names
       echoName(openent){
         return openent.name.slice(0, 12);
@@ -152,16 +153,6 @@ export default {
       addCriminalJudgement(openent){
         $('#addJudgement').modal('show');
         eventBus.$emit('addCriminalJudgement', openent);
-      },
-      // get judgment from openent judgements for certain meeting
-      openentJudgement(openent){
-        for (var i = 0; i < openent.judgements.length; i++) {
-          if(openent.judgements[i].meeting_id = this.meeting.id)
-          {
-            return openent.judgements[i];
-          }
-          else {return false;}
-        }
       },
       addCriminalChallenge(judgement){
         eventBus.$emit('addCriminalChallenge', judgement);

@@ -36362,7 +36362,8 @@ var issueProfile = new Vue({
 		openents: [],
 		people: [],
 		files: [],
-		meetings: []
+		meetings: [],
+		accusedopenents: []
 	},
 	methods: {
 		fetchIssueInfo: function fetchIssueInfo() {
@@ -36397,7 +36398,7 @@ var issueProfile = new Vue({
 		},
 		assignMeetingsData: function assignMeetingsData(response) {
 			this.meetings = response.data.meetings;
-			this.openents = response.data.openents;
+			this.accusedopenents = response.data.accusedOpenents;
 		}
 	},
 	components: {
@@ -37763,7 +37764,7 @@ var _meetingJudgements2 = _interopRequireDefault(_meetingJudgements);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
-  props: ['issue', 'openents', 'meetings'],
+  props: ['issue', 'accusedopenents', 'meetings'],
   methods: {
     afterMeetingAdded: function afterMeetingAdded(response) {
       eventBus.$emit('refetchIssueMeetings');
@@ -38860,7 +38861,13 @@ var _addAnnouncement2 = _interopRequireDefault(_addAnnouncement);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
-  props: ['issue', 'openents', 'meeting'],
+  data: function data() {
+    return {
+      workingOpenents: []
+    };
+  },
+
+  props: ['issue', 'accusedopenents', 'meeting'],
   methods: {
     editJudgement: function editJudgement(judgement) {
       eventBus.$emit('editJudgement', judgement);
@@ -38895,24 +38902,12 @@ exports.default = {
         return false;
       }
     },
-    statusCheck: function statusCheck(openent) {
-      if (openent.pivot.person_type == 1) return true;
-    },
     echoName: function echoName(openent) {
       return openent.name.slice(0, 12);
     },
     addCriminalJudgement: function addCriminalJudgement(openent) {
       $('#addJudgement').modal('show');
       eventBus.$emit('addCriminalJudgement', openent);
-    },
-    openentJudgement: function openentJudgement(openent) {
-      for (var i = 0; i < openent.judgements.length; i++) {
-        if (openent.judgements[i].meeting_id = this.meeting.id) {
-          return openent.judgements[i];
-        } else {
-          return false;
-        }
-      }
     },
     addCriminalChallenge: function addCriminalChallenge(judgement) {
       eventBus.$emit('addCriminalChallenge', judgement);
@@ -39923,6 +39918,7 @@ exports.default = {
             this.addChallengeForm.person_id = judgement.person_id;
             this.addChallengeForm.judgement_id = judgement.id;
             this.addChallengeForm.level = judgement.level;
+            this.$props.judgement = judgement;
         }
     },
     components: {
@@ -40371,7 +40367,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "data-toggle": "modal",
         "data-target": "#addChallenge"
       }
-    }, [_vm._v(" اضافة طعن ")]) : _vm._e(), _vm._v(" "), (judgement.child_meeting == null && !judgement.present) ? _c('button', {
+    }, [_vm._v(" اضافة طعن ")]) : _vm._e(), _vm._v(" "), (judgement.child_meeting == null && judgement.level < 5) ? _c('add-challenge', {
+      attrs: {
+        "judgement": judgement,
+        "issue": _vm.issue
+      }
+    }) : _vm._e(), _vm._v(" "), (judgement.child_meeting == null && !judgement.present) ? _c('button', {
       staticClass: "btn btn-sm btn-success pull-left",
       on: {
         "click": function($event) {
@@ -40402,65 +40403,62 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       attrs: {
         "aria-hidden": "true"
       }
-    })]), _vm._v(" "), (judgement.child_meeting == null && judgement.level < 5) ? _c('add-challenge', {
-      attrs: {
-        "judgement": judgement,
-        "issue": _vm.issue
-      }
-    }) : _vm._e()], 1) : _vm._e()
-  })], 2) : _vm._e(), _vm._v(" "), (_vm.issue.type < 4) ? _c('span', [_c('add-judgement', {
-    attrs: {
-      "issue": _vm.issue,
-      "meeting": _vm.meeting
-    }
-  }), _vm._v(" "), _vm._l((_vm.openents), function(openent) {
+    })])], 1) : _vm._e()
+  })], 2) : _vm._e(), _vm._v(" "), (_vm.issue.type < 4) ? _c('span', _vm._l((_vm.accusedopenents), function(openent) {
     return (_vm.firstMeetingCheck(_vm.meeting)) ? _c('ul', {
       key: openent.id
-    }, [(_vm.statusCheck(openent)) ? _c('li', [_vm._v("\n              " + _vm._s(_vm.echoName(openent)) + "\n              "), (!openent.judgements.length) ? _c('button', {
+    }, [_c('li', [_vm._v("\n              " + _vm._s(_vm.echoName(openent)) + "\n              "), (!openent.judgements.length) ? _c('button', {
       staticClass: "btn btn-sm btn-primary",
       on: {
         "click": function($event) {
           _vm.addCriminalJudgement(openent)
         }
       }
-    }, [_vm._v(" اضافة حكم ")]) : _vm._e(), _vm._v(" "), (_vm.openentJudgement(openent)) ? _c('ul', [_c('li', [_vm._v("\n                  " + _vm._s(_vm.openentJudgement(openent).body) + "\n                  ")]), _vm._v(" "), (_vm.openentJudgement(openent).record) ? _c('li', [_vm._v("\n                    حصر " + _vm._s(_vm.openentJudgement(openent).record) + " لسنة " + _vm._s(_vm.openentJudgement(openent).year) + "\n                  ")]) : _vm._e(), _vm._v(" "), (_vm.openentJudgement(openent).child_meeting == null && _vm.openentJudgement(openent).type < 3) ? _c('button', {
-      staticClass: "btn btn-sm btn-dark pull-left",
-      on: {
-        "click": function($event) {
-          _vm.addCriminalChallenge(_vm.judgement = _vm.openentJudgement(openent))
-        }
-      }
-    }, [_vm._v(" اضافة طعن ")]) : _vm._e(), _vm._v(" "), (_vm.openentJudgement(openent).child_meeting == null && _vm.openentJudgement(openent).type < 3) ? _c('add-challenge', {
+    }, [_vm._v(" اضافة حكم ")]) : _vm._e(), _vm._v(" "), _c('add-judgement', {
       attrs: {
-        "judgement": _vm.openentJudgement(openent),
-        "issue": _vm.issue
+        "issue": _vm.issue,
+        "meeting": _vm.meeting
       }
-    }) : _vm._e(), _vm._v(" "), (_vm.openentJudgement(openent).child_meeting == null) ? _c('button', {
-      staticClass: "btn btn-sm btn-danger pull-left",
-      on: {
-        "click": function($event) {
-          _vm.deleteJudgement(_vm.judgement = _vm.openentJudgement(openent))
+    }), _vm._v(" "), _vm._l((_vm.meeting.judgements), function(currentJudgement) {
+      return (openent.id == currentJudgement.person_id) ? _c('ul', [_c('li', [_vm._v("\n                  " + _vm._s(currentJudgement.body) + "\n                  ")]), _vm._v(" "), (currentJudgement.record) ? _c('li', [_vm._v("\n                    حصر " + _vm._s(currentJudgement.record) + " لسنة " + _vm._s(currentJudgement.year) + "\n                  ")]) : _vm._e(), _vm._v(" "), (!currentJudgement.child_meeting && currentJudgement.type < 3) ? _c('button', {
+        staticClass: "btn btn-sm btn-dark pull-left",
+        on: {
+          "click": function($event) {
+            _vm.addCriminalChallenge(currentJudgement)
+          }
         }
-      }
-    }, [_c('i', {
-      staticClass: "fa fa-times",
-      attrs: {
-        "aria-hidden": "true"
-      }
-    })]) : _vm._e(), _vm._v(" "), _c('button', {
-      staticClass: "btn btn-sm btn-info pull-left",
-      on: {
-        "click": function($event) {
-          _vm.editJudgement(_vm.judgement = _vm.openentJudgement(openent))
+      }, [_vm._v(" اضافة طعن ")]) : _vm._e(), _vm._v(" "), (currentJudgement.child_meeting == null && currentJudgement.type < 3) ? _c('add-challenge', {
+        attrs: {
+          "judgement": currentJudgement,
+          "issue": _vm.issue
         }
-      }
-    }, [_c('i', {
-      staticClass: "fa fa-pencil-square-o",
-      attrs: {
-        "aria-hidden": "true"
-      }
-    })]), _vm._v(" "), _c('br'), _c('hr')], 1) : _vm._e()]) : _vm._e()]) : _vm._e()
-  })], 2) : _vm._e(), _vm._v(" "), (_vm.issue.type == 4) ? _c('span') : _vm._e()], 1)
+      }) : _vm._e(), _vm._v(" "), (currentJudgement.child_meeting == null) ? _c('button', {
+        staticClass: "btn btn-sm btn-danger pull-left",
+        on: {
+          "click": function($event) {
+            _vm.deleteJudgement(currentJudgement)
+          }
+        }
+      }, [_c('i', {
+        staticClass: "fa fa-times",
+        attrs: {
+          "aria-hidden": "true"
+        }
+      })]) : _vm._e(), _vm._v(" "), _c('button', {
+        staticClass: "btn btn-sm btn-info pull-left",
+        on: {
+          "click": function($event) {
+            _vm.editJudgement(currentJudgement)
+          }
+        }
+      }, [_c('i', {
+        staticClass: "fa fa-pencil-square-o",
+        attrs: {
+          "aria-hidden": "true"
+        }
+      })]), _vm._v(" "), _c('br'), _c('hr')], 1) : _vm._e()
+    })], 2)]) : _vm._e()
+  })) : _vm._e(), _vm._v(" "), (_vm.issue.type == 4) ? _c('span') : _vm._e()], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -40532,7 +40530,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_vm._v("تأجيل")]) : _vm._e()]), _vm._v(" "), _c('td', [_vm._v("\n                      " + _vm._s(meeting.decision) + "\n                  ")]), _vm._v(" "), _c('td', [_vm._v("\n                      " + _vm._s(meeting.notes) + "\n                  ")]), _vm._v(" "), _c('td', [_c('meeting-judgements', {
       attrs: {
         "issue": _vm.issue,
-        "openents": _vm.openents,
+        "accusedopenents": _vm.accusedopenents,
         "meeting": meeting
       }
     })], 1)])
