@@ -46,12 +46,30 @@
           <!-- add judgement component -->
           <add-judgement :issue="issue" :meeting="meeting"></add-judgement>
 
-          <ul v-if="meeting.level == 1" v-for="openent in openents">
+          <!-- level 1 is complicated so we have seprate logic for it -->
+          <!-- this data appears if meetings level is 1 and the meeting isnt set for certain openent -->
+          <ul v-if="firstMeetingCheck(meeting)" v-for="openent in openents" :key="openent.id">
+            <!-- check the openent person_type for result 1 then echo the name  -->
             <li v-if="statusCheck(openent)">
               {{ echoName(openent) }}
               <button v-if="!openent.judgements.length"
               class="btn btn-sm btn-primary" 
               @click="addCriminalJudgement(openent)"> اضافة حكم </button>
+
+                <ul v-if="openentJudgement(openent)">
+                  <li>
+                  {{ openentJudgement(openent).body }}
+                  </li>
+                  <li v-if="openentJudgement(openent).record">
+                    حصر {{ openentJudgement(openent).record }} لسنة {{ openentJudgement(openent).year }}
+                  </li>
+                  <!-- delete judgement if doesnt have challenge(child meeting) -->
+                  <button v-if="openentJudgement(openent).child_meeting == null" class="btn btn-sm btn-danger pull-left" @click="deleteJudgement(judgement = openentJudgement(openent))"><i class="fa fa-times" aria-hidden="true"></i></button>
+
+                  <!-- edit judgement -->
+                  <button class="btn btn-sm btn-info pull-left" @click="editJudgement(judgement = openentJudgement(openent))"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                  <br><hr>
+                </ul>
             </li>
           </ul>
         </span>
@@ -72,10 +90,6 @@ import addChallenge from './addChallenge';
 import addAnnouncement from './addAnnouncement';
 
 export default {
-  data() {
-    return {
-    };
-  },
 	props: ['issue', 'openents', 'meeting'],
     methods: {
       editJudgement(judgement){
@@ -93,16 +107,49 @@ export default {
         eventBus.$emit('addAnnouncement', judgement);
         $('#addAnnouncement').modal('show');
       },
+      // criminal logic starts here
+      // check if the meeting have first meeting properties
+      firstMeetingCheck(meeting){
+        if(meeting.level == 1 && !meeting.person_id && !this.meetingHaveFullDelay(meeting)){
+          return true;
+        }
+        return false;
+      },
+      // check if meeting is delayed for all openents or not
+      meetingHaveFullDelay(meeting){
+        if(meeting.child_meetings){
+          for(var i = 0; i < meeting.child_meetings.length; i++)
+          {
+            if(meeting.child_meetings[i].person_id == null){
+              return true;
+              }
+            return false;
+            }
+          } else{return false;}
+      },
+      // check for guilty openents
       statusCheck(openent){
         if(openent.pivot.person_type == 1)
           return true;
       },
+      // return silced names
       echoName(openent){
         return openent.name.slice(0, 12);
       },
+      // add criminal judgement
       addCriminalJudgement(openent){
         $('#addJudgement').modal('show');
         eventBus.$emit('addCriminalJudgement', openent);
+      },
+      // get judgment from openent judgements for certain meeting
+      openentJudgement(openent){
+        for (var i = 0; i < openent.judgements.length; i++) {
+          if(openent.judgements[i].meeting_id = this.meeting.id)
+          {
+            return openent.judgements[i];
+          }
+          else {return false;}
+        }
       }
     },
     components: {

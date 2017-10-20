@@ -38860,10 +38860,6 @@ var _addAnnouncement2 = _interopRequireDefault(_addAnnouncement);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
-  data: function data() {
-    return {};
-  },
-
   props: ['issue', 'openents', 'meeting'],
   methods: {
     editJudgement: function editJudgement(judgement) {
@@ -38881,6 +38877,24 @@ exports.default = {
       eventBus.$emit('addAnnouncement', judgement);
       $('#addAnnouncement').modal('show');
     },
+    firstMeetingCheck: function firstMeetingCheck(meeting) {
+      if (meeting.level == 1 && !meeting.person_id && !this.meetingHaveFullDelay(meeting)) {
+        return true;
+      }
+      return false;
+    },
+    meetingHaveFullDelay: function meetingHaveFullDelay(meeting) {
+      if (meeting.child_meetings) {
+        for (var i = 0; i < meeting.child_meetings.length; i++) {
+          if (meeting.child_meetings[i].person_id == null) {
+            return true;
+          }
+          return false;
+        }
+      } else {
+        return false;
+      }
+    },
     statusCheck: function statusCheck(openent) {
       if (openent.pivot.person_type == 1) return true;
     },
@@ -38890,6 +38904,15 @@ exports.default = {
     addCriminalJudgement: function addCriminalJudgement(openent) {
       $('#addJudgement').modal('show');
       eventBus.$emit('addCriminalJudgement', openent);
+    },
+    openentJudgement: function openentJudgement(openent) {
+      for (var i = 0; i < openent.judgements.length; i++) {
+        if (openent.judgements[i].meeting_id = this.meeting.id) {
+          return openent.judgements[i];
+        } else {
+          return false;
+        }
+      }
     }
   },
   components: {
@@ -40370,14 +40393,40 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "meeting": _vm.meeting
     }
   }), _vm._v(" "), _vm._l((_vm.openents), function(openent) {
-    return (_vm.meeting.level == 1) ? _c('ul', [(_vm.statusCheck(openent)) ? _c('li', [_vm._v("\n              " + _vm._s(_vm.echoName(openent)) + "\n              "), (!openent.judgements.length) ? _c('button', {
+    return (_vm.firstMeetingCheck(_vm.meeting)) ? _c('ul', {
+      key: openent.id
+    }, [(_vm.statusCheck(openent)) ? _c('li', [_vm._v("\n              " + _vm._s(_vm.echoName(openent)) + "\n              "), (!openent.judgements.length) ? _c('button', {
       staticClass: "btn btn-sm btn-primary",
       on: {
         "click": function($event) {
           _vm.addCriminalJudgement(openent)
         }
       }
-    }, [_vm._v(" اضافة حكم ")]) : _vm._e()]) : _vm._e()]) : _vm._e()
+    }, [_vm._v(" اضافة حكم ")]) : _vm._e(), _vm._v(" "), (_vm.openentJudgement(openent)) ? _c('ul', [_c('li', [_vm._v("\n                  " + _vm._s(_vm.openentJudgement(openent).body) + "\n                  ")]), _vm._v(" "), (_vm.openentJudgement(openent).record) ? _c('li', [_vm._v("\n                    حصر " + _vm._s(_vm.openentJudgement(openent).record) + " لسنة " + _vm._s(_vm.openentJudgement(openent).year) + "\n                  ")]) : _vm._e(), _vm._v(" "), (_vm.openentJudgement(openent).child_meeting == null) ? _c('button', {
+      staticClass: "btn btn-sm btn-danger pull-left",
+      on: {
+        "click": function($event) {
+          _vm.deleteJudgement(_vm.judgement = _vm.openentJudgement(openent))
+        }
+      }
+    }, [_c('i', {
+      staticClass: "fa fa-times",
+      attrs: {
+        "aria-hidden": "true"
+      }
+    })]) : _vm._e(), _vm._v(" "), _c('button', {
+      staticClass: "btn btn-sm btn-info pull-left",
+      on: {
+        "click": function($event) {
+          _vm.editJudgement(_vm.judgement = _vm.openentJudgement(openent))
+        }
+      }
+    }, [_c('i', {
+      staticClass: "fa fa-pencil-square-o",
+      attrs: {
+        "aria-hidden": "true"
+      }
+    })]), _vm._v(" "), _c('br'), _c('hr')]) : _vm._e()]) : _vm._e()]) : _vm._e()
   })], 2) : _vm._e(), _vm._v(" "), (_vm.issue.type == 4) ? _c('span') : _vm._e()], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
