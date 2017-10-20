@@ -37,6 +37,7 @@ const issueProfile = new Vue({
 	      	this.issue = response.data.issue;
 	      	this.openents = response.data.openents;
 	      	this.people = response.data.people;
+	      	this.fetchIssueMeetings();
 	      },
 	      fetchIssueFiles(){
 	      	axios.get(window.location.pathname + '/files')
@@ -68,7 +69,6 @@ const issueProfile = new Vue({
 	    	this.fetchIssueFiles();
 	    	eventBus.$on('refetchIssueFiles', event => this.fetchIssueFiles());
 
-	    	this.fetchIssueMeetings();
 	    	eventBus.$on('refetchIssueMeetings', event => this.fetchIssueMeetings());
 	    }
     });

@@ -53,12 +53,22 @@
           <ul v-if="firstMeetingCheck(meeting)" v-for="openent in accusedopenents" :key="openent.id">
             <!-- check the openent person_type for result 1 then echo the name  -->
             <li>
-              {{ echoName(openent) }}
-              <button v-if="!openent.judgements.length"
-              class="btn btn-sm btn-primary" 
-              @click="addCriminalJudgement(openent)"> اضافة حكم </button>
-              <!-- add judgement component -->
-              <add-judgement :issue="issue" :meeting="meeting"></add-judgement>
+              {{ echoName(openent) }}...
+
+                <span v-if="!openent.judgements.length">
+                  <!-- delay for certain openent button -->
+                  <button class="btn btn-sm btn-dark" @click="delayMeeting(meeting, openent)">تأجيل لخصم</button>
+
+                  <!-- delay meeting component -->
+                  <delay-meeting></delay-meeting>
+
+                  <button 
+                  class="btn btn-sm btn-primary" 
+                  @click="addCriminalJudgement(openent)"> اضافة حكم </button>
+                  <!-- add judgement component -->
+                  <add-judgement :issue="issue" :meeting="meeting"></add-judgement>
+                </span>
+
 
                 <ul v-for="currentJudgement in meeting.judgements" v-if="openent.id == currentJudgement.person_id">
                   <li>
@@ -101,6 +111,7 @@ import addJudgement from './addJudgement';
 import editJudgement from './editJudgement';
 import addChallenge from './addChallenge';
 import addAnnouncement from './addAnnouncement';
+import delayMeeting from './delayMeeting';
 
 export default {
   data(){
@@ -163,7 +174,8 @@ export default {
       addJudgement,
       editJudgement,
       addChallenge,
-      addAnnouncement
+      addAnnouncement,
+      delayMeeting
     }
 }
 
