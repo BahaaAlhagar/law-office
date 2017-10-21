@@ -146,7 +146,6 @@
             this.editJudgementForm.date = judgement.date;
             this.editJudgementForm.body = judgement.body;
             this.editJudgementForm.level = judgement.level;
-            $('#editJudgement').modal('show');
             }
         },
         components: {

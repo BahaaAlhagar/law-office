@@ -38896,6 +38896,7 @@ exports.default = {
   methods: {
     editJudgement: function editJudgement(judgement) {
       eventBus.$emit('editJudgement', judgement);
+      $('#editJudgement').modal('show');
     },
     deleteJudgement: function deleteJudgement(judgement) {
       if (confirm('هل انت متأكد من حذف هذا الحكم - لن تتمكن من استرجاعه فيما بعد')) {
@@ -38944,6 +38945,18 @@ exports.default = {
     delayMeeting: function delayMeeting(meeting, openent) {
       $('#delayMeeting').modal('show');
       eventBus.$emit('delayCriminalMeeting', meeting, openent);
+    },
+    deActivateJudgement: function deActivateJudgement(judgement) {
+      if (confirm('هل انت متأكد من اخفاء الحكم من الاشعارات - لن تتمكن وظائف التطبيق من متابعته')) {
+        this.$refs.editJudgement.editJudgementModal(judgement);
+        this.$refs.editJudgement.editJudgementForm.active = 0;
+        this.$refs.editJudgement.onJudgementUpdate();
+      }
+    },
+    reActivateJudgement: function reActivateJudgement(judgement) {
+      this.$refs.editJudgement.editJudgementModal(judgement);
+      this.$refs.editJudgement.editJudgementForm.active = 1;
+      this.$refs.editJudgement.onJudgementUpdate();
     }
   },
   components: {
@@ -39491,7 +39504,6 @@ exports.default = {
             this.editJudgementForm.date = judgement.date;
             this.editJudgementForm.body = judgement.body;
             this.editJudgementForm.level = judgement.level;
-            $('#editJudgement').modal('show');
         }
     },
     components: {
@@ -40353,6 +40365,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "id": "meetingJudgements"
     }
   }, [_c('edit-judgement', {
+    ref: "editJudgement",
     attrs: {
       "issue": _vm.issue
     }
@@ -40468,7 +40481,31 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         attrs: {
           "aria-hidden": "true"
         }
-      })]), _vm._v(" "), _c('br'), _c('hr')]) : _vm._e()
+      })]), _vm._v(" "), (currentJudgement.active && !currentJudgement.child_meeting) ? _c('button', {
+        staticClass: "btn btn-sm btn-warning pull-left",
+        on: {
+          "click": function($event) {
+            _vm.deActivateJudgement(currentJudgement)
+          }
+        }
+      }, [_c('i', {
+        staticClass: "fa fa-bell",
+        attrs: {
+          "aria-hidden": "true"
+        }
+      })]) : _vm._e(), _vm._v(" "), (!currentJudgement.active && !currentJudgement.child_meeting) ? _c('button', {
+        staticClass: "btn btn-sm btn-success pull-left",
+        on: {
+          "click": function($event) {
+            _vm.reActivateJudgement(currentJudgement)
+          }
+        }
+      }, [_c('i', {
+        staticClass: "fa fa-bell",
+        attrs: {
+          "aria-hidden": "true"
+        }
+      })]) : _vm._e(), _vm._v(" "), _c('br'), _c('hr')]) : _vm._e()
     })], 2)]) : _vm._e()
   }), _vm._v(" "), (_vm.meeting.person) ? _c('ul', [_c('li', [(!_vm.meeting.judgements.length && !_vm.meeting.child_meetings.length) ? _c('span', [_c('button', {
     staticClass: "btn btn-sm btn-primary",
@@ -40509,7 +40546,31 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       attrs: {
         "aria-hidden": "true"
       }
-    })])]) : _vm._e()
+    })]), _vm._v(" "), (judgement.active && !judgement.child_meeting) ? _c('button', {
+      staticClass: "btn btn-sm btn-warning pull-left",
+      on: {
+        "click": function($event) {
+          _vm.deActivateJudgement(judgement)
+        }
+      }
+    }, [_c('i', {
+      staticClass: "fa fa-bell",
+      attrs: {
+        "aria-hidden": "true"
+      }
+    })]) : _vm._e(), _vm._v(" "), (!judgement.active && !judgement.child_meeting) ? _c('button', {
+      staticClass: "btn btn-sm btn-success pull-left",
+      on: {
+        "click": function($event) {
+          _vm.reActivateJudgement(judgement)
+        }
+      }
+    }, [_c('i', {
+      staticClass: "fa fa-bell",
+      attrs: {
+        "aria-hidden": "true"
+      }
+    })]) : _vm._e()]) : _vm._e()
   })], 2)]) : _vm._e()], 2) : _vm._e(), _vm._v(" "), (_vm.issue.type == 4) ? _c('span') : _vm._e()], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
@@ -40790,7 +40851,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "value": "3"
     }
-  }, [_vm._v("استـــئـناف")]) : _vm._e(), _vm._v(" "), (_vm.issue.type == 1 && _vm.judgement.level == 3) ? _c('option', {
+  }, [_vm._v("استـــئـناف")]) : _vm._e(), _vm._v(" "), (_vm.issue.type == 1 && _vm.judgement.level == 3 && !_vm.judgement.present) ? _c('option', {
     attrs: {
       "value": "4"
     }

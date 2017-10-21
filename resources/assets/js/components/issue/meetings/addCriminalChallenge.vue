@@ -30,7 +30,7 @@
                             <option v-if="issue.type !== 12 && judgement.level <= 2" 
                             value="3">استـــئـناف</option>
 
-                            <option v-if="issue.type == 1 && judgement.level == 3" value="4">معارضة استئنافية</option>
+                            <option v-if="issue.type == 1 && judgement.level == 3 && !judgement.present" value="4">معارضة استئنافية</option>
 
                             <option v-if="judgement.level >= 3 && judgement.present" value="5">نـــقـــض</option>
                         </select>

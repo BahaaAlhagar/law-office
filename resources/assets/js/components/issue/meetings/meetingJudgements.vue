@@ -2,7 +2,7 @@
 	<span id="meetingJudgements">
         <!-- meeting judgements -->
         <!-- edit judgement modal out of type spans because it will be used by calling an event -->
-        <edit-judgement :issue="issue"></edit-judgement>
+        <edit-judgement ref="editJudgement" :issue="issue"></edit-judgement>
 
         <!-- cevil issues -->
         <span v-if="issue.type > 4">
@@ -95,6 +95,13 @@
 
                   <!-- edit judgement -->
                   <button class="btn btn-sm btn-info pull-left" @click="editJudgement(currentJudgement)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+
+                  <!-- deActivate judgement -->
+                  <button v-if="currentJudgement.active  && !currentJudgement.child_meeting" class="btn btn-sm btn-warning pull-left" @click="deActivateJudgement(currentJudgement)"><i class="fa fa-bell" aria-hidden="true"></i></button>
+
+                  <!-- reActivate judgement -->
+                  <button v-if="!currentJudgement.active  && !currentJudgement.child_meeting" class="btn btn-sm btn-success pull-left" @click="reActivateJudgement(currentJudgement)"><i class="fa fa-bell" aria-hidden="true"></i></button>
+
                   <br><hr>
                 </ul>
             </li>
@@ -119,12 +126,17 @@
                   <button v-if="judgement.child_meeting == null && judgement.level < 5" class="btn btn-sm btn-dark pull-left" 
                   @click="addCriminalChallenge(judgement)"> اضافة طعن </button>
 
-
                   <!-- delete judgement if doesnt have challenge(child meeting) -->
                   <button v-if="judgement.child_meeting == null" class="btn btn-sm btn-danger pull-left" @click="deleteJudgement(judgement)"><i class="fa fa-times" aria-hidden="true"></i></button>
 
                   <!-- edit judgement -->
                   <button class="btn btn-sm btn-info pull-left" @click="editJudgement(judgement)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+
+                  <!-- deActivate judgement -->
+                  <button v-if="judgement.active && !judgement.child_meeting" class="btn btn-sm btn-warning pull-left" @click="deActivateJudgement(judgement)"><i class="fa fa-bell" aria-hidden="true"></i></button>
+
+                  <!-- reActivate judgement -->
+                  <button v-if="!judgement.active && !judgement.child_meeting" class="btn btn-sm btn-success pull-left" @click="reActivateJudgement(judgement)"><i class="fa fa-bell" aria-hidden="true"></i></button>
 
                 </ul>
 
@@ -158,6 +170,7 @@ export default {
     methods: {
       editJudgement(judgement){
         eventBus.$emit('editJudgement', judgement);
+        $('#editJudgement').modal('show');
       },
       deleteJudgement(judgement){
         if(confirm('هل انت متأكد من حذف هذا الحكم - لن تتمكن من استرجاعه فيما بعد'))
@@ -211,6 +224,18 @@ export default {
       delayMeeting(meeting, openent){
         $('#delayMeeting').modal('show');
         eventBus.$emit('delayCriminalMeeting', meeting, openent);
+      },
+      deActivateJudgement(judgement){
+        if(confirm('هل انت متأكد من اخفاء الحكم من الاشعارات - لن تتمكن وظائف التطبيق من متابعته')){
+        this.$refs.editJudgement.editJudgementModal(judgement);
+        this.$refs.editJudgement.editJudgementForm.active = 0;
+        this.$refs.editJudgement.onJudgementUpdate();
+        }
+      },
+      reActivateJudgement(judgement){
+        this.$refs.editJudgement.editJudgementModal(judgement);
+        this.$refs.editJudgement.editJudgementForm.active = 1;
+        this.$refs.editJudgement.onJudgementUpdate();
       }
     },
     components: {
