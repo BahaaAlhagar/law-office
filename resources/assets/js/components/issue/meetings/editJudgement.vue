@@ -37,7 +37,7 @@
                         
                         <select id="present" name="present" class="form-control" v-model="editJudgementForm.present">
                             <option value="1">حــضـــورى</option>
-                            <option value="0">غــيــابــى</option>
+                            <option value="0" v-if="!editJudgementForm.level == 2 || !editJudgementForm.level == 4">غــيــابــى</option>
                         </select>
 
                         <span class="alert-danger" v-if="editJudgementForm.errors.has('present')" v-text="editJudgementForm.errors.get('present')"></span>

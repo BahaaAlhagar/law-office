@@ -37,7 +37,7 @@
                         
                         <select id="present" name="present" class="form-control" v-model="addJudgementForm.present">
                             <option value="1">حــضـــورى</option>
-                            <option value="0">غــيــابــى</option>
+                            <option value="0" v-if="!meeting.level == 2 || !meeting.level == 4">غــيــابــى</option>
                         </select>
 
                         <span class="alert-danger" v-if="addJudgementForm.errors.has('present')" v-text="addJudgementForm.errors.get('present')"></span>
@@ -138,7 +138,7 @@
             this.addJudgementForm.post('/meetings/' + this.meeting.id + '/judgements')
                 .then(response => eventBus.$emit('judgementAdded', response));
             },
-        addCriminalJudgementModal(openent){
+        addCriminalJudgementModal(openent, meeting){
             this.addJudgementForm.issue_id = this.issue.id;
             this.addJudgementForm.person_id = openent.id;
             this.addJudgementForm.date = this.meeting.date;
@@ -146,13 +146,14 @@
             this.addJudgementForm.active = 1;
             this.addJudgementForm.present = 1;
             this.addJudgementForm.type = 1;
+            this.meeting = meeting;
             }
         },
         components: {
             flatPickr
         },
         mounted(){
-            eventBus.$on('addCriminalJudgement', openent => this.addCriminalJudgementModal(openent));
+            eventBus.$on('addCriminalJudgement', (openent, meeting) => this.addCriminalJudgementModal(openent, meeting));
         }
     }
 </script>

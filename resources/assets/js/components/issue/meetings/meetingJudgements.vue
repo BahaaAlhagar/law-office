@@ -7,6 +7,7 @@
         <!-- cevil issues -->
         <span v-if="issue.type > 4">
         
+          <!-- if meeting doesnt have delay or judgements add judgement button appears -->
           <span v-if="!meeting.judgements.length && !meeting.child_meetings.length">
             <button class="btn btn-sm btn-primary" 
             data-toggle="modal" 
@@ -14,10 +15,11 @@
             <add-judgement :issue="issue" :meeting="meeting"></add-judgement>
           </span>
 
+          <!-- if there is a judgement -->
           <ul v-if="meeting.judgements.length" v-for="judgement in meeting.judgements">
             <li>{{ judgement.body }}</li>
 
-            <!-- add challenge if the judgement is present and doesnt have challenge(child meeting) -->
+            <!-- add challenge if the judgement is present and doesnt have challenge(child meeting) and judgement level is less than 5 -->
             <button v-if="judgement.child_meeting == null && judgement.present && judgement.level < 5" class="btn btn-sm btn-dark pull-left" 
             data-toggle="modal" 
             data-target="#addChallenge"> اضافة طعن </button>
@@ -62,9 +64,8 @@
                   <!-- delay meeting component -->
                   <delay-meeting></delay-meeting>
 
-                  <button 
-                  class="btn btn-sm btn-primary" 
-                  @click="addCriminalJudgement(openent)"> اضافة حكم </button>
+                  <button class="btn btn-sm btn-primary" 
+                  @click="addCriminalJudgement(openent, meeting)"> اضافة حكم </button>
                   <!-- add judgement component -->
                   <add-judgement :issue="issue" :meeting="meeting"></add-judgement>
                   <hr>
@@ -96,7 +97,53 @@
                 </ul>
             </li>
           </ul>
+
+          <!-- single accused meeting -->
+          <ul v-if="meeting.person">
+            <!-- get the meeting owner -->
+            <li>
+
+                <!-- if meeting doesnt have delay or judgements add judgement button appears -->
+                <span v-if="!meeting.judgements.length && !meeting.child_meetings.length">
+                  <button class="btn btn-sm btn-primary" 
+                  @click="addCriminalJudgement(openent = meeting.person, meeting)"> اضافة حكم </button>
+                  <!-- add judgement component -->
+                  <add-judgement :issue="issue" :meeting="meeting"></add-judgement>
+                </span>
+
+                <!-- if there is a judgement -->
+                <ul v-if="meeting.judgements.length" v-for="judgement in meeting.judgements">
+                  <li>{{ echoJudgementStatus(judgement) }}{{ judgement.body }}</li>
+
+                  <!-- add challenge if the judgement doesnt have challenge(child meeting) and level is less than 5 -->
+                  <button v-if="judgement.child_meeting == null && judgement.level < 5" class="btn btn-sm btn-dark pull-left" 
+                  data-toggle="modal" 
+                  data-target="#addChallenge"> اضافة طعن </button>
+
+                  <!-- add challenge component if judgement doesnt have a child meeting -->
+                  <add-challenge v-if="judgement.child_meeting == null && judgement.level < 5" :judgement="judgement" :issue="issue"></add-challenge>
+
+                  <!-- add announcement if judgement is not present and doesnt have challenge(child meeting) -->
+                  <button v-if="judgement.child_meeting == null && !judgement.present" class="btn btn-sm btn-success pull-left" 
+                  @click="addAnnouncement(judgement)"> اضافة اعلان </button>
+
+                  <!-- add announcement component if judgement is not present and doesnt have challenge(child meeting) and meeting level is 1 -->
+                  <add-announcement v-if="judgement.child_meeting == null && !judgement.present && meeting.level == 1"></add-announcement>
+
+                  <!-- delete judgement if doesnt have challenge(child meeting) -->
+                  <button v-if="judgement.child_meeting == null" class="btn btn-sm btn-danger pull-left" @click="deleteJudgement(judgement)"><i class="fa fa-times" aria-hidden="true"></i></button>
+
+                  <!-- edit judgement -->
+                  <button class="btn btn-sm btn-info pull-left" @click="editJudgement(judgement)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+
+                </ul>
+
+            </li>
+          </ul>
+
         </span>
+
+
 
         <!-- executive issues -->
         <span v-if="issue.type == 4">
@@ -115,11 +162,6 @@ import addAnnouncement from './addAnnouncement';
 import delayMeeting from './delayMeeting';
 
 export default {
-  data(){
-    return {
-      workingOpenents: []
-    };
-  },
 	props: ['issue', 'accusedopenents', 'meeting'],
     methods: {
       editJudgement(judgement){
@@ -169,9 +211,9 @@ export default {
         return 'غ - ';
       },
       // add criminal judgement
-      addCriminalJudgement(openent){
+      addCriminalJudgement(openent, meeting){
         $('#addJudgement').modal('show');
-        eventBus.$emit('addCriminalJudgement', openent);
+        eventBus.$emit('addCriminalJudgement', openent, meeting);
       },
       addCriminalChallenge(judgement){
         eventBus.$emit('addCriminalChallenge', judgement);

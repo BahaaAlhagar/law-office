@@ -38882,12 +38882,6 @@ var _delayMeeting2 = _interopRequireDefault(_delayMeeting);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
-  data: function data() {
-    return {
-      workingOpenents: []
-    };
-  },
-
   props: ['issue', 'accusedopenents', 'meeting'],
   methods: {
     editJudgement: function editJudgement(judgement) {
@@ -38932,9 +38926,9 @@ exports.default = {
       }
       return 'غ - ';
     },
-    addCriminalJudgement: function addCriminalJudgement(openent) {
+    addCriminalJudgement: function addCriminalJudgement(openent, meeting) {
       $('#addJudgement').modal('show');
-      eventBus.$emit('addCriminalJudgement', openent);
+      eventBus.$emit('addCriminalJudgement', openent, meeting);
     },
     addCriminalChallenge: function addCriminalChallenge(judgement) {
       eventBus.$emit('addCriminalChallenge', judgement);
@@ -39043,7 +39037,7 @@ exports.default = {
                 return eventBus.$emit('judgementAdded', response);
             });
         },
-        addCriminalJudgementModal: function addCriminalJudgementModal(openent) {
+        addCriminalJudgementModal: function addCriminalJudgementModal(openent, meeting) {
             this.addJudgementForm.issue_id = this.issue.id;
             this.addJudgementForm.person_id = openent.id;
             this.addJudgementForm.date = this.meeting.date;
@@ -39051,6 +39045,7 @@ exports.default = {
             this.addJudgementForm.active = 1;
             this.addJudgementForm.present = 1;
             this.addJudgementForm.type = 1;
+            this.meeting = meeting;
         }
     },
     components: {
@@ -39059,8 +39054,8 @@ exports.default = {
     mounted: function mounted() {
         var _this = this;
 
-        eventBus.$on('addCriminalJudgement', function (openent) {
-            return _this.addCriminalJudgementModal(openent);
+        eventBus.$on('addCriminalJudgement', function (openent, meeting) {
+            return _this.addCriminalJudgementModal(openent, meeting);
         });
     }
 };
@@ -39183,11 +39178,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "value": "1"
     }
-  }, [_vm._v("حــضـــورى")]), _vm._v(" "), _c('option', {
+  }, [_vm._v("حــضـــورى")]), _vm._v(" "), (!_vm.meeting.level == 2 || !_vm.meeting.level == 4) ? _c('option', {
     attrs: {
       "value": "0"
     }
-  }, [_vm._v("غــيــابــى")])]), _vm._v(" "), (_vm.addJudgementForm.errors.has('present')) ? _c('span', {
+  }, [_vm._v("غــيــابــى")]) : _vm._e()]), _vm._v(" "), (_vm.addJudgementForm.errors.has('present')) ? _c('span', {
     staticClass: "alert-danger",
     domProps: {
       "textContent": _vm._s(_vm.addJudgementForm.errors.get('present'))
@@ -39636,11 +39631,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "value": "1"
     }
-  }, [_vm._v("حــضـــورى")]), _vm._v(" "), _c('option', {
+  }, [_vm._v("حــضـــورى")]), _vm._v(" "), (!_vm.editJudgementForm.level == 2 || !_vm.editJudgementForm.level == 4) ? _c('option', {
     attrs: {
       "value": "0"
     }
-  }, [_vm._v("غــيــابــى")])]), _vm._v(" "), (_vm.editJudgementForm.errors.has('present')) ? _c('span', {
+  }, [_vm._v("غــيــابــى")]) : _vm._e()]), _vm._v(" "), (_vm.editJudgementForm.errors.has('present')) ? _c('span', {
     staticClass: "alert-danger",
     domProps: {
       "textContent": _vm._s(_vm.editJudgementForm.errors.get('present'))
@@ -40436,7 +40431,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "aria-hidden": "true"
       }
     })])], 1) : _vm._e()
-  })], 2) : _vm._e(), _vm._v(" "), (_vm.issue.type < 4) ? _c('span', _vm._l((_vm.accusedopenents), function(openent) {
+  })], 2) : _vm._e(), _vm._v(" "), (_vm.issue.type < 4) ? _c('span', [_vm._l((_vm.accusedopenents), function(openent) {
     return (_vm.firstMeetingCheck(_vm.meeting)) ? _c('ul', {
       key: openent.id
     }, [_c('li', [_vm._v("\n              " + _vm._s(_vm.echoName(openent)) + "...\n\n                "), (!openent.judgements.length && !openent.meetings.length) ? _c('span', [_c('button', {
@@ -40450,7 +40445,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "btn btn-sm btn-primary",
       on: {
         "click": function($event) {
-          _vm.addCriminalJudgement(openent)
+          _vm.addCriminalJudgement(openent, _vm.meeting)
         }
       }
     }, [_vm._v(" اضافة حكم ")]), _vm._v(" "), _c('add-judgement', {
@@ -40497,7 +40492,63 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       })]), _vm._v(" "), _c('br'), _c('hr')], 1) : _vm._e()
     })], 2)]) : _vm._e()
-  })) : _vm._e(), _vm._v(" "), (_vm.issue.type == 4) ? _c('span') : _vm._e()], 1)
+  }), _vm._v(" "), (_vm.meeting.person) ? _c('ul', [_c('li', [(!_vm.meeting.judgements.length && !_vm.meeting.child_meetings.length) ? _c('span', [_c('button', {
+    staticClass: "btn btn-sm btn-primary",
+    on: {
+      "click": function($event) {
+        _vm.addCriminalJudgement(_vm.openent = _vm.meeting.person, _vm.meeting)
+      }
+    }
+  }, [_vm._v(" اضافة حكم ")]), _vm._v(" "), _c('add-judgement', {
+    attrs: {
+      "issue": _vm.issue,
+      "meeting": _vm.meeting
+    }
+  })], 1) : _vm._e(), _vm._v(" "), _vm._l((_vm.meeting.judgements), function(judgement) {
+    return (_vm.meeting.judgements.length) ? _c('ul', [_c('li', [_vm._v(_vm._s(_vm.echoJudgementStatus(judgement)) + _vm._s(judgement.body))]), _vm._v(" "), (judgement.child_meeting == null && judgement.level < 5) ? _c('button', {
+      staticClass: "btn btn-sm btn-dark pull-left",
+      attrs: {
+        "data-toggle": "modal",
+        "data-target": "#addChallenge"
+      }
+    }, [_vm._v(" اضافة طعن ")]) : _vm._e(), _vm._v(" "), (judgement.child_meeting == null && judgement.level < 5) ? _c('add-challenge', {
+      attrs: {
+        "judgement": judgement,
+        "issue": _vm.issue
+      }
+    }) : _vm._e(), _vm._v(" "), (judgement.child_meeting == null && !judgement.present) ? _c('button', {
+      staticClass: "btn btn-sm btn-success pull-left",
+      on: {
+        "click": function($event) {
+          _vm.addAnnouncement(judgement)
+        }
+      }
+    }, [_vm._v(" اضافة اعلان ")]) : _vm._e(), _vm._v(" "), (judgement.child_meeting == null && !judgement.present && _vm.meeting.level == 1) ? _c('add-announcement') : _vm._e(), _vm._v(" "), (judgement.child_meeting == null) ? _c('button', {
+      staticClass: "btn btn-sm btn-danger pull-left",
+      on: {
+        "click": function($event) {
+          _vm.deleteJudgement(judgement)
+        }
+      }
+    }, [_c('i', {
+      staticClass: "fa fa-times",
+      attrs: {
+        "aria-hidden": "true"
+      }
+    })]) : _vm._e(), _vm._v(" "), _c('button', {
+      staticClass: "btn btn-sm btn-info pull-left",
+      on: {
+        "click": function($event) {
+          _vm.editJudgement(judgement)
+        }
+      }
+    }, [_c('i', {
+      staticClass: "fa fa-pencil-square-o",
+      attrs: {
+        "aria-hidden": "true"
+      }
+    })])], 1) : _vm._e()
+  })], 2)]) : _vm._e()], 2) : _vm._e(), _vm._v(" "), (_vm.issue.type == 4) ? _c('span') : _vm._e()], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
