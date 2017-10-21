@@ -24,14 +24,19 @@ class MeetingController extends Controller
     public function index(Issue $issue)
     {
         $meetings = Meeting::where('issue_id', $issue->id)
-                        ->with('judgements.childMeeting', 'childMeetings')
+                        ->with('judgements.childMeeting', 'childMeetings', 'person')
                         ->orderBy('level', 'asc')
                         ->orderBy('date', 'asc')
                         ->get();
 
-        $accusedOpenents = $issue->accusedOpenents()->with(['judgements' => function($query) use ($issue)
+        $accusedOpenents = $issue->accusedOpenents()
+        ->with(['judgements' => function($query) use ($issue)
         {
             $query->where('issue_id', $issue->id);
+        },
+        'meetings' => function($query) use ($issue)
+        {
+         $query->where('issue_id', $issue->id);
         }, 'contracts'])->get();
 
         return $this->makeResponse('issues/issueProfile', compact('issue', 'meetings', 'accusedOpenents'));

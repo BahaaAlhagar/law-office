@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 167);
+/******/ 	return __webpack_require__(__webpack_require__.s = 168);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -30806,14 +30806,15 @@ if (false) {
 /* 164 */,
 /* 165 */,
 /* 166 */,
-/* 167 */
+/* 167 */,
+/* 168 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(168);
+module.exports = __webpack_require__(169);
 
 
 /***/ }),
-/* 168 */
+/* 169 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30843,7 +30844,7 @@ var _bootstrap = __webpack_require__(92);
 
 var _bootstrap2 = _interopRequireDefault(_bootstrap);
 
-var _addIssue = __webpack_require__(169);
+var _addIssue = __webpack_require__(170);
 
 var _addIssue2 = _interopRequireDefault(_addIssue);
 
@@ -30977,15 +30978,15 @@ _toastr2.default.options = {
 };
 
 /***/ }),
-/* 169 */
+/* 170 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var Component = __webpack_require__(11)(
   /* script */
-  __webpack_require__(170),
-  /* template */
   __webpack_require__(171),
+  /* template */
+  __webpack_require__(172),
   /* styles */
   null,
   /* scopeId */
@@ -31017,7 +31018,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 170 */
+/* 171 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31052,7 +31053,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 171 */
+/* 172 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;

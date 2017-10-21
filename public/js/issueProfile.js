@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 185);
+/******/ 	return __webpack_require__(__webpack_require__.s = 186);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -36271,7 +36271,46 @@ if (false) {
 }
 
 /***/ }),
-/* 155 */,
+/* 155 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(11)(
+  /* script */
+  __webpack_require__(215),
+  /* template */
+  __webpack_require__(216),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "D:\\www\\law-office\\resources\\assets\\js\\components\\issue\\meetings\\delayMeeting.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] delayMeeting.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-3ff307ee", Component.options)
+  } else {
+    hotAPI.reload("data-v-3ff307ee", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
 /* 156 */,
 /* 157 */,
 /* 158 */,
@@ -36301,14 +36340,15 @@ if (false) {
 /* 182 */,
 /* 183 */,
 /* 184 */,
-/* 185 */
+/* 185 */,
+/* 186 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(186);
+module.exports = __webpack_require__(187);
 
 
 /***/ }),
-/* 186 */
+/* 187 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36326,19 +36366,19 @@ var _bootstrap = __webpack_require__(92);
 
 var _bootstrap2 = _interopRequireDefault(_bootstrap);
 
-var _issueInfo = __webpack_require__(187);
+var _issueInfo = __webpack_require__(188);
 
 var _issueInfo2 = _interopRequireDefault(_issueInfo);
 
-var _issueOpenents = __webpack_require__(190);
+var _issueOpenents = __webpack_require__(191);
 
 var _issueOpenents2 = _interopRequireDefault(_issueOpenents);
 
-var _issueFiles = __webpack_require__(203);
+var _issueFiles = __webpack_require__(204);
 
 var _issueFiles2 = _interopRequireDefault(_issueFiles);
 
-var _issueMeetings = __webpack_require__(206);
+var _issueMeetings = __webpack_require__(207);
 
 var _issueMeetings2 = _interopRequireDefault(_issueMeetings);
 
@@ -36432,15 +36472,15 @@ toastr.options = {
 };
 
 /***/ }),
-/* 187 */
+/* 188 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var Component = __webpack_require__(11)(
   /* script */
-  __webpack_require__(188),
-  /* template */
   __webpack_require__(189),
+  /* template */
+  __webpack_require__(190),
   /* styles */
   null,
   /* scopeId */
@@ -36472,7 +36512,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 188 */
+/* 189 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36566,7 +36606,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 189 */
+/* 190 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -36635,15 +36675,15 @@ if (false) {
 }
 
 /***/ }),
-/* 190 */
+/* 191 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var Component = __webpack_require__(11)(
   /* script */
-  __webpack_require__(191),
+  __webpack_require__(192),
   /* template */
-  __webpack_require__(202),
+  __webpack_require__(203),
   /* styles */
   null,
   /* scopeId */
@@ -36675,7 +36715,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 191 */
+/* 192 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36685,11 +36725,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _addOpenent = __webpack_require__(192);
+var _addOpenent = __webpack_require__(193);
 
 var _addOpenent2 = _interopRequireDefault(_addOpenent);
 
-var _editOpenent = __webpack_require__(197);
+var _editOpenent = __webpack_require__(198);
 
 var _editOpenent2 = _interopRequireDefault(_editOpenent);
 
@@ -36781,19 +36821,19 @@ exports.default = {
 };
 
 /***/ }),
-/* 192 */
+/* 193 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(193)
+  __webpack_require__(194)
 }
 var Component = __webpack_require__(11)(
   /* script */
-  __webpack_require__(195),
-  /* template */
   __webpack_require__(196),
+  /* template */
+  __webpack_require__(197),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -36825,13 +36865,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 193 */
+/* 194 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(194);
+var content = __webpack_require__(195);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -36851,7 +36891,7 @@ if(false) {
 }
 
 /***/ }),
-/* 194 */
+/* 195 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(116)(undefined);
@@ -36865,7 +36905,7 @@ exports.push([module.i, "\nfieldset[disabled] .multiselect{pointer-events:none\n
 
 
 /***/ }),
-/* 195 */
+/* 196 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36906,7 +36946,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 196 */
+/* 197 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -37089,19 +37129,19 @@ if (false) {
 }
 
 /***/ }),
-/* 197 */
+/* 198 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(198)
+  __webpack_require__(199)
 }
 var Component = __webpack_require__(11)(
   /* script */
-  __webpack_require__(200),
-  /* template */
   __webpack_require__(201),
+  /* template */
+  __webpack_require__(202),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -37133,13 +37173,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 198 */
+/* 199 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(199);
+var content = __webpack_require__(200);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -37159,7 +37199,7 @@ if(false) {
 }
 
 /***/ }),
-/* 199 */
+/* 200 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(116)(undefined);
@@ -37173,7 +37213,7 @@ exports.push([module.i, "\nfieldset[disabled] .multiselect{pointer-events:none\n
 
 
 /***/ }),
-/* 200 */
+/* 201 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -37229,7 +37269,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 201 */
+/* 202 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -37412,7 +37452,7 @@ if (false) {
 }
 
 /***/ }),
-/* 202 */
+/* 203 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -37501,15 +37541,15 @@ if (false) {
 }
 
 /***/ }),
-/* 203 */
+/* 204 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var Component = __webpack_require__(11)(
   /* script */
-  __webpack_require__(204),
-  /* template */
   __webpack_require__(205),
+  /* template */
+  __webpack_require__(206),
   /* styles */
   null,
   /* scopeId */
@@ -37541,7 +37581,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 204 */
+/* 205 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -37611,7 +37651,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 205 */
+/* 206 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -37695,13 +37735,13 @@ if (false) {
 }
 
 /***/ }),
-/* 206 */
+/* 207 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var Component = __webpack_require__(11)(
   /* script */
-  __webpack_require__(207),
+  __webpack_require__(208),
   /* template */
   __webpack_require__(232),
   /* styles */
@@ -37735,7 +37775,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 207 */
+/* 208 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -37745,15 +37785,15 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _addMeeting = __webpack_require__(208);
+var _addMeeting = __webpack_require__(209);
 
 var _addMeeting2 = _interopRequireDefault(_addMeeting);
 
-var _editMeeting = __webpack_require__(211);
+var _editMeeting = __webpack_require__(212);
 
 var _editMeeting2 = _interopRequireDefault(_editMeeting);
 
-var _delayMeeting = __webpack_require__(214);
+var _delayMeeting = __webpack_require__(155);
 
 var _delayMeeting2 = _interopRequireDefault(_delayMeeting);
 
@@ -37766,6 +37806,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = {
   props: ['issue', 'accusedopenents', 'meetings'],
   methods: {
+    ownerOf: function ownerOf(meeting) {
+      if (meeting.person) {
+        return 'جلسة:' + meeting.person.name.slice(0, 12);
+      }
+    },
     afterMeetingAdded: function afterMeetingAdded(response) {
       eventBus.$emit('refetchIssueMeetings');
       $('#addMeeting').modal('hide');
@@ -37831,6 +37876,7 @@ exports.default = {
     eventBus.$on('meetingAdded', function (response) {
       return _this2.afterMeetingAdded(response);
     });
+
     eventBus.$on('meetingUpdated', function (response) {
       return _this2.afterMeetingUpdated(response);
     });
@@ -37854,15 +37900,15 @@ exports.default = {
 };
 
 /***/ }),
-/* 208 */
+/* 209 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var Component = __webpack_require__(11)(
   /* script */
-  __webpack_require__(209),
-  /* template */
   __webpack_require__(210),
+  /* template */
+  __webpack_require__(211),
   /* styles */
   null,
   /* scopeId */
@@ -37894,7 +37940,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 209 */
+/* 210 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -37947,7 +37993,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 210 */
+/* 211 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -38155,15 +38201,15 @@ if (false) {
 }
 
 /***/ }),
-/* 211 */
+/* 212 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var Component = __webpack_require__(11)(
   /* script */
-  __webpack_require__(212),
-  /* template */
   __webpack_require__(213),
+  /* template */
+  __webpack_require__(214),
   /* styles */
   null,
   /* scopeId */
@@ -38195,7 +38241,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 212 */
+/* 213 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38269,7 +38315,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 213 */
+/* 214 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -38477,46 +38523,6 @@ if (false) {
 }
 
 /***/ }),
-/* 214 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var Component = __webpack_require__(11)(
-  /* script */
-  __webpack_require__(215),
-  /* template */
-  __webpack_require__(216),
-  /* styles */
-  null,
-  /* scopeId */
-  null,
-  /* moduleIdentifier (server only) */
-  null
-)
-Component.options.__file = "D:\\www\\law-office\\resources\\assets\\js\\components\\issue\\meetings\\delayMeeting.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] delayMeeting.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-3ff307ee", Component.options)
-  } else {
-    hotAPI.reload("data-v-3ff307ee", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
 /* 215 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -38569,6 +38575,13 @@ exports.default = {
             this.delayMeetingForm.parent_id = meeting.id;
             this.delayMeetingForm.level = meeting.level;
             this.date = meeting.date;
+        },
+        delayCriminalMeetingModal: function delayCriminalMeetingModal(meeting, openent) {
+            this.delayMeetingForm.reset();
+            this.delayMeetingForm.person_id = openent.id;
+            this.delayMeetingForm.parent_id = meeting.id;
+            this.delayMeetingForm.level = meeting.level;
+            this.date = meeting.date;
         }
     },
     components: {
@@ -38579,6 +38592,10 @@ exports.default = {
 
         eventBus.$on('delayMeeting', function (meeting) {
             return _this.delayMeetingModal(meeting);
+        });
+
+        eventBus.$on('delayCriminalMeeting', function (meeting, openent) {
+            return _this.delayCriminalMeetingModal(meeting, openent);
         });
     }
 };
@@ -38858,7 +38875,7 @@ var _addAnnouncement = __webpack_require__(228);
 
 var _addAnnouncement2 = _interopRequireDefault(_addAnnouncement);
 
-var _delayMeeting = __webpack_require__(214);
+var _delayMeeting = __webpack_require__(155);
 
 var _delayMeeting2 = _interopRequireDefault(_delayMeeting);
 
@@ -38909,6 +38926,12 @@ exports.default = {
     echoName: function echoName(openent) {
       return openent.name.slice(0, 12);
     },
+    echoJudgementStatus: function echoJudgementStatus(judgement) {
+      if (judgement.present) {
+        return 'ح - ';
+      }
+      return 'غ - ';
+    },
     addCriminalJudgement: function addCriminalJudgement(openent) {
       $('#addJudgement').modal('show');
       eventBus.$emit('addCriminalJudgement', openent);
@@ -38916,6 +38939,10 @@ exports.default = {
     addCriminalChallenge: function addCriminalChallenge(judgement) {
       eventBus.$emit('addCriminalChallenge', judgement);
       $('#addChallenge').modal('show');
+    },
+    delayMeeting: function delayMeeting(meeting, openent) {
+      $('#delayMeeting').modal('show');
+      eventBus.$emit('delayCriminalMeeting', meeting, openent);
     }
   },
   components: {
@@ -40412,7 +40439,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   })], 2) : _vm._e(), _vm._v(" "), (_vm.issue.type < 4) ? _c('span', _vm._l((_vm.accusedopenents), function(openent) {
     return (_vm.firstMeetingCheck(_vm.meeting)) ? _c('ul', {
       key: openent.id
-    }, [_c('li', [_vm._v("\n              " + _vm._s(_vm.echoName(openent)) + "...\n\n                "), (!openent.judgements.length) ? _c('span', [_c('button', {
+    }, [_c('li', [_vm._v("\n              " + _vm._s(_vm.echoName(openent)) + "...\n\n                "), (!openent.judgements.length && !openent.meetings.length) ? _c('span', [_c('button', {
       staticClass: "btn btn-sm btn-dark",
       on: {
         "click": function($event) {
@@ -40431,8 +40458,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "issue": _vm.issue,
         "meeting": _vm.meeting
       }
-    })], 1) : _vm._e(), _vm._v(" "), _vm._l((_vm.meeting.judgements), function(currentJudgement) {
-      return (openent.id == currentJudgement.person_id) ? _c('ul', [_c('li', [_vm._v("\n                  " + _vm._s(currentJudgement.body) + "\n                  ")]), _vm._v(" "), (currentJudgement.record) ? _c('li', [_vm._v("\n                    حصر " + _vm._s(currentJudgement.record) + " لسنة " + _vm._s(currentJudgement.year) + "\n                  ")]) : _vm._e(), _vm._v(" "), (!currentJudgement.child_meeting && currentJudgement.type < 3) ? _c('button', {
+    }), _vm._v(" "), _c('hr')], 1) : _vm._e(), _vm._v(" "), _vm._l((_vm.meeting.judgements), function(currentJudgement) {
+      return (openent.id == currentJudgement.person_id) ? _c('ul', [_c('li', [_vm._v("\n                  " + _vm._s(_vm.echoJudgementStatus(currentJudgement)) + _vm._s(currentJudgement.body) + "\n                  ")]), _vm._v(" "), (currentJudgement.record) ? _c('li', [_vm._v("\n                    حصر " + _vm._s(currentJudgement.record) + " لسنة " + _vm._s(currentJudgement.year) + "\n                  ")]) : _vm._e(), _vm._v(" "), (!currentJudgement.child_meeting && currentJudgement.type < 3) ? _c('button', {
         staticClass: "btn btn-sm btn-dark pull-left",
         on: {
           "click": function($event) {
@@ -40539,7 +40566,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           _vm.delayMeeting(meeting)
         }
       }
-    }, [_vm._v("تأجيل")]) : _vm._e()]), _vm._v(" "), _c('td', [_vm._v("\n                      " + _vm._s(meeting.decision) + "\n                  ")]), _vm._v(" "), _c('td', [_vm._v("\n                      " + _vm._s(meeting.notes) + "\n                  ")]), _vm._v(" "), _c('td', [_c('meeting-judgements', {
+    }, [_vm._v("تأجيل")]) : _vm._e()]), _vm._v(" "), _c('td', [_vm._v("\n                      " + _vm._s(meeting.decision) + "\n                  ")]), _vm._v(" "), _c('td', [_vm._v("\n                      " + _vm._s(_vm.ownerOf(meeting))), _c('br'), _vm._v("\n                      " + _vm._s(meeting.notes) + "\n                  ")]), _vm._v(" "), _c('td', [_c('meeting-judgements', {
       attrs: {
         "issue": _vm.issue,
         "accusedopenents": _vm.accusedopenents,

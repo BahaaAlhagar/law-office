@@ -34,6 +34,7 @@
                       {{ meeting.decision }}
                   </td>
                   <td>
+                      {{ ownerOf(meeting) }}<br>
                       {{ meeting.notes }}
                   </td>
                   <td>
@@ -63,6 +64,11 @@ import meetingJudgements from './meetingJudgements';
 export default {
 	props: ['issue', 'accusedopenents', 'meetings'],
     methods: {
+      ownerOf(meeting){
+        if(meeting.person){
+          return 'جلسة:' + meeting.person.name.slice(0, 12);
+        }
+      },
   	  afterMeetingAdded(response){
         eventBus.$emit('refetchIssueMeetings');
         $('#addMeeting').modal('hide');
@@ -122,6 +128,7 @@ export default {
     mounted(){
 
     	eventBus.$on('meetingAdded', response => this.afterMeetingAdded(response));
+      
       eventBus.$on('meetingUpdated', response => this.afterMeetingUpdated(response));
 
     	eventBus.$on('meetingDelayed', response => this.afterMeetingDelayed(response));

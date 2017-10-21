@@ -55,7 +55,7 @@
             <li>
               {{ echoName(openent) }}...
 
-                <span v-if="!openent.judgements.length">
+                <span v-if="!openent.judgements.length && !openent.meetings.length">
                   <!-- delay for certain openent button -->
                   <button class="btn btn-sm btn-dark" @click="delayMeeting(meeting, openent)">تأجيل لخصم</button>
 
@@ -67,12 +67,13 @@
                   @click="addCriminalJudgement(openent)"> اضافة حكم </button>
                   <!-- add judgement component -->
                   <add-judgement :issue="issue" :meeting="meeting"></add-judgement>
+                  <hr>
                 </span>
 
 
                 <ul v-for="currentJudgement in meeting.judgements" v-if="openent.id == currentJudgement.person_id">
                   <li>
-                  {{ currentJudgement.body }}
+                  {{ echoJudgementStatus(currentJudgement) }}{{ currentJudgement.body }}
                   </li>
                   <li v-if="currentJudgement.record">
                     حصر {{ currentJudgement.record }} لسنة {{ currentJudgement.year }}
@@ -160,6 +161,13 @@ export default {
       echoName(openent){
         return openent.name.slice(0, 12);
       },
+      // return judgement status in letters
+      echoJudgementStatus(judgement){
+        if(judgement.present){
+          return 'ح - ';
+        }
+        return 'غ - ';
+      },
       // add criminal judgement
       addCriminalJudgement(openent){
         $('#addJudgement').modal('show');
@@ -168,6 +176,10 @@ export default {
       addCriminalChallenge(judgement){
         eventBus.$emit('addCriminalChallenge', judgement);
         $('#addChallenge').modal('show');
+      },
+      delayMeeting(meeting, openent){
+        $('#delayMeeting').modal('show');
+        eventBus.$emit('delayCriminalMeeting', meeting, openent);
       }
     },
     components: {

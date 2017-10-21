@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 172);
+/******/ 	return __webpack_require__(__webpack_require__.s = 173);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -33357,14 +33357,15 @@ module.exports = function (css) {
 /* 169 */,
 /* 170 */,
 /* 171 */,
-/* 172 */
+/* 172 */,
+/* 173 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(173);
+module.exports = __webpack_require__(174);
 
 
 /***/ }),
-/* 173 */
+/* 174 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33378,11 +33379,11 @@ var _vuejsPaginator = __webpack_require__(123);
 
 var _vuejsPaginator2 = _interopRequireDefault(_vuejsPaginator);
 
-var _addTodo = __webpack_require__(174);
+var _addTodo = __webpack_require__(175);
 
 var _addTodo2 = _interopRequireDefault(_addTodo);
 
-var _editTodo = __webpack_require__(177);
+var _editTodo = __webpack_require__(178);
 
 var _editTodo2 = _interopRequireDefault(_editTodo);
 
@@ -33510,15 +33511,15 @@ _toastr2.default.options = {
 };
 
 /***/ }),
-/* 174 */
+/* 175 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var Component = __webpack_require__(11)(
   /* script */
-  __webpack_require__(175),
-  /* template */
   __webpack_require__(176),
+  /* template */
+  __webpack_require__(177),
   /* styles */
   null,
   /* scopeId */
@@ -33550,7 +33551,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 175 */
+/* 176 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33598,7 +33599,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 176 */
+/* 177 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -33771,15 +33772,15 @@ if (false) {
 }
 
 /***/ }),
-/* 177 */
+/* 178 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var Component = __webpack_require__(11)(
   /* script */
-  __webpack_require__(178),
-  /* template */
   __webpack_require__(179),
+  /* template */
+  __webpack_require__(180),
   /* styles */
   null,
   /* scopeId */
@@ -33811,7 +33812,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 178 */
+/* 179 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33877,7 +33878,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 179 */
+/* 180 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;

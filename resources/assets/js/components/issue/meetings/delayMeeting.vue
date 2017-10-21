@@ -107,13 +107,23 @@
             this.delayMeetingForm.parent_id = meeting.id;
             this.delayMeetingForm.level = meeting.level;
             this.date = meeting.date;
-        }
+            },
+        delayCriminalMeetingModal(meeting, openent)
+            {
+            this.delayMeetingForm.reset();
+            this.delayMeetingForm.person_id = openent.id;
+            this.delayMeetingForm.parent_id = meeting.id;
+            this.delayMeetingForm.level = meeting.level;
+            this.date = meeting.date;
+            }
         },
         components: {
             flatPickr
         },
         mounted() {
             eventBus.$on('delayMeeting', meeting => this.delayMeetingModal(meeting));
+
+            eventBus.$on('delayCriminalMeeting', (meeting, openent) => this.delayCriminalMeetingModal(meeting, openent));
         }
 
 
