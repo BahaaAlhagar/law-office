@@ -38886,7 +38886,6 @@ exports.default = {
   methods: {
     editJudgement: function editJudgement(judgement) {
       eventBus.$emit('editJudgement', judgement);
-      $('#editJudgement').modal('show');
     },
     deleteJudgement: function deleteJudgement(judgement) {
       if (confirm('هل انت متأكد من حذف هذا الحكم - لن تتمكن من استرجاعه فيما بعد')) {
@@ -38932,7 +38931,6 @@ exports.default = {
     },
     addCriminalChallenge: function addCriminalChallenge(judgement) {
       eventBus.$emit('addCriminalChallenge', judgement);
-      $('#addChallenge').modal('show');
     },
     delayMeeting: function delayMeeting(meeting, openent) {
       $('#delayMeeting').modal('show');
@@ -39178,7 +39176,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "value": "1"
     }
-  }, [_vm._v("حــضـــورى")]), _vm._v(" "), (!_vm.meeting.level == 2 || !_vm.meeting.level == 4) ? _c('option', {
+  }, [_vm._v("حــضـــورى")]), _vm._v(" "), (_vm.meeting.level !== 2 || _vm.meeting.level !== 4) ? _c('option', {
     attrs: {
       "value": "0"
     }
@@ -39490,6 +39488,7 @@ exports.default = {
             });
         },
         editJudgementModal: function editJudgementModal(judgement) {
+            this.judgement = judgement;
             this.editJudgementForm.present = judgement.present;
             this.editJudgementForm.active = judgement.active;
             this.editJudgementForm.type = judgement.type;
@@ -39498,7 +39497,7 @@ exports.default = {
             this.editJudgementForm.date = judgement.date;
             this.editJudgementForm.body = judgement.body;
             this.editJudgementForm.level = judgement.level;
-            this.judgement = judgement;
+            $('#editJudgement').modal('show');
         }
     },
     components: {
@@ -39597,7 +39596,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     domProps: {
       "textContent": _vm._s(_vm.editJudgementForm.errors.get('present'))
     }
-  }) : _vm._e()]) : (_vm.issue.type < 4) ? _c('div', {
+  }) : _vm._e()]) : (_vm.issue.type < 4 && _vm.judgement.child_meeting == null) ? _c('div', {
     staticClass: "form-group"
   }, [_c('label', {
     staticClass: "label",
@@ -39631,7 +39630,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "value": "1"
     }
-  }, [_vm._v("حــضـــورى")]), _vm._v(" "), (!_vm.editJudgementForm.level == 2 || !_vm.editJudgementForm.level == 4) ? _c('option', {
+  }, [_vm._v("حــضـــورى")]), _vm._v(" "), (_vm.judgement.level !== 2 || _vm.judgement.level !== 4) ? _c('option', {
     attrs: {
       "value": "0"
     }
@@ -39916,7 +39915,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var Arabic = __webpack_require__(120).ar;
 
 exports.default = {
-    props: ['issue', 'judgement'],
+    props: ['issue', 'judgement', 'modal'],
     data: function data() {
         return {
             addChallengeForm: new Form({
@@ -39942,10 +39941,10 @@ exports.default = {
             });
         },
         addChallengeModal: function addChallengeModal(judgement) {
+            this.$props.judgement = judgement;
             this.addChallengeForm.person_id = judgement.person_id;
             this.addChallengeForm.judgement_id = judgement.id;
             this.addChallengeForm.level = judgement.level;
-            this.$props.judgement = judgement;
         }
     },
     components: {
@@ -39966,6 +39965,7 @@ exports.default = {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
+    ref: "modal",
     staticClass: "modal fade",
     attrs: {
       "id": "addChallenge",
@@ -40507,23 +40507,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   })], 1) : _vm._e(), _vm._v(" "), _vm._l((_vm.meeting.judgements), function(judgement) {
     return (_vm.meeting.judgements.length) ? _c('ul', [_c('li', [_vm._v(_vm._s(_vm.echoJudgementStatus(judgement)) + _vm._s(judgement.body))]), _vm._v(" "), (judgement.child_meeting == null && judgement.level < 5) ? _c('button', {
       staticClass: "btn btn-sm btn-dark pull-left",
-      attrs: {
-        "data-toggle": "modal",
-        "data-target": "#addChallenge"
+      on: {
+        "click": function($event) {
+          _vm.addCriminalChallenge(judgement)
+        }
       }
     }, [_vm._v(" اضافة طعن ")]) : _vm._e(), _vm._v(" "), (judgement.child_meeting == null && judgement.level < 5) ? _c('add-challenge', {
       attrs: {
         "judgement": judgement,
-        "issue": _vm.issue
+        "issue": _vm.issue,
+        "modal": judgement.id
       }
-    }) : _vm._e(), _vm._v(" "), (judgement.child_meeting == null && !judgement.present) ? _c('button', {
-      staticClass: "btn btn-sm btn-success pull-left",
-      on: {
-        "click": function($event) {
-          _vm.addAnnouncement(judgement)
-        }
-      }
-    }, [_vm._v(" اضافة اعلان ")]) : _vm._e(), _vm._v(" "), (judgement.child_meeting == null && !judgement.present && _vm.meeting.level == 1) ? _c('add-announcement') : _vm._e(), _vm._v(" "), (judgement.child_meeting == null) ? _c('button', {
+    }) : _vm._e(), _vm._v(" "), (judgement.child_meeting == null) ? _c('button', {
       staticClass: "btn btn-sm btn-danger pull-left",
       on: {
         "click": function($event) {

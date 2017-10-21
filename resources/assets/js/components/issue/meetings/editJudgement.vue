@@ -32,12 +32,12 @@
                         <span class="alert-danger" v-if="editJudgementForm.errors.has('present')" v-text="editJudgementForm.errors.get('present')"></span>
                     </div>
 
-                    <div v-else-if="issue.type < 4" class="form-group">
+                    <div v-else-if="issue.type < 4 && judgement.child_meeting == null" class="form-group">
                         <label for="present" class="label">حالة الحكم:</label>
                         
                         <select id="present" name="present" class="form-control" v-model="editJudgementForm.present">
                             <option value="1">حــضـــورى</option>
-                            <option value="0" v-if="!editJudgementForm.level == 2 || !editJudgementForm.level == 4">غــيــابــى</option>
+                            <option value="0" v-if="judgement.level !== 2 || judgement.level !== 4">غــيــابــى</option>
                         </select>
 
                         <span class="alert-danger" v-if="editJudgementForm.errors.has('present')" v-text="editJudgementForm.errors.get('present')"></span>
@@ -137,6 +137,7 @@
                 .then(response => eventBus.$emit('judgementUpdated', response));
             },
         editJudgementModal(judgement){
+            this.judgement = judgement;
             this.editJudgementForm.present = judgement.present;
             this.editJudgementForm.active = judgement.active;
             this.editJudgementForm.type = judgement.type;
@@ -145,7 +146,7 @@
             this.editJudgementForm.date = judgement.date;
             this.editJudgementForm.body = judgement.body;
             this.editJudgementForm.level = judgement.level;
-            this.judgement = judgement;
+            $('#editJudgement').modal('show');
             }
         },
         components: {

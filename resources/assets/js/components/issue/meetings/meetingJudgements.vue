@@ -117,18 +117,10 @@
 
                   <!-- add challenge if the judgement doesnt have challenge(child meeting) and level is less than 5 -->
                   <button v-if="judgement.child_meeting == null && judgement.level < 5" class="btn btn-sm btn-dark pull-left" 
-                  data-toggle="modal" 
-                  data-target="#addChallenge"> اضافة طعن </button>
+                  @click="addCriminalChallenge(judgement)"> اضافة طعن </button>
 
                   <!-- add challenge component if judgement doesnt have a child meeting -->
-                  <add-challenge v-if="judgement.child_meeting == null && judgement.level < 5" :judgement="judgement" :issue="issue"></add-challenge>
-
-                  <!-- add announcement if judgement is not present and doesnt have challenge(child meeting) -->
-                  <button v-if="judgement.child_meeting == null && !judgement.present" class="btn btn-sm btn-success pull-left" 
-                  @click="addAnnouncement(judgement)"> اضافة اعلان </button>
-
-                  <!-- add announcement component if judgement is not present and doesnt have challenge(child meeting) and meeting level is 1 -->
-                  <add-announcement v-if="judgement.child_meeting == null && !judgement.present && meeting.level == 1"></add-announcement>
+                  <add-challenge v-if="judgement.child_meeting == null && judgement.level < 5" :judgement="judgement" :issue="issue" :modal="judgement.id"></add-challenge>
 
                   <!-- delete judgement if doesnt have challenge(child meeting) -->
                   <button v-if="judgement.child_meeting == null" class="btn btn-sm btn-danger pull-left" @click="deleteJudgement(judgement)"><i class="fa fa-times" aria-hidden="true"></i></button>
@@ -166,7 +158,6 @@ export default {
     methods: {
       editJudgement(judgement){
         eventBus.$emit('editJudgement', judgement);
-        $('#editJudgement').modal('show');
       },
       deleteJudgement(judgement){
         if(confirm('هل انت متأكد من حذف هذا الحكم - لن تتمكن من استرجاعه فيما بعد'))
@@ -217,7 +208,6 @@ export default {
       },
       addCriminalChallenge(judgement){
         eventBus.$emit('addCriminalChallenge', judgement);
-        $('#addChallenge').modal('show');
       },
       delayMeeting(meeting, openent){
         $('#delayMeeting').modal('show');
