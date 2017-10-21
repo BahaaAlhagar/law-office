@@ -1,5 +1,5 @@
 <template>
-        <div ref="modal" class="modal fade" id="addChallenge" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal fade" id="addChallenge" role="dialog" aria-labelledby="myModalLabel">
 
           <div class="modal-dialog" role="document">
 
@@ -101,20 +101,10 @@
         onChallengeCreate() {
             this.addChallengeForm.post(window.location.pathname + '/meetings')
                 .then(response => eventBus.$emit('meetingAdded', response));
-            },
-            addChallengeModal(judgement){
-                this.$props.judgement = judgement;
-                this.addChallengeForm.person_id = judgement.person_id;
-                this.addChallengeForm.judgement_id = judgement.id;
-                this.addChallengeForm.level = judgement.level;
             }
         },
         components: {
             flatPickr
-        },
-        mounted(){
-            eventBus.$on('addCriminalChallenge', judgement => this.addChallengeModal(judgement));
         }
-
     }
 </script>

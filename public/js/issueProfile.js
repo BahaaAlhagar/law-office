@@ -37815,6 +37815,7 @@ exports.default = {
       eventBus.$emit('refetchIssueMeetings');
       $('#addMeeting').modal('hide');
       $('#addChallenge').modal('hide');
+      $('#addCriminalChallenge').modal('hide');
       toastr.success(response.message);
     },
     editMeeting: function editMeeting(meeting) {
@@ -37850,6 +37851,7 @@ exports.default = {
     },
     afterJudgementAdded: function afterJudgementAdded(response) {
       $('#addJudgement').modal('hide');
+      $('#addCriminalJudgement').modal('hide');
       toastr.success(response.message);
       eventBus.$emit('refetchIssueMeetings');
     },
@@ -38871,6 +38873,14 @@ var _addChallenge = __webpack_require__(225);
 
 var _addChallenge2 = _interopRequireDefault(_addChallenge);
 
+var _addCriminalJudgement = __webpack_require__(240);
+
+var _addCriminalJudgement2 = _interopRequireDefault(_addCriminalJudgement);
+
+var _addCriminalChallenge = __webpack_require__(237);
+
+var _addCriminalChallenge2 = _interopRequireDefault(_addCriminalChallenge);
+
 var _addAnnouncement = __webpack_require__(228);
 
 var _addAnnouncement2 = _interopRequireDefault(_addAnnouncement);
@@ -38926,7 +38936,6 @@ exports.default = {
       return 'غ - ';
     },
     addCriminalJudgement: function addCriminalJudgement(openent, meeting) {
-      $('#addJudgement').modal('show');
       eventBus.$emit('addCriminalJudgement', openent, meeting);
     },
     addCriminalChallenge: function addCriminalChallenge(judgement) {
@@ -38942,7 +38951,9 @@ exports.default = {
     editJudgement: _editJudgement2.default,
     addChallenge: _addChallenge2.default,
     addAnnouncement: _addAnnouncement2.default,
-    delayMeeting: _delayMeeting2.default
+    delayMeeting: _delayMeeting2.default,
+    addCriminalJudgement: _addCriminalJudgement2.default,
+    addCriminalChallenge: _addCriminalChallenge2.default
   }
 };
 
@@ -39034,27 +39045,10 @@ exports.default = {
             this.addJudgementForm.post('/meetings/' + this.meeting.id + '/judgements').then(function (response) {
                 return eventBus.$emit('judgementAdded', response);
             });
-        },
-        addCriminalJudgementModal: function addCriminalJudgementModal(openent, meeting) {
-            this.addJudgementForm.issue_id = this.issue.id;
-            this.addJudgementForm.person_id = openent.id;
-            this.addJudgementForm.date = this.meeting.date;
-            this.addJudgementForm.level = this.meeting.level;
-            this.addJudgementForm.active = 1;
-            this.addJudgementForm.present = 1;
-            this.addJudgementForm.type = 1;
-            this.meeting = meeting;
         }
     },
     components: {
         flatPickr: _vueFlatpickrComponent2.default
-    },
-    mounted: function mounted() {
-        var _this = this;
-
-        eventBus.$on('addCriminalJudgement', function (openent, meeting) {
-            return _this.addCriminalJudgementModal(openent, meeting);
-        });
     }
 };
 
@@ -39939,23 +39933,10 @@ exports.default = {
             this.addChallengeForm.post(window.location.pathname + '/meetings').then(function (response) {
                 return eventBus.$emit('meetingAdded', response);
             });
-        },
-        addChallengeModal: function addChallengeModal(judgement) {
-            this.$props.judgement = judgement;
-            this.addChallengeForm.person_id = judgement.person_id;
-            this.addChallengeForm.judgement_id = judgement.id;
-            this.addChallengeForm.level = judgement.level;
         }
     },
     components: {
         flatPickr: _vueFlatpickrComponent2.default
-    },
-    mounted: function mounted() {
-        var _this = this;
-
-        eventBus.$on('addCriminalChallenge', function (judgement) {
-            return _this.addChallengeModal(judgement);
-        });
     }
 };
 
@@ -39965,7 +39946,6 @@ exports.default = {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
-    ref: "modal",
     staticClass: "modal fade",
     attrs: {
       "id": "addChallenge",
@@ -40431,7 +40411,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "aria-hidden": "true"
       }
     })])], 1) : _vm._e()
-  })], 2) : _vm._e(), _vm._v(" "), (_vm.issue.type < 4) ? _c('span', [_vm._l((_vm.accusedopenents), function(openent) {
+  })], 2) : _vm._e(), _vm._v(" "), (_vm.issue.type < 4) ? _c('span', [_c('add-criminal-challenge', {
+    attrs: {
+      "issue": _vm.issue
+    }
+  }), _vm._v(" "), _c('add-criminal-judgement', {
+    attrs: {
+      "issue": _vm.issue
+    }
+  }), _vm._v(" "), _c('delay-meeting'), _vm._v(" "), _vm._l((_vm.accusedopenents), function(openent) {
     return (_vm.firstMeetingCheck(_vm.meeting)) ? _c('ul', {
       key: openent.id
     }, [_c('li', [_vm._v("\n              " + _vm._s(_vm.echoName(openent)) + "...\n\n                "), (!openent.judgements.length && !openent.meetings.length) ? _c('span', [_c('button', {
@@ -40441,19 +40429,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           _vm.delayMeeting(_vm.meeting, openent)
         }
       }
-    }, [_vm._v("تأجيل لخصم")]), _vm._v(" "), _c('delay-meeting'), _vm._v(" "), _c('button', {
+    }, [_vm._v("تأجيل لخصم")]), _vm._v(" "), _c('button', {
       staticClass: "btn btn-sm btn-primary",
       on: {
         "click": function($event) {
           _vm.addCriminalJudgement(openent, _vm.meeting)
         }
       }
-    }, [_vm._v(" اضافة حكم ")]), _vm._v(" "), _c('add-judgement', {
-      attrs: {
-        "issue": _vm.issue,
-        "meeting": _vm.meeting
-      }
-    }), _vm._v(" "), _c('hr')], 1) : _vm._e(), _vm._v(" "), _vm._l((_vm.meeting.judgements), function(currentJudgement) {
+    }, [_vm._v(" اضافة حكم ")]), _vm._v(" "), _c('hr')]) : _vm._e(), _vm._v(" "), _vm._l((_vm.meeting.judgements), function(currentJudgement) {
       return (openent.id == currentJudgement.person_id) ? _c('ul', [_c('li', [_vm._v("\n                  " + _vm._s(_vm.echoJudgementStatus(currentJudgement)) + _vm._s(currentJudgement.body) + "\n                  ")]), _vm._v(" "), (currentJudgement.record) ? _c('li', [_vm._v("\n                    حصر " + _vm._s(currentJudgement.record) + " لسنة " + _vm._s(currentJudgement.year) + "\n                  ")]) : _vm._e(), _vm._v(" "), (!currentJudgement.child_meeting && currentJudgement.type < 3) ? _c('button', {
         staticClass: "btn btn-sm btn-dark pull-left",
         on: {
@@ -40461,12 +40444,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
             _vm.addCriminalChallenge(currentJudgement)
           }
         }
-      }, [_vm._v(" اضافة طعن ")]) : _vm._e(), _vm._v(" "), (currentJudgement.child_meeting == null && currentJudgement.type < 3) ? _c('add-challenge', {
-        attrs: {
-          "judgement": currentJudgement,
-          "issue": _vm.issue
-        }
-      }) : _vm._e(), _vm._v(" "), (currentJudgement.child_meeting == null) ? _c('button', {
+      }, [_vm._v(" اضافة طعن ")]) : _vm._e(), _vm._v(" "), (currentJudgement.child_meeting == null) ? _c('button', {
         staticClass: "btn btn-sm btn-danger pull-left",
         on: {
           "click": function($event) {
@@ -40490,7 +40468,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         attrs: {
           "aria-hidden": "true"
         }
-      })]), _vm._v(" "), _c('br'), _c('hr')], 1) : _vm._e()
+      })]), _vm._v(" "), _c('br'), _c('hr')]) : _vm._e()
     })], 2)]) : _vm._e()
   }), _vm._v(" "), (_vm.meeting.person) ? _c('ul', [_c('li', [(!_vm.meeting.judgements.length && !_vm.meeting.child_meetings.length) ? _c('span', [_c('button', {
     staticClass: "btn btn-sm btn-primary",
@@ -40499,12 +40477,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.addCriminalJudgement(_vm.openent = _vm.meeting.person, _vm.meeting)
       }
     }
-  }, [_vm._v(" اضافة حكم ")]), _vm._v(" "), _c('add-judgement', {
-    attrs: {
-      "issue": _vm.issue,
-      "meeting": _vm.meeting
-    }
-  })], 1) : _vm._e(), _vm._v(" "), _vm._l((_vm.meeting.judgements), function(judgement) {
+  }, [_vm._v(" اضافة حكم ")])]) : _vm._e(), _vm._v(" "), _vm._l((_vm.meeting.judgements), function(judgement) {
     return (_vm.meeting.judgements.length) ? _c('ul', [_c('li', [_vm._v(_vm._s(_vm.echoJudgementStatus(judgement)) + _vm._s(judgement.body))]), _vm._v(" "), (judgement.child_meeting == null && judgement.level < 5) ? _c('button', {
       staticClass: "btn btn-sm btn-dark pull-left",
       on: {
@@ -40512,13 +40485,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           _vm.addCriminalChallenge(judgement)
         }
       }
-    }, [_vm._v(" اضافة طعن ")]) : _vm._e(), _vm._v(" "), (judgement.child_meeting == null && judgement.level < 5) ? _c('add-challenge', {
-      attrs: {
-        "judgement": judgement,
-        "issue": _vm.issue,
-        "modal": judgement.id
-      }
-    }) : _vm._e(), _vm._v(" "), (judgement.child_meeting == null) ? _c('button', {
+    }, [_vm._v(" اضافة طعن ")]) : _vm._e(), _vm._v(" "), (judgement.child_meeting == null) ? _c('button', {
       staticClass: "btn btn-sm btn-danger pull-left",
       on: {
         "click": function($event) {
@@ -40542,7 +40509,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       attrs: {
         "aria-hidden": "true"
       }
-    })])], 1) : _vm._e()
+    })])]) : _vm._e()
   })], 2)]) : _vm._e()], 2) : _vm._e(), _vm._v(" "), (_vm.issue.type == 4) ? _c('span') : _vm._e()], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
@@ -40630,6 +40597,719 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
      require("vue-hot-reload-api").rerender("data-v-237c354b", module.exports)
+  }
+}
+
+/***/ }),
+/* 233 */,
+/* 234 */,
+/* 235 */,
+/* 236 */,
+/* 237 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(11)(
+  /* script */
+  __webpack_require__(238),
+  /* template */
+  __webpack_require__(239),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "D:\\www\\law-office\\resources\\assets\\js\\components\\issue\\meetings\\addCriminalChallenge.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] addCriminalChallenge.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-07884856", Component.options)
+  } else {
+    hotAPI.reload("data-v-07884856", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 238 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _vueFlatpickrComponent = __webpack_require__(118);
+
+var _vueFlatpickrComponent2 = _interopRequireDefault(_vueFlatpickrComponent);
+
+__webpack_require__(119);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Arabic = __webpack_require__(120).ar;
+
+exports.default = {
+    props: ['issue'],
+    data: function data() {
+        return {
+            judgement: [],
+            CriminalChallengeForm: new Form({
+                person_id: '',
+                parent_id: '',
+                judgement_id: '',
+                level: '',
+                role: '',
+                date: '',
+                decision: '',
+                notes: ''
+            }),
+            config: {
+                locale: Arabic
+            }
+        };
+    },
+
+    methods: {
+        onChallengeCreate: function onChallengeCreate() {
+            this.CriminalChallengeForm.post(window.location.pathname + '/meetings').then(function (response) {
+                return eventBus.$emit('meetingAdded', response);
+            });
+        },
+        addChallengeModal: function addChallengeModal(judgement) {
+            this.judgement = judgement;
+            this.CriminalChallengeForm.person_id = judgement.person_id;
+            this.CriminalChallengeForm.judgement_id = judgement.id;
+            $('#addCriminalChallenge').modal('show');
+        }
+    },
+    components: {
+        flatPickr: _vueFlatpickrComponent2.default
+    },
+    mounted: function mounted() {
+        var _this = this;
+
+        eventBus.$on('addCriminalChallenge', function (judgement) {
+            return _this.addChallengeModal(judgement);
+        });
+    }
+};
+
+/***/ }),
+/* 239 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "modal fade",
+    attrs: {
+      "id": "addCriminalChallenge",
+      "role": "dialog",
+      "aria-labelledby": "myModalLabel"
+    }
+  }, [_c('div', {
+    staticClass: "modal-dialog",
+    attrs: {
+      "role": "document"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "modal-body"
+  }, [_c('form', {
+    attrs: {
+      "method": "POST",
+      "action": "/people"
+    },
+    on: {
+      "submit": function($event) {
+        $event.preventDefault();
+        _vm.onChallengeCreate($event)
+      },
+      "keydown": function($event) {
+        _vm.CriminalChallengeForm.errors.clear($event.target.name)
+      },
+      "change": function($event) {
+        _vm.CriminalChallengeForm.errors.clear($event.target.name)
+      },
+      "input": function($event) {
+        _vm.CriminalChallengeForm.errors.clear($event.target.name)
+      }
+    }
+  }, [_c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "level"
+    }
+  }, [_vm._v("نوع الطعن:")]), _vm._v(" "), _c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.CriminalChallengeForm.level),
+      expression: "CriminalChallengeForm.level"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "id": "level",
+      "name": "level"
+    },
+    on: {
+      "change": function($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        });
+        _vm.CriminalChallengeForm.level = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+      }
+    }
+  }, [(_vm.issue.type == 1 && _vm.judgement.level == 1 && _vm.judgement.present == 0) ? _c('option', {
+    attrs: {
+      "value": "2"
+    }
+  }, [_vm._v("مــعـــــارضة")]) : _vm._e(), _vm._v(" "), (_vm.issue.type !== 12 && _vm.judgement.level <= 2) ? _c('option', {
+    attrs: {
+      "value": "3"
+    }
+  }, [_vm._v("استـــئـناف")]) : _vm._e(), _vm._v(" "), (_vm.issue.type == 1 && _vm.judgement.level == 3) ? _c('option', {
+    attrs: {
+      "value": "4"
+    }
+  }, [_vm._v("معارضة استئنافية")]) : _vm._e(), _vm._v(" "), (_vm.judgement.level >= 3 && _vm.judgement.present) ? _c('option', {
+    attrs: {
+      "value": "5"
+    }
+  }, [_vm._v("نـــقـــض")]) : _vm._e()]), _vm._v(" "), (_vm.CriminalChallengeForm.errors.has('level')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.CriminalChallengeForm.errors.get('level'))
+    }
+  }) : _vm._e()]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "date"
+    }
+  }, [_vm._v("التاريخ:")]), _vm._v(" "), _c('flat-pickr', {
+    attrs: {
+      "name": "date",
+      "config": _vm.config,
+      "placeholder": "تاريخ الجلــسة"
+    },
+    model: {
+      value: (_vm.CriminalChallengeForm.date),
+      callback: function($$v) {
+        _vm.CriminalChallengeForm.date = $$v
+      },
+      expression: "CriminalChallengeForm.date"
+    }
+  }), _vm._v(" "), (_vm.CriminalChallengeForm.errors.has('date')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.CriminalChallengeForm.errors.get('date'))
+    }
+  }) : _vm._e()], 1), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "decision"
+    }
+  }, [_vm._v("القرار:")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.CriminalChallengeForm.decision),
+      expression: "CriminalChallengeForm.decision"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "decision",
+      "name": "decision"
+    },
+    domProps: {
+      "value": (_vm.CriminalChallengeForm.decision)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.CriminalChallengeForm.decision = $event.target.value
+      }
+    }
+  }), _vm._v(" "), (_vm.CriminalChallengeForm.errors.has('decision')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.CriminalChallengeForm.errors.get('decision'))
+    }
+  }) : _vm._e()]), _vm._v(" "), _c('div', {
+    staticClass: "form-group heading"
+  }, [_c('button', {
+    staticClass: "button btn-lg btn-success",
+    attrs: {
+      "disabled": _vm.CriminalChallengeForm.errors.any()
+    }
+  }, [_vm._v("اضافة")])])])])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "modal-header"
+  }, [_c('button', {
+    staticClass: "close",
+    attrs: {
+      "type": "button",
+      "data-dismiss": "modal",
+      "aria-label": "Close"
+    }
+  }, [_c('span', {
+    attrs: {
+      "aria-hidden": "true"
+    }
+  }, [_vm._v("×")])]), _vm._v(" "), _c('span', {
+    staticClass: "form-control-static pull-left"
+  }, [_c('h4', {
+    staticClass: "modal-title",
+    attrs: {
+      "id": "myModalLabel"
+    }
+  }, [_vm._v(" اضافة طعن ")])])])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-07884856", module.exports)
+  }
+}
+
+/***/ }),
+/* 240 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(11)(
+  /* script */
+  __webpack_require__(241),
+  /* template */
+  __webpack_require__(242),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "D:\\www\\law-office\\resources\\assets\\js\\components\\issue\\meetings\\addCriminalJudgement.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] addCriminalJudgement.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-40ece767", Component.options)
+  } else {
+    hotAPI.reload("data-v-40ece767", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 241 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _vueFlatpickrComponent = __webpack_require__(118);
+
+var _vueFlatpickrComponent2 = _interopRequireDefault(_vueFlatpickrComponent);
+
+__webpack_require__(119);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Arabic = __webpack_require__(120).ar;
+
+exports.default = {
+    props: ['issue'],
+    data: function data() {
+        return {
+            meeting: [],
+            criminalJudgementForm: new Form({
+                issue_id: this.issue.id,
+                person_id: '',
+                active: 1,
+                present: 1,
+                type: 1,
+                record: '',
+                year: '',
+                date: '',
+                body: '',
+                level: ''
+            }),
+            config: {
+                locale: Arabic
+            }
+        };
+    },
+
+    methods: {
+        onJudgementCreate: function onJudgementCreate() {
+            this.criminalJudgementForm.post('/meetings/' + this.meeting.id + '/judgements').then(function (response) {
+                return eventBus.$emit('judgementAdded', response);
+            });
+        },
+        addCriminalJudgementModal: function addCriminalJudgementModal(openent, meeting) {
+            this.meeting = meeting;
+            this.criminalJudgementForm.issue_id = this.issue.id;
+            this.criminalJudgementForm.person_id = openent.id;
+            this.criminalJudgementForm.date = meeting.date;
+            this.criminalJudgementForm.level = meeting.level;
+            this.criminalJudgementForm.active = 1;
+            this.criminalJudgementForm.present = 1;
+            this.criminalJudgementForm.type = 1;
+            $('#addCriminalJudgement').modal('show');
+        }
+    },
+    components: {
+        flatPickr: _vueFlatpickrComponent2.default
+    },
+    mounted: function mounted() {
+        var _this = this;
+
+        eventBus.$on('addCriminalJudgement', function (openent, meeting) {
+            return _this.addCriminalJudgementModal(openent, meeting);
+        });
+    }
+};
+
+/***/ }),
+/* 242 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "modal fade",
+    attrs: {
+      "id": "addCriminalJudgement",
+      "role": "dialog",
+      "aria-labelledby": "myModalLabel"
+    }
+  }, [_c('div', {
+    staticClass: "modal-dialog",
+    attrs: {
+      "role": "document"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "modal-body"
+  }, [_c('form', {
+    attrs: {
+      "method": "POST",
+      "action": "/people"
+    },
+    on: {
+      "submit": function($event) {
+        $event.preventDefault();
+        _vm.onJudgementCreate($event)
+      },
+      "keydown": function($event) {
+        _vm.criminalJudgementForm.errors.clear($event.target.name)
+      },
+      "change": function($event) {
+        _vm.criminalJudgementForm.errors.clear($event.target.name)
+      },
+      "input": function($event) {
+        _vm.criminalJudgementForm.errors.clear($event.target.name)
+      }
+    }
+  }, [(this.meeting.level !== 2 || this.meeting.level !== 4) ? _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "present"
+    }
+  }, [_vm._v("حالة الحكم:")]), _vm._v(" "), _c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.criminalJudgementForm.present),
+      expression: "criminalJudgementForm.present"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "id": "present",
+      "name": "present"
+    },
+    on: {
+      "change": function($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        });
+        _vm.criminalJudgementForm.present = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+      }
+    }
+  }, [_c('option', {
+    attrs: {
+      "value": "1"
+    }
+  }, [_vm._v("حــضـــورى")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "0"
+    }
+  }, [_vm._v("غــيــابــى")])]), _vm._v(" "), (_vm.criminalJudgementForm.errors.has('present')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.criminalJudgementForm.errors.get('present'))
+    }
+  }) : _vm._e()]) : _vm._e(), _vm._v(" "), (_vm.issue.type < 4) ? _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "type"
+    }
+  }, [_vm._v("نوع الحكم:")]), _vm._v(" "), _c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.criminalJudgementForm.type),
+      expression: "criminalJudgementForm.type"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "id": "type",
+      "name": "type"
+    },
+    on: {
+      "change": function($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        });
+        _vm.criminalJudgementForm.type = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+      }
+    }
+  }, [_c('option', {
+    attrs: {
+      "value": "1"
+    }
+  }, [_vm._v("ادانــه")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "2"
+    }
+  }, [_vm._v("براءه")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "3"
+    }
+  }, [_vm._v("ايقاف")])]), _vm._v(" "), (_vm.criminalJudgementForm.errors.has('type')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.criminalJudgementForm.errors.get('type'))
+    }
+  }) : _vm._e()]) : _vm._e(), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "date"
+    }
+  }, [_vm._v("تاريخ الحكم:")]), _vm._v(" "), _c('flat-pickr', {
+    attrs: {
+      "name": "date",
+      "config": _vm.config,
+      "placeholder": "اختر تاريخ الحكم"
+    },
+    model: {
+      value: (_vm.criminalJudgementForm.date),
+      callback: function($$v) {
+        _vm.criminalJudgementForm.date = $$v
+      },
+      expression: "criminalJudgementForm.date"
+    }
+  }), _vm._v(" "), (_vm.criminalJudgementForm.errors.has('date')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.criminalJudgementForm.errors.get('date'))
+    }
+  }) : _vm._e()], 1), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "body"
+    }
+  }, [_vm._v("صيغة الحكم:")]), _vm._v(" "), _c('textarea', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.criminalJudgementForm.body),
+      expression: "criminalJudgementForm.body"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "body",
+      "name": "body",
+      "rows": "5"
+    },
+    domProps: {
+      "value": (_vm.criminalJudgementForm.body)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.criminalJudgementForm.body = $event.target.value
+      }
+    }
+  }), _vm._v(" "), (_vm.criminalJudgementForm.errors.has('body')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.criminalJudgementForm.errors.get('body'))
+    }
+  }) : _vm._e()]), _vm._v(" "), (_vm.issue.type < 4) ? _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "record"
+    }
+  }, [_vm._v("رقم الحصر:")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.criminalJudgementForm.record),
+      expression: "criminalJudgementForm.record"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "record",
+      "name": "record"
+    },
+    domProps: {
+      "value": (_vm.criminalJudgementForm.record)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.criminalJudgementForm.record = $event.target.value
+      }
+    }
+  }), _vm._v(" "), (_vm.criminalJudgementForm.errors.has('record')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.criminalJudgementForm.errors.get('record'))
+    }
+  }) : _vm._e()]) : _vm._e(), _vm._v(" "), (_vm.issue.type < 4) ? _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "year"
+    }
+  }, [_vm._v("سنة الحصر:")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.criminalJudgementForm.year),
+      expression: "criminalJudgementForm.year"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "year",
+      "name": "year"
+    },
+    domProps: {
+      "value": (_vm.criminalJudgementForm.year)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.criminalJudgementForm.year = $event.target.value
+      }
+    }
+  }), _vm._v(" "), (_vm.criminalJudgementForm.errors.has('year')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.criminalJudgementForm.errors.get('year'))
+    }
+  }) : _vm._e()]) : _vm._e(), _vm._v(" "), _c('div', {
+    staticClass: "form-group heading"
+  }, [_c('button', {
+    staticClass: "button btn-lg btn-success",
+    attrs: {
+      "disabled": _vm.criminalJudgementForm.errors.any()
+    }
+  }, [_vm._v("اضافة الحكم")])])])])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "modal-header"
+  }, [_c('button', {
+    staticClass: "close",
+    attrs: {
+      "type": "button",
+      "data-dismiss": "modal",
+      "aria-label": "Close"
+    }
+  }, [_c('span', {
+    attrs: {
+      "aria-hidden": "true"
+    }
+  }, [_vm._v("×")])]), _vm._v(" "), _c('span', {
+    staticClass: "form-control-static pull-left"
+  }, [_c('h4', {
+    staticClass: "modal-title",
+    attrs: {
+      "id": "myModalLabel"
+    }
+  }, [_vm._v(" اضافة حكم ")])])])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-40ece767", module.exports)
   }
 }
 

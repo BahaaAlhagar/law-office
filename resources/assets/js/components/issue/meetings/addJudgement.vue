@@ -137,23 +137,10 @@
         onJudgementCreate() {
             this.addJudgementForm.post('/meetings/' + this.meeting.id + '/judgements')
                 .then(response => eventBus.$emit('judgementAdded', response));
-            },
-        addCriminalJudgementModal(openent, meeting){
-            this.addJudgementForm.issue_id = this.issue.id;
-            this.addJudgementForm.person_id = openent.id;
-            this.addJudgementForm.date = this.meeting.date;
-            this.addJudgementForm.level = this.meeting.level;
-            this.addJudgementForm.active = 1;
-            this.addJudgementForm.present = 1;
-            this.addJudgementForm.type = 1;
-            this.meeting = meeting;
             }
         },
         components: {
             flatPickr
-        },
-        mounted(){
-            eventBus.$on('addCriminalJudgement', (openent, meeting) => this.addCriminalJudgementModal(openent, meeting));
         }
     }
 </script>

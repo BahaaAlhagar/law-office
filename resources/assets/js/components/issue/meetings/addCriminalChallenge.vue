@@ -1,5 +1,5 @@
 <template>
-        <div ref="modal" class="modal fade" id="addChallenge" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal fade" id="addCriminalChallenge" role="dialog" aria-labelledby="myModalLabel">
 
           <div class="modal-dialog" role="document">
 
@@ -16,15 +16,15 @@
               <div class="modal-body">
 
 
-                <form method="POST" action="/people" @submit.prevent="onChallengeCreate" @keydown="addChallengeForm.errors.clear($event.target.name)"
-                @change="addChallengeForm.errors.clear($event.target.name)"
-                @input="addChallengeForm.errors.clear($event.target.name)"
+                <form method="POST" action="/people" @submit.prevent="onChallengeCreate" @keydown="CriminalChallengeForm.errors.clear($event.target.name)"
+                @change="CriminalChallengeForm.errors.clear($event.target.name)"
+                @input="CriminalChallengeForm.errors.clear($event.target.name)"
                 >
                     
                     <div class="form-group">
                         <label for="level" class="label">نوع الطعن:</label>
                         
-                        <select id="level" name="level" class="form-control" v-model="addChallengeForm.level">
+                        <select id="level" name="level" class="form-control" v-model="CriminalChallengeForm.level">
                             <option v-if="issue.type == 1 && judgement.level == 1 && judgement.present == 0" value="2">مــعـــــارضة</option>
 
                             <option v-if="issue.type !== 12 && judgement.level <= 2" 
@@ -32,34 +32,34 @@
 
                             <option v-if="issue.type == 1 && judgement.level == 3" value="4">معارضة استئنافية</option>
 
-                            <option v-if="judgement.level >= 3" value="5">نـــقـــض</option>
+                            <option v-if="judgement.level >= 3 && judgement.present" value="5">نـــقـــض</option>
                         </select>
 
-                        <span class="alert-danger" v-if="addChallengeForm.errors.has('level')" v-text="addChallengeForm.errors.get('level')"></span>
+                        <span class="alert-danger" v-if="CriminalChallengeForm.errors.has('level')" v-text="CriminalChallengeForm.errors.get('level')"></span>
                     </div>
 
                     <div class="form-group">
                         <label for="date" class="label">التاريخ:</label>
                         
-                        <flat-pickr v-model="addChallengeForm.date" 
+                        <flat-pickr v-model="CriminalChallengeForm.date" 
                         name="date" 
                         :config="config" 
                         placeholder="تاريخ الجلــسة">
                         </flat-pickr>
 
-                        <span class="alert-danger" v-if="addChallengeForm.errors.has('date')" v-text="addChallengeForm.errors.get('date')"></span>
+                        <span class="alert-danger" v-if="CriminalChallengeForm.errors.has('date')" v-text="CriminalChallengeForm.errors.get('date')"></span>
                     </div>
 
                     <div class="form-group">
                         <label for="decision" class="label">القرار:</label>
                         
-                        <input type="text" id="decision" name="decision" class="form-control" v-model="addChallengeForm.decision"> 
+                        <input type="text" id="decision" name="decision" class="form-control" v-model="CriminalChallengeForm.decision"> 
 
-                        <span class="alert-danger" v-if="addChallengeForm.errors.has('decision')" v-text="addChallengeForm.errors.get('decision')"></span>
+                        <span class="alert-danger" v-if="CriminalChallengeForm.errors.has('decision')" v-text="CriminalChallengeForm.errors.get('decision')"></span>
                     </div>
 
                     <div class="form-group heading">
-                        <button class="button btn-lg btn-success" :disabled="addChallengeForm.errors.any()">اضافة</button>
+                        <button class="button btn-lg btn-success" :disabled="CriminalChallengeForm.errors.any()">اضافة</button>
                     </div>
                 </form>
 
@@ -79,13 +79,14 @@
   const Arabic = require("flatpickr/dist/l10n/ar.js").ar;
 
     export default {
-        props: ['issue', 'judgement', 'modal'],
+        props: ['issue'],
         data() {
             return {
-                addChallengeForm: new Form({
-                    person_id: this.judgement.person_id,
+                judgement: [],
+                CriminalChallengeForm: new Form({
+                    person_id: '',
                     parent_id: '',
-                    judgement_id: this.judgement.id,
+                    judgement_id: '',
                     level: '',
                     role: '',
                     date: '',
@@ -99,14 +100,14 @@
         },
         methods: {
         onChallengeCreate() {
-            this.addChallengeForm.post(window.location.pathname + '/meetings')
+            this.CriminalChallengeForm.post(window.location.pathname + '/meetings')
                 .then(response => eventBus.$emit('meetingAdded', response));
             },
             addChallengeModal(judgement){
-                this.$props.judgement = judgement;
-                this.addChallengeForm.person_id = judgement.person_id;
-                this.addChallengeForm.judgement_id = judgement.id;
-                this.addChallengeForm.level = judgement.level;
+                this.judgement = judgement;
+                this.CriminalChallengeForm.person_id = judgement.person_id;
+                this.CriminalChallengeForm.judgement_id = judgement.id;
+                $('#addCriminalChallenge').modal('show');
             }
         },
         components: {

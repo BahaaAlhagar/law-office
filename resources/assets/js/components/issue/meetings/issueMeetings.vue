@@ -73,6 +73,7 @@ export default {
         eventBus.$emit('refetchIssueMeetings');
         $('#addMeeting').modal('hide');
         $('#addChallenge').modal('hide');
+        $('#addCriminalChallenge').modal('hide');
   	  	toastr.success(response.message);
   	  },
       editMeeting(meeting){
@@ -105,6 +106,7 @@ export default {
       },
       afterJudgementAdded(response){
         $('#addJudgement').modal('hide');
+        $('#addCriminalJudgement').modal('hide');
         toastr.success(response.message);
         eventBus.$emit('refetchIssueMeetings');
       },
