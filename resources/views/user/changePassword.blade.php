@@ -18,15 +18,15 @@
                 <form action="" method="post" role="form" class="form-horizontal">
                     {{csrf_field()}}
  
-                        <div class="form-group{{ $errors->has('old') ? ' has-error' : '' }}">
+                        <div class="form-group{{ $errors->has('old_password') ? ' has-error' : '' }}">
                             <label for="password" class="col-md-4 control-label"><strong>كلمة المرور الحالية</strong></label>
  
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="old">
+                                <input id="password" type="password" class="form-control" name="old_password">
  
-                                @if ($errors->has('old'))
+                                @if ($errors->has('old_password'))
                                     <span class="help-block alert-danger">
-                                        <strong>{{ $errors->first('old') }}</strong>
+                                        <strong>{{ $errors->first('old_password') }}</strong>
                                     </span>
                                 @endif
                             </div>

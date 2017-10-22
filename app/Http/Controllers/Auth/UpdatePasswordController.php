@@ -28,14 +28,14 @@ class UpdatePasswordController extends Controller
     public function update(Request $request)
     {
         $this->validate($request, [
-            'old' => 'required',
+            'old_password' => 'required',
             'password' => 'required|min:6|confirmed',
         ]);
 
         $user = User::find(Auth::id());
         $hashedPassword = $user->password;
 
-        if (Hash::check($request->old, $hashedPassword)) {
+        if (Hash::check($request->old_password, $hashedPassword)) {
             //Change the password
             $user->fill([
                 'password' => Hash::make($request->password)
