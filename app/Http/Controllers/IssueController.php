@@ -61,8 +61,6 @@ class IssueController extends Controller
     {
         $issue = Issue::create($request->all());
 
-
-
         return $this->respondWithMessage('تم اضافة القضية بنجاح!', $issue);
     }
 
@@ -162,10 +160,23 @@ class IssueController extends Controller
 
     public function updateOpenent(attachOpenentRequest $request, Issue $issue)
     {
-        // temporary - we add checks later
         $openent = $request->openent['id'];
 
-        $issue->openents()->detach($request->old_id);
+        $old_openent = $request->old_id;
+
+        if(!is_null($issue->meetings()->where('person_id', $old_openent)->first()) || !is_null($issue->judgements()->where('person_id', $old_openent)->first()))
+        {
+            $errors = [
+                'errors' => [
+                'openent' => ['لا يمكنك تعديل هذا الخصم لاحتواء القضية على جلسات او احكام خاصة به.']
+                ]
+            ];
+
+            return response()->json($errors, 422);
+        }
+
+
+        $issue->openents()->detach($old_openent->old_id);
 
         $issue->openents()
                 ->attach($openent, ['person_type' => $request->person_type]);
@@ -183,7 +194,11 @@ class IssueController extends Controller
 
     public function deleteOpenent(Request $request, Issue $issue, $openent)
     {
-        // temporary - we add checks later
+        if(!is_null($issue->meetings()->where('person_id', $openent)->first()) || !is_null($issue->judgements()->where('person_id', $openent)->first()))
+        {
+            return ['message' => 'لا يمكنك حذف هذا الخصم لاحتواء القضية على جلسات او احكام خاصة به.'];
+        }
+
         $issue->openents()->detach($openent);
 
         return ['message' => 'تم حذف الخصم بنجاح'];
