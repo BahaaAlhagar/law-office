@@ -2,10 +2,18 @@
 
 namespace App;
 
+use App\Scopes\ActiveIssueScope;
 use Illuminate\Database\Eloquent\Model;
 
 class Meeting extends Model
 {
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope(new ActiveIssueScope);
+    }
+    
     protected $guarded = ['id'];
 
     public $timestamps = false;
