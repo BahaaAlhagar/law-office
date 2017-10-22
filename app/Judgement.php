@@ -13,7 +13,7 @@ class Judgement extends Model
 
         static::addGlobalScope(new ActiveIssueScope);
     }
-    
+
     protected $guarded = ['id'];
 
     public $timestamps = false;
@@ -36,5 +36,15 @@ class Judgement extends Model
     public function childMeeting()
     {
     	return $this->hasOne(Meeting::class);
+    }
+
+    public function scopeActive($query)
+    {
+        return $query->where('active', 1);
+    }
+
+    public function scopePresent($query)
+    {
+        return $query->where('present', 1);
     }
 }
