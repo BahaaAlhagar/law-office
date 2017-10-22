@@ -16,6 +16,9 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+Route::view('change_password', 'user.changePassword');
+Route::post('change_password', 'Auth\UpdatePasswordController@update');
+
 
 Route::get('/home', 'HomeController@index')->name('home');
 
