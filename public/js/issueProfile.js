@@ -28609,6 +28609,62 @@ function toComment(sourceMap) {
 /* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
+!function(t,e){ true?module.exports=e(__webpack_require__(137)):"function"==typeof define&&define.amd?define("VueFlatpickr",["flatpickr"],e):"object"==typeof exports?exports.VueFlatpickr=e(require("flatpickr")):t.VueFlatpickr=e(t.flatpickr)}(this,function(t){return function(t){function e(r){if(n[r])return n[r].exports;var i=n[r]={i:r,l:!1,exports:{}};return t[r].call(i.exports,i,i.exports,e),i.l=!0,i.exports}var n={};return e.m=t,e.c=n,e.d=function(t,n,r){e.o(t,n)||Object.defineProperty(t,n,{configurable:!1,enumerable:!0,get:r})},e.n=function(t){var n=t&&t.__esModule?function(){return t.default}:function(){return t};return e.d(n,"a",n),n},e.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},e.p="",e(e.s=0)}([function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),n.d(e,"flatPickrPlugin",function(){return i});var r=n(1);n.d(e,"component",function(){return r.a});var i=function(t,e){var n="flat-pickr";"string"==typeof e&&(n=e),t.component(n,r.a)};r.a.install=i,e.default=r.a},function(t,e,n){"use strict";var r=n(3),i=n(5),o=n(2),a=o(r.a,i.a,null,null,null);e.a=a.exports},function(t,e){t.exports=function(t,e,n,r,i){var o,a=t=t||{},u=typeof t.default;"object"!==u&&"function"!==u||(o=t,a=t.default);var s="function"==typeof a?a.options:a;e&&(s.render=e.render,s.staticRenderFns=e.staticRenderFns),r&&(s._scopeId=r);var l;if(i?(l=function(t){t=t||this.$vnode&&this.$vnode.ssrContext||this.parent&&this.parent.$vnode&&this.parent.$vnode.ssrContext,t||"undefined"==typeof __VUE_SSR_CONTEXT__||(t=__VUE_SSR_CONTEXT__),n&&n.call(this,t),t&&t._registeredComponents&&t._registeredComponents.add(i)},s._ssrRegister=l):n&&(l=n),l){var f=s.functional,c=f?s.render:s.beforeCreate;f?s.render=function(t,e){return l.call(e),c(t,e)}:s.beforeCreate=c?[].concat(c,l):[l]}return{esModule:o,exports:a,options:s}}},function(t,e,n){"use strict";function r(t){if(Array.isArray(t)){for(var e=0,n=Array(t.length);e<t.length;e++)n[e]=t[e];return n}return Array.from(t)}var i=n(4),o=n.n(i);e.a={name:"flat-pickr",props:{value:{default:null,required:!0,validate:function(t){return null===t||t instanceof Date||"string"==typeof t||t instanceof String||t instanceof Array}},config:{type:Object,default:function(){return{wrap:!1}}},placeholder:{type:String,default:""},inputClass:{type:[String,Object],default:"form-control input"},name:{type:String,default:"date-time"},required:{type:Boolean,default:!1},id:{type:String}},data:function(){return{mutableValue:this.value,fp:null,oldOnChange:null}},mounted:function(){if(!this.fp){this.oldOnChange=this.config.onChange,this.config.onChange=this.onChange;var t=this.config.wrap?this.$el.parentNode:this.$el;this.fp=new o.a(t,this.config)}},beforeDestroy:function(){this.fp&&(this.fp.destroy(),this.fp=null,this.oldOnChange=null,this.config.onChange=null)},methods:{onChange:function(){for(var t=arguments.length,e=Array(t),n=0;n<t;n++)e[n]=arguments[n];"function"==typeof this.oldOnChange&&this.oldOnChange.apply(this,r(e)),this.$emit.apply(this,["onChange"].concat(r(e)))}},watch:{config:function(t){this.fp.config=Object.assign(this.fp.config,t),this.fp.redraw(),this.fp.setDate(this.value,!0)},mutableValue:function(t){this.$emit("input",t)},value:function(t){t!==this.mutableValue&&this.fp&&this.fp.setDate(t,!0)}}}},function(e,n){e.exports=t},function(t,e,n){"use strict";var r=function(){var t=this,e=t.$createElement;return(t._self._c||e)("input",{directives:[{name:"model",rawName:"v-model",value:t.mutableValue,expression:"mutableValue"}],class:t.inputClass,attrs:{type:"text",id:t.id,name:t.name,placeholder:t.placeholder,required:t.required,"data-input":""},domProps:{value:t.mutableValue},on:{input:function(e){e.target.composing||(t.mutableValue=e.target.value)}}})},i=[],o={render:r,staticRenderFns:i};e.a=o}])});
+
+/***/ }),
+/* 118 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(138);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(139)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../css-loader/index.js!./flatpickr.css", function() {
+			var newContent = require("!!../../css-loader/index.js!./flatpickr.css");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 119 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* Arabic locals for flatpickr */
+var flatpickr = flatpickr || { l10ns: {} };
+flatpickr.l10ns.ar = {};
+
+flatpickr.l10ns.ar.weekdays = {
+	shorthand: ["أحد", "اثنين", "ثلاثاء", "أربعاء", "خميس", "جمعة", "سبت"],
+	longhand: ["الأحد", "الاثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة", "السبت"]
+};
+
+flatpickr.l10ns.ar.months = {
+	shorthand: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
+	longhand: ["يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو", "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"]
+};
+if (true) module.exports = flatpickr.l10ns;
+
+/***/ }),
+/* 120 */
+/***/ (function(module, exports, __webpack_require__) {
+
 /*
   MIT License http://www.opensource.org/licenses/mit-license.php
   Author Tobias Koppers @sokra
@@ -28825,62 +28881,6 @@ function applyToTag (styleElement, obj) {
   }
 }
 
-
-/***/ }),
-/* 118 */
-/***/ (function(module, exports, __webpack_require__) {
-
-!function(t,e){ true?module.exports=e(__webpack_require__(137)):"function"==typeof define&&define.amd?define("VueFlatpickr",["flatpickr"],e):"object"==typeof exports?exports.VueFlatpickr=e(require("flatpickr")):t.VueFlatpickr=e(t.flatpickr)}(this,function(t){return function(t){function e(r){if(n[r])return n[r].exports;var i=n[r]={i:r,l:!1,exports:{}};return t[r].call(i.exports,i,i.exports,e),i.l=!0,i.exports}var n={};return e.m=t,e.c=n,e.d=function(t,n,r){e.o(t,n)||Object.defineProperty(t,n,{configurable:!1,enumerable:!0,get:r})},e.n=function(t){var n=t&&t.__esModule?function(){return t.default}:function(){return t};return e.d(n,"a",n),n},e.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},e.p="",e(e.s=0)}([function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),n.d(e,"flatPickrPlugin",function(){return i});var r=n(1);n.d(e,"component",function(){return r.a});var i=function(t,e){var n="flat-pickr";"string"==typeof e&&(n=e),t.component(n,r.a)};r.a.install=i,e.default=r.a},function(t,e,n){"use strict";var r=n(3),i=n(5),o=n(2),a=o(r.a,i.a,null,null,null);e.a=a.exports},function(t,e){t.exports=function(t,e,n,r,i){var o,a=t=t||{},u=typeof t.default;"object"!==u&&"function"!==u||(o=t,a=t.default);var s="function"==typeof a?a.options:a;e&&(s.render=e.render,s.staticRenderFns=e.staticRenderFns),r&&(s._scopeId=r);var l;if(i?(l=function(t){t=t||this.$vnode&&this.$vnode.ssrContext||this.parent&&this.parent.$vnode&&this.parent.$vnode.ssrContext,t||"undefined"==typeof __VUE_SSR_CONTEXT__||(t=__VUE_SSR_CONTEXT__),n&&n.call(this,t),t&&t._registeredComponents&&t._registeredComponents.add(i)},s._ssrRegister=l):n&&(l=n),l){var f=s.functional,c=f?s.render:s.beforeCreate;f?s.render=function(t,e){return l.call(e),c(t,e)}:s.beforeCreate=c?[].concat(c,l):[l]}return{esModule:o,exports:a,options:s}}},function(t,e,n){"use strict";function r(t){if(Array.isArray(t)){for(var e=0,n=Array(t.length);e<t.length;e++)n[e]=t[e];return n}return Array.from(t)}var i=n(4),o=n.n(i);e.a={name:"flat-pickr",props:{value:{default:null,required:!0,validate:function(t){return null===t||t instanceof Date||"string"==typeof t||t instanceof String||t instanceof Array}},config:{type:Object,default:function(){return{wrap:!1}}},placeholder:{type:String,default:""},inputClass:{type:[String,Object],default:"form-control input"},name:{type:String,default:"date-time"},required:{type:Boolean,default:!1},id:{type:String}},data:function(){return{mutableValue:this.value,fp:null,oldOnChange:null}},mounted:function(){if(!this.fp){this.oldOnChange=this.config.onChange,this.config.onChange=this.onChange;var t=this.config.wrap?this.$el.parentNode:this.$el;this.fp=new o.a(t,this.config)}},beforeDestroy:function(){this.fp&&(this.fp.destroy(),this.fp=null,this.oldOnChange=null,this.config.onChange=null)},methods:{onChange:function(){for(var t=arguments.length,e=Array(t),n=0;n<t;n++)e[n]=arguments[n];"function"==typeof this.oldOnChange&&this.oldOnChange.apply(this,r(e)),this.$emit.apply(this,["onChange"].concat(r(e)))}},watch:{config:function(t){this.fp.config=Object.assign(this.fp.config,t),this.fp.redraw(),this.fp.setDate(this.value,!0)},mutableValue:function(t){this.$emit("input",t)},value:function(t){t!==this.mutableValue&&this.fp&&this.fp.setDate(t,!0)}}}},function(e,n){e.exports=t},function(t,e,n){"use strict";var r=function(){var t=this,e=t.$createElement;return(t._self._c||e)("input",{directives:[{name:"model",rawName:"v-model",value:t.mutableValue,expression:"mutableValue"}],class:t.inputClass,attrs:{type:"text",id:t.id,name:t.name,placeholder:t.placeholder,required:t.required,"data-input":""},domProps:{value:t.mutableValue},on:{input:function(e){e.target.composing||(t.mutableValue=e.target.value)}}})},i=[],o={render:r,staticRenderFns:i};e.a=o}])});
-
-/***/ }),
-/* 119 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(138);
-if(typeof content === 'string') content = [[module.i, content, '']];
-// Prepare cssTransformation
-var transform;
-
-var options = {}
-options.transform = transform
-// add the styles to the DOM
-var update = __webpack_require__(139)(content, options);
-if(content.locals) module.exports = content.locals;
-// Hot Module Replacement
-if(false) {
-	// When the styles change, update the <style> tags
-	if(!content.locals) {
-		module.hot.accept("!!../../css-loader/index.js!./flatpickr.css", function() {
-			var newContent = require("!!../../css-loader/index.js!./flatpickr.css");
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-	}
-	// When the module is disposed, remove the <style> tags
-	module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 120 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* Arabic locals for flatpickr */
-var flatpickr = flatpickr || { l10ns: {} };
-flatpickr.l10ns.ar = {};
-
-flatpickr.l10ns.ar.weekdays = {
-	shorthand: ["أحد", "اثنين", "ثلاثاء", "أربعاء", "خميس", "جمعة", "سبت"],
-	longhand: ["الأحد", "الاثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة", "السبت"]
-};
-
-flatpickr.l10ns.ar.months = {
-	shorthand: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
-	longhand: ["يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو", "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"]
-};
-if (true) module.exports = flatpickr.l10ns;
 
 /***/ }),
 /* 121 */,
@@ -32291,7 +32291,7 @@ var content = __webpack_require__(145);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(117)("71a22bd4", content, false);
+var update = __webpack_require__(120)("71a22bd4", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -36875,7 +36875,7 @@ var content = __webpack_require__(195);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(117)("3933bd16", content, false);
+var update = __webpack_require__(120)("3933bd16", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -37183,7 +37183,7 @@ var content = __webpack_require__(200);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(117)("4962fb93", content, false);
+var update = __webpack_require__(120)("4962fb93", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -37743,7 +37743,7 @@ var Component = __webpack_require__(11)(
   /* script */
   __webpack_require__(208),
   /* template */
-  __webpack_require__(232),
+  __webpack_require__(238),
   /* styles */
   null,
   /* scopeId */
@@ -37800,6 +37800,14 @@ var _delayMeeting2 = _interopRequireDefault(_delayMeeting);
 var _meetingJudgements = __webpack_require__(217);
 
 var _meetingJudgements2 = _interopRequireDefault(_meetingJudgements);
+
+var _addDecision = __webpack_require__(243);
+
+var _addDecision2 = _interopRequireDefault(_addDecision);
+
+var _editDecision = __webpack_require__(246);
+
+var _editDecision2 = _interopRequireDefault(_editDecision);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -37864,39 +37872,76 @@ exports.default = {
     afterJudgementDeleted: function afterJudgementDeleted(response) {
       toastr.warning(response.data.message);
       eventBus.$emit('refetchIssueMeetings');
+    },
+    afterDecisionAdded: function afterDecisionAdded() {
+      $('#addDecision').modal('hide');
+      toastr.success('تم اضافة القرار بنجاح');
+      eventBus.$emit('refetchIssueMeetings');
+    },
+    editDecision: function editDecision(meeting) {
+      eventBus.$emit('editDecision', meeting);
+      $('#editDecision').modal('show');
+    },
+    afterDecisionUpdated: function afterDecisionUpdated() {
+      $('#editDecision').modal('hide');
+      toastr.success('تم تحديث القرار بنجاح');
+      eventBus.$emit('refetchIssueMeetings');
+    },
+    deleteDecision: function deleteDecision(meeting) {
+      var _this2 = this;
+
+      if (confirm('هل انت متاكد من حذف هذا القرار - لن تتمكن من استرجاعه فيما بعد!')) {
+        axios.delete('/meetings/' + meeting.id).then(function (event) {
+          return _this2.onDecisionDelete();
+        });
+      }
+    },
+    onDecisionDelete: function onDecisionDelete() {
+      toastr.warning('تم حذف القرار بنجاح');
+      eventBus.$emit('refetchIssueMeetings');
     }
   },
   components: {
     addMeeting: _addMeeting2.default,
+    addDecision: _addDecision2.default,
+    editDecision: _editDecision2.default,
     editMeeting: _editMeeting2.default,
     delayMeeting: _delayMeeting2.default,
     meetingJudgements: _meetingJudgements2.default
   },
   mounted: function mounted() {
-    var _this2 = this;
+    var _this3 = this;
 
     eventBus.$on('meetingAdded', function (response) {
-      return _this2.afterMeetingAdded(response);
+      return _this3.afterMeetingAdded(response);
+    });
+
+    eventBus.$on('DecisionAdded', function (event) {
+      return _this3.afterDecisionAdded();
+    });
+
+    eventBus.$on('decisionUpdated', function (event) {
+      return _this3.afterDecisionUpdated();
     });
 
     eventBus.$on('meetingUpdated', function (response) {
-      return _this2.afterMeetingUpdated(response);
+      return _this3.afterMeetingUpdated(response);
     });
 
     eventBus.$on('meetingDelayed', function (response) {
-      return _this2.afterMeetingDelayed(response);
+      return _this3.afterMeetingDelayed(response);
     });
 
     eventBus.$on('judgementAdded', function (response) {
-      return _this2.afterJudgementAdded(response);
+      return _this3.afterJudgementAdded(response);
     });
 
     eventBus.$on('judgementUpdated', function (response) {
-      return _this2.afterJudgementUpdated(response);
+      return _this3.afterJudgementUpdated(response);
     });
 
     eventBus.$on('judgementDeleted', function (response) {
-      return _this2.afterJudgementDeleted(response);
+      return _this3.afterJudgementDeleted(response);
     });
   }
 };
@@ -37952,15 +37997,15 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _vueFlatpickrComponent = __webpack_require__(118);
+var _vueFlatpickrComponent = __webpack_require__(117);
 
 var _vueFlatpickrComponent2 = _interopRequireDefault(_vueFlatpickrComponent);
 
-__webpack_require__(119);
+__webpack_require__(118);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Arabic = __webpack_require__(120).ar;
+var Arabic = __webpack_require__(119).ar;
 
 exports.default = {
     data: function data() {
@@ -38253,15 +38298,15 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _vueFlatpickrComponent = __webpack_require__(118);
+var _vueFlatpickrComponent = __webpack_require__(117);
 
 var _vueFlatpickrComponent2 = _interopRequireDefault(_vueFlatpickrComponent);
 
-__webpack_require__(119);
+__webpack_require__(118);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Arabic = __webpack_require__(120).ar;
+var Arabic = __webpack_require__(119).ar;
 
 exports.default = {
     data: function data() {
@@ -38535,15 +38580,15 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _vueFlatpickrComponent = __webpack_require__(118);
+var _vueFlatpickrComponent = __webpack_require__(117);
 
 var _vueFlatpickrComponent2 = _interopRequireDefault(_vueFlatpickrComponent);
 
-__webpack_require__(119);
+__webpack_require__(118);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Arabic = __webpack_require__(120).ar;
+var Arabic = __webpack_require__(119).ar;
 
 exports.default = {
     data: function data() {
@@ -38819,7 +38864,7 @@ var Component = __webpack_require__(11)(
   /* script */
   __webpack_require__(218),
   /* template */
-  __webpack_require__(231),
+  __webpack_require__(237),
   /* styles */
   null,
   /* scopeId */
@@ -38873,15 +38918,15 @@ var _addChallenge = __webpack_require__(225);
 
 var _addChallenge2 = _interopRequireDefault(_addChallenge);
 
-var _addCriminalJudgement = __webpack_require__(240);
+var _addCriminalJudgement = __webpack_require__(228);
 
 var _addCriminalJudgement2 = _interopRequireDefault(_addCriminalJudgement);
 
-var _addCriminalChallenge = __webpack_require__(237);
+var _addCriminalChallenge = __webpack_require__(231);
 
 var _addCriminalChallenge2 = _interopRequireDefault(_addCriminalChallenge);
 
-var _addAnnouncement = __webpack_require__(228);
+var _addAnnouncement = __webpack_require__(234);
 
 var _addAnnouncement2 = _interopRequireDefault(_addAnnouncement);
 
@@ -39021,15 +39066,15 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _vueFlatpickrComponent = __webpack_require__(118);
+var _vueFlatpickrComponent = __webpack_require__(117);
 
 var _vueFlatpickrComponent2 = _interopRequireDefault(_vueFlatpickrComponent);
 
-__webpack_require__(119);
+__webpack_require__(118);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Arabic = __webpack_require__(120).ar;
+var Arabic = __webpack_require__(119).ar;
 
 exports.default = {
     props: ['issue', 'meeting'],
@@ -39457,15 +39502,15 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _vueFlatpickrComponent = __webpack_require__(118);
+var _vueFlatpickrComponent = __webpack_require__(117);
 
 var _vueFlatpickrComponent2 = _interopRequireDefault(_vueFlatpickrComponent);
 
-__webpack_require__(119);
+__webpack_require__(118);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Arabic = __webpack_require__(120).ar;
+var Arabic = __webpack_require__(119).ar;
 
 exports.default = {
     props: ['issue'],
@@ -39910,15 +39955,15 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _vueFlatpickrComponent = __webpack_require__(118);
+var _vueFlatpickrComponent = __webpack_require__(117);
 
 var _vueFlatpickrComponent2 = _interopRequireDefault(_vueFlatpickrComponent);
 
-__webpack_require__(119);
+__webpack_require__(118);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Arabic = __webpack_require__(120).ar;
+var Arabic = __webpack_require__(119).ar;
 
 exports.default = {
     props: ['issue', 'judgement', 'modal'],
@@ -40159,826 +40204,6 @@ var Component = __webpack_require__(11)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "D:\\www\\law-office\\resources\\assets\\js\\components\\issue\\meetings\\addAnnouncement.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] addAnnouncement.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-54831042", Component.options)
-  } else {
-    hotAPI.reload("data-v-54831042", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 229 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _vueFlatpickrComponent = __webpack_require__(118);
-
-var _vueFlatpickrComponent2 = _interopRequireDefault(_vueFlatpickrComponent);
-
-__webpack_require__(119);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Arabic = __webpack_require__(120).ar;
-
-exports.default = {
-    data: function data() {
-        return {
-            addAnnouncementForm: new Form({
-                present: 1,
-                active: '',
-                type: 1,
-                record: '',
-                year: '',
-                date: '',
-                body: '',
-                level: ''
-            }),
-            config: {
-                locale: Arabic
-            },
-            judgement_id: ''
-        };
-    },
-
-    methods: {
-        onJudgementUpdate: function onJudgementUpdate() {
-            this.addAnnouncementForm.patch('/judgements/' + this.judgement_id).then(function (response) {
-                return eventBus.$emit('judgementUpdated', response);
-            });
-        },
-        addAnnouncementModal: function addAnnouncementModal(judgement) {
-            this.addAnnouncementForm.present = 1;
-            this.addAnnouncementForm.body = judgement.body;
-            this.addAnnouncementForm.type = judgement.type;
-            this.addAnnouncementForm.active = judgement.active;
-            this.addAnnouncementForm.level = judgement.level;
-            this.judgement_id = judgement.id;
-        }
-    },
-    components: {
-        flatPickr: _vueFlatpickrComponent2.default
-    },
-    mounted: function mounted() {
-        var _this = this;
-
-        eventBus.$on('addAnnouncement', function (judgement) {
-            return _this.addAnnouncementModal(judgement);
-        });
-    }
-};
-
-/***/ }),
-/* 230 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "modal fade",
-    attrs: {
-      "id": "addAnnouncement",
-      "role": "dialog",
-      "aria-labelledby": "myModalLabel"
-    }
-  }, [_c('div', {
-    staticClass: "modal-dialog",
-    attrs: {
-      "role": "document"
-    }
-  }, [_c('div', {
-    staticClass: "modal-content"
-  }, [_vm._m(0), _vm._v(" "), _c('div', {
-    staticClass: "modal-body"
-  }, [_c('form', {
-    attrs: {
-      "method": "POST",
-      "action": "/people"
-    },
-    on: {
-      "submit": function($event) {
-        $event.preventDefault();
-        _vm.onJudgementUpdate($event)
-      },
-      "keydown": function($event) {
-        _vm.addAnnouncementForm.errors.clear($event.target.name)
-      },
-      "change": function($event) {
-        _vm.addAnnouncementForm.errors.clear($event.target.name)
-      },
-      "input": function($event) {
-        _vm.addAnnouncementForm.errors.clear($event.target.name)
-      }
-    }
-  }, [_c('div', {
-    staticClass: "form-group"
-  }, [_c('label', {
-    staticClass: "label",
-    attrs: {
-      "for": "date"
-    }
-  }, [_vm._v("تاريخ الاعلان:")]), _vm._v(" "), _c('flat-pickr', {
-    attrs: {
-      "name": "date",
-      "config": _vm.config,
-      "placeholder": "اختر تاريخ الاعلان"
-    },
-    model: {
-      value: (_vm.addAnnouncementForm.date),
-      callback: function($$v) {
-        _vm.addAnnouncementForm.date = $$v
-      },
-      expression: "addAnnouncementForm.date"
-    }
-  }), _vm._v(" "), (_vm.addAnnouncementForm.errors.has('date')) ? _c('span', {
-    staticClass: "alert-danger",
-    domProps: {
-      "textContent": _vm._s(_vm.addAnnouncementForm.errors.get('date'))
-    }
-  }) : _vm._e()], 1), _vm._v(" "), _c('div', {
-    staticClass: "form-group heading"
-  }, [_c('button', {
-    staticClass: "button btn-lg btn-success",
-    attrs: {
-      "disabled": _vm.addAnnouncementForm.errors.any()
-    }
-  }, [_vm._v("اضافة اعلان بالحكم")])])])])])])])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "modal-header"
-  }, [_c('button', {
-    staticClass: "close",
-    attrs: {
-      "type": "button",
-      "data-dismiss": "modal",
-      "aria-label": "Close"
-    }
-  }, [_c('span', {
-    attrs: {
-      "aria-hidden": "true"
-    }
-  }, [_vm._v("×")])]), _vm._v(" "), _c('span', {
-    staticClass: "form-control-static pull-left"
-  }, [_c('h4', {
-    staticClass: "modal-title",
-    attrs: {
-      "id": "myModalLabel"
-    }
-  }, [_vm._v(" اضافة اعلان بالحكم ")])])])
-}]}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-54831042", module.exports)
-  }
-}
-
-/***/ }),
-/* 231 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('span', {
-    attrs: {
-      "id": "meetingJudgements"
-    }
-  }, [_c('edit-judgement', {
-    ref: "editJudgement",
-    attrs: {
-      "issue": _vm.issue
-    }
-  }), _vm._v(" "), (_vm.issue.type > 4) ? _c('span', [(!_vm.meeting.judgements.length && !_vm.meeting.child_meetings.length) ? _c('span', [_c('button', {
-    staticClass: "btn btn-sm btn-primary",
-    attrs: {
-      "data-toggle": "modal",
-      "data-target": "#addJudgement"
-    }
-  }, [_vm._v(" اضافة حكم ")]), _vm._v(" "), _c('add-judgement', {
-    attrs: {
-      "issue": _vm.issue,
-      "meeting": _vm.meeting
-    }
-  })], 1) : _vm._e(), _vm._v(" "), _vm._l((_vm.meeting.judgements), function(judgement) {
-    return (_vm.meeting.judgements.length) ? _c('ul', [_c('li', [_vm._v(_vm._s(judgement.body))]), _vm._v(" "), (judgement.child_meeting == null && judgement.present && judgement.level < 5) ? _c('button', {
-      staticClass: "btn btn-sm btn-dark pull-left",
-      attrs: {
-        "data-toggle": "modal",
-        "data-target": "#addChallenge"
-      }
-    }, [_vm._v(" اضافة طعن ")]) : _vm._e(), _vm._v(" "), (judgement.child_meeting == null && judgement.level < 5) ? _c('add-challenge', {
-      attrs: {
-        "judgement": judgement,
-        "issue": _vm.issue
-      }
-    }) : _vm._e(), _vm._v(" "), (judgement.child_meeting == null && !judgement.present) ? _c('button', {
-      staticClass: "btn btn-sm btn-success pull-left",
-      on: {
-        "click": function($event) {
-          _vm.addAnnouncement(judgement)
-        }
-      }
-    }, [_vm._v(" اضافة اعلان ")]) : _vm._e(), _vm._v(" "), (judgement.child_meeting == null && !judgement.present && _vm.meeting.level == 1) ? _c('add-announcement') : _vm._e(), _vm._v(" "), (judgement.child_meeting == null) ? _c('button', {
-      staticClass: "btn btn-sm btn-danger pull-left",
-      on: {
-        "click": function($event) {
-          _vm.deleteJudgement(judgement)
-        }
-      }
-    }, [_c('i', {
-      staticClass: "fa fa-times",
-      attrs: {
-        "aria-hidden": "true"
-      }
-    })]) : _vm._e(), _vm._v(" "), _c('button', {
-      staticClass: "btn btn-sm btn-info pull-left",
-      on: {
-        "click": function($event) {
-          _vm.editJudgement(judgement)
-        }
-      }
-    }, [_c('i', {
-      staticClass: "fa fa-pencil-square-o",
-      attrs: {
-        "aria-hidden": "true"
-      }
-    })])], 1) : _vm._e()
-  })], 2) : _vm._e(), _vm._v(" "), (_vm.issue.type < 4) ? _c('span', [_c('add-criminal-challenge', {
-    attrs: {
-      "issue": _vm.issue
-    }
-  }), _vm._v(" "), _c('add-criminal-judgement', {
-    attrs: {
-      "issue": _vm.issue
-    }
-  }), _vm._v(" "), _c('delay-meeting'), _vm._v(" "), _vm._l((_vm.accusedopenents), function(openent) {
-    return (_vm.firstMeetingCheck(_vm.meeting)) ? _c('ul', {
-      key: openent.id
-    }, [_c('li', [_vm._v("\n              " + _vm._s(_vm.echoName(openent)) + "...\n\n                "), (!openent.judgements.length && !openent.meetings.length) ? _c('span', [_c('button', {
-      staticClass: "btn btn-sm btn-dark",
-      on: {
-        "click": function($event) {
-          _vm.delayMeeting(_vm.meeting, openent)
-        }
-      }
-    }, [_vm._v("تأجيل لخصم")]), _vm._v(" "), _c('button', {
-      staticClass: "btn btn-sm btn-primary",
-      on: {
-        "click": function($event) {
-          _vm.addCriminalJudgement(openent, _vm.meeting)
-        }
-      }
-    }, [_vm._v(" اضافة حكم ")]), _vm._v(" "), _c('hr')]) : _vm._e(), _vm._v(" "), _vm._l((_vm.meeting.judgements), function(currentJudgement) {
-      return (openent.id == currentJudgement.person_id) ? _c('ul', [_c('li', [_vm._v("\n                  " + _vm._s(_vm.echoJudgementStatus(currentJudgement)) + _vm._s(currentJudgement.body) + "\n                  ")]), _vm._v(" "), (currentJudgement.record) ? _c('li', [_vm._v("\n                    حصر " + _vm._s(currentJudgement.record) + " لسنة " + _vm._s(currentJudgement.year) + "\n                  ")]) : _vm._e(), _vm._v(" "), (!currentJudgement.child_meeting && currentJudgement.type < 3) ? _c('button', {
-        staticClass: "btn btn-sm btn-dark pull-left",
-        on: {
-          "click": function($event) {
-            _vm.addCriminalChallenge(currentJudgement)
-          }
-        }
-      }, [_vm._v(" اضافة طعن ")]) : _vm._e(), _vm._v(" "), (currentJudgement.child_meeting == null) ? _c('button', {
-        staticClass: "btn btn-sm btn-danger pull-left",
-        on: {
-          "click": function($event) {
-            _vm.deleteJudgement(currentJudgement)
-          }
-        }
-      }, [_c('i', {
-        staticClass: "fa fa-times",
-        attrs: {
-          "aria-hidden": "true"
-        }
-      })]) : _vm._e(), _vm._v(" "), _c('button', {
-        staticClass: "btn btn-sm btn-info pull-left",
-        on: {
-          "click": function($event) {
-            _vm.editJudgement(currentJudgement)
-          }
-        }
-      }, [_c('i', {
-        staticClass: "fa fa-pencil-square-o",
-        attrs: {
-          "aria-hidden": "true"
-        }
-      })]), _vm._v(" "), (currentJudgement.active && !currentJudgement.child_meeting) ? _c('button', {
-        staticClass: "btn btn-sm btn-warning pull-left",
-        on: {
-          "click": function($event) {
-            _vm.deActivateJudgement(currentJudgement)
-          }
-        }
-      }, [_c('i', {
-        staticClass: "fa fa-bell",
-        attrs: {
-          "aria-hidden": "true"
-        }
-      })]) : _vm._e(), _vm._v(" "), (!currentJudgement.active && !currentJudgement.child_meeting) ? _c('button', {
-        staticClass: "btn btn-sm btn-success pull-left",
-        on: {
-          "click": function($event) {
-            _vm.reActivateJudgement(currentJudgement)
-          }
-        }
-      }, [_c('i', {
-        staticClass: "fa fa-bell",
-        attrs: {
-          "aria-hidden": "true"
-        }
-      })]) : _vm._e(), _vm._v(" "), _c('br'), _c('hr')]) : _vm._e()
-    })], 2)]) : _vm._e()
-  }), _vm._v(" "), (_vm.meeting.person) ? _c('ul', [_c('li', [(!_vm.meeting.judgements.length && !_vm.meeting.child_meetings.length) ? _c('span', [_c('button', {
-    staticClass: "btn btn-sm btn-primary",
-    on: {
-      "click": function($event) {
-        _vm.addCriminalJudgement(_vm.openent = _vm.meeting.person, _vm.meeting)
-      }
-    }
-  }, [_vm._v(" اضافة حكم ")])]) : _vm._e(), _vm._v(" "), _vm._l((_vm.meeting.judgements), function(judgement) {
-    return (_vm.meeting.judgements.length) ? _c('ul', [_c('li', [_vm._v(_vm._s(_vm.echoJudgementStatus(judgement)) + _vm._s(judgement.body))]), _vm._v(" "), (judgement.child_meeting == null && judgement.level < 5) ? _c('button', {
-      staticClass: "btn btn-sm btn-dark pull-left",
-      on: {
-        "click": function($event) {
-          _vm.addCriminalChallenge(judgement)
-        }
-      }
-    }, [_vm._v(" اضافة طعن ")]) : _vm._e(), _vm._v(" "), (judgement.child_meeting == null) ? _c('button', {
-      staticClass: "btn btn-sm btn-danger pull-left",
-      on: {
-        "click": function($event) {
-          _vm.deleteJudgement(judgement)
-        }
-      }
-    }, [_c('i', {
-      staticClass: "fa fa-times",
-      attrs: {
-        "aria-hidden": "true"
-      }
-    })]) : _vm._e(), _vm._v(" "), _c('button', {
-      staticClass: "btn btn-sm btn-info pull-left",
-      on: {
-        "click": function($event) {
-          _vm.editJudgement(judgement)
-        }
-      }
-    }, [_c('i', {
-      staticClass: "fa fa-pencil-square-o",
-      attrs: {
-        "aria-hidden": "true"
-      }
-    })]), _vm._v(" "), (judgement.active && !judgement.child_meeting) ? _c('button', {
-      staticClass: "btn btn-sm btn-warning pull-left",
-      on: {
-        "click": function($event) {
-          _vm.deActivateJudgement(judgement)
-        }
-      }
-    }, [_c('i', {
-      staticClass: "fa fa-bell",
-      attrs: {
-        "aria-hidden": "true"
-      }
-    })]) : _vm._e(), _vm._v(" "), (!judgement.active && !judgement.child_meeting) ? _c('button', {
-      staticClass: "btn btn-sm btn-success pull-left",
-      on: {
-        "click": function($event) {
-          _vm.reActivateJudgement(judgement)
-        }
-      }
-    }, [_c('i', {
-      staticClass: "fa fa-bell",
-      attrs: {
-        "aria-hidden": "true"
-      }
-    })]) : _vm._e()]) : _vm._e()
-  })], 2)]) : _vm._e()], 2) : _vm._e(), _vm._v(" "), (_vm.issue.type == 4) ? _c('span') : _vm._e()], 1)
-},staticRenderFns: []}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-a649151a", module.exports)
-  }
-}
-
-/***/ }),
-/* 232 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    attrs: {
-      "id": "issueMeetings"
-    }
-  }, [_c('div', {
-    staticClass: "card text-center"
-  }, [_c('div', {
-    staticClass: "card-header"
-  }, [_c('h4', {
-    staticClass: "card-title"
-  }, [_vm._v("\n              الـجـلــسات\n              "), (!_vm.meetings.length) ? _c('button', {
-    staticClass: "btn pull-left btn-success",
-    attrs: {
-      "data-toggle": "modal",
-      "data-target": "#addMeeting"
-    }
-  }, [_vm._v("اضافة جلسة")]) : _vm._e()])]), _vm._v(" "), _c('div', {
-    staticClass: "panel-body"
-  }, [(_vm.meetings.length) ? _c('table', {
-    staticClass: "table table-striped table-bordered table-responsive"
-  }, [_vm._m(0), _vm._v(" "), _c('tbody', _vm._l((_vm.meetings), function(meeting) {
-    return _c('tr', {
-      key: meeting.id
-    }, [_c('td', [_vm._v("\n                      " + _vm._s(meeting.role) + "\n                  ")]), _vm._v(" "), _c('td', [_vm._v("\n                      " + _vm._s(meeting.date) + "\n                      "), (!meeting.judgements.length && !meeting.child_meetings.length) ? _c('button', {
-      staticClass: "btn btn-sm btn-danger pull-left",
-      on: {
-        "click": function($event) {
-          _vm.deleteMeeting(meeting)
-        }
-      }
-    }, [_c('i', {
-      staticClass: "fa fa-times",
-      attrs: {
-        "aria-hidden": "true"
-      }
-    })]) : _vm._e(), _vm._v(" "), _c('button', {
-      staticClass: "btn btn-sm btn-info pull-left",
-      on: {
-        "click": function($event) {
-          _vm.editMeeting(meeting)
-        }
-      }
-    }, [_c('i', {
-      staticClass: "fa fa-pencil-square-o",
-      attrs: {
-        "aria-hidden": "true"
-      }
-    })]), _vm._v(" "), (!meeting.judgements.length && !meeting.child_meetings.length) ? _c('button', {
-      staticClass: "btn btn-sm btn-dark pull-left",
-      on: {
-        "click": function($event) {
-          _vm.delayMeeting(meeting)
-        }
-      }
-    }, [_vm._v("تأجيل")]) : _vm._e()]), _vm._v(" "), _c('td', [_vm._v("\n                      " + _vm._s(meeting.decision) + "\n                  ")]), _vm._v(" "), _c('td', [_vm._v("\n                      " + _vm._s(_vm.ownerOf(meeting))), _c('br'), _vm._v("\n                      " + _vm._s(meeting.notes) + "\n                  ")]), _vm._v(" "), _c('td', [_c('meeting-judgements', {
-      attrs: {
-        "issue": _vm.issue,
-        "accusedopenents": _vm.accusedopenents,
-        "meeting": meeting
-      }
-    })], 1)])
-  }))]) : _vm._e()])]), _vm._v(" "), _c('add-meeting'), _vm._v(" "), _c('edit-meeting'), _vm._v(" "), _c('delay-meeting')], 1)
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('thead', {
-    staticClass: "thead-inverse"
-  }, [_c('tr', [_c('th', [_vm._v("الرول")]), _vm._v(" "), _c('th', [_vm._v("تـــاريخ الجـــلــــسة")]), _vm._v(" "), _c('th', [_vm._v("القــرار")]), _vm._v(" "), _c('th', [_vm._v("مـــلاحــــظات")]), _vm._v(" "), _c('th', [_vm._v("الاحــكــــام")])])])
-}]}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-237c354b", module.exports)
-  }
-}
-
-/***/ }),
-/* 233 */,
-/* 234 */,
-/* 235 */,
-/* 236 */,
-/* 237 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var Component = __webpack_require__(11)(
-  /* script */
-  __webpack_require__(238),
-  /* template */
-  __webpack_require__(239),
-  /* styles */
-  null,
-  /* scopeId */
-  null,
-  /* moduleIdentifier (server only) */
-  null
-)
-Component.options.__file = "D:\\www\\law-office\\resources\\assets\\js\\components\\issue\\meetings\\addCriminalChallenge.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] addCriminalChallenge.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-07884856", Component.options)
-  } else {
-    hotAPI.reload("data-v-07884856", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 238 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _vueFlatpickrComponent = __webpack_require__(118);
-
-var _vueFlatpickrComponent2 = _interopRequireDefault(_vueFlatpickrComponent);
-
-__webpack_require__(119);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Arabic = __webpack_require__(120).ar;
-
-exports.default = {
-    props: ['issue'],
-    data: function data() {
-        return {
-            judgement: [],
-            CriminalChallengeForm: new Form({
-                person_id: '',
-                parent_id: '',
-                judgement_id: '',
-                level: '',
-                role: '',
-                date: '',
-                decision: '',
-                notes: ''
-            }),
-            config: {
-                locale: Arabic
-            }
-        };
-    },
-
-    methods: {
-        onChallengeCreate: function onChallengeCreate() {
-            this.CriminalChallengeForm.post(window.location.pathname + '/meetings').then(function (response) {
-                return eventBus.$emit('meetingAdded', response);
-            });
-        },
-        addChallengeModal: function addChallengeModal(judgement) {
-            this.judgement = judgement;
-            this.CriminalChallengeForm.person_id = judgement.person_id;
-            this.CriminalChallengeForm.judgement_id = judgement.id;
-            $('#addCriminalChallenge').modal('show');
-        }
-    },
-    components: {
-        flatPickr: _vueFlatpickrComponent2.default
-    },
-    mounted: function mounted() {
-        var _this = this;
-
-        eventBus.$on('addCriminalChallenge', function (judgement) {
-            return _this.addChallengeModal(judgement);
-        });
-    }
-};
-
-/***/ }),
-/* 239 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "modal fade",
-    attrs: {
-      "id": "addCriminalChallenge",
-      "role": "dialog",
-      "aria-labelledby": "myModalLabel"
-    }
-  }, [_c('div', {
-    staticClass: "modal-dialog",
-    attrs: {
-      "role": "document"
-    }
-  }, [_c('div', {
-    staticClass: "modal-content"
-  }, [_vm._m(0), _vm._v(" "), _c('div', {
-    staticClass: "modal-body"
-  }, [_c('form', {
-    attrs: {
-      "method": "POST",
-      "action": "/people"
-    },
-    on: {
-      "submit": function($event) {
-        $event.preventDefault();
-        _vm.onChallengeCreate($event)
-      },
-      "keydown": function($event) {
-        _vm.CriminalChallengeForm.errors.clear($event.target.name)
-      },
-      "change": function($event) {
-        _vm.CriminalChallengeForm.errors.clear($event.target.name)
-      },
-      "input": function($event) {
-        _vm.CriminalChallengeForm.errors.clear($event.target.name)
-      }
-    }
-  }, [_c('div', {
-    staticClass: "form-group"
-  }, [_c('label', {
-    staticClass: "label",
-    attrs: {
-      "for": "level"
-    }
-  }, [_vm._v("نوع الطعن:")]), _vm._v(" "), _c('select', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.CriminalChallengeForm.level),
-      expression: "CriminalChallengeForm.level"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "id": "level",
-      "name": "level"
-    },
-    on: {
-      "change": function($event) {
-        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
-          return o.selected
-        }).map(function(o) {
-          var val = "_value" in o ? o._value : o.value;
-          return val
-        });
-        _vm.CriminalChallengeForm.level = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-      }
-    }
-  }, [(_vm.issue.type == 1 && _vm.judgement.level == 1 && _vm.judgement.present == 0) ? _c('option', {
-    attrs: {
-      "value": "2"
-    }
-  }, [_vm._v("مــعـــــارضة")]) : _vm._e(), _vm._v(" "), (_vm.issue.type !== 12 && _vm.judgement.level <= 2) ? _c('option', {
-    attrs: {
-      "value": "3"
-    }
-  }, [_vm._v("استـــئـناف")]) : _vm._e(), _vm._v(" "), (_vm.issue.type == 1 && _vm.judgement.level == 3 && !_vm.judgement.present) ? _c('option', {
-    attrs: {
-      "value": "4"
-    }
-  }, [_vm._v("معارضة استئنافية")]) : _vm._e(), _vm._v(" "), (_vm.judgement.level >= 3 && _vm.judgement.present) ? _c('option', {
-    attrs: {
-      "value": "5"
-    }
-  }, [_vm._v("نـــقـــض")]) : _vm._e()]), _vm._v(" "), (_vm.CriminalChallengeForm.errors.has('level')) ? _c('span', {
-    staticClass: "alert-danger",
-    domProps: {
-      "textContent": _vm._s(_vm.CriminalChallengeForm.errors.get('level'))
-    }
-  }) : _vm._e()]), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
-  }, [_c('label', {
-    staticClass: "label",
-    attrs: {
-      "for": "date"
-    }
-  }, [_vm._v("التاريخ:")]), _vm._v(" "), _c('flat-pickr', {
-    attrs: {
-      "name": "date",
-      "config": _vm.config,
-      "placeholder": "تاريخ الجلــسة"
-    },
-    model: {
-      value: (_vm.CriminalChallengeForm.date),
-      callback: function($$v) {
-        _vm.CriminalChallengeForm.date = $$v
-      },
-      expression: "CriminalChallengeForm.date"
-    }
-  }), _vm._v(" "), (_vm.CriminalChallengeForm.errors.has('date')) ? _c('span', {
-    staticClass: "alert-danger",
-    domProps: {
-      "textContent": _vm._s(_vm.CriminalChallengeForm.errors.get('date'))
-    }
-  }) : _vm._e()], 1), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
-  }, [_c('label', {
-    staticClass: "label",
-    attrs: {
-      "for": "decision"
-    }
-  }, [_vm._v("القرار:")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.CriminalChallengeForm.decision),
-      expression: "CriminalChallengeForm.decision"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "type": "text",
-      "id": "decision",
-      "name": "decision"
-    },
-    domProps: {
-      "value": (_vm.CriminalChallengeForm.decision)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.CriminalChallengeForm.decision = $event.target.value
-      }
-    }
-  }), _vm._v(" "), (_vm.CriminalChallengeForm.errors.has('decision')) ? _c('span', {
-    staticClass: "alert-danger",
-    domProps: {
-      "textContent": _vm._s(_vm.CriminalChallengeForm.errors.get('decision'))
-    }
-  }) : _vm._e()]), _vm._v(" "), _c('div', {
-    staticClass: "form-group heading"
-  }, [_c('button', {
-    staticClass: "button btn-lg btn-success",
-    attrs: {
-      "disabled": _vm.CriminalChallengeForm.errors.any()
-    }
-  }, [_vm._v("اضافة")])])])])])])])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "modal-header"
-  }, [_c('button', {
-    staticClass: "close",
-    attrs: {
-      "type": "button",
-      "data-dismiss": "modal",
-      "aria-label": "Close"
-    }
-  }, [_c('span', {
-    attrs: {
-      "aria-hidden": "true"
-    }
-  }, [_vm._v("×")])]), _vm._v(" "), _c('span', {
-    staticClass: "form-control-static pull-left"
-  }, [_c('h4', {
-    staticClass: "modal-title",
-    attrs: {
-      "id": "myModalLabel"
-    }
-  }, [_vm._v(" اضافة طعن ")])])])
-}]}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-07884856", module.exports)
-  }
-}
-
-/***/ }),
-/* 240 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var Component = __webpack_require__(11)(
-  /* script */
-  __webpack_require__(241),
-  /* template */
-  __webpack_require__(242),
-  /* styles */
-  null,
-  /* scopeId */
-  null,
-  /* moduleIdentifier (server only) */
-  null
-)
 Component.options.__file = "D:\\www\\law-office\\resources\\assets\\js\\components\\issue\\meetings\\addCriminalJudgement.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] addCriminalJudgement.vue: functional components are not supported with templates, they should use render functions.")}
@@ -41003,7 +40228,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 241 */
+/* 229 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41013,15 +40238,15 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _vueFlatpickrComponent = __webpack_require__(118);
+var _vueFlatpickrComponent = __webpack_require__(117);
 
 var _vueFlatpickrComponent2 = _interopRequireDefault(_vueFlatpickrComponent);
 
-__webpack_require__(119);
+__webpack_require__(118);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Arabic = __webpack_require__(120).ar;
+var Arabic = __webpack_require__(119).ar;
 
 exports.default = {
     props: ['issue'],
@@ -41077,7 +40302,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 242 */
+/* 230 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -41371,6 +40596,1344 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
      require("vue-hot-reload-api").rerender("data-v-40ece767", module.exports)
+  }
+}
+
+/***/ }),
+/* 231 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(11)(
+  /* script */
+  __webpack_require__(232),
+  /* template */
+  __webpack_require__(233),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "D:\\www\\law-office\\resources\\assets\\js\\components\\issue\\meetings\\addCriminalChallenge.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] addCriminalChallenge.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-07884856", Component.options)
+  } else {
+    hotAPI.reload("data-v-07884856", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 232 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _vueFlatpickrComponent = __webpack_require__(117);
+
+var _vueFlatpickrComponent2 = _interopRequireDefault(_vueFlatpickrComponent);
+
+__webpack_require__(118);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Arabic = __webpack_require__(119).ar;
+
+exports.default = {
+    props: ['issue'],
+    data: function data() {
+        return {
+            judgement: [],
+            CriminalChallengeForm: new Form({
+                person_id: '',
+                parent_id: '',
+                judgement_id: '',
+                level: '',
+                role: '',
+                date: '',
+                decision: '',
+                notes: ''
+            }),
+            config: {
+                locale: Arabic
+            }
+        };
+    },
+
+    methods: {
+        onChallengeCreate: function onChallengeCreate() {
+            this.CriminalChallengeForm.post(window.location.pathname + '/meetings').then(function (response) {
+                return eventBus.$emit('meetingAdded', response);
+            });
+        },
+        addChallengeModal: function addChallengeModal(judgement) {
+            this.judgement = judgement;
+            this.CriminalChallengeForm.person_id = judgement.person_id;
+            this.CriminalChallengeForm.judgement_id = judgement.id;
+            $('#addCriminalChallenge').modal('show');
+        }
+    },
+    components: {
+        flatPickr: _vueFlatpickrComponent2.default
+    },
+    mounted: function mounted() {
+        var _this = this;
+
+        eventBus.$on('addCriminalChallenge', function (judgement) {
+            return _this.addChallengeModal(judgement);
+        });
+    }
+};
+
+/***/ }),
+/* 233 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "modal fade",
+    attrs: {
+      "id": "addCriminalChallenge",
+      "role": "dialog",
+      "aria-labelledby": "myModalLabel"
+    }
+  }, [_c('div', {
+    staticClass: "modal-dialog",
+    attrs: {
+      "role": "document"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "modal-body"
+  }, [_c('form', {
+    attrs: {
+      "method": "POST",
+      "action": "/people"
+    },
+    on: {
+      "submit": function($event) {
+        $event.preventDefault();
+        _vm.onChallengeCreate($event)
+      },
+      "keydown": function($event) {
+        _vm.CriminalChallengeForm.errors.clear($event.target.name)
+      },
+      "change": function($event) {
+        _vm.CriminalChallengeForm.errors.clear($event.target.name)
+      },
+      "input": function($event) {
+        _vm.CriminalChallengeForm.errors.clear($event.target.name)
+      }
+    }
+  }, [_c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "level"
+    }
+  }, [_vm._v("نوع الطعن:")]), _vm._v(" "), _c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.CriminalChallengeForm.level),
+      expression: "CriminalChallengeForm.level"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "id": "level",
+      "name": "level"
+    },
+    on: {
+      "change": function($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        });
+        _vm.CriminalChallengeForm.level = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+      }
+    }
+  }, [(_vm.issue.type == 1 && _vm.judgement.level == 1 && _vm.judgement.present == 0) ? _c('option', {
+    attrs: {
+      "value": "2"
+    }
+  }, [_vm._v("مــعـــــارضة")]) : _vm._e(), _vm._v(" "), (_vm.issue.type !== 12 && _vm.judgement.level <= 2) ? _c('option', {
+    attrs: {
+      "value": "3"
+    }
+  }, [_vm._v("استـــئـناف")]) : _vm._e(), _vm._v(" "), (_vm.issue.type == 1 && _vm.judgement.level == 3 && !_vm.judgement.present) ? _c('option', {
+    attrs: {
+      "value": "4"
+    }
+  }, [_vm._v("معارضة استئنافية")]) : _vm._e(), _vm._v(" "), (_vm.judgement.level >= 3 && _vm.judgement.present) ? _c('option', {
+    attrs: {
+      "value": "5"
+    }
+  }, [_vm._v("نـــقـــض")]) : _vm._e()]), _vm._v(" "), (_vm.CriminalChallengeForm.errors.has('level')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.CriminalChallengeForm.errors.get('level'))
+    }
+  }) : _vm._e()]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "date"
+    }
+  }, [_vm._v("التاريخ:")]), _vm._v(" "), _c('flat-pickr', {
+    attrs: {
+      "name": "date",
+      "config": _vm.config,
+      "placeholder": "تاريخ الجلــسة"
+    },
+    model: {
+      value: (_vm.CriminalChallengeForm.date),
+      callback: function($$v) {
+        _vm.CriminalChallengeForm.date = $$v
+      },
+      expression: "CriminalChallengeForm.date"
+    }
+  }), _vm._v(" "), (_vm.CriminalChallengeForm.errors.has('date')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.CriminalChallengeForm.errors.get('date'))
+    }
+  }) : _vm._e()], 1), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "decision"
+    }
+  }, [_vm._v("القرار:")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.CriminalChallengeForm.decision),
+      expression: "CriminalChallengeForm.decision"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "decision",
+      "name": "decision"
+    },
+    domProps: {
+      "value": (_vm.CriminalChallengeForm.decision)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.CriminalChallengeForm.decision = $event.target.value
+      }
+    }
+  }), _vm._v(" "), (_vm.CriminalChallengeForm.errors.has('decision')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.CriminalChallengeForm.errors.get('decision'))
+    }
+  }) : _vm._e()]), _vm._v(" "), _c('div', {
+    staticClass: "form-group heading"
+  }, [_c('button', {
+    staticClass: "button btn-lg btn-success",
+    attrs: {
+      "disabled": _vm.CriminalChallengeForm.errors.any()
+    }
+  }, [_vm._v("اضافة")])])])])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "modal-header"
+  }, [_c('button', {
+    staticClass: "close",
+    attrs: {
+      "type": "button",
+      "data-dismiss": "modal",
+      "aria-label": "Close"
+    }
+  }, [_c('span', {
+    attrs: {
+      "aria-hidden": "true"
+    }
+  }, [_vm._v("×")])]), _vm._v(" "), _c('span', {
+    staticClass: "form-control-static pull-left"
+  }, [_c('h4', {
+    staticClass: "modal-title",
+    attrs: {
+      "id": "myModalLabel"
+    }
+  }, [_vm._v(" اضافة طعن ")])])])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-07884856", module.exports)
+  }
+}
+
+/***/ }),
+/* 234 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(11)(
+  /* script */
+  __webpack_require__(235),
+  /* template */
+  __webpack_require__(236),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "D:\\www\\law-office\\resources\\assets\\js\\components\\issue\\meetings\\addAnnouncement.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] addAnnouncement.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-54831042", Component.options)
+  } else {
+    hotAPI.reload("data-v-54831042", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 235 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _vueFlatpickrComponent = __webpack_require__(117);
+
+var _vueFlatpickrComponent2 = _interopRequireDefault(_vueFlatpickrComponent);
+
+__webpack_require__(118);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Arabic = __webpack_require__(119).ar;
+
+exports.default = {
+    data: function data() {
+        return {
+            addAnnouncementForm: new Form({
+                present: 1,
+                active: '',
+                type: 1,
+                record: '',
+                year: '',
+                date: '',
+                body: '',
+                level: ''
+            }),
+            config: {
+                locale: Arabic
+            },
+            judgement_id: ''
+        };
+    },
+
+    methods: {
+        onJudgementUpdate: function onJudgementUpdate() {
+            this.addAnnouncementForm.patch('/judgements/' + this.judgement_id).then(function (response) {
+                return eventBus.$emit('judgementUpdated', response);
+            });
+        },
+        addAnnouncementModal: function addAnnouncementModal(judgement) {
+            this.addAnnouncementForm.present = 1;
+            this.addAnnouncementForm.body = judgement.body;
+            this.addAnnouncementForm.type = judgement.type;
+            this.addAnnouncementForm.active = judgement.active;
+            this.addAnnouncementForm.level = judgement.level;
+            this.judgement_id = judgement.id;
+        }
+    },
+    components: {
+        flatPickr: _vueFlatpickrComponent2.default
+    },
+    mounted: function mounted() {
+        var _this = this;
+
+        eventBus.$on('addAnnouncement', function (judgement) {
+            return _this.addAnnouncementModal(judgement);
+        });
+    }
+};
+
+/***/ }),
+/* 236 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "modal fade",
+    attrs: {
+      "id": "addAnnouncement",
+      "role": "dialog",
+      "aria-labelledby": "myModalLabel"
+    }
+  }, [_c('div', {
+    staticClass: "modal-dialog",
+    attrs: {
+      "role": "document"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "modal-body"
+  }, [_c('form', {
+    attrs: {
+      "method": "POST",
+      "action": "/people"
+    },
+    on: {
+      "submit": function($event) {
+        $event.preventDefault();
+        _vm.onJudgementUpdate($event)
+      },
+      "keydown": function($event) {
+        _vm.addAnnouncementForm.errors.clear($event.target.name)
+      },
+      "change": function($event) {
+        _vm.addAnnouncementForm.errors.clear($event.target.name)
+      },
+      "input": function($event) {
+        _vm.addAnnouncementForm.errors.clear($event.target.name)
+      }
+    }
+  }, [_c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "date"
+    }
+  }, [_vm._v("تاريخ الاعلان:")]), _vm._v(" "), _c('flat-pickr', {
+    attrs: {
+      "name": "date",
+      "config": _vm.config,
+      "placeholder": "اختر تاريخ الاعلان"
+    },
+    model: {
+      value: (_vm.addAnnouncementForm.date),
+      callback: function($$v) {
+        _vm.addAnnouncementForm.date = $$v
+      },
+      expression: "addAnnouncementForm.date"
+    }
+  }), _vm._v(" "), (_vm.addAnnouncementForm.errors.has('date')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.addAnnouncementForm.errors.get('date'))
+    }
+  }) : _vm._e()], 1), _vm._v(" "), _c('div', {
+    staticClass: "form-group heading"
+  }, [_c('button', {
+    staticClass: "button btn-lg btn-success",
+    attrs: {
+      "disabled": _vm.addAnnouncementForm.errors.any()
+    }
+  }, [_vm._v("اضافة اعلان بالحكم")])])])])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "modal-header"
+  }, [_c('button', {
+    staticClass: "close",
+    attrs: {
+      "type": "button",
+      "data-dismiss": "modal",
+      "aria-label": "Close"
+    }
+  }, [_c('span', {
+    attrs: {
+      "aria-hidden": "true"
+    }
+  }, [_vm._v("×")])]), _vm._v(" "), _c('span', {
+    staticClass: "form-control-static pull-left"
+  }, [_c('h4', {
+    staticClass: "modal-title",
+    attrs: {
+      "id": "myModalLabel"
+    }
+  }, [_vm._v(" اضافة اعلان بالحكم ")])])])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-54831042", module.exports)
+  }
+}
+
+/***/ }),
+/* 237 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('span', {
+    attrs: {
+      "id": "meetingJudgements"
+    }
+  }, [_c('edit-judgement', {
+    ref: "editJudgement",
+    attrs: {
+      "issue": _vm.issue
+    }
+  }), _vm._v(" "), (_vm.issue.type > 4) ? _c('span', [(!_vm.meeting.judgements.length && !_vm.meeting.child_meetings.length) ? _c('span', [_c('button', {
+    staticClass: "btn btn-sm btn-primary",
+    attrs: {
+      "data-toggle": "modal",
+      "data-target": "#addJudgement"
+    }
+  }, [_vm._v(" اضافة حكم ")]), _vm._v(" "), _c('add-judgement', {
+    attrs: {
+      "issue": _vm.issue,
+      "meeting": _vm.meeting
+    }
+  })], 1) : _vm._e(), _vm._v(" "), _vm._l((_vm.meeting.judgements), function(judgement) {
+    return (_vm.meeting.judgements.length) ? _c('ul', [_c('li', [_vm._v(_vm._s(judgement.body))]), _vm._v(" "), (judgement.child_meeting == null && judgement.present && judgement.level < 5) ? _c('button', {
+      staticClass: "btn btn-sm btn-dark pull-left",
+      attrs: {
+        "data-toggle": "modal",
+        "data-target": "#addChallenge"
+      }
+    }, [_vm._v(" اضافة طعن ")]) : _vm._e(), _vm._v(" "), (judgement.child_meeting == null && judgement.level < 5) ? _c('add-challenge', {
+      attrs: {
+        "judgement": judgement,
+        "issue": _vm.issue
+      }
+    }) : _vm._e(), _vm._v(" "), (judgement.child_meeting == null && !judgement.present) ? _c('button', {
+      staticClass: "btn btn-sm btn-success pull-left",
+      on: {
+        "click": function($event) {
+          _vm.addAnnouncement(judgement)
+        }
+      }
+    }, [_vm._v(" اضافة اعلان ")]) : _vm._e(), _vm._v(" "), (judgement.child_meeting == null && !judgement.present && _vm.meeting.level == 1) ? _c('add-announcement') : _vm._e(), _vm._v(" "), (judgement.child_meeting == null) ? _c('button', {
+      staticClass: "btn btn-sm btn-danger pull-left",
+      on: {
+        "click": function($event) {
+          _vm.deleteJudgement(judgement)
+        }
+      }
+    }, [_c('i', {
+      staticClass: "fa fa-times",
+      attrs: {
+        "aria-hidden": "true"
+      }
+    })]) : _vm._e(), _vm._v(" "), _c('button', {
+      staticClass: "btn btn-sm btn-info pull-left",
+      on: {
+        "click": function($event) {
+          _vm.editJudgement(judgement)
+        }
+      }
+    }, [_c('i', {
+      staticClass: "fa fa-pencil-square-o",
+      attrs: {
+        "aria-hidden": "true"
+      }
+    })])], 1) : _vm._e()
+  })], 2) : _vm._e(), _vm._v(" "), (_vm.issue.type < 4) ? _c('span', [_c('add-criminal-challenge', {
+    attrs: {
+      "issue": _vm.issue
+    }
+  }), _vm._v(" "), _c('add-criminal-judgement', {
+    attrs: {
+      "issue": _vm.issue
+    }
+  }), _vm._v(" "), _c('delay-meeting'), _vm._v(" "), _vm._l((_vm.accusedopenents), function(openent) {
+    return (_vm.firstMeetingCheck(_vm.meeting)) ? _c('ul', {
+      key: openent.id
+    }, [_c('li', [_vm._v("\n              " + _vm._s(_vm.echoName(openent)) + "...\n\n                "), (!openent.judgements.length && !openent.meetings.length) ? _c('span', [_c('button', {
+      staticClass: "btn btn-sm btn-dark",
+      on: {
+        "click": function($event) {
+          _vm.delayMeeting(_vm.meeting, openent)
+        }
+      }
+    }, [_vm._v("تأجيل لخصم")]), _vm._v(" "), _c('button', {
+      staticClass: "btn btn-sm btn-primary",
+      on: {
+        "click": function($event) {
+          _vm.addCriminalJudgement(openent, _vm.meeting)
+        }
+      }
+    }, [_vm._v(" اضافة حكم ")]), _vm._v(" "), _c('hr')]) : _vm._e(), _vm._v(" "), _vm._l((_vm.meeting.judgements), function(currentJudgement) {
+      return (openent.id == currentJudgement.person_id) ? _c('ul', [_c('li', [_vm._v("\n                  " + _vm._s(_vm.echoJudgementStatus(currentJudgement)) + _vm._s(currentJudgement.body) + "\n                  ")]), _vm._v(" "), (currentJudgement.record) ? _c('li', [_vm._v("\n                    حصر " + _vm._s(currentJudgement.record) + " لسنة " + _vm._s(currentJudgement.year) + "\n                  ")]) : _vm._e(), _vm._v(" "), (!currentJudgement.child_meeting && currentJudgement.type < 3) ? _c('button', {
+        staticClass: "btn btn-sm btn-dark pull-left",
+        on: {
+          "click": function($event) {
+            _vm.addCriminalChallenge(currentJudgement)
+          }
+        }
+      }, [_vm._v(" اضافة طعن ")]) : _vm._e(), _vm._v(" "), (currentJudgement.child_meeting == null) ? _c('button', {
+        staticClass: "btn btn-sm btn-danger pull-left",
+        on: {
+          "click": function($event) {
+            _vm.deleteJudgement(currentJudgement)
+          }
+        }
+      }, [_c('i', {
+        staticClass: "fa fa-times",
+        attrs: {
+          "aria-hidden": "true"
+        }
+      })]) : _vm._e(), _vm._v(" "), _c('button', {
+        staticClass: "btn btn-sm btn-info pull-left",
+        on: {
+          "click": function($event) {
+            _vm.editJudgement(currentJudgement)
+          }
+        }
+      }, [_c('i', {
+        staticClass: "fa fa-pencil-square-o",
+        attrs: {
+          "aria-hidden": "true"
+        }
+      })]), _vm._v(" "), (currentJudgement.active && !currentJudgement.child_meeting) ? _c('button', {
+        staticClass: "btn btn-sm btn-warning pull-left",
+        on: {
+          "click": function($event) {
+            _vm.deActivateJudgement(currentJudgement)
+          }
+        }
+      }, [_c('i', {
+        staticClass: "fa fa-bell",
+        attrs: {
+          "aria-hidden": "true"
+        }
+      })]) : _vm._e(), _vm._v(" "), (!currentJudgement.active && !currentJudgement.child_meeting) ? _c('button', {
+        staticClass: "btn btn-sm btn-success pull-left",
+        on: {
+          "click": function($event) {
+            _vm.reActivateJudgement(currentJudgement)
+          }
+        }
+      }, [_c('i', {
+        staticClass: "fa fa-bell",
+        attrs: {
+          "aria-hidden": "true"
+        }
+      })]) : _vm._e(), _vm._v(" "), _c('br'), _c('hr')]) : _vm._e()
+    })], 2)]) : _vm._e()
+  }), _vm._v(" "), (_vm.meeting.person) ? _c('ul', [_c('li', [(!_vm.meeting.judgements.length && !_vm.meeting.child_meetings.length) ? _c('span', [_c('button', {
+    staticClass: "btn btn-sm btn-primary",
+    on: {
+      "click": function($event) {
+        _vm.addCriminalJudgement(_vm.openent = _vm.meeting.person, _vm.meeting)
+      }
+    }
+  }, [_vm._v(" اضافة حكم ")])]) : _vm._e(), _vm._v(" "), _vm._l((_vm.meeting.judgements), function(judgement) {
+    return (_vm.meeting.judgements.length) ? _c('ul', [_c('li', [_vm._v(_vm._s(_vm.echoJudgementStatus(judgement)) + _vm._s(judgement.body))]), _vm._v(" "), (judgement.child_meeting == null && judgement.level < 5) ? _c('button', {
+      staticClass: "btn btn-sm btn-dark pull-left",
+      on: {
+        "click": function($event) {
+          _vm.addCriminalChallenge(judgement)
+        }
+      }
+    }, [_vm._v(" اضافة طعن ")]) : _vm._e(), _vm._v(" "), (judgement.child_meeting == null) ? _c('button', {
+      staticClass: "btn btn-sm btn-danger pull-left",
+      on: {
+        "click": function($event) {
+          _vm.deleteJudgement(judgement)
+        }
+      }
+    }, [_c('i', {
+      staticClass: "fa fa-times",
+      attrs: {
+        "aria-hidden": "true"
+      }
+    })]) : _vm._e(), _vm._v(" "), _c('button', {
+      staticClass: "btn btn-sm btn-info pull-left",
+      on: {
+        "click": function($event) {
+          _vm.editJudgement(judgement)
+        }
+      }
+    }, [_c('i', {
+      staticClass: "fa fa-pencil-square-o",
+      attrs: {
+        "aria-hidden": "true"
+      }
+    })]), _vm._v(" "), (judgement.active && !judgement.child_meeting) ? _c('button', {
+      staticClass: "btn btn-sm btn-warning pull-left",
+      on: {
+        "click": function($event) {
+          _vm.deActivateJudgement(judgement)
+        }
+      }
+    }, [_c('i', {
+      staticClass: "fa fa-bell",
+      attrs: {
+        "aria-hidden": "true"
+      }
+    })]) : _vm._e(), _vm._v(" "), (!judgement.active && !judgement.child_meeting) ? _c('button', {
+      staticClass: "btn btn-sm btn-success pull-left",
+      on: {
+        "click": function($event) {
+          _vm.reActivateJudgement(judgement)
+        }
+      }
+    }, [_c('i', {
+      staticClass: "fa fa-bell",
+      attrs: {
+        "aria-hidden": "true"
+      }
+    })]) : _vm._e()]) : _vm._e()
+  })], 2)]) : _vm._e()], 2) : _vm._e(), _vm._v(" "), (_vm.issue.type == 4) ? _c('span') : _vm._e()], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-a649151a", module.exports)
+  }
+}
+
+/***/ }),
+/* 238 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    attrs: {
+      "id": "issueMeetings"
+    }
+  }, [(_vm.issue.type != 4) ? _c('div', {
+    staticClass: "card text-center"
+  }, [_c('div', {
+    staticClass: "card-header"
+  }, [_c('h4', {
+    staticClass: "card-title"
+  }, [_vm._v("\n              الـجـلــسات\n              "), (!_vm.meetings.length) ? _c('button', {
+    staticClass: "btn pull-left btn-success",
+    attrs: {
+      "data-toggle": "modal",
+      "data-target": "#addMeeting"
+    }
+  }, [_vm._v("اضافة جلسة")]) : _vm._e()])]), _vm._v(" "), _c('div', {
+    staticClass: "panel-body"
+  }, [(_vm.meetings.length) ? _c('table', {
+    staticClass: "table table-striped table-bordered table-responsive"
+  }, [_vm._m(0), _vm._v(" "), _c('tbody', _vm._l((_vm.meetings), function(meeting) {
+    return _c('tr', {
+      key: meeting.id
+    }, [_c('td', [_vm._v("\n                      " + _vm._s(meeting.role) + "\n                  ")]), _vm._v(" "), _c('td', [_vm._v("\n                      " + _vm._s(meeting.date) + "\n                      "), (!meeting.judgements.length && !meeting.child_meetings.length) ? _c('button', {
+      staticClass: "btn btn-sm btn-danger pull-left",
+      on: {
+        "click": function($event) {
+          _vm.deleteMeeting(meeting)
+        }
+      }
+    }, [_c('i', {
+      staticClass: "fa fa-times",
+      attrs: {
+        "aria-hidden": "true"
+      }
+    })]) : _vm._e(), _vm._v(" "), _c('button', {
+      staticClass: "btn btn-sm btn-info pull-left",
+      on: {
+        "click": function($event) {
+          _vm.editMeeting(meeting)
+        }
+      }
+    }, [_c('i', {
+      staticClass: "fa fa-pencil-square-o",
+      attrs: {
+        "aria-hidden": "true"
+      }
+    })]), _vm._v(" "), (!meeting.judgements.length && !meeting.child_meetings.length) ? _c('button', {
+      staticClass: "btn btn-sm btn-dark pull-left",
+      on: {
+        "click": function($event) {
+          _vm.delayMeeting(meeting)
+        }
+      }
+    }, [_vm._v("تأجيل")]) : _vm._e()]), _vm._v(" "), _c('td', [_vm._v("\n                      " + _vm._s(meeting.decision) + "\n                  ")]), _vm._v(" "), _c('td', [_vm._v("\n                      " + _vm._s(_vm.ownerOf(meeting))), _c('br'), _vm._v("\n                      " + _vm._s(meeting.notes) + "\n                  ")]), _vm._v(" "), _c('td', [_c('meeting-judgements', {
+      attrs: {
+        "issue": _vm.issue,
+        "accusedopenents": _vm.accusedopenents,
+        "meeting": meeting
+      }
+    })], 1)])
+  }))]) : _vm._e()])]) : _vm._e(), _vm._v(" "), _c('add-meeting'), _vm._v(" "), _c('edit-meeting'), _vm._v(" "), _c('delay-meeting'), _vm._v(" "), (_vm.issue.type == 4) ? _c('div', {
+    staticClass: "card text-center"
+  }, [_c('div', {
+    staticClass: "card-header"
+  }, [_c('h4', {
+    staticClass: "card-title"
+  }, [_vm._v("\n              الـقـــرار\n              "), (!_vm.meetings.length) ? _c('button', {
+    staticClass: "btn pull-left btn-success",
+    attrs: {
+      "data-toggle": "modal",
+      "data-target": "#addDecision"
+    }
+  }, [_vm._v("اضافة القرار")]) : _vm._e()])]), _vm._v(" "), _c('div', {
+    staticClass: "panel-body"
+  }, [(_vm.meetings.length) ? _c('table', {
+    staticClass: "table table-striped table-bordered table-responsive"
+  }, [_vm._m(1), _vm._v(" "), _c('tbody', _vm._l((_vm.meetings), function(meeting) {
+    return _c('tr', {
+      key: meeting.id
+    }, [_c('td', [_vm._v("\n                      " + _vm._s(meeting.date) + "\n                      "), (!meeting.judgements.length && !meeting.child_meetings.length) ? _c('button', {
+      staticClass: "btn btn-sm btn-danger pull-left",
+      on: {
+        "click": function($event) {
+          _vm.deleteDecision(meeting)
+        }
+      }
+    }, [_c('i', {
+      staticClass: "fa fa-times",
+      attrs: {
+        "aria-hidden": "true"
+      }
+    })]) : _vm._e(), _vm._v(" "), _c('button', {
+      staticClass: "btn btn-sm btn-info pull-left",
+      on: {
+        "click": function($event) {
+          _vm.editDecision(meeting)
+        }
+      }
+    }, [_c('i', {
+      staticClass: "fa fa-pencil-square-o",
+      attrs: {
+        "aria-hidden": "true"
+      }
+    })])]), _vm._v(" "), _c('td', [_vm._v("\n                      " + _vm._s(meeting.decision) + "\n                  ")])])
+  }))]) : _vm._e()])]) : _vm._e(), _vm._v(" "), _c('add-decision'), _vm._v(" "), _c('edit-decision')], 1)
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('thead', {
+    staticClass: "thead-inverse"
+  }, [_c('tr', [_c('th', [_vm._v("الرول")]), _vm._v(" "), _c('th', [_vm._v("تـــاريخ الجـــلــــسة")]), _vm._v(" "), _c('th', [_vm._v("القــرار")]), _vm._v(" "), _c('th', [_vm._v("مـــلاحــــظات")]), _vm._v(" "), _c('th', [_vm._v("الاحــكــــام")])])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('thead', {
+    staticClass: "thead-inverse"
+  }, [_c('tr', [_c('th', [_vm._v("تـــاريخ القرار")]), _vm._v(" "), _c('th', [_vm._v("القــرار")])])])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-237c354b", module.exports)
+  }
+}
+
+/***/ }),
+/* 239 */,
+/* 240 */,
+/* 241 */,
+/* 242 */,
+/* 243 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(11)(
+  /* script */
+  __webpack_require__(244),
+  /* template */
+  __webpack_require__(245),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "D:\\www\\law-office\\resources\\assets\\js\\components\\issue\\meetings\\addDecision.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] addDecision.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-f6b5ec52", Component.options)
+  } else {
+    hotAPI.reload("data-v-f6b5ec52", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 244 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _vueFlatpickrComponent = __webpack_require__(117);
+
+var _vueFlatpickrComponent2 = _interopRequireDefault(_vueFlatpickrComponent);
+
+__webpack_require__(118);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Arabic = __webpack_require__(119).ar;
+
+exports.default = {
+    data: function data() {
+        return {
+            addDesicionForm: new Form({
+                level: 1,
+                date: '',
+                decision: ''
+            }),
+            config: {
+                locale: Arabic
+            }
+        };
+    },
+
+    methods: {
+        onDecisionCreate: function onDecisionCreate() {
+            this.addDesicionForm.post(window.location.pathname + '/meetings').then(function (response) {
+                return eventBus.$emit('DecisionAdded');
+            });
+        }
+    },
+    components: {
+        flatPickr: _vueFlatpickrComponent2.default
+    }
+
+};
+
+/***/ }),
+/* 245 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "modal fade",
+    attrs: {
+      "id": "addDecision",
+      "role": "dialog",
+      "aria-labelledby": "myModalLabel"
+    }
+  }, [_c('div', {
+    staticClass: "modal-dialog",
+    attrs: {
+      "role": "document"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "modal-body"
+  }, [_c('form', {
+    attrs: {
+      "method": "POST",
+      "action": "/people"
+    },
+    on: {
+      "submit": function($event) {
+        $event.preventDefault();
+        _vm.onDecisionCreate($event)
+      },
+      "keydown": function($event) {
+        _vm.addDesicionForm.errors.clear($event.target.name)
+      },
+      "change": function($event) {
+        _vm.addDesicionForm.errors.clear($event.target.name)
+      },
+      "input": function($event) {
+        _vm.addDesicionForm.errors.clear($event.target.name)
+      }
+    }
+  }, [_c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "date"
+    }
+  }, [_vm._v("التاريخ:")]), _vm._v(" "), _c('flat-pickr', {
+    attrs: {
+      "name": "date",
+      "config": _vm.config,
+      "placeholder": "اختر تاريخ القرار"
+    },
+    model: {
+      value: (_vm.addDesicionForm.date),
+      callback: function($$v) {
+        _vm.addDesicionForm.date = $$v
+      },
+      expression: "addDesicionForm.date"
+    }
+  }), _vm._v(" "), (_vm.addDesicionForm.errors.has('date')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.addDesicionForm.errors.get('date'))
+    }
+  }) : _vm._e()], 1), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "decision"
+    }
+  }, [_vm._v("القرار:")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.addDesicionForm.decision),
+      expression: "addDesicionForm.decision"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "decision",
+      "name": "decision"
+    },
+    domProps: {
+      "value": (_vm.addDesicionForm.decision)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.addDesicionForm.decision = $event.target.value
+      }
+    }
+  }), _vm._v(" "), (_vm.addDesicionForm.errors.has('decision')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.addDesicionForm.errors.get('decision'))
+    }
+  }) : _vm._e()]), _vm._v(" "), _c('div', {
+    staticClass: "form-group heading"
+  }, [_c('button', {
+    staticClass: "button btn-lg btn-success",
+    attrs: {
+      "disabled": _vm.addDesicionForm.errors.any()
+    }
+  }, [_vm._v("اضافة")])])])])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "modal-header"
+  }, [_c('button', {
+    staticClass: "close",
+    attrs: {
+      "type": "button",
+      "data-dismiss": "modal",
+      "aria-label": "Close"
+    }
+  }, [_c('span', {
+    attrs: {
+      "aria-hidden": "true"
+    }
+  }, [_vm._v("×")])]), _vm._v(" "), _c('span', {
+    staticClass: "form-control-static pull-left"
+  }, [_c('h4', {
+    staticClass: "modal-title",
+    attrs: {
+      "id": "myModalLabel"
+    }
+  }, [_vm._v(" اضافة قرار ")])])])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-f6b5ec52", module.exports)
+  }
+}
+
+/***/ }),
+/* 246 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(11)(
+  /* script */
+  __webpack_require__(247),
+  /* template */
+  __webpack_require__(248),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "D:\\www\\law-office\\resources\\assets\\js\\components\\issue\\meetings\\editDecision.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] editDecision.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-362849bc", Component.options)
+  } else {
+    hotAPI.reload("data-v-362849bc", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 247 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _vueFlatpickrComponent = __webpack_require__(117);
+
+var _vueFlatpickrComponent2 = _interopRequireDefault(_vueFlatpickrComponent);
+
+__webpack_require__(118);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Arabic = __webpack_require__(119).ar;
+
+exports.default = {
+    data: function data() {
+        return {
+            editDecisionForm: new Form({
+                date: '',
+                decision: '',
+                level: ''
+            }),
+            meeting_id: '',
+            config: {
+                locale: Arabic
+            }
+        };
+    },
+
+    methods: {
+        onMeetingUpdate: function onMeetingUpdate() {
+            this.editDecisionForm.patch('/meetings/' + this.meeting_id).then(function (response) {
+                return eventBus.$emit('decisionUpdated');
+            });
+        },
+        editDecisionModal: function editDecisionModal(meeting) {
+            this.editDecisionForm.reset();
+            this.editDecisionForm.decision = meeting.decision;
+            this.editDecisionForm.date = meeting.date;
+            this.editDecisionForm.level = meeting.level;
+            this.meeting_id = meeting.id;
+        }
+    },
+    created: function created() {
+        var _this = this;
+
+        eventBus.$on('editDecision', function (meeting) {
+            return _this.editDecisionModal(meeting);
+        });
+    },
+
+    components: {
+        flatPickr: _vueFlatpickrComponent2.default
+    }
+
+};
+
+/***/ }),
+/* 248 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "modal fade",
+    attrs: {
+      "id": "editDecision",
+      "role": "dialog",
+      "aria-labelledby": "myModalLabel"
+    }
+  }, [_c('div', {
+    staticClass: "modal-dialog",
+    attrs: {
+      "role": "document"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "modal-body"
+  }, [_c('form', {
+    attrs: {
+      "method": "POST",
+      "action": "/people"
+    },
+    on: {
+      "submit": function($event) {
+        $event.preventDefault();
+        _vm.onMeetingUpdate($event)
+      },
+      "keydown": function($event) {
+        _vm.editDecisionForm.errors.clear($event.target.name)
+      },
+      "change": function($event) {
+        _vm.editDecisionForm.errors.clear($event.target.name)
+      },
+      "input": function($event) {
+        _vm.editDecisionForm.errors.clear($event.target.name)
+      }
+    }
+  }, [_c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "date"
+    }
+  }, [_vm._v("التاريخ:")]), _vm._v(" "), _c('flat-pickr', {
+    attrs: {
+      "name": "date",
+      "config": _vm.config,
+      "placeholder": "اختر تاريخ القــرار"
+    },
+    model: {
+      value: (_vm.editDecisionForm.date),
+      callback: function($$v) {
+        _vm.editDecisionForm.date = $$v
+      },
+      expression: "editDecisionForm.date"
+    }
+  }), _vm._v(" "), (_vm.editDecisionForm.errors.has('date')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.editDecisionForm.errors.get('date'))
+    }
+  }) : _vm._e()], 1), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "decision"
+    }
+  }, [_vm._v("القرار:")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editDecisionForm.decision),
+      expression: "editDecisionForm.decision"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "decision",
+      "name": "decision"
+    },
+    domProps: {
+      "value": (_vm.editDecisionForm.decision)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.editDecisionForm.decision = $event.target.value
+      }
+    }
+  }), _vm._v(" "), (_vm.editDecisionForm.errors.has('decision')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.editDecisionForm.errors.get('decision'))
+    }
+  }) : _vm._e()]), _vm._v(" "), _c('div', {
+    staticClass: "form-group heading"
+  }, [_c('button', {
+    staticClass: "button btn-lg btn-success",
+    attrs: {
+      "disabled": _vm.editDecisionForm.errors.any()
+    }
+  }, [_vm._v("تعديل")])])])])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "modal-header"
+  }, [_c('button', {
+    staticClass: "close",
+    attrs: {
+      "type": "button",
+      "data-dismiss": "modal",
+      "aria-label": "Close"
+    }
+  }, [_c('span', {
+    attrs: {
+      "aria-hidden": "true"
+    }
+  }, [_vm._v("×")])]), _vm._v(" "), _c('span', {
+    staticClass: "form-control-static pull-left"
+  }, [_c('h4', {
+    staticClass: "modal-title",
+    attrs: {
+      "id": "myModalLabel"
+    }
+  }, [_vm._v(" تعديل القرار ")])])])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-362849bc", module.exports)
   }
 }
 
