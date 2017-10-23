@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 186);
+/******/ 	return __webpack_require__(__webpack_require__.s = 189);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -28609,7 +28609,7 @@ function toComment(sourceMap) {
 /* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
-!function(t,e){ true?module.exports=e(__webpack_require__(137)):"function"==typeof define&&define.amd?define("VueFlatpickr",["flatpickr"],e):"object"==typeof exports?exports.VueFlatpickr=e(require("flatpickr")):t.VueFlatpickr=e(t.flatpickr)}(this,function(t){return function(t){function e(r){if(n[r])return n[r].exports;var i=n[r]={i:r,l:!1,exports:{}};return t[r].call(i.exports,i,i.exports,e),i.l=!0,i.exports}var n={};return e.m=t,e.c=n,e.d=function(t,n,r){e.o(t,n)||Object.defineProperty(t,n,{configurable:!1,enumerable:!0,get:r})},e.n=function(t){var n=t&&t.__esModule?function(){return t.default}:function(){return t};return e.d(n,"a",n),n},e.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},e.p="",e(e.s=0)}([function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),n.d(e,"flatPickrPlugin",function(){return i});var r=n(1);n.d(e,"component",function(){return r.a});var i=function(t,e){var n="flat-pickr";"string"==typeof e&&(n=e),t.component(n,r.a)};r.a.install=i,e.default=r.a},function(t,e,n){"use strict";var r=n(3),i=n(5),o=n(2),a=o(r.a,i.a,null,null,null);e.a=a.exports},function(t,e){t.exports=function(t,e,n,r,i){var o,a=t=t||{},u=typeof t.default;"object"!==u&&"function"!==u||(o=t,a=t.default);var s="function"==typeof a?a.options:a;e&&(s.render=e.render,s.staticRenderFns=e.staticRenderFns),r&&(s._scopeId=r);var l;if(i?(l=function(t){t=t||this.$vnode&&this.$vnode.ssrContext||this.parent&&this.parent.$vnode&&this.parent.$vnode.ssrContext,t||"undefined"==typeof __VUE_SSR_CONTEXT__||(t=__VUE_SSR_CONTEXT__),n&&n.call(this,t),t&&t._registeredComponents&&t._registeredComponents.add(i)},s._ssrRegister=l):n&&(l=n),l){var f=s.functional,c=f?s.render:s.beforeCreate;f?s.render=function(t,e){return l.call(e),c(t,e)}:s.beforeCreate=c?[].concat(c,l):[l]}return{esModule:o,exports:a,options:s}}},function(t,e,n){"use strict";function r(t){if(Array.isArray(t)){for(var e=0,n=Array(t.length);e<t.length;e++)n[e]=t[e];return n}return Array.from(t)}var i=n(4),o=n.n(i);e.a={name:"flat-pickr",props:{value:{default:null,required:!0,validate:function(t){return null===t||t instanceof Date||"string"==typeof t||t instanceof String||t instanceof Array}},config:{type:Object,default:function(){return{wrap:!1}}},placeholder:{type:String,default:""},inputClass:{type:[String,Object],default:"form-control input"},name:{type:String,default:"date-time"},required:{type:Boolean,default:!1},id:{type:String}},data:function(){return{mutableValue:this.value,fp:null,oldOnChange:null}},mounted:function(){if(!this.fp){this.oldOnChange=this.config.onChange,this.config.onChange=this.onChange;var t=this.config.wrap?this.$el.parentNode:this.$el;this.fp=new o.a(t,this.config)}},beforeDestroy:function(){this.fp&&(this.fp.destroy(),this.fp=null,this.oldOnChange=null,this.config.onChange=null)},methods:{onChange:function(){for(var t=arguments.length,e=Array(t),n=0;n<t;n++)e[n]=arguments[n];"function"==typeof this.oldOnChange&&this.oldOnChange.apply(this,r(e)),this.$emit.apply(this,["onChange"].concat(r(e)))}},watch:{config:function(t){this.fp.config=Object.assign(this.fp.config,t),this.fp.redraw(),this.fp.setDate(this.value,!0)},mutableValue:function(t){this.$emit("input",t)},value:function(t){t!==this.mutableValue&&this.fp&&this.fp.setDate(t,!0)}}}},function(e,n){e.exports=t},function(t,e,n){"use strict";var r=function(){var t=this,e=t.$createElement;return(t._self._c||e)("input",{directives:[{name:"model",rawName:"v-model",value:t.mutableValue,expression:"mutableValue"}],class:t.inputClass,attrs:{type:"text",id:t.id,name:t.name,placeholder:t.placeholder,required:t.required,"data-input":""},domProps:{value:t.mutableValue},on:{input:function(e){e.target.composing||(t.mutableValue=e.target.value)}}})},i=[],o={render:r,staticRenderFns:i};e.a=o}])});
+!function(t,e){ true?module.exports=e(__webpack_require__(126)):"function"==typeof define&&define.amd?define("VueFlatpickr",["flatpickr"],e):"object"==typeof exports?exports.VueFlatpickr=e(require("flatpickr")):t.VueFlatpickr=e(t.flatpickr)}(this,function(t){return function(t){function e(r){if(n[r])return n[r].exports;var i=n[r]={i:r,l:!1,exports:{}};return t[r].call(i.exports,i,i.exports,e),i.l=!0,i.exports}var n={};return e.m=t,e.c=n,e.d=function(t,n,r){e.o(t,n)||Object.defineProperty(t,n,{configurable:!1,enumerable:!0,get:r})},e.n=function(t){var n=t&&t.__esModule?function(){return t.default}:function(){return t};return e.d(n,"a",n),n},e.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},e.p="",e(e.s=0)}([function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),n.d(e,"flatPickrPlugin",function(){return i});var r=n(1);n.d(e,"component",function(){return r.a});var i=function(t,e){var n="flat-pickr";"string"==typeof e&&(n=e),t.component(n,r.a)};r.a.install=i,e.default=r.a},function(t,e,n){"use strict";var r=n(3),i=n(5),o=n(2),a=o(r.a,i.a,null,null,null);e.a=a.exports},function(t,e){t.exports=function(t,e,n,r,i){var o,a=t=t||{},u=typeof t.default;"object"!==u&&"function"!==u||(o=t,a=t.default);var s="function"==typeof a?a.options:a;e&&(s.render=e.render,s.staticRenderFns=e.staticRenderFns),r&&(s._scopeId=r);var l;if(i?(l=function(t){t=t||this.$vnode&&this.$vnode.ssrContext||this.parent&&this.parent.$vnode&&this.parent.$vnode.ssrContext,t||"undefined"==typeof __VUE_SSR_CONTEXT__||(t=__VUE_SSR_CONTEXT__),n&&n.call(this,t),t&&t._registeredComponents&&t._registeredComponents.add(i)},s._ssrRegister=l):n&&(l=n),l){var f=s.functional,c=f?s.render:s.beforeCreate;f?s.render=function(t,e){return l.call(e),c(t,e)}:s.beforeCreate=c?[].concat(c,l):[l]}return{esModule:o,exports:a,options:s}}},function(t,e,n){"use strict";function r(t){if(Array.isArray(t)){for(var e=0,n=Array(t.length);e<t.length;e++)n[e]=t[e];return n}return Array.from(t)}var i=n(4),o=n.n(i);e.a={name:"flat-pickr",props:{value:{default:null,required:!0,validate:function(t){return null===t||t instanceof Date||"string"==typeof t||t instanceof String||t instanceof Array}},config:{type:Object,default:function(){return{wrap:!1}}},placeholder:{type:String,default:""},inputClass:{type:[String,Object],default:"form-control input"},name:{type:String,default:"date-time"},required:{type:Boolean,default:!1},id:{type:String}},data:function(){return{mutableValue:this.value,fp:null,oldOnChange:null}},mounted:function(){if(!this.fp){this.oldOnChange=this.config.onChange,this.config.onChange=this.onChange;var t=this.config.wrap?this.$el.parentNode:this.$el;this.fp=new o.a(t,this.config)}},beforeDestroy:function(){this.fp&&(this.fp.destroy(),this.fp=null,this.oldOnChange=null,this.config.onChange=null)},methods:{onChange:function(){for(var t=arguments.length,e=Array(t),n=0;n<t;n++)e[n]=arguments[n];"function"==typeof this.oldOnChange&&this.oldOnChange.apply(this,r(e)),this.$emit.apply(this,["onChange"].concat(r(e)))}},watch:{config:function(t){this.fp.config=Object.assign(this.fp.config,t),this.fp.redraw(),this.fp.setDate(this.value,!0)},mutableValue:function(t){this.$emit("input",t)},value:function(t){t!==this.mutableValue&&this.fp&&this.fp.setDate(t,!0)}}}},function(e,n){e.exports=t},function(t,e,n){"use strict";var r=function(){var t=this,e=t.$createElement;return(t._self._c||e)("input",{directives:[{name:"model",rawName:"v-model",value:t.mutableValue,expression:"mutableValue"}],class:t.inputClass,attrs:{type:"text",id:t.id,name:t.name,placeholder:t.placeholder,required:t.required,"data-input":""},domProps:{value:t.mutableValue},on:{input:function(e){e.target.composing||(t.mutableValue=e.target.value)}}})},i=[],o={render:r,staticRenderFns:i};e.a=o}])});
 
 /***/ }),
 /* 118 */
@@ -28618,7 +28618,7 @@ function toComment(sourceMap) {
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(138);
+var content = __webpack_require__(127);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -28626,7 +28626,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(139)(content, options);
+var update = __webpack_require__(128)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -28925,426 +28925,7 @@ module.exports = function listToStyles (parentId, list) {
 !function(t,e){ true?module.exports=e():"function"==typeof define&&define.amd?define([],e):"object"==typeof exports?exports.VueMultiselect=e():t.VueMultiselect=e()}(this,function(){return function(t){function e(n){if(i[n])return i[n].exports;var s=i[n]={i:n,l:!1,exports:{}};return t[n].call(s.exports,s,s.exports,e),s.l=!0,s.exports}var i={};return e.m=t,e.c=i,e.i=function(t){return t},e.d=function(t,i,n){e.o(t,i)||Object.defineProperty(t,i,{configurable:!1,enumerable:!0,get:n})},e.n=function(t){var i=t&&t.__esModule?function(){return t.default}:function(){return t};return e.d(i,"a",i),i},e.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},e.p="/",e(e.s=4)}([function(t,e,i){"use strict";function n(t,e,i){return e in t?Object.defineProperty(t,e,{value:i,enumerable:!0,configurable:!0,writable:!0}):t[e]=i,t}function s(t){return 0!==t&&(!(!Array.isArray(t)||0!==t.length)||!t)}function l(t,e){return void 0===t&&(t="undefined"),null===t&&(t="null"),!1===t&&(t="false"),-1!==t.toString().toLowerCase().indexOf(e.trim())}function o(t,e,i,n){return t.filter(function(t){return l(n(t,i),e)})}function r(t){return t.filter(function(t){return!t.$isLabel})}function a(t,e){return function(i){return i.reduce(function(i,n){return n[t]&&n[t].length?(i.push({$groupLabel:n[e],$isLabel:!0}),i.concat(n[t])):i},[])}}function u(t,e,i,s,l){return function(r){return r.map(function(r){var a;if(!r[i])return console.warn("Options passed to vue-multiselect do not contain groups, despite the config."),[];var u=o(r[i],t,e,l);return u.length?(a={},n(a,s,r[s]),n(a,i,u),a):[]})}}Object.defineProperty(e,"__esModule",{value:!0});var c="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t},h=i(2),p=function(t){return t&&t.__esModule?t:{default:t}}(h),d=function(){for(var t=arguments.length,e=Array(t),i=0;i<t;i++)e[i]=arguments[i];return function(t){return e.reduce(function(t,e){return e(t)},t)}};e.default={data:function(){return{search:"",isOpen:!1,prefferedOpenDirection:"below",optimizedHeight:this.maxHeight,internalValue:this.value||0===this.value?(0,p.default)(Array.isArray(this.value)?this.value:[this.value]):[]}},props:{internalSearch:{type:Boolean,default:!0},options:{type:Array,required:!0},multiple:{type:Boolean,default:!1},value:{type:null,default:function(){return[]}},trackBy:{type:String},label:{type:String},searchable:{type:Boolean,default:!0},clearOnSelect:{type:Boolean,default:!0},hideSelected:{type:Boolean,default:!1},placeholder:{type:String,default:"Select option"},allowEmpty:{type:Boolean,default:!0},resetAfter:{type:Boolean,default:!1},closeOnSelect:{type:Boolean,default:!0},customLabel:{type:Function,default:function(t,e){return s(t)?"":e?t[e]:t}},taggable:{type:Boolean,default:!1},tagPlaceholder:{type:String,default:"Press enter to create a tag"},max:{type:[Number,Boolean],default:!1},id:{default:null},optionsLimit:{type:Number,default:1e3},groupValues:{type:String},groupLabel:{type:String},blockKeys:{type:Array,default:function(){return[]}},preserveSearch:{type:Boolean,default:!1}},mounted:function(){this.multiple||this.clearOnSelect||console.warn("[Vue-Multiselect warn]: ClearOnSelect and Multiple props can’t be both set to false."),!this.multiple&&this.max&&console.warn("[Vue-Multiselect warn]: Max prop should not be used when prop Multiple equals false.")},computed:{filteredOptions:function(){var t=this.search||"",e=t.toLowerCase(),i=this.options.concat();return i=this.internalSearch?this.groupValues?this.filterAndFlat(i,e,this.label):o(i,e,this.label,this.customLabel):this.groupValues?a(this.groupValues,this.groupLabel)(i):i,i=this.hideSelected?i.filter(this.isNotSelected):i,this.taggable&&e.length&&!this.isExistingOption(e)&&i.unshift({isTag:!0,label:t}),i.slice(0,this.optionsLimit)},valueKeys:function(){var t=this;return this.trackBy?this.internalValue.map(function(e){return e[t.trackBy]}):this.internalValue},optionKeys:function(){var t=this;return(this.groupValues?this.flatAndStrip(this.options):this.options).map(function(e){return t.customLabel(e,t.label).toString().toLowerCase()})},currentOptionLabel:function(){return this.multiple?this.searchable?"":this.placeholder:this.internalValue[0]?this.getOptionLabel(this.internalValue[0]):this.searchable?"":this.placeholder}},watch:{internalValue:function(t,e){this.resetAfter&&this.internalValue.length&&(this.search="",this.internalValue=[])},search:function(){this.$emit("search-change",this.search,this.id)},value:function(t){this.internalValue=this.getInternalValue(t)}},methods:{getValue:function(){return this.multiple?(0,p.default)(this.internalValue):0===this.internalValue.length?null:(0,p.default)(this.internalValue[0])},getInternalValue:function(t){return null===t||void 0===t?[]:this.multiple?(0,p.default)(t):(0,p.default)([t])},filterAndFlat:function(t,e,i){return d(u(e,i,this.groupValues,this.groupLabel,this.customLabel),a(this.groupValues,this.groupLabel))(t)},flatAndStrip:function(t){return d(a(this.groupValues,this.groupLabel),r)(t)},updateSearch:function(t){this.search=t},isExistingOption:function(t){return!!this.options&&this.optionKeys.indexOf(t)>-1},isSelected:function(t){var e=this.trackBy?t[this.trackBy]:t;return this.valueKeys.indexOf(e)>-1},isNotSelected:function(t){return!this.isSelected(t)},getOptionLabel:function(t){if(s(t))return"";if(t.isTag)return t.label;if(t.$isLabel)return t.$groupLabel;var e=this.customLabel(t,this.label);return s(e)?"":e},select:function(t,e){if(!(-1!==this.blockKeys.indexOf(e)||this.disabled||t.$isLabel||t.$isDisabled)&&(!this.max||!this.multiple||this.internalValue.length!==this.max)&&("Tab"!==e||this.pointerDirty)){if(t.isTag)this.$emit("tag",t.label,this.id),this.search="",this.closeOnSelect&&!this.multiple&&this.deactivate();else{if(this.isSelected(t))return void("Tab"!==e&&this.removeElement(t));this.multiple?this.internalValue.push(t):this.internalValue=[t],this.$emit("select",(0,p.default)(t),this.id),this.$emit("input",this.getValue(),this.id),this.clearOnSelect&&(this.search="")}this.closeOnSelect&&this.deactivate()}},removeElement:function(t){var e=!(arguments.length>1&&void 0!==arguments[1])||arguments[1];if(!this.disabled){if(!this.allowEmpty&&this.internalValue.length<=1)return void this.deactivate();var i="object"===(void 0===t?"undefined":c(t))?this.valueKeys.indexOf(t[this.trackBy]):this.valueKeys.indexOf(t);this.internalValue.splice(i,1),this.$emit("remove",(0,p.default)(t),this.id),this.$emit("input",this.getValue(),this.id),this.closeOnSelect&&e&&this.deactivate()}},removeLastElement:function(){-1===this.blockKeys.indexOf("Delete")&&0===this.search.length&&Array.isArray(this.internalValue)&&this.removeElement(this.internalValue[this.internalValue.length-1],!1)},activate:function(){var t=this;this.isOpen||this.disabled||(this.adjustPosition(),this.groupValues&&0===this.pointer&&this.filteredOptions.length&&(this.pointer=1),this.isOpen=!0,this.searchable?(this.preserveSearch||(this.search=""),this.$nextTick(function(){return t.$refs.search.focus()})):this.$el.focus(),this.$emit("open",this.id))},deactivate:function(){this.isOpen&&(this.isOpen=!1,this.searchable?this.$refs.search.blur():this.$el.blur(),this.preserveSearch||(this.search=""),this.$emit("close",this.getValue(),this.id))},toggle:function(){this.isOpen?this.deactivate():this.activate()},adjustPosition:function(){if("undefined"!=typeof window){var t=this.$el.getBoundingClientRect().top,e=window.innerHeight-this.$el.getBoundingClientRect().bottom;e>this.maxHeight||e>t||"below"===this.openDirection||"bottom"===this.openDirection?(this.prefferedOpenDirection="below",this.optimizedHeight=Math.min(e-40,this.maxHeight)):(this.prefferedOpenDirection="above",this.optimizedHeight=Math.min(t-40,this.maxHeight))}}}}},function(t,e,i){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),e.default={data:function(){return{pointer:0,pointerDirty:!1}},props:{showPointer:{type:Boolean,default:!0},optionHeight:{type:Number,default:40}},computed:{pointerPosition:function(){return this.pointer*this.optionHeight},visibleElements:function(){return this.optimizedHeight/this.optionHeight}},watch:{filteredOptions:function(){this.pointerAdjust()},isOpen:function(){this.pointerDirty=!1}},methods:{optionHighlight:function(t,e){return{"multiselect__option--highlight":t===this.pointer&&this.showPointer,"multiselect__option--selected":this.isSelected(e)}},addPointerElement:function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:"Enter",e=t.key;this.filteredOptions.length>0&&this.select(this.filteredOptions[this.pointer],e),this.pointerReset()},pointerForward:function(){this.pointer<this.filteredOptions.length-1&&(this.pointer++,this.$refs.list.scrollTop<=this.pointerPosition-(this.visibleElements-1)*this.optionHeight&&(this.$refs.list.scrollTop=this.pointerPosition-(this.visibleElements-1)*this.optionHeight),this.filteredOptions[this.pointer].$isLabel&&this.pointerForward()),this.pointerDirty=!0},pointerBackward:function(){this.pointer>0?(this.pointer--,this.$refs.list.scrollTop>=this.pointerPosition&&(this.$refs.list.scrollTop=this.pointerPosition),this.filteredOptions[this.pointer].$isLabel&&this.pointerBackward()):this.filteredOptions[0].$isLabel&&this.pointerForward(),this.pointerDirty=!0},pointerReset:function(){this.closeOnSelect&&(this.pointer=0,this.$refs.list&&(this.$refs.list.scrollTop=0))},pointerAdjust:function(){this.pointer>=this.filteredOptions.length-1&&(this.pointer=this.filteredOptions.length?this.filteredOptions.length-1:0)},pointerSet:function(t){this.pointer=t,this.pointerDirty=!0}}}},function(t,e,i){"use strict";function n(t){if(Array.isArray(t))return t.map(n);if(t&&"object"===(void 0===t?"undefined":s(t))){for(var e={},i=Object.keys(t),l=0,o=i.length;l<o;l++){var r=i[l];e[r]=n(t[r])}return e}return t}Object.defineProperty(e,"__esModule",{value:!0});var s="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t};e.default=n},function(t,e,i){i(6);var n=i(7)(i(5),i(8),null,null);t.exports=n.exports},function(t,e,i){"use strict";function n(t){return t&&t.__esModule?t:{default:t}}Object.defineProperty(e,"__esModule",{value:!0}),e.deepClone=e.pointerMixin=e.multiselectMixin=e.Multiselect=void 0;var s=i(3),l=n(s),o=i(0),r=n(o),a=i(1),u=n(a),c=i(2),h=n(c);e.default=l.default,e.Multiselect=l.default,e.multiselectMixin=r.default,e.pointerMixin=u.default,e.deepClone=h.default},function(t,e,i){"use strict";function n(t){return t&&t.__esModule?t:{default:t}}Object.defineProperty(e,"__esModule",{value:!0});var s=i(0),l=n(s),o=i(1),r=n(o);e.default={name:"vue-multiselect",mixins:[l.default,r.default],props:{name:{type:String,default:""},selectLabel:{type:String,default:"Press enter to select"},selectedLabel:{type:String,default:"Selected"},deselectLabel:{type:String,default:"Press enter to remove"},showLabels:{type:Boolean,default:!0},limit:{type:Number,default:99999},maxHeight:{type:Number,default:300},limitText:{type:Function,default:function(t){return"and "+t+" more"}},loading:{type:Boolean,default:!1},disabled:{type:Boolean,default:!1},openDirection:{type:String,default:""},showNoResults:{type:Boolean,default:!0},tabindex:{type:Number,default:0}},computed:{visibleValue:function(){return this.multiple?this.internalValue.slice(0,this.limit):[]},deselectLabelText:function(){return this.showLabels?this.deselectLabel:""},selectLabelText:function(){return this.showLabels?this.selectLabel:""},selectedLabelText:function(){return this.showLabels?this.selectedLabel:""},inputStyle:function(){if(this.multiple&&this.value&&this.value.length)return this.isOpen?{width:"auto"}:{display:"none"}},contentStyle:function(){return this.options.length?{display:"inline-block"}:{display:"block"}},isAbove:function(){return"above"===this.openDirection||"top"===this.openDirection||"below"!==this.openDirection&&"bottom"!==this.openDirection&&"above"===this.prefferedOpenDirection}}}},function(t,e){},function(t,e){t.exports=function(t,e,i,n){var s,l=t=t||{},o=typeof t.default;"object"!==o&&"function"!==o||(s=t,l=t.default);var r="function"==typeof l?l.options:l;if(e&&(r.render=e.render,r.staticRenderFns=e.staticRenderFns),i&&(r._scopeId=i),n){var a=Object.create(r.computed||null);Object.keys(n).forEach(function(t){var e=n[t];a[t]=function(){return e}}),r.computed=a}return{esModule:s,exports:l,options:r}}},function(t,e){t.exports={render:function(){var t=this,e=t.$createElement,i=t._self._c||e;return i("div",{staticClass:"multiselect",class:{"multiselect--active":t.isOpen,"multiselect--disabled":t.disabled,"multiselect--above":t.isAbove},attrs:{tabindex:t.tabindex},on:{focus:function(e){t.activate()},blur:function(e){!t.searchable&&t.deactivate()},keydown:[function(e){return"button"in e||!t._k(e.keyCode,"down",40)?e.target!==e.currentTarget?null:(e.preventDefault(),void t.pointerForward()):null},function(e){return"button"in e||!t._k(e.keyCode,"up",38)?e.target!==e.currentTarget?null:(e.preventDefault(),void t.pointerBackward()):null},function(e){return"button"in e||!t._k(e.keyCode,"enter",13)||!t._k(e.keyCode,"tab",9)?(e.stopPropagation(),e.target!==e.currentTarget?null:void t.addPointerElement(e)):null}],keyup:function(e){if(!("button"in e)&&t._k(e.keyCode,"esc",27))return null;t.deactivate()}}},[t._t("caret",[i("div",{staticClass:"multiselect__select",on:{mousedown:function(e){e.preventDefault(),e.stopPropagation(),t.toggle()}}})],{toggle:t.toggle}),t._v(" "),t._t("clear",null,{search:t.search}),t._v(" "),i("div",{ref:"tags",staticClass:"multiselect__tags"},[i("div",{directives:[{name:"show",rawName:"v-show",value:t.visibleValue.length>0,expression:"visibleValue.length > 0"}],staticClass:"multiselect__tags-wrap"},[t._l(t.visibleValue,function(e){return[t._t("tag",[i("span",{staticClass:"multiselect__tag"},[i("span",{domProps:{textContent:t._s(t.getOptionLabel(e))}}),t._v(" "),i("i",{staticClass:"multiselect__tag-icon",attrs:{"aria-hidden":"true",tabindex:"1"},on:{keydown:function(i){if(!("button"in i)&&t._k(i.keyCode,"enter",13))return null;i.preventDefault(),t.removeElement(e)},mousedown:function(i){i.preventDefault(),t.removeElement(e)}}})])],{option:e,search:t.search,remove:t.removeElement})]})],2),t._v(" "),t.internalValue&&t.internalValue.length>t.limit?[i("strong",{staticClass:"multiselect__strong",domProps:{textContent:t._s(t.limitText(t.internalValue.length-t.limit))}})]:t._e(),t._v(" "),i("transition",{attrs:{name:"multiselect__loading"}},[t._t("loading",[i("div",{directives:[{name:"show",rawName:"v-show",value:t.loading,expression:"loading"}],staticClass:"multiselect__spinner"})])],2),t._v(" "),t.searchable?i("input",{ref:"search",staticClass:"multiselect__input",style:t.inputStyle,attrs:{name:t.name,id:t.id,type:"text",autocomplete:"off",placeholder:t.placeholder,disabled:t.disabled},domProps:{value:t.isOpen?t.search:t.currentOptionLabel},on:{input:function(e){t.updateSearch(e.target.value)},focus:function(e){e.preventDefault(),t.activate()},blur:function(e){e.preventDefault(),t.deactivate()},keyup:function(e){if(!("button"in e)&&t._k(e.keyCode,"esc",27))return null;t.deactivate()},keydown:[function(e){if(!("button"in e)&&t._k(e.keyCode,"down",40))return null;e.preventDefault(),t.pointerForward()},function(e){if(!("button"in e)&&t._k(e.keyCode,"up",38))return null;e.preventDefault(),t.pointerBackward()},function(e){return"button"in e||!t._k(e.keyCode,"enter",13)?(e.preventDefault(),e.stopPropagation(),e.target!==e.currentTarget?null:void t.addPointerElement(e)):null},function(e){if(!("button"in e)&&t._k(e.keyCode,"delete",[8,46]))return null;e.stopPropagation(),t.removeLastElement()}]}}):t._e(),t._v(" "),t.searchable?t._e():i("span",{staticClass:"multiselect__single",domProps:{textContent:t._s(t.currentOptionLabel)},on:{mousedown:function(e){e.preventDefault(),t.toggle(e)}}})],2),t._v(" "),i("transition",{attrs:{name:"multiselect"}},[i("div",{directives:[{name:"show",rawName:"v-show",value:t.isOpen,expression:"isOpen"}],ref:"list",staticClass:"multiselect__content-wrapper",style:{maxHeight:t.optimizedHeight+"px"},on:{focus:t.activate,mousedown:function(t){t.preventDefault()}}},[i("ul",{staticClass:"multiselect__content",style:t.contentStyle},[t._t("beforeList"),t._v(" "),t.multiple&&t.max===t.internalValue.length?i("li",[i("span",{staticClass:"multiselect__option"},[t._t("maxElements",[t._v("Maximum of "+t._s(t.max)+" options selected. First remove a selected option to select another.")])],2)]):t._e(),t._v(" "),!t.max||t.internalValue.length<t.max?t._l(t.filteredOptions,function(e,n){return i("li",{key:n,staticClass:"multiselect__element"},[e&&(e.$isLabel||e.$isDisabled)?t._e():i("span",{staticClass:"multiselect__option",class:t.optionHighlight(n,e),attrs:{"data-select":e&&e.isTag?t.tagPlaceholder:t.selectLabelText,"data-selected":t.selectedLabelText,"data-deselect":t.deselectLabelText},on:{click:function(i){i.stopPropagation(),t.select(e)},mouseenter:function(e){if(e.target!==e.currentTarget)return null;t.pointerSet(n)}}},[t._t("option",[i("span",[t._v(t._s(t.getOptionLabel(e)))])],{option:e,search:t.search})],2),t._v(" "),e&&(e.$isLabel||e.$isDisabled)?i("span",{staticClass:"multiselect__option multiselect__option--disabled",class:t.optionHighlight(n,e)},[t._t("option",[i("span",[t._v(t._s(t.getOptionLabel(e)))])],{option:e,search:t.search})],2):t._e()])}):t._e(),t._v(" "),i("li",{directives:[{name:"show",rawName:"v-show",value:t.showNoResults&&0===t.filteredOptions.length&&t.search&&!t.loading,expression:"showNoResults && (filteredOptions.length === 0 && search && !loading)"}]},[i("span",{staticClass:"multiselect__option"},[t._t("noResult",[t._v("No elements found. Consider changing the search query.")])],2)]),t._v(" "),t._t("afterList")],2)])])],2)},staticRenderFns:[]}}])});
 
 /***/ }),
-/* 126 */,
-/* 127 */,
-/* 128 */,
-/* 129 */,
-/* 130 */,
-/* 131 */,
-/* 132 */,
-/* 133 */,
-/* 134 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var Component = __webpack_require__(11)(
-  /* script */
-  __webpack_require__(135),
-  /* template */
-  __webpack_require__(136),
-  /* styles */
-  null,
-  /* scopeId */
-  null,
-  /* moduleIdentifier (server only) */
-  null
-)
-Component.options.__file = "D:\\www\\law-office\\resources\\assets\\js\\components\\issue\\editIssue.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] editIssue.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-7341810e", Component.options)
-  } else {
-    hotAPI.reload("data-v-7341810e", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 135 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.default = {
-    data: function data() {
-        return {
-            editForm: new Form({
-                number: '',
-                year: '',
-                adv_number: '',
-                adv_year: '',
-                subject: '',
-                court: '',
-                room: ''
-            }),
-            id: ''
-        };
-    },
-
-    methods: {
-        onIssueCreate: function onIssueCreate() {
-            this.editForm.patch('/issues/' + this.id).then(function (response) {
-                return eventBus.$emit('IssueUpdated', response);
-            });
-        },
-        editIssueModal: function editIssueModal(issue) {
-            this.editForm.reset();
-            this.editForm.number = issue.number;
-            this.editForm.year = issue.year;
-            this.editForm.adv_number = issue.adv_number;
-            this.editForm.adv_year = issue.adv_year;
-            this.editForm.subject = issue.subject;
-            this.editForm.court = issue.court;
-            this.editForm.room = issue.room;
-            this.id = issue.id;
-        }
-    },
-    created: function created() {
-        var _this = this;
-
-        eventBus.$on('editIssue', function (issue) {
-            return _this.editIssueModal(issue);
-        });
-    }
-};
-
-/***/ }),
-/* 136 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "modal fade",
-    attrs: {
-      "id": "editIssue",
-      "role": "dialog",
-      "aria-labelledby": "myModalLabel"
-    }
-  }, [_c('div', {
-    staticClass: "modal-dialog",
-    attrs: {
-      "role": "document"
-    }
-  }, [_c('div', {
-    staticClass: "modal-content"
-  }, [_vm._m(0), _vm._v(" "), _c('div', {
-    staticClass: "modal-body"
-  }, [_c('form', {
-    attrs: {
-      "method": "POST",
-      "action": "/contracts"
-    },
-    on: {
-      "submit": function($event) {
-        $event.preventDefault();
-        _vm.onIssueCreate($event)
-      },
-      "keydown": function($event) {
-        _vm.editForm.errors.clear($event.target.name)
-      },
-      "change": function($event) {
-        _vm.editForm.errors.clear($event.target.name)
-      },
-      "input": function($event) {
-        _vm.editForm.errors.clear($event.target.name)
-      }
-    }
-  }, [_c('div', {
-    staticClass: "form-group"
-  }, [_c('label', {
-    staticClass: "label",
-    attrs: {
-      "for": "number"
-    }
-  }, [_vm._v("رقم القضية الجزئى:")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.editForm.number),
-      expression: "editForm.number"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "type": "text",
-      "id": "number",
-      "name": "number"
-    },
-    domProps: {
-      "value": (_vm.editForm.number)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.editForm.number = $event.target.value
-      }
-    }
-  }), _vm._v(" "), (_vm.editForm.errors.has('number')) ? _c('span', {
-    staticClass: "alert-danger",
-    domProps: {
-      "textContent": _vm._s(_vm.editForm.errors.get('number'))
-    }
-  }) : _vm._e()]), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
-  }, [_c('label', {
-    staticClass: "label",
-    attrs: {
-      "for": "year"
-    }
-  }, [_vm._v("لسنة:")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.editForm.year),
-      expression: "editForm.year"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "type": "text",
-      "id": "year",
-      "name": "year"
-    },
-    domProps: {
-      "value": (_vm.editForm.year)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.editForm.year = $event.target.value
-      }
-    }
-  }), _vm._v(" "), (_vm.editForm.errors.has('year')) ? _c('span', {
-    staticClass: "alert-danger",
-    domProps: {
-      "textContent": _vm._s(_vm.editForm.errors.get('year'))
-    }
-  }) : _vm._e()]), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
-  }, [_c('label', {
-    staticClass: "label",
-    attrs: {
-      "for": "adv_number"
-    }
-  }, [_vm._v("رقم القضية المستانف:")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.editForm.adv_number),
-      expression: "editForm.adv_number"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "type": "text",
-      "id": "adv_number",
-      "name": "adv_number"
-    },
-    domProps: {
-      "value": (_vm.editForm.adv_number)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.editForm.adv_number = $event.target.value
-      }
-    }
-  }), _vm._v(" "), (_vm.editForm.errors.has('adv_number')) ? _c('span', {
-    staticClass: "alert-danger",
-    domProps: {
-      "textContent": _vm._s(_vm.editForm.errors.get('adv_number'))
-    }
-  }) : _vm._e()]), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
-  }, [_c('label', {
-    staticClass: "label",
-    attrs: {
-      "for": "adv_year"
-    }
-  }, [_vm._v("لسنة (مستانف):")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.editForm.adv_year),
-      expression: "editForm.adv_year"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "type": "text",
-      "id": "adv_year",
-      "name": "adv_year"
-    },
-    domProps: {
-      "value": (_vm.editForm.adv_year)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.editForm.adv_year = $event.target.value
-      }
-    }
-  }), _vm._v(" "), (_vm.editForm.errors.has('adv_year')) ? _c('span', {
-    staticClass: "alert-danger",
-    domProps: {
-      "textContent": _vm._s(_vm.editForm.errors.get('adv_year'))
-    }
-  }) : _vm._e()]), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
-  }, [_c('label', {
-    staticClass: "label",
-    attrs: {
-      "for": "subject"
-    }
-  }, [_vm._v("موضوع الدعوى:")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.editForm.subject),
-      expression: "editForm.subject"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "type": "text",
-      "id": "subject",
-      "name": "subject"
-    },
-    domProps: {
-      "value": (_vm.editForm.subject)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.editForm.subject = $event.target.value
-      }
-    }
-  }), _vm._v(" "), (_vm.editForm.errors.has('subject')) ? _c('span', {
-    staticClass: "alert-danger",
-    domProps: {
-      "textContent": _vm._s(_vm.editForm.errors.get('subject'))
-    }
-  }) : _vm._e()]), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
-  }, [_c('label', {
-    staticClass: "label",
-    attrs: {
-      "for": "court"
-    }
-  }, [_vm._v("المحكمة:")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.editForm.court),
-      expression: "editForm.court"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "type": "text",
-      "id": "court",
-      "name": "court"
-    },
-    domProps: {
-      "value": (_vm.editForm.court)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.editForm.court = $event.target.value
-      }
-    }
-  }), _vm._v(" "), (_vm.editForm.errors.has('court')) ? _c('span', {
-    staticClass: "alert-danger",
-    domProps: {
-      "textContent": _vm._s(_vm.editForm.errors.get('court'))
-    }
-  }) : _vm._e()]), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
-  }, [_c('label', {
-    staticClass: "label",
-    attrs: {
-      "for": "room"
-    }
-  }, [_vm._v("الدائرة:")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.editForm.room),
-      expression: "editForm.room"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "type": "text",
-      "id": "room",
-      "name": "room"
-    },
-    domProps: {
-      "value": (_vm.editForm.room)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.editForm.room = $event.target.value
-      }
-    }
-  }), _vm._v(" "), (_vm.editForm.errors.has('room')) ? _c('span', {
-    staticClass: "alert-danger",
-    domProps: {
-      "textContent": _vm._s(_vm.editForm.errors.get('room'))
-    }
-  }) : _vm._e()]), _vm._v(" "), _c('div', {
-    staticClass: "form-group heading"
-  }, [_c('button', {
-    staticClass: "button btn-lg btn-success",
-    attrs: {
-      "disabled": _vm.editForm.errors.any()
-    }
-  }, [_vm._v("تعديل")])])])])])])])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "modal-header"
-  }, [_c('button', {
-    staticClass: "close",
-    attrs: {
-      "type": "button",
-      "data-dismiss": "modal",
-      "aria-label": "Close"
-    }
-  }, [_c('span', {
-    attrs: {
-      "aria-hidden": "true"
-    }
-  }, [_vm._v("×")])]), _vm._v(" "), _c('span', {
-    staticClass: "form-control-static pull-left"
-  }, [_c('h4', {
-    staticClass: "modal-title",
-    attrs: {
-      "id": "myModalLabel"
-    }
-  }, [_vm._v(" تعديل قضية ")])])])
-}]}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-7341810e", module.exports)
-  }
-}
-
-/***/ }),
-/* 137 */
+/* 126 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -31700,7 +31281,7 @@ Date.prototype.fp_incr = function (days) {
 if (true) module.exports = flatpickr;
 
 /***/ }),
-/* 138 */
+/* 127 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(116)(undefined);
@@ -31714,7 +31295,7 @@ exports.push([module.i, ".flatpickr-calendar {\n  background: transparent;\n  ov
 
 
 /***/ }),
-/* 139 */
+/* 128 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -31760,7 +31341,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(140);
+var	fixUrls = __webpack_require__(129);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -32073,7 +31654,7 @@ function updateLink (link, options, obj) {
 
 
 /***/ }),
-/* 140 */
+/* 129 */
 /***/ (function(module, exports) {
 
 
@@ -32166,6 +31747,425 @@ module.exports = function (css) {
 	return fixedCss;
 };
 
+
+/***/ }),
+/* 130 */,
+/* 131 */,
+/* 132 */,
+/* 133 */,
+/* 134 */,
+/* 135 */,
+/* 136 */,
+/* 137 */,
+/* 138 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(11)(
+  /* script */
+  __webpack_require__(139),
+  /* template */
+  __webpack_require__(140),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "D:\\www\\law-office\\resources\\assets\\js\\components\\issue\\editIssue.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] editIssue.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-7341810e", Component.options)
+  } else {
+    hotAPI.reload("data-v-7341810e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 139 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = {
+    data: function data() {
+        return {
+            editForm: new Form({
+                number: '',
+                year: '',
+                adv_number: '',
+                adv_year: '',
+                subject: '',
+                court: '',
+                room: ''
+            }),
+            id: ''
+        };
+    },
+
+    methods: {
+        onIssueCreate: function onIssueCreate() {
+            this.editForm.patch('/issues/' + this.id).then(function (response) {
+                return eventBus.$emit('IssueUpdated', response);
+            });
+        },
+        editIssueModal: function editIssueModal(issue) {
+            this.editForm.reset();
+            this.editForm.number = issue.number;
+            this.editForm.year = issue.year;
+            this.editForm.adv_number = issue.adv_number;
+            this.editForm.adv_year = issue.adv_year;
+            this.editForm.subject = issue.subject;
+            this.editForm.court = issue.court;
+            this.editForm.room = issue.room;
+            this.id = issue.id;
+        }
+    },
+    created: function created() {
+        var _this = this;
+
+        eventBus.$on('editIssue', function (issue) {
+            return _this.editIssueModal(issue);
+        });
+    }
+};
+
+/***/ }),
+/* 140 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "modal fade",
+    attrs: {
+      "id": "editIssue",
+      "role": "dialog",
+      "aria-labelledby": "myModalLabel"
+    }
+  }, [_c('div', {
+    staticClass: "modal-dialog",
+    attrs: {
+      "role": "document"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "modal-body"
+  }, [_c('form', {
+    attrs: {
+      "method": "POST",
+      "action": "/contracts"
+    },
+    on: {
+      "submit": function($event) {
+        $event.preventDefault();
+        _vm.onIssueCreate($event)
+      },
+      "keydown": function($event) {
+        _vm.editForm.errors.clear($event.target.name)
+      },
+      "change": function($event) {
+        _vm.editForm.errors.clear($event.target.name)
+      },
+      "input": function($event) {
+        _vm.editForm.errors.clear($event.target.name)
+      }
+    }
+  }, [_c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "number"
+    }
+  }, [_vm._v("رقم القضية الجزئى:")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editForm.number),
+      expression: "editForm.number"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "number",
+      "name": "number"
+    },
+    domProps: {
+      "value": (_vm.editForm.number)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.editForm.number = $event.target.value
+      }
+    }
+  }), _vm._v(" "), (_vm.editForm.errors.has('number')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.editForm.errors.get('number'))
+    }
+  }) : _vm._e()]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "year"
+    }
+  }, [_vm._v("لسنة:")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editForm.year),
+      expression: "editForm.year"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "year",
+      "name": "year"
+    },
+    domProps: {
+      "value": (_vm.editForm.year)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.editForm.year = $event.target.value
+      }
+    }
+  }), _vm._v(" "), (_vm.editForm.errors.has('year')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.editForm.errors.get('year'))
+    }
+  }) : _vm._e()]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "adv_number"
+    }
+  }, [_vm._v("رقم القضية المستانف:")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editForm.adv_number),
+      expression: "editForm.adv_number"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "adv_number",
+      "name": "adv_number"
+    },
+    domProps: {
+      "value": (_vm.editForm.adv_number)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.editForm.adv_number = $event.target.value
+      }
+    }
+  }), _vm._v(" "), (_vm.editForm.errors.has('adv_number')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.editForm.errors.get('adv_number'))
+    }
+  }) : _vm._e()]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "adv_year"
+    }
+  }, [_vm._v("لسنة (مستانف):")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editForm.adv_year),
+      expression: "editForm.adv_year"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "adv_year",
+      "name": "adv_year"
+    },
+    domProps: {
+      "value": (_vm.editForm.adv_year)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.editForm.adv_year = $event.target.value
+      }
+    }
+  }), _vm._v(" "), (_vm.editForm.errors.has('adv_year')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.editForm.errors.get('adv_year'))
+    }
+  }) : _vm._e()]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "subject"
+    }
+  }, [_vm._v("موضوع الدعوى:")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editForm.subject),
+      expression: "editForm.subject"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "subject",
+      "name": "subject"
+    },
+    domProps: {
+      "value": (_vm.editForm.subject)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.editForm.subject = $event.target.value
+      }
+    }
+  }), _vm._v(" "), (_vm.editForm.errors.has('subject')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.editForm.errors.get('subject'))
+    }
+  }) : _vm._e()]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "court"
+    }
+  }, [_vm._v("المحكمة:")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editForm.court),
+      expression: "editForm.court"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "court",
+      "name": "court"
+    },
+    domProps: {
+      "value": (_vm.editForm.court)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.editForm.court = $event.target.value
+      }
+    }
+  }), _vm._v(" "), (_vm.editForm.errors.has('court')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.editForm.errors.get('court'))
+    }
+  }) : _vm._e()]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "room"
+    }
+  }, [_vm._v("الدائرة:")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editForm.room),
+      expression: "editForm.room"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "room",
+      "name": "room"
+    },
+    domProps: {
+      "value": (_vm.editForm.room)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.editForm.room = $event.target.value
+      }
+    }
+  }), _vm._v(" "), (_vm.editForm.errors.has('room')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.editForm.errors.get('room'))
+    }
+  }) : _vm._e()]), _vm._v(" "), _c('div', {
+    staticClass: "form-group heading"
+  }, [_c('button', {
+    staticClass: "button btn-lg btn-success",
+    attrs: {
+      "disabled": _vm.editForm.errors.any()
+    }
+  }, [_vm._v("تعديل")])])])])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "modal-header"
+  }, [_c('button', {
+    staticClass: "close",
+    attrs: {
+      "type": "button",
+      "data-dismiss": "modal",
+      "aria-label": "Close"
+    }
+  }, [_c('span', {
+    attrs: {
+      "aria-hidden": "true"
+    }
+  }, [_vm._v("×")])]), _vm._v(" "), _c('span', {
+    staticClass: "form-control-static pull-left"
+  }, [_c('h4', {
+    staticClass: "modal-title",
+    attrs: {
+      "id": "myModalLabel"
+    }
+  }, [_vm._v(" تعديل قضية ")])])])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-7341810e", module.exports)
+  }
+}
 
 /***/ }),
 /* 141 */
@@ -36277,1986 +36277,9 @@ if (false) {
 var disposed = false
 var Component = __webpack_require__(11)(
   /* script */
-  __webpack_require__(215),
+  __webpack_require__(156),
   /* template */
-  __webpack_require__(216),
-  /* styles */
-  null,
-  /* scopeId */
-  null,
-  /* moduleIdentifier (server only) */
-  null
-)
-Component.options.__file = "D:\\www\\law-office\\resources\\assets\\js\\components\\issue\\meetings\\delayMeeting.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] delayMeeting.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-3ff307ee", Component.options)
-  } else {
-    hotAPI.reload("data-v-3ff307ee", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 156 */,
-/* 157 */,
-/* 158 */,
-/* 159 */,
-/* 160 */,
-/* 161 */,
-/* 162 */,
-/* 163 */,
-/* 164 */,
-/* 165 */,
-/* 166 */,
-/* 167 */,
-/* 168 */,
-/* 169 */,
-/* 170 */,
-/* 171 */,
-/* 172 */,
-/* 173 */,
-/* 174 */,
-/* 175 */,
-/* 176 */,
-/* 177 */,
-/* 178 */,
-/* 179 */,
-/* 180 */,
-/* 181 */,
-/* 182 */,
-/* 183 */,
-/* 184 */,
-/* 185 */,
-/* 186 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(187);
-
-
-/***/ }),
-/* 187 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _Form = __webpack_require__(48);
-
-var _Form2 = _interopRequireDefault(_Form);
-
-var _jquery = __webpack_require__(42);
-
-var _jquery2 = _interopRequireDefault(_jquery);
-
-var _bootstrap = __webpack_require__(92);
-
-var _bootstrap2 = _interopRequireDefault(_bootstrap);
-
-var _issueInfo = __webpack_require__(188);
-
-var _issueInfo2 = _interopRequireDefault(_issueInfo);
-
-var _issueOpenents = __webpack_require__(191);
-
-var _issueOpenents2 = _interopRequireDefault(_issueOpenents);
-
-var _issueFiles = __webpack_require__(204);
-
-var _issueFiles2 = _interopRequireDefault(_issueFiles);
-
-var _issueMeetings = __webpack_require__(207);
-
-var _issueMeetings2 = _interopRequireDefault(_issueMeetings);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-__webpack_require__(93);
-
-window.Vue = __webpack_require__(114);
-
-window.Form = _Form2.default;
-
-window.toastr = __webpack_require__(90);
-
-
-window.eventBus = new Vue();
-
-var issueProfile = new Vue({
-	el: '#issueProfile',
-	data: {
-		issue: {},
-		openents: [],
-		people: [],
-		files: [],
-		meetings: [],
-		accusedopenents: []
-	},
-	methods: {
-		fetchIssueInfo: function fetchIssueInfo() {
-			var _this = this;
-
-			axios.get(window.location.pathname).then(function (response) {
-				return _this.assignData(response);
-			});
-		},
-		assignData: function assignData(response) {
-			this.issue = response.data.issue;
-			this.openents = response.data.openents;
-			this.people = response.data.people;
-			this.fetchIssueMeetings();
-		},
-		fetchIssueFiles: function fetchIssueFiles() {
-			var _this2 = this;
-
-			axios.get(window.location.pathname + '/files').then(function (response) {
-				return _this2.assignFilesData(response);
-			});
-		},
-		assignFilesData: function assignFilesData(response) {
-			this.issue = response.data.issue;
-			this.files = response.data.files;
-		},
-		fetchIssueMeetings: function fetchIssueMeetings() {
-			var _this3 = this;
-
-			axios.get(window.location.pathname + '/meetings').then(function (response) {
-				return _this3.assignMeetingsData(response);
-			});
-		},
-		assignMeetingsData: function assignMeetingsData(response) {
-			this.meetings = response.data.meetings;
-			this.accusedopenents = response.data.accusedOpenents;
-		}
-	},
-	components: {
-		issueInfo: _issueInfo2.default,
-		issueOpenents: _issueOpenents2.default,
-		issueFiles: _issueFiles2.default,
-		issueMeetings: _issueMeetings2.default
-	},
-	created: function created() {
-		var _this4 = this;
-
-		this.fetchIssueInfo();
-		eventBus.$on('refetchIssueInfo', function (event) {
-			return _this4.fetchIssueInfo();
-		});
-
-		this.fetchIssueFiles();
-		eventBus.$on('refetchIssueFiles', function (event) {
-			return _this4.fetchIssueFiles();
-		});
-
-		eventBus.$on('refetchIssueMeetings', function (event) {
-			return _this4.fetchIssueMeetings();
-		});
-	}
-});
-
-toastr.options = {
-	"positionClass": "toast-bottom-right"
-};
-
-/***/ }),
-/* 188 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var Component = __webpack_require__(11)(
-  /* script */
-  __webpack_require__(189),
-  /* template */
-  __webpack_require__(190),
-  /* styles */
-  null,
-  /* scopeId */
-  null,
-  /* moduleIdentifier (server only) */
-  null
-)
-Component.options.__file = "D:\\www\\law-office\\resources\\assets\\js\\components\\issue\\issueInfo.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] issueInfo.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-70ee9146", Component.options)
-  } else {
-    hotAPI.reload("data-v-70ee9146", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 189 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _editIssue = __webpack_require__(134);
-
-var _editIssue2 = _interopRequireDefault(_editIssue);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = {
-  props: ['issue'],
-  methods: {
-    refreshIssueData: function refreshIssueData() {
-      eventBus.$emit('refetchIssueInfo');
-    },
-    editIssue: function editIssue(issue) {
-      eventBus.$emit('editIssue', issue);
-      $('#editIssue').modal('show');
-    },
-    afterIssueUpdated: function afterIssueUpdated(response) {
-      $('#editIssue').modal('hide');
-      toastr.info(response.message);
-      this.refreshIssueData();
-    },
-    deleteIssue: function deleteIssue(issue) {
-      var _this = this;
-
-      if (confirm('هل انت متاكد من حذف هذه القضية')) {
-        axios.delete('/issues/' + issue.id).then(function (response) {
-          return _this.onIssueDelete(response);
-        });
-      }
-    },
-    onIssueDelete: function onIssueDelete(response) {
-      toastr.warning(response.data.message);
-      window.location.replace('/issues');
-    },
-    printPage: function printPage() {
-      $('.print-hidden').hide();
-      $('.btn').hide();
-      window.print();
-      $('.print-hidden').show();
-      $('.btn').show();
-    },
-    issueType: function issueType() {
-      var type = this.issue.type;
-      switch (type) {
-        case 1:
-          return 'جـنــح';break;
-        case 2:
-          return 'جـنــايــات';break;
-        case 3:
-          return 'مــخــالفــات';break;
-        case 4:
-          return 'أدارى';break;
-        case 5:
-          return 'مــدنـى جــزئى';break;
-        case 6:
-          return 'مــدنـى كــلـى';break;
-        case 7:
-          return 'صــحــة توقيــع';break;
-        case 8:
-          return 'أســـرة';break;
-        case 9:
-          return 'وراثــــات';break;
-        case 10:
-          return 'تـجـــارى';break;
-        case 11:
-          return 'أدارى(مجلــس الدولة)';break;
-        case 12:
-          return 'اقتصـــادية';break;
-      }
-    }
-  },
-  components: {
-    editIssue: _editIssue2.default
-  },
-  mounted: function mounted() {
-    var _this2 = this;
-
-    eventBus.$on('IssueUpdated', function (response) {
-      return _this2.afterIssueUpdated(response);
-    });
-  }
-};
-
-/***/ }),
-/* 190 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "card text-center mr-auto"
-  }, [_c('div', {
-    staticClass: "card-header"
-  }, [_c('h4', {
-    staticClass: "card-title"
-  }, [_vm._v("\n  بيانات القضية\n  "), _c('span'), _vm._v(" "), _c('button', {
-    staticClass: "btn pull-left btn-success",
-    on: {
-      "click": _vm.printPage
-    }
-  }, [_vm._v("طباعة الصفحة")])])]), _vm._v(" "), _c('div', {
-    staticClass: "panel-body"
-  }, [_c('table', {
-    staticClass: "table table-striped table-bordered table-responsive"
-  }, [_c('tbody', [_vm._m(0), _vm._v(" "), _c('tr', [_c('td', [_c('span', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.issue.number),
-      expression: "issue.number"
-    }]
-  }, [_vm._v("\n                " + _vm._s(_vm.issue.number) + " لسنة " + _vm._s(_vm.issue.year) + " " + _vm._s(_vm.issueType()) + "\n              ")])]), _vm._v(" "), _c('td', [_c('span', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.issue.adv_number),
-      expression: "issue.adv_number"
-    }]
-  }, [_vm._v("\n                " + _vm._s(_vm.issue.adv_number) + " لسنة " + _vm._s(_vm.issue.adv_year) + " س\n              ")])]), _vm._v(" "), _c('td', [_vm._v("\n            " + _vm._s(_vm.issue.court) + " \n              "), _c('span', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.issue.room),
-      expression: "issue.room"
-    }]
-  }, [_vm._v("\n                - الدائــرة " + _vm._s(_vm.issue.room) + "\n              ")])]), _vm._v(" "), _c('td', [_vm._v(_vm._s(_vm.issue.subject))])])])]), _vm._v(" "), _c('div', {
-    staticClass: "mr-auto card-footer"
-  }, [_c('button', {
-    staticClass: "btn btn-info",
-    on: {
-      "click": function($event) {
-        _vm.editIssue(_vm.issue)
-      }
-    }
-  }, [_vm._v("تعديل البيانات")]), _vm._v(" "), _c('button', {
-    staticClass: "btn btn-danger",
-    on: {
-      "click": function($event) {
-        _vm.deleteIssue(_vm.issue)
-      }
-    }
-  }, [_vm._v("حذف القضية")])])]), _vm._v(" "), _c('edit-issue')], 1)
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('tr', [_c('th', [_vm._v("رقم الدعـــوى")]), _vm._v(" "), _c('th', [_vm._v("رقم الأستئـــناف")]), _vm._v(" "), _c('th', [_vm._v("المحكمة")]), _vm._v(" "), _c('th', [_vm._v("موضــــوع الدعـــوى")])])
-}]}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-70ee9146", module.exports)
-  }
-}
-
-/***/ }),
-/* 191 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var Component = __webpack_require__(11)(
-  /* script */
-  __webpack_require__(192),
-  /* template */
-  __webpack_require__(203),
-  /* styles */
-  null,
-  /* scopeId */
-  null,
-  /* moduleIdentifier (server only) */
-  null
-)
-Component.options.__file = "D:\\www\\law-office\\resources\\assets\\js\\components\\issue\\issueOpenents.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] issueOpenents.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-7c585e6c", Component.options)
-  } else {
-    hotAPI.reload("data-v-7c585e6c", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 192 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _addOpenent = __webpack_require__(193);
-
-var _addOpenent2 = _interopRequireDefault(_addOpenent);
-
-var _editOpenent = __webpack_require__(198);
-
-var _editOpenent2 = _interopRequireDefault(_editOpenent);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = {
-  props: ['issue', 'people', 'openents'],
-  methods: {
-    refreshIssueData: function refreshIssueData() {
-      eventBus.$emit('refetchIssueInfo');
-    },
-    afterOpenentAdded: function afterOpenentAdded(response) {
-      $('#addOpenent').modal('hide');
-      toastr.success(response.message);
-      this.refreshIssueData();
-    },
-    editOpenent: function editOpenent(openent) {
-      eventBus.$emit('editOpenent', openent);
-      $('#editOpenent').modal('show');
-    },
-    afterOpenentUpdated: function afterOpenentUpdated(response) {
-      $('#editOpenent').modal('hide');
-      toastr.info(response.message);
-      this.refreshIssueData();
-    },
-    deleteOpenent: function deleteOpenent(openent) {
-      var _this = this;
-
-      if (confirm('هل انت متاكد من حذف هذا الخصم؟')) {
-        axios.delete('/issues/' + this.issue.id + '/openents/' + openent.id).then(function (response) {
-          return _this.onOpenentDelete(response);
-        });
-      }
-    },
-    onOpenentDelete: function onOpenentDelete(response) {
-      toastr.warning(response.data.message);
-      this.refreshIssueData();
-    },
-    openentType: function openentType(openent) {
-      var type = openent.pivot.person_type;
-      switch (type) {
-        case 1:
-          return "مــتــهــم";break;
-        case 2:
-          return "مجنى عليه";break;
-        case 3:
-          return "مدعى بالحق المدنى";break;
-        case 4:
-          return "مدعى";break;
-        case 5:
-          return "مدعى عليه";break;
-        case 6:
-          return "شــاكى";break;
-        case 7:
-          return "مشكو فى حقه";break;
-      }
-    },
-    contractType: function contractType(contract) {
-      var type = contract.type;
-      switch (type) {
-        case 1:
-          return "ت . ع";break;
-        case 2:
-          return "ت . خ";break;
-        case 3:
-          return "ع . و";break;
-      }
-    },
-    clientCheck: function clientCheck(openent) {
-      if (openent.is_client) {
-        return '(موكل)';
-      }
-    }
-  },
-  components: {
-    'add-openent': _addOpenent2.default,
-    'edit-openent': _editOpenent2.default
-  },
-  mounted: function mounted() {
-    var _this2 = this;
-
-    eventBus.$on('openentAdded', function (response) {
-      return _this2.afterOpenentAdded(response);
-    });
-    eventBus.$on('openentUpdated', function (response) {
-      return _this2.afterOpenentUpdated(response);
-    });
-  }
-};
-
-/***/ }),
-/* 193 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(194)
-}
-var Component = __webpack_require__(11)(
-  /* script */
-  __webpack_require__(196),
-  /* template */
-  __webpack_require__(197),
-  /* styles */
-  injectStyle,
-  /* scopeId */
-  null,
-  /* moduleIdentifier (server only) */
-  null
-)
-Component.options.__file = "D:\\www\\law-office\\resources\\assets\\js\\components\\issue\\addOpenent.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] addOpenent.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-caa1561e", Component.options)
-  } else {
-    hotAPI.reload("data-v-caa1561e", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 194 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(195);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(120)("3933bd16", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../css-loader/index.js!../../vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-caa1561e\",\"scoped\":false,\"hasInlineConfig\":true}!./vue-multiselect.min.css", function() {
-     var newContent = require("!!../../css-loader/index.js!../../vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-caa1561e\",\"scoped\":false,\"hasInlineConfig\":true}!./vue-multiselect.min.css");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 195 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(116)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, "\nfieldset[disabled] .multiselect{pointer-events:none\n}\n.multiselect__spinner{position:absolute;right:1px;top:1px;width:48px;height:35px;background:#fff;display:block\n}\n.multiselect__spinner:after,.multiselect__spinner:before{position:absolute;content:\"\";top:50%;left:50%;margin:-8px 0 0 -8px;width:16px;height:16px;border-radius:100%;border-color:#41b883 transparent transparent;border-style:solid;border-width:2px;box-shadow:0 0 0 1px transparent\n}\n.multiselect__spinner:before{animation:a 2.4s cubic-bezier(.41,.26,.2,.62);animation-iteration-count:infinite\n}\n.multiselect__spinner:after{animation:a 2.4s cubic-bezier(.51,.09,.21,.8);animation-iteration-count:infinite\n}\n.multiselect__loading-enter-active,.multiselect__loading-leave-active{transition:opacity .4s ease-in-out;opacity:1\n}\n.multiselect__loading-enter,.multiselect__loading-leave-active{opacity:0\n}\n.multiselect,.multiselect__input,.multiselect__single{font-family:inherit;font-size:14px;-ms-touch-action:manipulation;touch-action:manipulation\n}\n.multiselect{box-sizing:content-box;display:block;position:relative;width:100%;min-height:40px;text-align:left;color:#35495e\n}\n.multiselect *{box-sizing:border-box\n}\n.multiselect:focus{outline:none\n}\n.multiselect--disabled{opacity:.6\n}\n.multiselect--active{z-index:1\n}\n.multiselect--active:not(.multiselect--above) .multiselect__current,.multiselect--active:not(.multiselect--above) .multiselect__input,.multiselect--active:not(.multiselect--above) .multiselect__tags{border-bottom-left-radius:0;border-bottom-right-radius:0\n}\n.multiselect--active .multiselect__select{transform:rotate(180deg)\n}\n.multiselect--above.multiselect--active .multiselect__current,.multiselect--above.multiselect--active .multiselect__input,.multiselect--above.multiselect--active .multiselect__tags{border-top-left-radius:0;border-top-right-radius:0\n}\n.multiselect__input,.multiselect__single{position:relative;display:inline-block;min-height:20px;line-height:20px;border:none;border-radius:5px;background:#fff;padding:1px 0 0 5px;width:100%;transition:border .1s ease;box-sizing:border-box;margin-bottom:8px\n}\n.multiselect__tag~.multiselect__input,.multiselect__tag~.multiselect__single{width:auto\n}\n.multiselect__input:hover,.multiselect__single:hover{border-color:#cfcfcf\n}\n.multiselect__input:focus,.multiselect__single:focus{border-color:#a8a8a8;outline:none\n}\n.multiselect__single{padding-left:6px;margin-bottom:8px\n}\n.multiselect__tags-wrap{display:inline\n}\n.multiselect__tags{min-height:40px;display:block;padding:8px 40px 0 8px;border-radius:5px;border:1px solid #e8e8e8;background:#fff\n}\n.multiselect__tag{position:relative;display:inline-block;padding:4px 26px 4px 10px;border-radius:5px;margin-right:10px;color:#fff;line-height:1;background:#41b883;margin-bottom:8px;white-space:nowrap\n}\n.multiselect__tag-icon{cursor:pointer;margin-left:7px;position:absolute;right:0;top:0;bottom:0;font-weight:700;font-style:normal;width:22px;text-align:center;line-height:22px;transition:all .2s ease;border-radius:5px\n}\n.multiselect__tag-icon:after{content:\"\\D7\";color:#266d4d;font-size:14px\n}\n.multiselect__tag-icon:focus,.multiselect__tag-icon:hover{background:#369a6e\n}\n.multiselect__tag-icon:focus:after,.multiselect__tag-icon:hover:after{color:#fff\n}\n.multiselect__current{min-height:40px;overflow:hidden;padding:8px 12px 0;padding-right:30px;white-space:nowrap;border-radius:5px;border:1px solid #e8e8e8\n}\n.multiselect__current,.multiselect__select{line-height:16px;box-sizing:border-box;display:block;margin:0;text-decoration:none;cursor:pointer\n}\n.multiselect__select{position:absolute;width:40px;height:38px;right:1px;top:1px;padding:4px 8px;text-align:center;transition:transform .2s ease\n}\n.multiselect__select:before{position:relative;right:0;top:65%;color:#999;margin-top:4px;border-style:solid;border-width:5px 5px 0;border-color:#999 transparent transparent;content:\"\"\n}\n.multiselect__placeholder{color:#adadad;display:inline-block;margin-bottom:10px;padding-top:2px\n}\n.multiselect--active .multiselect__placeholder{display:none\n}\n.multiselect__content-wrapper{position:absolute;display:block;background:#fff;width:100%;max-height:240px;overflow:auto;border:1px solid #e8e8e8;border-top:none;border-bottom-left-radius:5px;border-bottom-right-radius:5px;z-index:1;-webkit-overflow-scrolling:touch\n}\n.multiselect__content{list-style:none;display:inline-block;padding:0;margin:0;min-width:100%;vertical-align:top\n}\n.multiselect--above .multiselect__content-wrapper{bottom:100%;border-bottom-left-radius:0;border-bottom-right-radius:0;border-top-left-radius:5px;border-top-right-radius:5px;border-bottom:none;border-top:1px solid #e8e8e8\n}\n.multiselect__content::webkit-scrollbar{display:none\n}\n.multiselect__element{display:block\n}\n.multiselect__option{display:block;padding:12px;min-height:40px;line-height:16px;text-decoration:none;text-transform:none;vertical-align:middle;position:relative;cursor:pointer;white-space:nowrap\n}\n.multiselect__option:after{top:0;right:0;position:absolute;line-height:40px;padding-right:12px;padding-left:20px\n}\n.multiselect__option--highlight{background:#41b883;outline:none;color:#fff\n}\n.multiselect__option--highlight:after{content:attr(data-select);background:#41b883;color:#fff\n}\n.multiselect__option--selected{background:#f3f3f3;color:#35495e;font-weight:700\n}\n.multiselect__option--selected:after{content:attr(data-selected);color:silver\n}\n.multiselect__option--selected.multiselect__option--highlight{background:#ff6a6a;color:#fff\n}\n.multiselect__option--selected.multiselect__option--highlight:after{background:#ff6a6a;content:attr(data-deselect);color:#fff\n}\n.multiselect--disabled{background:#ededed;pointer-events:none\n}\n.multiselect--disabled .multiselect__current,.multiselect--disabled .multiselect__select,.multiselect__option--disabled{background:#ededed;color:#a6a6a6\n}\n.multiselect__option--disabled{cursor:text;pointer-events:none\n}\n.multiselect__option--disabled.multiselect__option--highlight{background:#dedede!important\n}\n.multiselect-enter-active,.multiselect-leave-active{transition:all .15s ease\n}\n.multiselect-enter,.multiselect-leave-active{opacity:0\n}\n.multiselect__strong{margin-bottom:10px;display:inline-block\n}\n[dir=rtl] .multiselect{text-align:right\n}\n[dir=rtl] .multiselect__select{right:auto;left:1px\n}\n[dir=rtl] .multiselect__tags{padding:8px 8px 0 40px\n}\n[dir=rtl] .multiselect__content{text-align:right\n}\n[dir=rtl] .multiselect__option:after{right:auto;left:0\n}\n[dir=rtl] .multiselect__clear{right:auto;left:12px\n}\n[dir=rtl] .multiselect__spinner{right:auto;left:1px\n}\n@keyframes a{\n0%{transform:rotate(0)\n}\nto{transform:rotate(2turn)\n}\n}", ""]);
-
-// exports
-
-
-/***/ }),
-/* 196 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _vueMultiselect = __webpack_require__(125);
-
-var _vueMultiselect2 = _interopRequireDefault(_vueMultiselect);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = {
-    data: function data() {
-        return {
-            addOpenentForm: new Form({
-                person_type: '',
-                openent: ''
-            })
-        };
-    },
-
-    props: ['issue', 'people'],
-    methods: {
-        onOpenentAdd: function onOpenentAdd() {
-            this.addOpenentForm.post('/issues/' + this.issue.id + '/openents').then(function (response) {
-                return eventBus.$emit('openentAdded', response);
-            });
-        },
-        customLabel: function customLabel(option) {
-            return option.name + ' - ' + option.location;
-        }
-    },
-    components: { Multiselect: _vueMultiselect2.default }
-};
-
-/***/ }),
-/* 197 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "modal fade",
-    attrs: {
-      "id": "addOpenent",
-      "role": "dialog",
-      "aria-labelledby": "myModalLabel"
-    }
-  }, [_c('div', {
-    staticClass: "modal-dialog modal-lg",
-    attrs: {
-      "role": "document"
-    }
-  }, [_c('div', {
-    staticClass: "modal-content"
-  }, [_vm._m(0), _vm._v(" "), _c('div', {
-    staticClass: "modal-body"
-  }, [_c('form', {
-    attrs: {
-      "method": "POST",
-      "action": "/contracts"
-    },
-    on: {
-      "submit": function($event) {
-        $event.preventDefault();
-        _vm.onOpenentAdd($event)
-      },
-      "keydown": function($event) {
-        _vm.addOpenentForm.errors.clear($event.target.name)
-      },
-      "change": function($event) {
-        _vm.addOpenentForm.errors.clear($event.target.name)
-      },
-      "input": function($event) {
-        _vm.addOpenentForm.errors.clear($event.target.name)
-      }
-    }
-  }, [_c('div', {
-    staticClass: "form-group"
-  }, [_vm._m(1), _vm._v(" "), _c('multiselect', {
-    attrs: {
-      "name": "openent",
-      "id": "openent",
-      "options": _vm.people,
-      "track-by": "id",
-      "placeholder": "اختر الخصم",
-      "custom-label": _vm.customLabel
-    },
-    on: {
-      "input": function($event) {
-        _vm.addOpenentForm.errors.clear('openent')
-      }
-    },
-    model: {
-      value: (_vm.addOpenentForm.openent),
-      callback: function($$v) {
-        _vm.addOpenentForm.openent = $$v
-      },
-      expression: "addOpenentForm.openent"
-    }
-  }), _vm._v(" "), (_vm.addOpenentForm.errors.has('openent')) ? _c('span', {
-    staticClass: "alert-danger",
-    domProps: {
-      "textContent": _vm._s(_vm.addOpenentForm.errors.get('openent'))
-    }
-  }) : _vm._e()], 1), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
-  }, [_c('label', {
-    staticClass: "label",
-    attrs: {
-      "for": "person_type"
-    }
-  }, [_vm._v("صفة الخصم:")]), _vm._v(" "), _c('select', {
-    directives: [{
-      name: "model",
-      rawName: "v-model.number",
-      value: (_vm.addOpenentForm.person_type),
-      expression: "addOpenentForm.person_type",
-      modifiers: {
-        "number": true
-      }
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "name": "person_type",
-      "id": "person_type"
-    },
-    on: {
-      "change": function($event) {
-        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
-          return o.selected
-        }).map(function(o) {
-          var val = "_value" in o ? o._value : o.value;
-          return _vm._n(val)
-        });
-        _vm.addOpenentForm.person_type = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-      }
-    }
-  }, [(_vm.issue.type <= 3) ? _c('option', {
-    attrs: {
-      "value": "1"
-    }
-  }, [_vm._v("متـهـم")]) : _vm._e(), _vm._v(" "), (_vm.issue.type <= 3) ? _c('option', {
-    attrs: {
-      "value": "2"
-    }
-  }, [_vm._v("مجنى عليه")]) : _vm._e(), _vm._v(" "), (_vm.issue.type <= 3) ? _c('option', {
-    attrs: {
-      "value": "3"
-    }
-  }, [_vm._v("مدعى بالحق المدنى")]) : _vm._e(), _vm._v(" "), (_vm.issue.type >= 5) ? _c('option', {
-    attrs: {
-      "value": "4"
-    }
-  }, [_vm._v("مدعى")]) : _vm._e(), _vm._v(" "), (_vm.issue.type >= 5) ? _c('option', {
-    attrs: {
-      "value": "5"
-    }
-  }, [_vm._v("مدعى عليه")]) : _vm._e(), _vm._v(" "), (_vm.issue.type == 4) ? _c('option', {
-    attrs: {
-      "value": "6"
-    }
-  }, [_vm._v("شاكى")]) : _vm._e(), _vm._v(" "), (_vm.issue.type == 4) ? _c('option', {
-    attrs: {
-      "value": "7"
-    }
-  }, [_vm._v("مشكو فى حقه")]) : _vm._e()]), _vm._v(" "), (_vm.addOpenentForm.errors.has('person_type')) ? _c('span', {
-    staticClass: "alert-danger",
-    domProps: {
-      "textContent": _vm._s(_vm.addOpenentForm.errors.get('person_type'))
-    }
-  }) : _vm._e()]), _vm._v(" "), _c('div', {
-    staticClass: "form-group heading"
-  }, [_c('button', {
-    staticClass: "button btn-lg btn-success",
-    attrs: {
-      "disabled": _vm.addOpenentForm.errors.any()
-    }
-  }, [_vm._v("اضافة")])])])])])])])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "modal-header"
-  }, [_c('button', {
-    staticClass: "close",
-    attrs: {
-      "type": "button",
-      "data-dismiss": "modal",
-      "aria-label": "Close"
-    }
-  }, [_c('span', {
-    attrs: {
-      "aria-hidden": "true"
-    }
-  }, [_vm._v("×")])]), _vm._v(" "), _c('span', {
-    staticClass: "form-control-static pull-left"
-  }, [_c('h4', {
-    staticClass: "modal-title",
-    attrs: {
-      "id": "myModalLabel"
-    }
-  }, [_vm._v(" اضافة خصم فى قضية ")])])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('label', {
-    staticClass: "label",
-    attrs: {
-      "for": "openent"
-    }
-  }, [_vm._v("\n                الخصم: \n                "), _c('span', {
-    staticClass: "brown"
-  }, [_vm._v("يجب اضافة الخصم فى الاشخاص ليظهر هنا")])])
-}]}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-caa1561e", module.exports)
-  }
-}
-
-/***/ }),
-/* 198 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(199)
-}
-var Component = __webpack_require__(11)(
-  /* script */
-  __webpack_require__(201),
-  /* template */
-  __webpack_require__(202),
-  /* styles */
-  injectStyle,
-  /* scopeId */
-  null,
-  /* moduleIdentifier (server only) */
-  null
-)
-Component.options.__file = "D:\\www\\law-office\\resources\\assets\\js\\components\\issue\\editOpenent.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] editOpenent.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-790df154", Component.options)
-  } else {
-    hotAPI.reload("data-v-790df154", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 199 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(200);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(120)("4962fb93", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../css-loader/index.js!../../vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-790df154\",\"scoped\":false,\"hasInlineConfig\":true}!./vue-multiselect.min.css", function() {
-     var newContent = require("!!../../css-loader/index.js!../../vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-790df154\",\"scoped\":false,\"hasInlineConfig\":true}!./vue-multiselect.min.css");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 200 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(116)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, "\nfieldset[disabled] .multiselect{pointer-events:none\n}\n.multiselect__spinner{position:absolute;right:1px;top:1px;width:48px;height:35px;background:#fff;display:block\n}\n.multiselect__spinner:after,.multiselect__spinner:before{position:absolute;content:\"\";top:50%;left:50%;margin:-8px 0 0 -8px;width:16px;height:16px;border-radius:100%;border-color:#41b883 transparent transparent;border-style:solid;border-width:2px;box-shadow:0 0 0 1px transparent\n}\n.multiselect__spinner:before{animation:a 2.4s cubic-bezier(.41,.26,.2,.62);animation-iteration-count:infinite\n}\n.multiselect__spinner:after{animation:a 2.4s cubic-bezier(.51,.09,.21,.8);animation-iteration-count:infinite\n}\n.multiselect__loading-enter-active,.multiselect__loading-leave-active{transition:opacity .4s ease-in-out;opacity:1\n}\n.multiselect__loading-enter,.multiselect__loading-leave-active{opacity:0\n}\n.multiselect,.multiselect__input,.multiselect__single{font-family:inherit;font-size:14px;-ms-touch-action:manipulation;touch-action:manipulation\n}\n.multiselect{box-sizing:content-box;display:block;position:relative;width:100%;min-height:40px;text-align:left;color:#35495e\n}\n.multiselect *{box-sizing:border-box\n}\n.multiselect:focus{outline:none\n}\n.multiselect--disabled{opacity:.6\n}\n.multiselect--active{z-index:1\n}\n.multiselect--active:not(.multiselect--above) .multiselect__current,.multiselect--active:not(.multiselect--above) .multiselect__input,.multiselect--active:not(.multiselect--above) .multiselect__tags{border-bottom-left-radius:0;border-bottom-right-radius:0\n}\n.multiselect--active .multiselect__select{transform:rotate(180deg)\n}\n.multiselect--above.multiselect--active .multiselect__current,.multiselect--above.multiselect--active .multiselect__input,.multiselect--above.multiselect--active .multiselect__tags{border-top-left-radius:0;border-top-right-radius:0\n}\n.multiselect__input,.multiselect__single{position:relative;display:inline-block;min-height:20px;line-height:20px;border:none;border-radius:5px;background:#fff;padding:1px 0 0 5px;width:100%;transition:border .1s ease;box-sizing:border-box;margin-bottom:8px\n}\n.multiselect__tag~.multiselect__input,.multiselect__tag~.multiselect__single{width:auto\n}\n.multiselect__input:hover,.multiselect__single:hover{border-color:#cfcfcf\n}\n.multiselect__input:focus,.multiselect__single:focus{border-color:#a8a8a8;outline:none\n}\n.multiselect__single{padding-left:6px;margin-bottom:8px\n}\n.multiselect__tags-wrap{display:inline\n}\n.multiselect__tags{min-height:40px;display:block;padding:8px 40px 0 8px;border-radius:5px;border:1px solid #e8e8e8;background:#fff\n}\n.multiselect__tag{position:relative;display:inline-block;padding:4px 26px 4px 10px;border-radius:5px;margin-right:10px;color:#fff;line-height:1;background:#41b883;margin-bottom:8px;white-space:nowrap\n}\n.multiselect__tag-icon{cursor:pointer;margin-left:7px;position:absolute;right:0;top:0;bottom:0;font-weight:700;font-style:normal;width:22px;text-align:center;line-height:22px;transition:all .2s ease;border-radius:5px\n}\n.multiselect__tag-icon:after{content:\"\\D7\";color:#266d4d;font-size:14px\n}\n.multiselect__tag-icon:focus,.multiselect__tag-icon:hover{background:#369a6e\n}\n.multiselect__tag-icon:focus:after,.multiselect__tag-icon:hover:after{color:#fff\n}\n.multiselect__current{min-height:40px;overflow:hidden;padding:8px 12px 0;padding-right:30px;white-space:nowrap;border-radius:5px;border:1px solid #e8e8e8\n}\n.multiselect__current,.multiselect__select{line-height:16px;box-sizing:border-box;display:block;margin:0;text-decoration:none;cursor:pointer\n}\n.multiselect__select{position:absolute;width:40px;height:38px;right:1px;top:1px;padding:4px 8px;text-align:center;transition:transform .2s ease\n}\n.multiselect__select:before{position:relative;right:0;top:65%;color:#999;margin-top:4px;border-style:solid;border-width:5px 5px 0;border-color:#999 transparent transparent;content:\"\"\n}\n.multiselect__placeholder{color:#adadad;display:inline-block;margin-bottom:10px;padding-top:2px\n}\n.multiselect--active .multiselect__placeholder{display:none\n}\n.multiselect__content-wrapper{position:absolute;display:block;background:#fff;width:100%;max-height:240px;overflow:auto;border:1px solid #e8e8e8;border-top:none;border-bottom-left-radius:5px;border-bottom-right-radius:5px;z-index:1;-webkit-overflow-scrolling:touch\n}\n.multiselect__content{list-style:none;display:inline-block;padding:0;margin:0;min-width:100%;vertical-align:top\n}\n.multiselect--above .multiselect__content-wrapper{bottom:100%;border-bottom-left-radius:0;border-bottom-right-radius:0;border-top-left-radius:5px;border-top-right-radius:5px;border-bottom:none;border-top:1px solid #e8e8e8\n}\n.multiselect__content::webkit-scrollbar{display:none\n}\n.multiselect__element{display:block\n}\n.multiselect__option{display:block;padding:12px;min-height:40px;line-height:16px;text-decoration:none;text-transform:none;vertical-align:middle;position:relative;cursor:pointer;white-space:nowrap\n}\n.multiselect__option:after{top:0;right:0;position:absolute;line-height:40px;padding-right:12px;padding-left:20px\n}\n.multiselect__option--highlight{background:#41b883;outline:none;color:#fff\n}\n.multiselect__option--highlight:after{content:attr(data-select);background:#41b883;color:#fff\n}\n.multiselect__option--selected{background:#f3f3f3;color:#35495e;font-weight:700\n}\n.multiselect__option--selected:after{content:attr(data-selected);color:silver\n}\n.multiselect__option--selected.multiselect__option--highlight{background:#ff6a6a;color:#fff\n}\n.multiselect__option--selected.multiselect__option--highlight:after{background:#ff6a6a;content:attr(data-deselect);color:#fff\n}\n.multiselect--disabled{background:#ededed;pointer-events:none\n}\n.multiselect--disabled .multiselect__current,.multiselect--disabled .multiselect__select,.multiselect__option--disabled{background:#ededed;color:#a6a6a6\n}\n.multiselect__option--disabled{cursor:text;pointer-events:none\n}\n.multiselect__option--disabled.multiselect__option--highlight{background:#dedede!important\n}\n.multiselect-enter-active,.multiselect-leave-active{transition:all .15s ease\n}\n.multiselect-enter,.multiselect-leave-active{opacity:0\n}\n.multiselect__strong{margin-bottom:10px;display:inline-block\n}\n[dir=rtl] .multiselect{text-align:right\n}\n[dir=rtl] .multiselect__select{right:auto;left:1px\n}\n[dir=rtl] .multiselect__tags{padding:8px 8px 0 40px\n}\n[dir=rtl] .multiselect__content{text-align:right\n}\n[dir=rtl] .multiselect__option:after{right:auto;left:0\n}\n[dir=rtl] .multiselect__clear{right:auto;left:12px\n}\n[dir=rtl] .multiselect__spinner{right:auto;left:1px\n}\n@keyframes a{\n0%{transform:rotate(0)\n}\nto{transform:rotate(2turn)\n}\n}", ""]);
-
-// exports
-
-
-/***/ }),
-/* 201 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _vueMultiselect = __webpack_require__(125);
-
-var _vueMultiselect2 = _interopRequireDefault(_vueMultiselect);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = {
-    data: function data() {
-        return {
-            editOpenentForm: new Form({
-                person_type: '',
-                openent: '',
-                old_id: ''
-            })
-        };
-    },
-
-    props: ['issue', 'people'],
-    methods: {
-        onOpenentUpdate: function onOpenentUpdate() {
-            this.editOpenentForm.patch('/issues/' + this.issue.id + '/openents').then(function (response) {
-                return eventBus.$emit('openentUpdated', response);
-            });
-        },
-        editOpenentModal: function editOpenentModal(openent) {
-            this.editOpenentForm.reset();
-            this.editOpenentForm.openent = openent;
-            this.editOpenentForm.old_id = openent.id;
-            this.editOpenentForm.person_type = openent.pivot.person_type;
-        },
-        customLabel: function customLabel(option) {
-            return option.name + ' - ' + option.location;
-        }
-    },
-    created: function created() {
-        var _this = this;
-
-        eventBus.$on('editOpenent', function (openent) {
-            return _this.editOpenentModal(openent);
-        });
-    },
-
-    components: { Multiselect: _vueMultiselect2.default }
-};
-
-/***/ }),
-/* 202 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "modal fade",
-    attrs: {
-      "id": "editOpenent",
-      "role": "dialog",
-      "aria-labelledby": "myModalLabel"
-    }
-  }, [_c('div', {
-    staticClass: "modal-dialog modal-lg",
-    attrs: {
-      "role": "document"
-    }
-  }, [_c('div', {
-    staticClass: "modal-content"
-  }, [_vm._m(0), _vm._v(" "), _c('div', {
-    staticClass: "modal-body"
-  }, [_c('form', {
-    attrs: {
-      "method": "POST",
-      "action": "/"
-    },
-    on: {
-      "submit": function($event) {
-        $event.preventDefault();
-        _vm.onOpenentUpdate($event)
-      },
-      "keydown": function($event) {
-        _vm.editOpenentForm.errors.clear($event.target.name)
-      },
-      "change": function($event) {
-        _vm.editOpenentForm.errors.clear($event.target.name)
-      },
-      "input": function($event) {
-        _vm.editOpenentForm.errors.clear($event.target.name)
-      }
-    }
-  }, [_c('div', {
-    staticClass: "form-group"
-  }, [_vm._m(1), _vm._v(" "), _c('multiselect', {
-    attrs: {
-      "name": "openent",
-      "id": "openent",
-      "options": _vm.people,
-      "track-by": "id",
-      "placeholder": "اختر الخصم",
-      "custom-label": _vm.customLabel
-    },
-    on: {
-      "input": function($event) {
-        _vm.editOpenentForm.errors.clear('openent')
-      }
-    },
-    model: {
-      value: (_vm.editOpenentForm.openent),
-      callback: function($$v) {
-        _vm.editOpenentForm.openent = $$v
-      },
-      expression: "editOpenentForm.openent"
-    }
-  }), _vm._v(" "), (_vm.editOpenentForm.errors.has('openent')) ? _c('span', {
-    staticClass: "alert-danger",
-    domProps: {
-      "textContent": _vm._s(_vm.editOpenentForm.errors.get('openent'))
-    }
-  }) : _vm._e()], 1), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
-  }, [_c('label', {
-    staticClass: "label",
-    attrs: {
-      "for": "person_type"
-    }
-  }, [_vm._v("صفة الخصم:")]), _vm._v(" "), _c('select', {
-    directives: [{
-      name: "model",
-      rawName: "v-model.number",
-      value: (_vm.editOpenentForm.person_type),
-      expression: "editOpenentForm.person_type",
-      modifiers: {
-        "number": true
-      }
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "name": "person_type",
-      "id": "person_type"
-    },
-    on: {
-      "change": function($event) {
-        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
-          return o.selected
-        }).map(function(o) {
-          var val = "_value" in o ? o._value : o.value;
-          return _vm._n(val)
-        });
-        _vm.editOpenentForm.person_type = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-      }
-    }
-  }, [(_vm.issue.type <= 3) ? _c('option', {
-    attrs: {
-      "value": "1"
-    }
-  }, [_vm._v("متـهـم")]) : _vm._e(), _vm._v(" "), (_vm.issue.type <= 3) ? _c('option', {
-    attrs: {
-      "value": "2"
-    }
-  }, [_vm._v("مجنى عليه")]) : _vm._e(), _vm._v(" "), (_vm.issue.type <= 3) ? _c('option', {
-    attrs: {
-      "value": "3"
-    }
-  }, [_vm._v("مدعى بالحق المدنى")]) : _vm._e(), _vm._v(" "), (_vm.issue.type >= 5) ? _c('option', {
-    attrs: {
-      "value": "4"
-    }
-  }, [_vm._v("مدعى")]) : _vm._e(), _vm._v(" "), (_vm.issue.type >= 5) ? _c('option', {
-    attrs: {
-      "value": "5"
-    }
-  }, [_vm._v("مدعى عليه")]) : _vm._e(), _vm._v(" "), (_vm.issue.type == 4) ? _c('option', {
-    attrs: {
-      "value": "6"
-    }
-  }, [_vm._v("شاكى")]) : _vm._e(), _vm._v(" "), (_vm.issue.type == 4) ? _c('option', {
-    attrs: {
-      "value": "7"
-    }
-  }, [_vm._v("مشكو فى حقه")]) : _vm._e()]), _vm._v(" "), (_vm.editOpenentForm.errors.has('person_type')) ? _c('span', {
-    staticClass: "alert-danger",
-    domProps: {
-      "textContent": _vm._s(_vm.editOpenentForm.errors.get('person_type'))
-    }
-  }) : _vm._e()]), _vm._v(" "), _c('div', {
-    staticClass: "form-group heading"
-  }, [_c('button', {
-    staticClass: "button btn-lg btn-success",
-    attrs: {
-      "disabled": _vm.editOpenentForm.errors.any()
-    }
-  }, [_vm._v("تعديل")])])])])])])])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "modal-header"
-  }, [_c('button', {
-    staticClass: "close",
-    attrs: {
-      "type": "button",
-      "data-dismiss": "modal",
-      "aria-label": "Close"
-    }
-  }, [_c('span', {
-    attrs: {
-      "aria-hidden": "true"
-    }
-  }, [_vm._v("×")])]), _vm._v(" "), _c('span', {
-    staticClass: "form-control-static pull-left"
-  }, [_c('h4', {
-    staticClass: "modal-title",
-    attrs: {
-      "id": "myModalLabel"
-    }
-  }, [_vm._v(" تعديل خصم فى قضية ")])])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('label', {
-    staticClass: "label",
-    attrs: {
-      "for": "openent"
-    }
-  }, [_vm._v("\n                الخصم: \n                "), _c('span', {
-    staticClass: "brown"
-  }, [_vm._v("يجب اضافة الخصم فى الاشخاص ليظهر هنا")])])
-}]}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-790df154", module.exports)
-  }
-}
-
-/***/ }),
-/* 203 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "card text-center mr-auto"
-  }, [_vm._m(0), _vm._v(" "), _c('div', {
-    staticClass: "panel-body"
-  }, [_c('table', {
-    staticClass: "table table-striped table-bordered table-responsive"
-  }, [_c('tbody', [(_vm.openents.length) ? _c('tr', [_c('th', {
-    staticClass: "brown"
-  }, [_vm._v("الأسم")]), _vm._v(" "), _c('th', {
-    staticClass: "brown"
-  }, [_vm._v("التوكيل")]), _vm._v(" "), _c('th', {
-    staticClass: "brown"
-  }, [_vm._v("الصفة")])]) : _c('tr', [_c('td', {
-    attrs: {
-      "colspan": "2"
-    }
-  }, [_vm._v(" لا يوجد خصوم بعد ")])]), _vm._v(" "), _vm._l((_vm.openents), function(openent) {
-    return _c('tr', {
-      key: openent.id
-    }, [_c('td', [_vm._v("\n                " + _vm._s(openent.name) + " "), _c('span', {
-      staticClass: "green"
-    }, [_vm._v(_vm._s(_vm.clientCheck(openent)))]), _vm._v(" "), _c('button', {
-      staticClass: "btn btn-sm btn-danger pull-left",
-      on: {
-        "click": function($event) {
-          _vm.deleteOpenent(openent)
-        }
-      }
-    }, [_c('i', {
-      staticClass: "fa fa-times",
-      attrs: {
-        "aria-hidden": "true"
-      }
-    })]), _vm._v(" "), _c('button', {
-      staticClass: "btn btn-sm btn-info pull-left",
-      on: {
-        "click": function($event) {
-          _vm.editOpenent(openent)
-        }
-      }
-    }, [_c('i', {
-      staticClass: "fa fa-pencil-square-o",
-      attrs: {
-        "aria-hidden": "true"
-      }
-    })])]), _vm._v(" "), _c('td', [_c('ul', _vm._l((openent.contracts), function(contract) {
-      return _c('li', [_c('a', {
-        attrs: {
-          "href": '/contracts/' + contract.id
-        }
-      }, [_vm._v(_vm._s(contract.number) + " لسنة " + _vm._s(contract.year) + " " + _vm._s(_vm.contractType(contract)))])])
-    }))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(_vm.openentType(openent)))])])
-  })], 2)])]), _vm._v(" "), _c('add-openent', {
-    attrs: {
-      "issue": _vm.issue,
-      "people": _vm.people
-    }
-  }), _vm._v(" "), _c('edit-openent', {
-    attrs: {
-      "issue": _vm.issue,
-      "people": _vm.people
-    }
-  })], 1)
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "card-header"
-  }, [_c('h4', {
-    staticClass: "card-title"
-  }, [_vm._v("\n  خصوم القضية\n  "), _c('span'), _vm._v(" "), _c('button', {
-    staticClass: "btn pull-left btn-dark",
-    attrs: {
-      "data-toggle": "modal",
-      "data-target": "#addOpenent"
-    }
-  }, [_vm._v("اضافة خصم")])])])
-}]}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-7c585e6c", module.exports)
-  }
-}
-
-/***/ }),
-/* 204 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var Component = __webpack_require__(11)(
-  /* script */
-  __webpack_require__(205),
-  /* template */
-  __webpack_require__(206),
-  /* styles */
-  null,
-  /* scopeId */
-  null,
-  /* moduleIdentifier (server only) */
-  null
-)
-Component.options.__file = "D:\\www\\law-office\\resources\\assets\\js\\components\\issue\\files\\issueFiles.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] issueFiles.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-d750c732", Component.options)
-  } else {
-    hotAPI.reload("data-v-d750c732", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 205 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _fileUploader = __webpack_require__(141);
-
-var _fileUploader2 = _interopRequireDefault(_fileUploader);
-
-var _editFile = __webpack_require__(152);
-
-var _editFile2 = _interopRequireDefault(_editFile);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = {
-  props: ['issue', 'files'],
-  methods: {
-    fileAdded: function fileAdded() {
-      this.reloadData();
-      toastr.success('تم اضافة الملف بنجاح!');
-    },
-    editFile: function editFile(file) {
-      eventBus.$emit('editFile', file);
-      $('#editFile').modal('show');
-    },
-    afterFileUpdated: function afterFileUpdated(response) {
-      $('#editFile').modal('hide');
-      toastr.info(response.message);
-      this.reloadData();
-    },
-    reloadData: function reloadData() {
-      eventBus.$emit('refetchIssueFiles');
-    },
-    deleteFile: function deleteFile(file) {
-      var _this = this;
-
-      if (confirm('هل انت متاكد من حذف هذا الملف - لن تتمكن من استرجاعه فيما بعد!')) {
-        axios.delete('/files/' + file.id).then(function (response) {
-          return _this.onFileDelete(response);
-        });
-      }
-    },
-    onFileDelete: function onFileDelete(response) {
-      toastr.warning(response.data.message);
-      this.reloadData();
-    }
-  },
-  components: {
-    'file-uploader': _fileUploader2.default,
-    'edit-file': _editFile2.default
-  },
-  created: function created() {
-    var _this2 = this;
-
-    eventBus.$on('fileUploaded', function (event) {
-      return _this2.fileAdded();
-    });
-    eventBus.$on('fileUpdated', function (response) {
-      return _this2.afterFileUpdated(response);
-    });
-  }
-};
-
-/***/ }),
-/* 206 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "print-hidden",
-    attrs: {
-      "id": "issueFiles"
-    }
-  }, [_c('div', {
-    staticClass: "card text-center mr-auto"
-  }, [_vm._m(0), _vm._v(" "), _c('div', {
-    staticClass: "panel-body"
-  }, [(_vm.files.length) ? _c('table', {
-    staticClass: "table table-striped table-bordered table-responsive"
-  }, [_vm._m(1), _vm._v(" "), _c('tbody', _vm._l((_vm.files), function(file) {
-    return _c('tr', [_c('td', [_vm._v("\n                      " + _vm._s(file.name) + "\n                  ")]), _vm._v(" "), _c('td', [_vm._v("\n                      " + _vm._s(file.size) + " kb "), _c('br'), _vm._v("\n                      " + _vm._s(file.type) + "\n                  ")]), _vm._v(" "), _c('td', [_c('a', {
-      attrs: {
-        "target": "_blank",
-        "href": '/storage/' + file.link
-      }
-    }, [_vm._m(2, true)])]), _vm._v(" "), _c('td', [_c('button', {
-      staticClass: "btn btn-info",
-      on: {
-        "click": function($event) {
-          _vm.editFile(file)
-        }
-      }
-    }, [_c('i', {
-      staticClass: "fa fa-pencil-square-o",
-      attrs: {
-        "aria-hidden": "true"
-      }
-    })]), _vm._v(" "), _c('button', {
-      staticClass: "btn btn-danger",
-      on: {
-        "click": function($event) {
-          _vm.deleteFile(file)
-        }
-      }
-    }, [_c('i', {
-      staticClass: "fa fa-times",
-      attrs: {
-        "aria-hidden": "true"
-      }
-    })])])])
-  }))]) : _vm._e()])]), _vm._v(" "), _c('file-uploader'), _vm._v(" "), _c('edit-file')], 1)
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "card-header"
-  }, [_c('h4', {
-    staticClass: "card-title"
-  }, [_vm._v("\n              ملفات القضية\n              "), _c('button', {
-    staticClass: "btn pull-left btn-dark",
-    attrs: {
-      "data-toggle": "modal",
-      "data-target": "#fileUploader"
-    }
-  }, [_vm._v("اضافة ملف")])])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('thead', {
-    staticClass: "thead-inverse"
-  }, [_c('tr', [_c('th', {
-    attrs: {
-      "float": "right"
-    }
-  }, [_vm._v("\n                  اســـم الـمــستند\n                  ")]), _vm._v(" "), _c('th', [_vm._v("\n                  حــجـــمه - امتداده\n                  ")]), _vm._v(" "), _c('th', [_vm._v("\n                  استعراض وتحميل\n                  ")]), _vm._v(" "), _c('th', [_vm._v("\n                  الاعدادات\n                  ")])])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('button', [_c('i', {
-    staticClass: "fa fa-download",
-    attrs: {
-      "aria-hidden": "true"
-    }
-  })])
-}]}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-d750c732", module.exports)
-  }
-}
-
-/***/ }),
-/* 207 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var Component = __webpack_require__(11)(
-  /* script */
-  __webpack_require__(208),
-  /* template */
-  __webpack_require__(238),
-  /* styles */
-  null,
-  /* scopeId */
-  null,
-  /* moduleIdentifier (server only) */
-  null
-)
-Component.options.__file = "D:\\www\\law-office\\resources\\assets\\js\\components\\issue\\meetings\\issueMeetings.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] issueMeetings.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-237c354b", Component.options)
-  } else {
-    hotAPI.reload("data-v-237c354b", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 208 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _addMeeting = __webpack_require__(209);
-
-var _addMeeting2 = _interopRequireDefault(_addMeeting);
-
-var _editMeeting = __webpack_require__(212);
-
-var _editMeeting2 = _interopRequireDefault(_editMeeting);
-
-var _delayMeeting = __webpack_require__(155);
-
-var _delayMeeting2 = _interopRequireDefault(_delayMeeting);
-
-var _meetingJudgements = __webpack_require__(217);
-
-var _meetingJudgements2 = _interopRequireDefault(_meetingJudgements);
-
-var _addDecision = __webpack_require__(243);
-
-var _addDecision2 = _interopRequireDefault(_addDecision);
-
-var _editDecision = __webpack_require__(246);
-
-var _editDecision2 = _interopRequireDefault(_editDecision);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = {
-  props: ['issue', 'accusedopenents', 'meetings'],
-  methods: {
-    ownerOf: function ownerOf(meeting) {
-      if (meeting.person) {
-        return 'جلسة:' + meeting.person.name.slice(0, 12);
-      }
-    },
-    afterMeetingAdded: function afterMeetingAdded(response) {
-      eventBus.$emit('refetchIssueMeetings');
-      $('#addMeeting').modal('hide');
-      $('#addChallenge').modal('hide');
-      $('#addCriminalChallenge').modal('hide');
-      toastr.success(response.message);
-    },
-    editMeeting: function editMeeting(meeting) {
-      eventBus.$emit('editMeeting', meeting);
-      $('#editMeeting').modal('show');
-    },
-    afterMeetingUpdated: function afterMeetingUpdated(response) {
-      $('#editMeeting').modal('hide');
-      toastr.info(response.message);
-      eventBus.$emit('refetchIssueMeetings');
-    },
-    deleteMeeting: function deleteMeeting(meeting) {
-      var _this = this;
-
-      if (confirm('هل انت متاكد من حذف هذه الجـــلــــسة - لن تتمكن من استرجاعها فيما بعد!')) {
-        axios.delete('/meetings/' + meeting.id).then(function (response) {
-          return _this.onMeetingDelete(response);
-        });
-      }
-    },
-    onMeetingDelete: function onMeetingDelete(response) {
-      toastr.warning(response.data.message);
-      eventBus.$emit('refetchIssueMeetings');
-    },
-    delayMeeting: function delayMeeting(meeting) {
-      eventBus.$emit('delayMeeting', meeting);
-      $('#delayMeeting').modal('show');
-    },
-    afterMeetingDelayed: function afterMeetingDelayed(response) {
-      $('#delayMeeting').modal('hide');
-      toastr.info(response.message);
-      eventBus.$emit('refetchIssueMeetings');
-    },
-    afterJudgementAdded: function afterJudgementAdded(response) {
-      $('#addJudgement').modal('hide');
-      $('#addCriminalJudgement').modal('hide');
-      toastr.success(response.message);
-      eventBus.$emit('refetchIssueMeetings');
-    },
-    afterJudgementUpdated: function afterJudgementUpdated(response) {
-      $('#editJudgement').modal('hide');
-      $('#addAnnouncement').modal('hide');
-      toastr.info(response.message);
-      eventBus.$emit('refetchIssueMeetings');
-    },
-    afterJudgementDeleted: function afterJudgementDeleted(response) {
-      toastr.warning(response.data.message);
-      eventBus.$emit('refetchIssueMeetings');
-    },
-    afterDecisionAdded: function afterDecisionAdded() {
-      $('#addDecision').modal('hide');
-      toastr.success('تم اضافة القرار بنجاح');
-      eventBus.$emit('refetchIssueMeetings');
-    },
-    editDecision: function editDecision(meeting) {
-      eventBus.$emit('editDecision', meeting);
-      $('#editDecision').modal('show');
-    },
-    afterDecisionUpdated: function afterDecisionUpdated() {
-      $('#editDecision').modal('hide');
-      toastr.success('تم تحديث القرار بنجاح');
-      eventBus.$emit('refetchIssueMeetings');
-    },
-    deleteDecision: function deleteDecision(meeting) {
-      var _this2 = this;
-
-      if (confirm('هل انت متاكد من حذف هذا القرار - لن تتمكن من استرجاعه فيما بعد!')) {
-        axios.delete('/meetings/' + meeting.id).then(function (event) {
-          return _this2.onDecisionDelete();
-        });
-      }
-    },
-    onDecisionDelete: function onDecisionDelete() {
-      toastr.warning('تم حذف القرار بنجاح');
-      eventBus.$emit('refetchIssueMeetings');
-    }
-  },
-  components: {
-    addMeeting: _addMeeting2.default,
-    addDecision: _addDecision2.default,
-    editDecision: _editDecision2.default,
-    editMeeting: _editMeeting2.default,
-    delayMeeting: _delayMeeting2.default,
-    meetingJudgements: _meetingJudgements2.default
-  },
-  mounted: function mounted() {
-    var _this3 = this;
-
-    eventBus.$on('meetingAdded', function (response) {
-      return _this3.afterMeetingAdded(response);
-    });
-
-    eventBus.$on('DecisionAdded', function (event) {
-      return _this3.afterDecisionAdded();
-    });
-
-    eventBus.$on('decisionUpdated', function (event) {
-      return _this3.afterDecisionUpdated();
-    });
-
-    eventBus.$on('meetingUpdated', function (response) {
-      return _this3.afterMeetingUpdated(response);
-    });
-
-    eventBus.$on('meetingDelayed', function (response) {
-      return _this3.afterMeetingDelayed(response);
-    });
-
-    eventBus.$on('judgementAdded', function (response) {
-      return _this3.afterJudgementAdded(response);
-    });
-
-    eventBus.$on('judgementUpdated', function (response) {
-      return _this3.afterJudgementUpdated(response);
-    });
-
-    eventBus.$on('judgementDeleted', function (response) {
-      return _this3.afterJudgementDeleted(response);
-    });
-  }
-};
-
-/***/ }),
-/* 209 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var Component = __webpack_require__(11)(
-  /* script */
-  __webpack_require__(210),
-  /* template */
-  __webpack_require__(211),
-  /* styles */
-  null,
-  /* scopeId */
-  null,
-  /* moduleIdentifier (server only) */
-  null
-)
-Component.options.__file = "D:\\www\\law-office\\resources\\assets\\js\\components\\issue\\meetings\\addMeeting.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] addMeeting.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-b60f8ce0", Component.options)
-  } else {
-    hotAPI.reload("data-v-b60f8ce0", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 210 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _vueFlatpickrComponent = __webpack_require__(117);
-
-var _vueFlatpickrComponent2 = _interopRequireDefault(_vueFlatpickrComponent);
-
-__webpack_require__(118);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Arabic = __webpack_require__(119).ar;
-
-exports.default = {
-    data: function data() {
-        return {
-            addMeetingForm: new Form({
-                person_id: '',
-                parent_id: '',
-                judgement_id: '',
-                level: 1,
-                role: '',
-                date: '',
-                decision: '',
-                notes: ''
-            }),
-            config: {
-                locale: Arabic
-            }
-        };
-    },
-
-    methods: {
-        onMeetingCreate: function onMeetingCreate() {
-            this.addMeetingForm.post(window.location.pathname + '/meetings').then(function (response) {
-                return eventBus.$emit('meetingAdded', response);
-            });
-        }
-    },
-    components: {
-        flatPickr: _vueFlatpickrComponent2.default
-    }
-
-};
-
-/***/ }),
-/* 211 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "modal fade",
-    attrs: {
-      "id": "addMeeting",
-      "role": "dialog",
-      "aria-labelledby": "myModalLabel"
-    }
-  }, [_c('div', {
-    staticClass: "modal-dialog",
-    attrs: {
-      "role": "document"
-    }
-  }, [_c('div', {
-    staticClass: "modal-content"
-  }, [_vm._m(0), _vm._v(" "), _c('div', {
-    staticClass: "modal-body"
-  }, [_c('form', {
-    attrs: {
-      "method": "POST",
-      "action": "/people"
-    },
-    on: {
-      "submit": function($event) {
-        $event.preventDefault();
-        _vm.onMeetingCreate($event)
-      },
-      "keydown": function($event) {
-        _vm.addMeetingForm.errors.clear($event.target.name)
-      },
-      "change": function($event) {
-        _vm.addMeetingForm.errors.clear($event.target.name)
-      },
-      "input": function($event) {
-        _vm.addMeetingForm.errors.clear($event.target.name)
-      }
-    }
-  }, [_c('div', {
-    staticClass: "form-group"
-  }, [_c('label', {
-    staticClass: "label",
-    attrs: {
-      "for": "role"
-    }
-  }, [_vm._v("رقم الرول:")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.addMeetingForm.role),
-      expression: "addMeetingForm.role"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "type": "text",
-      "id": "role",
-      "name": "role"
-    },
-    domProps: {
-      "value": (_vm.addMeetingForm.role)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.addMeetingForm.role = $event.target.value
-      }
-    }
-  }), _vm._v(" "), (_vm.addMeetingForm.errors.has('role')) ? _c('span', {
-    staticClass: "alert-danger",
-    domProps: {
-      "textContent": _vm._s(_vm.addMeetingForm.errors.get('role'))
-    }
-  }) : _vm._e()]), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
-  }, [_c('label', {
-    staticClass: "label",
-    attrs: {
-      "for": "date"
-    }
-  }, [_vm._v("التاريخ:")]), _vm._v(" "), _c('flat-pickr', {
-    attrs: {
-      "name": "date",
-      "config": _vm.config,
-      "placeholder": "اختر تاريخ الجلــسة"
-    },
-    model: {
-      value: (_vm.addMeetingForm.date),
-      callback: function($$v) {
-        _vm.addMeetingForm.date = $$v
-      },
-      expression: "addMeetingForm.date"
-    }
-  }), _vm._v(" "), (_vm.addMeetingForm.errors.has('date')) ? _c('span', {
-    staticClass: "alert-danger",
-    domProps: {
-      "textContent": _vm._s(_vm.addMeetingForm.errors.get('date'))
-    }
-  }) : _vm._e()], 1), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
-  }, [_c('label', {
-    staticClass: "label",
-    attrs: {
-      "for": "decision"
-    }
-  }, [_vm._v("القرار:")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.addMeetingForm.decision),
-      expression: "addMeetingForm.decision"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "type": "text",
-      "id": "decision",
-      "name": "decision"
-    },
-    domProps: {
-      "value": (_vm.addMeetingForm.decision)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.addMeetingForm.decision = $event.target.value
-      }
-    }
-  }), _vm._v(" "), (_vm.addMeetingForm.errors.has('decision')) ? _c('span', {
-    staticClass: "alert-danger",
-    domProps: {
-      "textContent": _vm._s(_vm.addMeetingForm.errors.get('decision'))
-    }
-  }) : _vm._e()]), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
-  }, [_c('label', {
-    staticClass: "label",
-    attrs: {
-      "for": "notes"
-    }
-  }, [_vm._v("ملاحظات:")]), _vm._v(" "), _c('textarea', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.addMeetingForm.notes),
-      expression: "addMeetingForm.notes"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "type": "text",
-      "id": "notes",
-      "name": "notes",
-      "rows": "5"
-    },
-    domProps: {
-      "value": (_vm.addMeetingForm.notes)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.addMeetingForm.notes = $event.target.value
-      }
-    }
-  }), _vm._v(" "), (_vm.addMeetingForm.errors.has('notes')) ? _c('span', {
-    staticClass: "alert-danger",
-    domProps: {
-      "textContent": _vm._s(_vm.addMeetingForm.errors.get('notes'))
-    }
-  }) : _vm._e()]), _vm._v(" "), _c('div', {
-    staticClass: "form-group heading"
-  }, [_c('button', {
-    staticClass: "button btn-lg btn-success",
-    attrs: {
-      "disabled": _vm.addMeetingForm.errors.any()
-    }
-  }, [_vm._v("اضافة")])])])])])])])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "modal-header"
-  }, [_c('button', {
-    staticClass: "close",
-    attrs: {
-      "type": "button",
-      "data-dismiss": "modal",
-      "aria-label": "Close"
-    }
-  }, [_c('span', {
-    attrs: {
-      "aria-hidden": "true"
-    }
-  }, [_vm._v("×")])]), _vm._v(" "), _c('span', {
-    staticClass: "form-control-static pull-left"
-  }, [_c('h4', {
-    staticClass: "modal-title",
-    attrs: {
-      "id": "myModalLabel"
-    }
-  }, [_vm._v(" اضافة جلـــسة ")])])])
-}]}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-b60f8ce0", module.exports)
-  }
-}
-
-/***/ }),
-/* 212 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var Component = __webpack_require__(11)(
-  /* script */
-  __webpack_require__(213),
-  /* template */
-  __webpack_require__(214),
+  __webpack_require__(157),
   /* styles */
   null,
   /* scopeId */
@@ -38288,7 +36311,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 213 */
+/* 156 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38362,7 +36385,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 214 */
+/* 157 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -38566,6 +36589,1983 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
      require("vue-hot-reload-api").rerender("data-v-0dcae90b", module.exports)
+  }
+}
+
+/***/ }),
+/* 158 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(11)(
+  /* script */
+  __webpack_require__(215),
+  /* template */
+  __webpack_require__(216),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "D:\\www\\law-office\\resources\\assets\\js\\components\\issue\\meetings\\delayMeeting.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] delayMeeting.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-3ff307ee", Component.options)
+  } else {
+    hotAPI.reload("data-v-3ff307ee", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 159 */,
+/* 160 */,
+/* 161 */,
+/* 162 */,
+/* 163 */,
+/* 164 */,
+/* 165 */,
+/* 166 */,
+/* 167 */,
+/* 168 */,
+/* 169 */,
+/* 170 */,
+/* 171 */,
+/* 172 */,
+/* 173 */,
+/* 174 */,
+/* 175 */,
+/* 176 */,
+/* 177 */,
+/* 178 */,
+/* 179 */,
+/* 180 */,
+/* 181 */,
+/* 182 */,
+/* 183 */,
+/* 184 */,
+/* 185 */,
+/* 186 */,
+/* 187 */,
+/* 188 */,
+/* 189 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(190);
+
+
+/***/ }),
+/* 190 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _Form = __webpack_require__(48);
+
+var _Form2 = _interopRequireDefault(_Form);
+
+var _jquery = __webpack_require__(42);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+var _bootstrap = __webpack_require__(92);
+
+var _bootstrap2 = _interopRequireDefault(_bootstrap);
+
+var _issueInfo = __webpack_require__(191);
+
+var _issueInfo2 = _interopRequireDefault(_issueInfo);
+
+var _issueOpenents = __webpack_require__(194);
+
+var _issueOpenents2 = _interopRequireDefault(_issueOpenents);
+
+var _issueFiles = __webpack_require__(207);
+
+var _issueFiles2 = _interopRequireDefault(_issueFiles);
+
+var _issueMeetings = __webpack_require__(210);
+
+var _issueMeetings2 = _interopRequireDefault(_issueMeetings);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+__webpack_require__(93);
+
+window.Vue = __webpack_require__(114);
+
+window.Form = _Form2.default;
+
+window.toastr = __webpack_require__(90);
+
+
+window.eventBus = new Vue();
+
+var issueProfile = new Vue({
+	el: '#issueProfile',
+	data: {
+		issue: {},
+		openents: [],
+		people: [],
+		files: [],
+		meetings: [],
+		accusedopenents: []
+	},
+	methods: {
+		fetchIssueInfo: function fetchIssueInfo() {
+			var _this = this;
+
+			axios.get(window.location.pathname).then(function (response) {
+				return _this.assignData(response);
+			});
+		},
+		assignData: function assignData(response) {
+			this.issue = response.data.issue;
+			this.openents = response.data.openents;
+			this.people = response.data.people;
+			this.fetchIssueMeetings();
+		},
+		fetchIssueFiles: function fetchIssueFiles() {
+			var _this2 = this;
+
+			axios.get(window.location.pathname + '/files').then(function (response) {
+				return _this2.assignFilesData(response);
+			});
+		},
+		assignFilesData: function assignFilesData(response) {
+			this.issue = response.data.issue;
+			this.files = response.data.files;
+		},
+		fetchIssueMeetings: function fetchIssueMeetings() {
+			var _this3 = this;
+
+			axios.get(window.location.pathname + '/meetings').then(function (response) {
+				return _this3.assignMeetingsData(response);
+			});
+		},
+		assignMeetingsData: function assignMeetingsData(response) {
+			this.meetings = response.data.meetings;
+			this.accusedopenents = response.data.accusedOpenents;
+		}
+	},
+	components: {
+		issueInfo: _issueInfo2.default,
+		issueOpenents: _issueOpenents2.default,
+		issueFiles: _issueFiles2.default,
+		issueMeetings: _issueMeetings2.default
+	},
+	created: function created() {
+		var _this4 = this;
+
+		this.fetchIssueInfo();
+		eventBus.$on('refetchIssueInfo', function (event) {
+			return _this4.fetchIssueInfo();
+		});
+
+		this.fetchIssueFiles();
+		eventBus.$on('refetchIssueFiles', function (event) {
+			return _this4.fetchIssueFiles();
+		});
+
+		eventBus.$on('refetchIssueMeetings', function (event) {
+			return _this4.fetchIssueMeetings();
+		});
+	}
+});
+
+toastr.options = {
+	"positionClass": "toast-bottom-right"
+};
+
+/***/ }),
+/* 191 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(11)(
+  /* script */
+  __webpack_require__(192),
+  /* template */
+  __webpack_require__(193),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "D:\\www\\law-office\\resources\\assets\\js\\components\\issue\\issueInfo.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] issueInfo.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-70ee9146", Component.options)
+  } else {
+    hotAPI.reload("data-v-70ee9146", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 192 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _editIssue = __webpack_require__(138);
+
+var _editIssue2 = _interopRequireDefault(_editIssue);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  props: ['issue'],
+  methods: {
+    refreshIssueData: function refreshIssueData() {
+      eventBus.$emit('refetchIssueInfo');
+    },
+    editIssue: function editIssue(issue) {
+      eventBus.$emit('editIssue', issue);
+      $('#editIssue').modal('show');
+    },
+    afterIssueUpdated: function afterIssueUpdated(response) {
+      $('#editIssue').modal('hide');
+      toastr.info(response.message);
+      this.refreshIssueData();
+    },
+    deleteIssue: function deleteIssue(issue) {
+      var _this = this;
+
+      if (confirm('هل انت متاكد من حذف هذه القضية')) {
+        axios.delete('/issues/' + issue.id).then(function (response) {
+          return _this.onIssueDelete(response);
+        });
+      }
+    },
+    onIssueDelete: function onIssueDelete(response) {
+      toastr.warning(response.data.message);
+      window.location.replace('/issues');
+    },
+    printPage: function printPage() {
+      $('.print-hidden').hide();
+      $('.btn').hide();
+      window.print();
+      $('.print-hidden').show();
+      $('.btn').show();
+    },
+    issueType: function issueType() {
+      var type = this.issue.type;
+      switch (type) {
+        case 1:
+          return 'جـنــح';break;
+        case 2:
+          return 'جـنــايــات';break;
+        case 3:
+          return 'مــخــالفــات';break;
+        case 4:
+          return 'أدارى';break;
+        case 5:
+          return 'مــدنـى جــزئى';break;
+        case 6:
+          return 'مــدنـى كــلـى';break;
+        case 7:
+          return 'صــحــة توقيــع';break;
+        case 8:
+          return 'أســـرة';break;
+        case 9:
+          return 'وراثــــات';break;
+        case 10:
+          return 'تـجـــارى';break;
+        case 11:
+          return 'أدارى(مجلــس الدولة)';break;
+        case 12:
+          return 'اقتصـــادية';break;
+      }
+    }
+  },
+  components: {
+    editIssue: _editIssue2.default
+  },
+  mounted: function mounted() {
+    var _this2 = this;
+
+    eventBus.$on('IssueUpdated', function (response) {
+      return _this2.afterIssueUpdated(response);
+    });
+  }
+};
+
+/***/ }),
+/* 193 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "card text-center mr-auto"
+  }, [_c('div', {
+    staticClass: "card-header"
+  }, [_c('h4', {
+    staticClass: "card-title"
+  }, [_vm._v("\n  بيانات القضية\n  "), _c('span'), _vm._v(" "), _c('button', {
+    staticClass: "btn pull-left btn-success",
+    on: {
+      "click": _vm.printPage
+    }
+  }, [_vm._v("طباعة الصفحة")])])]), _vm._v(" "), _c('div', {
+    staticClass: "panel-body"
+  }, [_c('table', {
+    staticClass: "table table-striped table-bordered table-responsive"
+  }, [_c('tbody', [_vm._m(0), _vm._v(" "), _c('tr', [_c('td', [_c('span', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.issue.number),
+      expression: "issue.number"
+    }]
+  }, [_vm._v("\n                " + _vm._s(_vm.issue.number) + " لسنة " + _vm._s(_vm.issue.year) + " " + _vm._s(_vm.issueType()) + "\n              ")])]), _vm._v(" "), _c('td', [_c('span', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.issue.adv_number),
+      expression: "issue.adv_number"
+    }]
+  }, [_vm._v("\n                " + _vm._s(_vm.issue.adv_number) + " لسنة " + _vm._s(_vm.issue.adv_year) + " س\n              ")])]), _vm._v(" "), _c('td', [_vm._v("\n            " + _vm._s(_vm.issue.court) + " \n              "), _c('span', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.issue.room),
+      expression: "issue.room"
+    }]
+  }, [_vm._v("\n                - الدائــرة " + _vm._s(_vm.issue.room) + "\n              ")])]), _vm._v(" "), _c('td', [_vm._v(_vm._s(_vm.issue.subject))])])])]), _vm._v(" "), _c('div', {
+    staticClass: "mr-auto card-footer"
+  }, [_c('button', {
+    staticClass: "btn btn-info",
+    on: {
+      "click": function($event) {
+        _vm.editIssue(_vm.issue)
+      }
+    }
+  }, [_vm._v("تعديل البيانات")]), _vm._v(" "), _c('button', {
+    staticClass: "btn btn-danger",
+    on: {
+      "click": function($event) {
+        _vm.deleteIssue(_vm.issue)
+      }
+    }
+  }, [_vm._v("حذف القضية")])])]), _vm._v(" "), _c('edit-issue')], 1)
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('tr', [_c('th', [_vm._v("رقم الدعـــوى")]), _vm._v(" "), _c('th', [_vm._v("رقم الأستئـــناف")]), _vm._v(" "), _c('th', [_vm._v("المحكمة")]), _vm._v(" "), _c('th', [_vm._v("موضــــوع الدعـــوى")])])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-70ee9146", module.exports)
+  }
+}
+
+/***/ }),
+/* 194 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(11)(
+  /* script */
+  __webpack_require__(195),
+  /* template */
+  __webpack_require__(206),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "D:\\www\\law-office\\resources\\assets\\js\\components\\issue\\issueOpenents.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] issueOpenents.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-7c585e6c", Component.options)
+  } else {
+    hotAPI.reload("data-v-7c585e6c", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 195 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _addOpenent = __webpack_require__(196);
+
+var _addOpenent2 = _interopRequireDefault(_addOpenent);
+
+var _editOpenent = __webpack_require__(201);
+
+var _editOpenent2 = _interopRequireDefault(_editOpenent);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  props: ['issue', 'people', 'openents'],
+  methods: {
+    refreshIssueData: function refreshIssueData() {
+      eventBus.$emit('refetchIssueInfo');
+    },
+    afterOpenentAdded: function afterOpenentAdded(response) {
+      $('#addOpenent').modal('hide');
+      toastr.success(response.message);
+      this.refreshIssueData();
+    },
+    editOpenent: function editOpenent(openent) {
+      eventBus.$emit('editOpenent', openent);
+      $('#editOpenent').modal('show');
+    },
+    afterOpenentUpdated: function afterOpenentUpdated(response) {
+      $('#editOpenent').modal('hide');
+      toastr.info(response.message);
+      this.refreshIssueData();
+    },
+    deleteOpenent: function deleteOpenent(openent) {
+      var _this = this;
+
+      if (confirm('هل انت متاكد من حذف هذا الخصم؟')) {
+        axios.delete('/issues/' + this.issue.id + '/openents/' + openent.id).then(function (response) {
+          return _this.onOpenentDelete(response);
+        });
+      }
+    },
+    onOpenentDelete: function onOpenentDelete(response) {
+      toastr.warning(response.data.message);
+      this.refreshIssueData();
+    },
+    openentType: function openentType(openent) {
+      var type = openent.pivot.person_type;
+      switch (type) {
+        case 1:
+          return "مــتــهــم";break;
+        case 2:
+          return "مجنى عليه";break;
+        case 3:
+          return "مدعى بالحق المدنى";break;
+        case 4:
+          return "مدعى";break;
+        case 5:
+          return "مدعى عليه";break;
+        case 6:
+          return "شــاكى";break;
+        case 7:
+          return "مشكو فى حقه";break;
+      }
+    },
+    contractType: function contractType(contract) {
+      var type = contract.type;
+      switch (type) {
+        case 1:
+          return "ت . ع";break;
+        case 2:
+          return "ت . خ";break;
+        case 3:
+          return "ع . و";break;
+      }
+    },
+    clientCheck: function clientCheck(openent) {
+      if (openent.is_client) {
+        return '(موكل)';
+      }
+    }
+  },
+  components: {
+    'add-openent': _addOpenent2.default,
+    'edit-openent': _editOpenent2.default
+  },
+  mounted: function mounted() {
+    var _this2 = this;
+
+    eventBus.$on('openentAdded', function (response) {
+      return _this2.afterOpenentAdded(response);
+    });
+    eventBus.$on('openentUpdated', function (response) {
+      return _this2.afterOpenentUpdated(response);
+    });
+  }
+};
+
+/***/ }),
+/* 196 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(197)
+}
+var Component = __webpack_require__(11)(
+  /* script */
+  __webpack_require__(199),
+  /* template */
+  __webpack_require__(200),
+  /* styles */
+  injectStyle,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "D:\\www\\law-office\\resources\\assets\\js\\components\\issue\\addOpenent.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] addOpenent.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-caa1561e", Component.options)
+  } else {
+    hotAPI.reload("data-v-caa1561e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 197 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(198);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(120)("3933bd16", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../css-loader/index.js!../../vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-caa1561e\",\"scoped\":false,\"hasInlineConfig\":true}!./vue-multiselect.min.css", function() {
+     var newContent = require("!!../../css-loader/index.js!../../vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-caa1561e\",\"scoped\":false,\"hasInlineConfig\":true}!./vue-multiselect.min.css");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 198 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(116)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\nfieldset[disabled] .multiselect{pointer-events:none\n}\n.multiselect__spinner{position:absolute;right:1px;top:1px;width:48px;height:35px;background:#fff;display:block\n}\n.multiselect__spinner:after,.multiselect__spinner:before{position:absolute;content:\"\";top:50%;left:50%;margin:-8px 0 0 -8px;width:16px;height:16px;border-radius:100%;border-color:#41b883 transparent transparent;border-style:solid;border-width:2px;box-shadow:0 0 0 1px transparent\n}\n.multiselect__spinner:before{animation:a 2.4s cubic-bezier(.41,.26,.2,.62);animation-iteration-count:infinite\n}\n.multiselect__spinner:after{animation:a 2.4s cubic-bezier(.51,.09,.21,.8);animation-iteration-count:infinite\n}\n.multiselect__loading-enter-active,.multiselect__loading-leave-active{transition:opacity .4s ease-in-out;opacity:1\n}\n.multiselect__loading-enter,.multiselect__loading-leave-active{opacity:0\n}\n.multiselect,.multiselect__input,.multiselect__single{font-family:inherit;font-size:14px;-ms-touch-action:manipulation;touch-action:manipulation\n}\n.multiselect{box-sizing:content-box;display:block;position:relative;width:100%;min-height:40px;text-align:left;color:#35495e\n}\n.multiselect *{box-sizing:border-box\n}\n.multiselect:focus{outline:none\n}\n.multiselect--disabled{opacity:.6\n}\n.multiselect--active{z-index:1\n}\n.multiselect--active:not(.multiselect--above) .multiselect__current,.multiselect--active:not(.multiselect--above) .multiselect__input,.multiselect--active:not(.multiselect--above) .multiselect__tags{border-bottom-left-radius:0;border-bottom-right-radius:0\n}\n.multiselect--active .multiselect__select{transform:rotate(180deg)\n}\n.multiselect--above.multiselect--active .multiselect__current,.multiselect--above.multiselect--active .multiselect__input,.multiselect--above.multiselect--active .multiselect__tags{border-top-left-radius:0;border-top-right-radius:0\n}\n.multiselect__input,.multiselect__single{position:relative;display:inline-block;min-height:20px;line-height:20px;border:none;border-radius:5px;background:#fff;padding:1px 0 0 5px;width:100%;transition:border .1s ease;box-sizing:border-box;margin-bottom:8px\n}\n.multiselect__tag~.multiselect__input,.multiselect__tag~.multiselect__single{width:auto\n}\n.multiselect__input:hover,.multiselect__single:hover{border-color:#cfcfcf\n}\n.multiselect__input:focus,.multiselect__single:focus{border-color:#a8a8a8;outline:none\n}\n.multiselect__single{padding-left:6px;margin-bottom:8px\n}\n.multiselect__tags-wrap{display:inline\n}\n.multiselect__tags{min-height:40px;display:block;padding:8px 40px 0 8px;border-radius:5px;border:1px solid #e8e8e8;background:#fff\n}\n.multiselect__tag{position:relative;display:inline-block;padding:4px 26px 4px 10px;border-radius:5px;margin-right:10px;color:#fff;line-height:1;background:#41b883;margin-bottom:8px;white-space:nowrap\n}\n.multiselect__tag-icon{cursor:pointer;margin-left:7px;position:absolute;right:0;top:0;bottom:0;font-weight:700;font-style:normal;width:22px;text-align:center;line-height:22px;transition:all .2s ease;border-radius:5px\n}\n.multiselect__tag-icon:after{content:\"\\D7\";color:#266d4d;font-size:14px\n}\n.multiselect__tag-icon:focus,.multiselect__tag-icon:hover{background:#369a6e\n}\n.multiselect__tag-icon:focus:after,.multiselect__tag-icon:hover:after{color:#fff\n}\n.multiselect__current{min-height:40px;overflow:hidden;padding:8px 12px 0;padding-right:30px;white-space:nowrap;border-radius:5px;border:1px solid #e8e8e8\n}\n.multiselect__current,.multiselect__select{line-height:16px;box-sizing:border-box;display:block;margin:0;text-decoration:none;cursor:pointer\n}\n.multiselect__select{position:absolute;width:40px;height:38px;right:1px;top:1px;padding:4px 8px;text-align:center;transition:transform .2s ease\n}\n.multiselect__select:before{position:relative;right:0;top:65%;color:#999;margin-top:4px;border-style:solid;border-width:5px 5px 0;border-color:#999 transparent transparent;content:\"\"\n}\n.multiselect__placeholder{color:#adadad;display:inline-block;margin-bottom:10px;padding-top:2px\n}\n.multiselect--active .multiselect__placeholder{display:none\n}\n.multiselect__content-wrapper{position:absolute;display:block;background:#fff;width:100%;max-height:240px;overflow:auto;border:1px solid #e8e8e8;border-top:none;border-bottom-left-radius:5px;border-bottom-right-radius:5px;z-index:1;-webkit-overflow-scrolling:touch\n}\n.multiselect__content{list-style:none;display:inline-block;padding:0;margin:0;min-width:100%;vertical-align:top\n}\n.multiselect--above .multiselect__content-wrapper{bottom:100%;border-bottom-left-radius:0;border-bottom-right-radius:0;border-top-left-radius:5px;border-top-right-radius:5px;border-bottom:none;border-top:1px solid #e8e8e8\n}\n.multiselect__content::webkit-scrollbar{display:none\n}\n.multiselect__element{display:block\n}\n.multiselect__option{display:block;padding:12px;min-height:40px;line-height:16px;text-decoration:none;text-transform:none;vertical-align:middle;position:relative;cursor:pointer;white-space:nowrap\n}\n.multiselect__option:after{top:0;right:0;position:absolute;line-height:40px;padding-right:12px;padding-left:20px\n}\n.multiselect__option--highlight{background:#41b883;outline:none;color:#fff\n}\n.multiselect__option--highlight:after{content:attr(data-select);background:#41b883;color:#fff\n}\n.multiselect__option--selected{background:#f3f3f3;color:#35495e;font-weight:700\n}\n.multiselect__option--selected:after{content:attr(data-selected);color:silver\n}\n.multiselect__option--selected.multiselect__option--highlight{background:#ff6a6a;color:#fff\n}\n.multiselect__option--selected.multiselect__option--highlight:after{background:#ff6a6a;content:attr(data-deselect);color:#fff\n}\n.multiselect--disabled{background:#ededed;pointer-events:none\n}\n.multiselect--disabled .multiselect__current,.multiselect--disabled .multiselect__select,.multiselect__option--disabled{background:#ededed;color:#a6a6a6\n}\n.multiselect__option--disabled{cursor:text;pointer-events:none\n}\n.multiselect__option--disabled.multiselect__option--highlight{background:#dedede!important\n}\n.multiselect-enter-active,.multiselect-leave-active{transition:all .15s ease\n}\n.multiselect-enter,.multiselect-leave-active{opacity:0\n}\n.multiselect__strong{margin-bottom:10px;display:inline-block\n}\n[dir=rtl] .multiselect{text-align:right\n}\n[dir=rtl] .multiselect__select{right:auto;left:1px\n}\n[dir=rtl] .multiselect__tags{padding:8px 8px 0 40px\n}\n[dir=rtl] .multiselect__content{text-align:right\n}\n[dir=rtl] .multiselect__option:after{right:auto;left:0\n}\n[dir=rtl] .multiselect__clear{right:auto;left:12px\n}\n[dir=rtl] .multiselect__spinner{right:auto;left:1px\n}\n@keyframes a{\n0%{transform:rotate(0)\n}\nto{transform:rotate(2turn)\n}\n}", ""]);
+
+// exports
+
+
+/***/ }),
+/* 199 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _vueMultiselect = __webpack_require__(125);
+
+var _vueMultiselect2 = _interopRequireDefault(_vueMultiselect);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+    data: function data() {
+        return {
+            addOpenentForm: new Form({
+                person_type: '',
+                openent: ''
+            })
+        };
+    },
+
+    props: ['issue', 'people'],
+    methods: {
+        onOpenentAdd: function onOpenentAdd() {
+            this.addOpenentForm.post('/issues/' + this.issue.id + '/openents').then(function (response) {
+                return eventBus.$emit('openentAdded', response);
+            });
+        },
+        customLabel: function customLabel(option) {
+            return option.name + ' - ' + option.location;
+        }
+    },
+    components: { Multiselect: _vueMultiselect2.default }
+};
+
+/***/ }),
+/* 200 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "modal fade",
+    attrs: {
+      "id": "addOpenent",
+      "role": "dialog",
+      "aria-labelledby": "myModalLabel"
+    }
+  }, [_c('div', {
+    staticClass: "modal-dialog modal-lg",
+    attrs: {
+      "role": "document"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "modal-body"
+  }, [_c('form', {
+    attrs: {
+      "method": "POST",
+      "action": "/contracts"
+    },
+    on: {
+      "submit": function($event) {
+        $event.preventDefault();
+        _vm.onOpenentAdd($event)
+      },
+      "keydown": function($event) {
+        _vm.addOpenentForm.errors.clear($event.target.name)
+      },
+      "change": function($event) {
+        _vm.addOpenentForm.errors.clear($event.target.name)
+      },
+      "input": function($event) {
+        _vm.addOpenentForm.errors.clear($event.target.name)
+      }
+    }
+  }, [_c('div', {
+    staticClass: "form-group"
+  }, [_vm._m(1), _vm._v(" "), _c('multiselect', {
+    attrs: {
+      "name": "openent",
+      "id": "openent",
+      "options": _vm.people,
+      "track-by": "id",
+      "placeholder": "اختر الخصم",
+      "custom-label": _vm.customLabel
+    },
+    on: {
+      "input": function($event) {
+        _vm.addOpenentForm.errors.clear('openent')
+      }
+    },
+    model: {
+      value: (_vm.addOpenentForm.openent),
+      callback: function($$v) {
+        _vm.addOpenentForm.openent = $$v
+      },
+      expression: "addOpenentForm.openent"
+    }
+  }), _vm._v(" "), (_vm.addOpenentForm.errors.has('openent')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.addOpenentForm.errors.get('openent'))
+    }
+  }) : _vm._e()], 1), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "person_type"
+    }
+  }, [_vm._v("صفة الخصم:")]), _vm._v(" "), _c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model.number",
+      value: (_vm.addOpenentForm.person_type),
+      expression: "addOpenentForm.person_type",
+      modifiers: {
+        "number": true
+      }
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "name": "person_type",
+      "id": "person_type"
+    },
+    on: {
+      "change": function($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return _vm._n(val)
+        });
+        _vm.addOpenentForm.person_type = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+      }
+    }
+  }, [(_vm.issue.type <= 3) ? _c('option', {
+    attrs: {
+      "value": "1"
+    }
+  }, [_vm._v("متـهـم")]) : _vm._e(), _vm._v(" "), (_vm.issue.type <= 3) ? _c('option', {
+    attrs: {
+      "value": "2"
+    }
+  }, [_vm._v("مجنى عليه")]) : _vm._e(), _vm._v(" "), (_vm.issue.type <= 3) ? _c('option', {
+    attrs: {
+      "value": "3"
+    }
+  }, [_vm._v("مدعى بالحق المدنى")]) : _vm._e(), _vm._v(" "), (_vm.issue.type >= 5) ? _c('option', {
+    attrs: {
+      "value": "4"
+    }
+  }, [_vm._v("مدعى")]) : _vm._e(), _vm._v(" "), (_vm.issue.type >= 5) ? _c('option', {
+    attrs: {
+      "value": "5"
+    }
+  }, [_vm._v("مدعى عليه")]) : _vm._e(), _vm._v(" "), (_vm.issue.type == 4) ? _c('option', {
+    attrs: {
+      "value": "6"
+    }
+  }, [_vm._v("شاكى")]) : _vm._e(), _vm._v(" "), (_vm.issue.type == 4) ? _c('option', {
+    attrs: {
+      "value": "7"
+    }
+  }, [_vm._v("مشكو فى حقه")]) : _vm._e()]), _vm._v(" "), (_vm.addOpenentForm.errors.has('person_type')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.addOpenentForm.errors.get('person_type'))
+    }
+  }) : _vm._e()]), _vm._v(" "), _c('div', {
+    staticClass: "form-group heading"
+  }, [_c('button', {
+    staticClass: "button btn-lg btn-success",
+    attrs: {
+      "disabled": _vm.addOpenentForm.errors.any()
+    }
+  }, [_vm._v("اضافة")])])])])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "modal-header"
+  }, [_c('button', {
+    staticClass: "close",
+    attrs: {
+      "type": "button",
+      "data-dismiss": "modal",
+      "aria-label": "Close"
+    }
+  }, [_c('span', {
+    attrs: {
+      "aria-hidden": "true"
+    }
+  }, [_vm._v("×")])]), _vm._v(" "), _c('span', {
+    staticClass: "form-control-static pull-left"
+  }, [_c('h4', {
+    staticClass: "modal-title",
+    attrs: {
+      "id": "myModalLabel"
+    }
+  }, [_vm._v(" اضافة خصم فى قضية ")])])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "openent"
+    }
+  }, [_vm._v("\n                الخصم: \n                "), _c('span', {
+    staticClass: "brown"
+  }, [_vm._v("يجب اضافة الخصم فى الاشخاص ليظهر هنا")])])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-caa1561e", module.exports)
+  }
+}
+
+/***/ }),
+/* 201 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(202)
+}
+var Component = __webpack_require__(11)(
+  /* script */
+  __webpack_require__(204),
+  /* template */
+  __webpack_require__(205),
+  /* styles */
+  injectStyle,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "D:\\www\\law-office\\resources\\assets\\js\\components\\issue\\editOpenent.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] editOpenent.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-790df154", Component.options)
+  } else {
+    hotAPI.reload("data-v-790df154", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 202 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(203);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(120)("4962fb93", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../css-loader/index.js!../../vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-790df154\",\"scoped\":false,\"hasInlineConfig\":true}!./vue-multiselect.min.css", function() {
+     var newContent = require("!!../../css-loader/index.js!../../vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-790df154\",\"scoped\":false,\"hasInlineConfig\":true}!./vue-multiselect.min.css");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 203 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(116)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\nfieldset[disabled] .multiselect{pointer-events:none\n}\n.multiselect__spinner{position:absolute;right:1px;top:1px;width:48px;height:35px;background:#fff;display:block\n}\n.multiselect__spinner:after,.multiselect__spinner:before{position:absolute;content:\"\";top:50%;left:50%;margin:-8px 0 0 -8px;width:16px;height:16px;border-radius:100%;border-color:#41b883 transparent transparent;border-style:solid;border-width:2px;box-shadow:0 0 0 1px transparent\n}\n.multiselect__spinner:before{animation:a 2.4s cubic-bezier(.41,.26,.2,.62);animation-iteration-count:infinite\n}\n.multiselect__spinner:after{animation:a 2.4s cubic-bezier(.51,.09,.21,.8);animation-iteration-count:infinite\n}\n.multiselect__loading-enter-active,.multiselect__loading-leave-active{transition:opacity .4s ease-in-out;opacity:1\n}\n.multiselect__loading-enter,.multiselect__loading-leave-active{opacity:0\n}\n.multiselect,.multiselect__input,.multiselect__single{font-family:inherit;font-size:14px;-ms-touch-action:manipulation;touch-action:manipulation\n}\n.multiselect{box-sizing:content-box;display:block;position:relative;width:100%;min-height:40px;text-align:left;color:#35495e\n}\n.multiselect *{box-sizing:border-box\n}\n.multiselect:focus{outline:none\n}\n.multiselect--disabled{opacity:.6\n}\n.multiselect--active{z-index:1\n}\n.multiselect--active:not(.multiselect--above) .multiselect__current,.multiselect--active:not(.multiselect--above) .multiselect__input,.multiselect--active:not(.multiselect--above) .multiselect__tags{border-bottom-left-radius:0;border-bottom-right-radius:0\n}\n.multiselect--active .multiselect__select{transform:rotate(180deg)\n}\n.multiselect--above.multiselect--active .multiselect__current,.multiselect--above.multiselect--active .multiselect__input,.multiselect--above.multiselect--active .multiselect__tags{border-top-left-radius:0;border-top-right-radius:0\n}\n.multiselect__input,.multiselect__single{position:relative;display:inline-block;min-height:20px;line-height:20px;border:none;border-radius:5px;background:#fff;padding:1px 0 0 5px;width:100%;transition:border .1s ease;box-sizing:border-box;margin-bottom:8px\n}\n.multiselect__tag~.multiselect__input,.multiselect__tag~.multiselect__single{width:auto\n}\n.multiselect__input:hover,.multiselect__single:hover{border-color:#cfcfcf\n}\n.multiselect__input:focus,.multiselect__single:focus{border-color:#a8a8a8;outline:none\n}\n.multiselect__single{padding-left:6px;margin-bottom:8px\n}\n.multiselect__tags-wrap{display:inline\n}\n.multiselect__tags{min-height:40px;display:block;padding:8px 40px 0 8px;border-radius:5px;border:1px solid #e8e8e8;background:#fff\n}\n.multiselect__tag{position:relative;display:inline-block;padding:4px 26px 4px 10px;border-radius:5px;margin-right:10px;color:#fff;line-height:1;background:#41b883;margin-bottom:8px;white-space:nowrap\n}\n.multiselect__tag-icon{cursor:pointer;margin-left:7px;position:absolute;right:0;top:0;bottom:0;font-weight:700;font-style:normal;width:22px;text-align:center;line-height:22px;transition:all .2s ease;border-radius:5px\n}\n.multiselect__tag-icon:after{content:\"\\D7\";color:#266d4d;font-size:14px\n}\n.multiselect__tag-icon:focus,.multiselect__tag-icon:hover{background:#369a6e\n}\n.multiselect__tag-icon:focus:after,.multiselect__tag-icon:hover:after{color:#fff\n}\n.multiselect__current{min-height:40px;overflow:hidden;padding:8px 12px 0;padding-right:30px;white-space:nowrap;border-radius:5px;border:1px solid #e8e8e8\n}\n.multiselect__current,.multiselect__select{line-height:16px;box-sizing:border-box;display:block;margin:0;text-decoration:none;cursor:pointer\n}\n.multiselect__select{position:absolute;width:40px;height:38px;right:1px;top:1px;padding:4px 8px;text-align:center;transition:transform .2s ease\n}\n.multiselect__select:before{position:relative;right:0;top:65%;color:#999;margin-top:4px;border-style:solid;border-width:5px 5px 0;border-color:#999 transparent transparent;content:\"\"\n}\n.multiselect__placeholder{color:#adadad;display:inline-block;margin-bottom:10px;padding-top:2px\n}\n.multiselect--active .multiselect__placeholder{display:none\n}\n.multiselect__content-wrapper{position:absolute;display:block;background:#fff;width:100%;max-height:240px;overflow:auto;border:1px solid #e8e8e8;border-top:none;border-bottom-left-radius:5px;border-bottom-right-radius:5px;z-index:1;-webkit-overflow-scrolling:touch\n}\n.multiselect__content{list-style:none;display:inline-block;padding:0;margin:0;min-width:100%;vertical-align:top\n}\n.multiselect--above .multiselect__content-wrapper{bottom:100%;border-bottom-left-radius:0;border-bottom-right-radius:0;border-top-left-radius:5px;border-top-right-radius:5px;border-bottom:none;border-top:1px solid #e8e8e8\n}\n.multiselect__content::webkit-scrollbar{display:none\n}\n.multiselect__element{display:block\n}\n.multiselect__option{display:block;padding:12px;min-height:40px;line-height:16px;text-decoration:none;text-transform:none;vertical-align:middle;position:relative;cursor:pointer;white-space:nowrap\n}\n.multiselect__option:after{top:0;right:0;position:absolute;line-height:40px;padding-right:12px;padding-left:20px\n}\n.multiselect__option--highlight{background:#41b883;outline:none;color:#fff\n}\n.multiselect__option--highlight:after{content:attr(data-select);background:#41b883;color:#fff\n}\n.multiselect__option--selected{background:#f3f3f3;color:#35495e;font-weight:700\n}\n.multiselect__option--selected:after{content:attr(data-selected);color:silver\n}\n.multiselect__option--selected.multiselect__option--highlight{background:#ff6a6a;color:#fff\n}\n.multiselect__option--selected.multiselect__option--highlight:after{background:#ff6a6a;content:attr(data-deselect);color:#fff\n}\n.multiselect--disabled{background:#ededed;pointer-events:none\n}\n.multiselect--disabled .multiselect__current,.multiselect--disabled .multiselect__select,.multiselect__option--disabled{background:#ededed;color:#a6a6a6\n}\n.multiselect__option--disabled{cursor:text;pointer-events:none\n}\n.multiselect__option--disabled.multiselect__option--highlight{background:#dedede!important\n}\n.multiselect-enter-active,.multiselect-leave-active{transition:all .15s ease\n}\n.multiselect-enter,.multiselect-leave-active{opacity:0\n}\n.multiselect__strong{margin-bottom:10px;display:inline-block\n}\n[dir=rtl] .multiselect{text-align:right\n}\n[dir=rtl] .multiselect__select{right:auto;left:1px\n}\n[dir=rtl] .multiselect__tags{padding:8px 8px 0 40px\n}\n[dir=rtl] .multiselect__content{text-align:right\n}\n[dir=rtl] .multiselect__option:after{right:auto;left:0\n}\n[dir=rtl] .multiselect__clear{right:auto;left:12px\n}\n[dir=rtl] .multiselect__spinner{right:auto;left:1px\n}\n@keyframes a{\n0%{transform:rotate(0)\n}\nto{transform:rotate(2turn)\n}\n}", ""]);
+
+// exports
+
+
+/***/ }),
+/* 204 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _vueMultiselect = __webpack_require__(125);
+
+var _vueMultiselect2 = _interopRequireDefault(_vueMultiselect);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+    data: function data() {
+        return {
+            editOpenentForm: new Form({
+                person_type: '',
+                openent: '',
+                old_id: ''
+            })
+        };
+    },
+
+    props: ['issue', 'people'],
+    methods: {
+        onOpenentUpdate: function onOpenentUpdate() {
+            this.editOpenentForm.patch('/issues/' + this.issue.id + '/openents').then(function (response) {
+                return eventBus.$emit('openentUpdated', response);
+            });
+        },
+        editOpenentModal: function editOpenentModal(openent) {
+            this.editOpenentForm.reset();
+            this.editOpenentForm.openent = openent;
+            this.editOpenentForm.old_id = openent.id;
+            this.editOpenentForm.person_type = openent.pivot.person_type;
+        },
+        customLabel: function customLabel(option) {
+            return option.name + ' - ' + option.location;
+        }
+    },
+    created: function created() {
+        var _this = this;
+
+        eventBus.$on('editOpenent', function (openent) {
+            return _this.editOpenentModal(openent);
+        });
+    },
+
+    components: { Multiselect: _vueMultiselect2.default }
+};
+
+/***/ }),
+/* 205 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "modal fade",
+    attrs: {
+      "id": "editOpenent",
+      "role": "dialog",
+      "aria-labelledby": "myModalLabel"
+    }
+  }, [_c('div', {
+    staticClass: "modal-dialog modal-lg",
+    attrs: {
+      "role": "document"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "modal-body"
+  }, [_c('form', {
+    attrs: {
+      "method": "POST",
+      "action": "/"
+    },
+    on: {
+      "submit": function($event) {
+        $event.preventDefault();
+        _vm.onOpenentUpdate($event)
+      },
+      "keydown": function($event) {
+        _vm.editOpenentForm.errors.clear($event.target.name)
+      },
+      "change": function($event) {
+        _vm.editOpenentForm.errors.clear($event.target.name)
+      },
+      "input": function($event) {
+        _vm.editOpenentForm.errors.clear($event.target.name)
+      }
+    }
+  }, [_c('div', {
+    staticClass: "form-group"
+  }, [_vm._m(1), _vm._v(" "), _c('multiselect', {
+    attrs: {
+      "name": "openent",
+      "id": "openent",
+      "options": _vm.people,
+      "track-by": "id",
+      "placeholder": "اختر الخصم",
+      "custom-label": _vm.customLabel
+    },
+    on: {
+      "input": function($event) {
+        _vm.editOpenentForm.errors.clear('openent')
+      }
+    },
+    model: {
+      value: (_vm.editOpenentForm.openent),
+      callback: function($$v) {
+        _vm.editOpenentForm.openent = $$v
+      },
+      expression: "editOpenentForm.openent"
+    }
+  }), _vm._v(" "), (_vm.editOpenentForm.errors.has('openent')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.editOpenentForm.errors.get('openent'))
+    }
+  }) : _vm._e()], 1), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "person_type"
+    }
+  }, [_vm._v("صفة الخصم:")]), _vm._v(" "), _c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model.number",
+      value: (_vm.editOpenentForm.person_type),
+      expression: "editOpenentForm.person_type",
+      modifiers: {
+        "number": true
+      }
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "name": "person_type",
+      "id": "person_type"
+    },
+    on: {
+      "change": function($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return _vm._n(val)
+        });
+        _vm.editOpenentForm.person_type = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+      }
+    }
+  }, [(_vm.issue.type <= 3) ? _c('option', {
+    attrs: {
+      "value": "1"
+    }
+  }, [_vm._v("متـهـم")]) : _vm._e(), _vm._v(" "), (_vm.issue.type <= 3) ? _c('option', {
+    attrs: {
+      "value": "2"
+    }
+  }, [_vm._v("مجنى عليه")]) : _vm._e(), _vm._v(" "), (_vm.issue.type <= 3) ? _c('option', {
+    attrs: {
+      "value": "3"
+    }
+  }, [_vm._v("مدعى بالحق المدنى")]) : _vm._e(), _vm._v(" "), (_vm.issue.type >= 5) ? _c('option', {
+    attrs: {
+      "value": "4"
+    }
+  }, [_vm._v("مدعى")]) : _vm._e(), _vm._v(" "), (_vm.issue.type >= 5) ? _c('option', {
+    attrs: {
+      "value": "5"
+    }
+  }, [_vm._v("مدعى عليه")]) : _vm._e(), _vm._v(" "), (_vm.issue.type == 4) ? _c('option', {
+    attrs: {
+      "value": "6"
+    }
+  }, [_vm._v("شاكى")]) : _vm._e(), _vm._v(" "), (_vm.issue.type == 4) ? _c('option', {
+    attrs: {
+      "value": "7"
+    }
+  }, [_vm._v("مشكو فى حقه")]) : _vm._e()]), _vm._v(" "), (_vm.editOpenentForm.errors.has('person_type')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.editOpenentForm.errors.get('person_type'))
+    }
+  }) : _vm._e()]), _vm._v(" "), _c('div', {
+    staticClass: "form-group heading"
+  }, [_c('button', {
+    staticClass: "button btn-lg btn-success",
+    attrs: {
+      "disabled": _vm.editOpenentForm.errors.any()
+    }
+  }, [_vm._v("تعديل")])])])])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "modal-header"
+  }, [_c('button', {
+    staticClass: "close",
+    attrs: {
+      "type": "button",
+      "data-dismiss": "modal",
+      "aria-label": "Close"
+    }
+  }, [_c('span', {
+    attrs: {
+      "aria-hidden": "true"
+    }
+  }, [_vm._v("×")])]), _vm._v(" "), _c('span', {
+    staticClass: "form-control-static pull-left"
+  }, [_c('h4', {
+    staticClass: "modal-title",
+    attrs: {
+      "id": "myModalLabel"
+    }
+  }, [_vm._v(" تعديل خصم فى قضية ")])])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "openent"
+    }
+  }, [_vm._v("\n                الخصم: \n                "), _c('span', {
+    staticClass: "brown"
+  }, [_vm._v("يجب اضافة الخصم فى الاشخاص ليظهر هنا")])])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-790df154", module.exports)
+  }
+}
+
+/***/ }),
+/* 206 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "card text-center mr-auto"
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "panel-body"
+  }, [_c('table', {
+    staticClass: "table table-striped table-bordered table-responsive"
+  }, [_c('tbody', [(_vm.openents.length) ? _c('tr', [_c('th', {
+    staticClass: "brown"
+  }, [_vm._v("الأسم")]), _vm._v(" "), _c('th', {
+    staticClass: "brown"
+  }, [_vm._v("التوكيل")]), _vm._v(" "), _c('th', {
+    staticClass: "brown"
+  }, [_vm._v("الصفة")])]) : _c('tr', [_c('td', {
+    attrs: {
+      "colspan": "2"
+    }
+  }, [_vm._v(" لا يوجد خصوم بعد ")])]), _vm._v(" "), _vm._l((_vm.openents), function(openent) {
+    return _c('tr', {
+      key: openent.id
+    }, [_c('td', [_vm._v("\n                " + _vm._s(openent.name) + " "), _c('span', {
+      staticClass: "green"
+    }, [_vm._v(_vm._s(_vm.clientCheck(openent)))]), _vm._v(" "), _c('button', {
+      staticClass: "btn btn-sm btn-danger pull-left",
+      on: {
+        "click": function($event) {
+          _vm.deleteOpenent(openent)
+        }
+      }
+    }, [_c('i', {
+      staticClass: "fa fa-times",
+      attrs: {
+        "aria-hidden": "true"
+      }
+    })]), _vm._v(" "), _c('button', {
+      staticClass: "btn btn-sm btn-info pull-left",
+      on: {
+        "click": function($event) {
+          _vm.editOpenent(openent)
+        }
+      }
+    }, [_c('i', {
+      staticClass: "fa fa-pencil-square-o",
+      attrs: {
+        "aria-hidden": "true"
+      }
+    })])]), _vm._v(" "), _c('td', [_c('ul', _vm._l((openent.contracts), function(contract) {
+      return _c('li', [_c('a', {
+        attrs: {
+          "href": '/contracts/' + contract.id
+        }
+      }, [_vm._v(_vm._s(contract.number) + " لسنة " + _vm._s(contract.year) + " " + _vm._s(_vm.contractType(contract)))])])
+    }))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(_vm.openentType(openent)))])])
+  })], 2)])]), _vm._v(" "), _c('add-openent', {
+    attrs: {
+      "issue": _vm.issue,
+      "people": _vm.people
+    }
+  }), _vm._v(" "), _c('edit-openent', {
+    attrs: {
+      "issue": _vm.issue,
+      "people": _vm.people
+    }
+  })], 1)
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "card-header"
+  }, [_c('h4', {
+    staticClass: "card-title"
+  }, [_vm._v("\n  خصوم القضية\n  "), _c('span'), _vm._v(" "), _c('button', {
+    staticClass: "btn pull-left btn-dark",
+    attrs: {
+      "data-toggle": "modal",
+      "data-target": "#addOpenent"
+    }
+  }, [_vm._v("اضافة خصم")])])])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-7c585e6c", module.exports)
+  }
+}
+
+/***/ }),
+/* 207 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(11)(
+  /* script */
+  __webpack_require__(208),
+  /* template */
+  __webpack_require__(209),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "D:\\www\\law-office\\resources\\assets\\js\\components\\issue\\files\\issueFiles.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] issueFiles.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-d750c732", Component.options)
+  } else {
+    hotAPI.reload("data-v-d750c732", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 208 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _fileUploader = __webpack_require__(141);
+
+var _fileUploader2 = _interopRequireDefault(_fileUploader);
+
+var _editFile = __webpack_require__(152);
+
+var _editFile2 = _interopRequireDefault(_editFile);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  props: ['issue', 'files'],
+  methods: {
+    fileAdded: function fileAdded() {
+      this.reloadData();
+      toastr.success('تم اضافة الملف بنجاح!');
+    },
+    editFile: function editFile(file) {
+      eventBus.$emit('editFile', file);
+      $('#editFile').modal('show');
+    },
+    afterFileUpdated: function afterFileUpdated(response) {
+      $('#editFile').modal('hide');
+      toastr.info(response.message);
+      this.reloadData();
+    },
+    reloadData: function reloadData() {
+      eventBus.$emit('refetchIssueFiles');
+    },
+    deleteFile: function deleteFile(file) {
+      var _this = this;
+
+      if (confirm('هل انت متاكد من حذف هذا الملف - لن تتمكن من استرجاعه فيما بعد!')) {
+        axios.delete('/files/' + file.id).then(function (response) {
+          return _this.onFileDelete(response);
+        });
+      }
+    },
+    onFileDelete: function onFileDelete(response) {
+      toastr.warning(response.data.message);
+      this.reloadData();
+    }
+  },
+  components: {
+    'file-uploader': _fileUploader2.default,
+    'edit-file': _editFile2.default
+  },
+  created: function created() {
+    var _this2 = this;
+
+    eventBus.$on('fileUploaded', function (event) {
+      return _this2.fileAdded();
+    });
+    eventBus.$on('fileUpdated', function (response) {
+      return _this2.afterFileUpdated(response);
+    });
+  }
+};
+
+/***/ }),
+/* 209 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "print-hidden",
+    attrs: {
+      "id": "issueFiles"
+    }
+  }, [_c('div', {
+    staticClass: "card text-center mr-auto"
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "panel-body"
+  }, [(_vm.files.length) ? _c('table', {
+    staticClass: "table table-striped table-bordered table-responsive"
+  }, [_vm._m(1), _vm._v(" "), _c('tbody', _vm._l((_vm.files), function(file) {
+    return _c('tr', [_c('td', [_vm._v("\n                      " + _vm._s(file.name) + "\n                  ")]), _vm._v(" "), _c('td', [_vm._v("\n                      " + _vm._s(file.size) + " kb "), _c('br'), _vm._v("\n                      " + _vm._s(file.type) + "\n                  ")]), _vm._v(" "), _c('td', [_c('a', {
+      attrs: {
+        "target": "_blank",
+        "href": '/storage/' + file.link
+      }
+    }, [_vm._m(2, true)])]), _vm._v(" "), _c('td', [_c('button', {
+      staticClass: "btn btn-info",
+      on: {
+        "click": function($event) {
+          _vm.editFile(file)
+        }
+      }
+    }, [_c('i', {
+      staticClass: "fa fa-pencil-square-o",
+      attrs: {
+        "aria-hidden": "true"
+      }
+    })]), _vm._v(" "), _c('button', {
+      staticClass: "btn btn-danger",
+      on: {
+        "click": function($event) {
+          _vm.deleteFile(file)
+        }
+      }
+    }, [_c('i', {
+      staticClass: "fa fa-times",
+      attrs: {
+        "aria-hidden": "true"
+      }
+    })])])])
+  }))]) : _vm._e()])]), _vm._v(" "), _c('file-uploader'), _vm._v(" "), _c('edit-file')], 1)
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "card-header"
+  }, [_c('h4', {
+    staticClass: "card-title"
+  }, [_vm._v("\n              ملفات القضية\n              "), _c('button', {
+    staticClass: "btn pull-left btn-dark",
+    attrs: {
+      "data-toggle": "modal",
+      "data-target": "#fileUploader"
+    }
+  }, [_vm._v("اضافة ملف")])])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('thead', {
+    staticClass: "thead-inverse"
+  }, [_c('tr', [_c('th', {
+    attrs: {
+      "float": "right"
+    }
+  }, [_vm._v("\n                  اســـم الـمــستند\n                  ")]), _vm._v(" "), _c('th', [_vm._v("\n                  حــجـــمه - امتداده\n                  ")]), _vm._v(" "), _c('th', [_vm._v("\n                  استعراض وتحميل\n                  ")]), _vm._v(" "), _c('th', [_vm._v("\n                  الاعدادات\n                  ")])])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('button', [_c('i', {
+    staticClass: "fa fa-download",
+    attrs: {
+      "aria-hidden": "true"
+    }
+  })])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-d750c732", module.exports)
+  }
+}
+
+/***/ }),
+/* 210 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(11)(
+  /* script */
+  __webpack_require__(211),
+  /* template */
+  __webpack_require__(244),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "D:\\www\\law-office\\resources\\assets\\js\\components\\issue\\meetings\\issueMeetings.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] issueMeetings.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-237c354b", Component.options)
+  } else {
+    hotAPI.reload("data-v-237c354b", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 211 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _addMeeting = __webpack_require__(212);
+
+var _addMeeting2 = _interopRequireDefault(_addMeeting);
+
+var _editMeeting = __webpack_require__(155);
+
+var _editMeeting2 = _interopRequireDefault(_editMeeting);
+
+var _delayMeeting = __webpack_require__(158);
+
+var _delayMeeting2 = _interopRequireDefault(_delayMeeting);
+
+var _meetingJudgements = __webpack_require__(217);
+
+var _meetingJudgements2 = _interopRequireDefault(_meetingJudgements);
+
+var _addDecision = __webpack_require__(238);
+
+var _addDecision2 = _interopRequireDefault(_addDecision);
+
+var _editDecision = __webpack_require__(241);
+
+var _editDecision2 = _interopRequireDefault(_editDecision);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  props: ['issue', 'accusedopenents', 'meetings'],
+  methods: {
+    ownerOf: function ownerOf(meeting) {
+      if (meeting.person) {
+        return 'جلسة:' + meeting.person.name.slice(0, 12);
+      }
+    },
+    afterMeetingAdded: function afterMeetingAdded(response) {
+      eventBus.$emit('refetchIssueMeetings');
+      $('#addMeeting').modal('hide');
+      $('#addChallenge').modal('hide');
+      $('#addCriminalChallenge').modal('hide');
+      toastr.success(response.message);
+    },
+    editMeeting: function editMeeting(meeting) {
+      eventBus.$emit('editMeeting', meeting);
+      $('#editMeeting').modal('show');
+    },
+    afterMeetingUpdated: function afterMeetingUpdated(response) {
+      $('#editMeeting').modal('hide');
+      toastr.info(response.message);
+      eventBus.$emit('refetchIssueMeetings');
+    },
+    deleteMeeting: function deleteMeeting(meeting) {
+      var _this = this;
+
+      if (confirm('هل انت متاكد من حذف هذه الجـــلــــسة - لن تتمكن من استرجاعها فيما بعد!')) {
+        axios.delete('/meetings/' + meeting.id).then(function (response) {
+          return _this.onMeetingDelete(response);
+        });
+      }
+    },
+    onMeetingDelete: function onMeetingDelete(response) {
+      toastr.warning(response.data.message);
+      eventBus.$emit('refetchIssueMeetings');
+    },
+    delayMeeting: function delayMeeting(meeting) {
+      eventBus.$emit('delayMeeting', meeting);
+      $('#delayMeeting').modal('show');
+    },
+    afterMeetingDelayed: function afterMeetingDelayed(response) {
+      $('#delayMeeting').modal('hide');
+      toastr.info(response.message);
+      eventBus.$emit('refetchIssueMeetings');
+    },
+    afterJudgementAdded: function afterJudgementAdded(response) {
+      $('#addJudgement').modal('hide');
+      $('#addCriminalJudgement').modal('hide');
+      toastr.success(response.message);
+      eventBus.$emit('refetchIssueMeetings');
+    },
+    afterJudgementUpdated: function afterJudgementUpdated(response) {
+      $('#editJudgement').modal('hide');
+      $('#addAnnouncement').modal('hide');
+      toastr.info(response.message);
+      eventBus.$emit('refetchIssueMeetings');
+    },
+    afterJudgementDeleted: function afterJudgementDeleted(response) {
+      toastr.warning(response.data.message);
+      eventBus.$emit('refetchIssueMeetings');
+    },
+    afterDecisionAdded: function afterDecisionAdded() {
+      $('#addDecision').modal('hide');
+      toastr.success('تم اضافة القرار بنجاح');
+      eventBus.$emit('refetchIssueMeetings');
+    },
+    editDecision: function editDecision(meeting) {
+      eventBus.$emit('editDecision', meeting);
+      $('#editDecision').modal('show');
+    },
+    afterDecisionUpdated: function afterDecisionUpdated() {
+      $('#editDecision').modal('hide');
+      toastr.success('تم تحديث القرار بنجاح');
+      eventBus.$emit('refetchIssueMeetings');
+    },
+    deleteDecision: function deleteDecision(meeting) {
+      var _this2 = this;
+
+      if (confirm('هل انت متاكد من حذف هذا القرار - لن تتمكن من استرجاعه فيما بعد!')) {
+        axios.delete('/meetings/' + meeting.id).then(function (event) {
+          return _this2.onDecisionDelete();
+        });
+      }
+    },
+    onDecisionDelete: function onDecisionDelete() {
+      toastr.warning('تم حذف القرار بنجاح');
+      eventBus.$emit('refetchIssueMeetings');
+    }
+  },
+  components: {
+    addMeeting: _addMeeting2.default,
+    addDecision: _addDecision2.default,
+    editDecision: _editDecision2.default,
+    editMeeting: _editMeeting2.default,
+    delayMeeting: _delayMeeting2.default,
+    meetingJudgements: _meetingJudgements2.default
+  },
+  mounted: function mounted() {
+    var _this3 = this;
+
+    eventBus.$on('meetingAdded', function (response) {
+      return _this3.afterMeetingAdded(response);
+    });
+
+    eventBus.$on('DecisionAdded', function (event) {
+      return _this3.afterDecisionAdded();
+    });
+
+    eventBus.$on('decisionUpdated', function (event) {
+      return _this3.afterDecisionUpdated();
+    });
+
+    eventBus.$on('meetingUpdated', function (response) {
+      return _this3.afterMeetingUpdated(response);
+    });
+
+    eventBus.$on('meetingDelayed', function (response) {
+      return _this3.afterMeetingDelayed(response);
+    });
+
+    eventBus.$on('judgementAdded', function (response) {
+      return _this3.afterJudgementAdded(response);
+    });
+
+    eventBus.$on('judgementUpdated', function (response) {
+      return _this3.afterJudgementUpdated(response);
+    });
+
+    eventBus.$on('judgementDeleted', function (response) {
+      return _this3.afterJudgementDeleted(response);
+    });
+  }
+};
+
+/***/ }),
+/* 212 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(11)(
+  /* script */
+  __webpack_require__(213),
+  /* template */
+  __webpack_require__(214),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "D:\\www\\law-office\\resources\\assets\\js\\components\\issue\\meetings\\addMeeting.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] addMeeting.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-b60f8ce0", Component.options)
+  } else {
+    hotAPI.reload("data-v-b60f8ce0", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 213 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _vueFlatpickrComponent = __webpack_require__(117);
+
+var _vueFlatpickrComponent2 = _interopRequireDefault(_vueFlatpickrComponent);
+
+__webpack_require__(118);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Arabic = __webpack_require__(119).ar;
+
+exports.default = {
+    data: function data() {
+        return {
+            addMeetingForm: new Form({
+                person_id: '',
+                parent_id: '',
+                judgement_id: '',
+                level: 1,
+                role: '',
+                date: '',
+                decision: '',
+                notes: ''
+            }),
+            config: {
+                locale: Arabic
+            }
+        };
+    },
+
+    methods: {
+        onMeetingCreate: function onMeetingCreate() {
+            this.addMeetingForm.post(window.location.pathname + '/meetings').then(function (response) {
+                return eventBus.$emit('meetingAdded', response);
+            });
+        }
+    },
+    components: {
+        flatPickr: _vueFlatpickrComponent2.default
+    }
+
+};
+
+/***/ }),
+/* 214 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "modal fade",
+    attrs: {
+      "id": "addMeeting",
+      "role": "dialog",
+      "aria-labelledby": "myModalLabel"
+    }
+  }, [_c('div', {
+    staticClass: "modal-dialog",
+    attrs: {
+      "role": "document"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "modal-body"
+  }, [_c('form', {
+    attrs: {
+      "method": "POST",
+      "action": "/people"
+    },
+    on: {
+      "submit": function($event) {
+        $event.preventDefault();
+        _vm.onMeetingCreate($event)
+      },
+      "keydown": function($event) {
+        _vm.addMeetingForm.errors.clear($event.target.name)
+      },
+      "change": function($event) {
+        _vm.addMeetingForm.errors.clear($event.target.name)
+      },
+      "input": function($event) {
+        _vm.addMeetingForm.errors.clear($event.target.name)
+      }
+    }
+  }, [_c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "role"
+    }
+  }, [_vm._v("رقم الرول:")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.addMeetingForm.role),
+      expression: "addMeetingForm.role"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "role",
+      "name": "role"
+    },
+    domProps: {
+      "value": (_vm.addMeetingForm.role)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.addMeetingForm.role = $event.target.value
+      }
+    }
+  }), _vm._v(" "), (_vm.addMeetingForm.errors.has('role')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.addMeetingForm.errors.get('role'))
+    }
+  }) : _vm._e()]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "date"
+    }
+  }, [_vm._v("التاريخ:")]), _vm._v(" "), _c('flat-pickr', {
+    attrs: {
+      "name": "date",
+      "config": _vm.config,
+      "placeholder": "اختر تاريخ الجلــسة"
+    },
+    model: {
+      value: (_vm.addMeetingForm.date),
+      callback: function($$v) {
+        _vm.addMeetingForm.date = $$v
+      },
+      expression: "addMeetingForm.date"
+    }
+  }), _vm._v(" "), (_vm.addMeetingForm.errors.has('date')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.addMeetingForm.errors.get('date'))
+    }
+  }) : _vm._e()], 1), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "decision"
+    }
+  }, [_vm._v("القرار:")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.addMeetingForm.decision),
+      expression: "addMeetingForm.decision"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "decision",
+      "name": "decision"
+    },
+    domProps: {
+      "value": (_vm.addMeetingForm.decision)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.addMeetingForm.decision = $event.target.value
+      }
+    }
+  }), _vm._v(" "), (_vm.addMeetingForm.errors.has('decision')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.addMeetingForm.errors.get('decision'))
+    }
+  }) : _vm._e()]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "notes"
+    }
+  }, [_vm._v("ملاحظات:")]), _vm._v(" "), _c('textarea', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.addMeetingForm.notes),
+      expression: "addMeetingForm.notes"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "notes",
+      "name": "notes",
+      "rows": "5"
+    },
+    domProps: {
+      "value": (_vm.addMeetingForm.notes)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.addMeetingForm.notes = $event.target.value
+      }
+    }
+  }), _vm._v(" "), (_vm.addMeetingForm.errors.has('notes')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.addMeetingForm.errors.get('notes'))
+    }
+  }) : _vm._e()]), _vm._v(" "), _c('div', {
+    staticClass: "form-group heading"
+  }, [_c('button', {
+    staticClass: "button btn-lg btn-success",
+    attrs: {
+      "disabled": _vm.addMeetingForm.errors.any()
+    }
+  }, [_vm._v("اضافة")])])])])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "modal-header"
+  }, [_c('button', {
+    staticClass: "close",
+    attrs: {
+      "type": "button",
+      "data-dismiss": "modal",
+      "aria-label": "Close"
+    }
+  }, [_c('span', {
+    attrs: {
+      "aria-hidden": "true"
+    }
+  }, [_vm._v("×")])]), _vm._v(" "), _c('span', {
+    staticClass: "form-control-static pull-left"
+  }, [_c('h4', {
+    staticClass: "modal-title",
+    attrs: {
+      "id": "myModalLabel"
+    }
+  }, [_vm._v(" اضافة جلـــسة ")])])])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-b60f8ce0", module.exports)
   }
 }
 
@@ -38930,7 +38930,7 @@ var _addAnnouncement = __webpack_require__(234);
 
 var _addAnnouncement2 = _interopRequireDefault(_addAnnouncement);
 
-var _delayMeeting = __webpack_require__(155);
+var _delayMeeting = __webpack_require__(158);
 
 var _delayMeeting2 = _interopRequireDefault(_delayMeeting);
 
@@ -41339,144 +41339,12 @@ if (false) {
 /* 238 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    attrs: {
-      "id": "issueMeetings"
-    }
-  }, [(_vm.issue.type != 4) ? _c('div', {
-    staticClass: "card text-center"
-  }, [_c('div', {
-    staticClass: "card-header"
-  }, [_c('h4', {
-    staticClass: "card-title"
-  }, [_vm._v("\n              الـجـلــسات\n              "), (!_vm.meetings.length) ? _c('button', {
-    staticClass: "btn pull-left btn-success",
-    attrs: {
-      "data-toggle": "modal",
-      "data-target": "#addMeeting"
-    }
-  }, [_vm._v("اضافة جلسة")]) : _vm._e()])]), _vm._v(" "), _c('div', {
-    staticClass: "panel-body"
-  }, [(_vm.meetings.length) ? _c('table', {
-    staticClass: "table table-striped table-bordered table-responsive"
-  }, [_vm._m(0), _vm._v(" "), _c('tbody', _vm._l((_vm.meetings), function(meeting) {
-    return _c('tr', {
-      key: meeting.id
-    }, [_c('td', [_vm._v("\n                      " + _vm._s(meeting.role) + "\n                  ")]), _vm._v(" "), _c('td', [_vm._v("\n                      " + _vm._s(meeting.date) + "\n                      "), (!meeting.judgements.length && !meeting.child_meetings.length) ? _c('button', {
-      staticClass: "btn btn-sm btn-danger pull-left",
-      on: {
-        "click": function($event) {
-          _vm.deleteMeeting(meeting)
-        }
-      }
-    }, [_c('i', {
-      staticClass: "fa fa-times",
-      attrs: {
-        "aria-hidden": "true"
-      }
-    })]) : _vm._e(), _vm._v(" "), _c('button', {
-      staticClass: "btn btn-sm btn-info pull-left",
-      on: {
-        "click": function($event) {
-          _vm.editMeeting(meeting)
-        }
-      }
-    }, [_c('i', {
-      staticClass: "fa fa-pencil-square-o",
-      attrs: {
-        "aria-hidden": "true"
-      }
-    })]), _vm._v(" "), (!meeting.judgements.length && !meeting.child_meetings.length) ? _c('button', {
-      staticClass: "btn btn-sm btn-dark pull-left",
-      on: {
-        "click": function($event) {
-          _vm.delayMeeting(meeting)
-        }
-      }
-    }, [_vm._v("تأجيل")]) : _vm._e()]), _vm._v(" "), _c('td', [_vm._v("\n                      " + _vm._s(meeting.decision) + "\n                  ")]), _vm._v(" "), _c('td', [_vm._v("\n                      " + _vm._s(_vm.ownerOf(meeting))), _c('br'), _vm._v("\n                      " + _vm._s(meeting.notes) + "\n                  ")]), _vm._v(" "), _c('td', [_c('meeting-judgements', {
-      attrs: {
-        "issue": _vm.issue,
-        "accusedopenents": _vm.accusedopenents,
-        "meeting": meeting
-      }
-    })], 1)])
-  }))]) : _vm._e()])]) : _vm._e(), _vm._v(" "), _c('add-meeting'), _vm._v(" "), _c('edit-meeting'), _vm._v(" "), _c('delay-meeting'), _vm._v(" "), (_vm.issue.type == 4) ? _c('div', {
-    staticClass: "card text-center"
-  }, [_c('div', {
-    staticClass: "card-header"
-  }, [_c('h4', {
-    staticClass: "card-title"
-  }, [_vm._v("\n              الـقـــرار\n              "), (!_vm.meetings.length) ? _c('button', {
-    staticClass: "btn pull-left btn-success",
-    attrs: {
-      "data-toggle": "modal",
-      "data-target": "#addDecision"
-    }
-  }, [_vm._v("اضافة القرار")]) : _vm._e()])]), _vm._v(" "), _c('div', {
-    staticClass: "panel-body"
-  }, [(_vm.meetings.length) ? _c('table', {
-    staticClass: "table table-striped table-bordered table-responsive"
-  }, [_vm._m(1), _vm._v(" "), _c('tbody', _vm._l((_vm.meetings), function(meeting) {
-    return _c('tr', {
-      key: meeting.id
-    }, [_c('td', [_vm._v("\n                      " + _vm._s(meeting.date) + "\n                      "), (!meeting.judgements.length && !meeting.child_meetings.length) ? _c('button', {
-      staticClass: "btn btn-sm btn-danger pull-left",
-      on: {
-        "click": function($event) {
-          _vm.deleteDecision(meeting)
-        }
-      }
-    }, [_c('i', {
-      staticClass: "fa fa-times",
-      attrs: {
-        "aria-hidden": "true"
-      }
-    })]) : _vm._e(), _vm._v(" "), _c('button', {
-      staticClass: "btn btn-sm btn-info pull-left",
-      on: {
-        "click": function($event) {
-          _vm.editDecision(meeting)
-        }
-      }
-    }, [_c('i', {
-      staticClass: "fa fa-pencil-square-o",
-      attrs: {
-        "aria-hidden": "true"
-      }
-    })])]), _vm._v(" "), _c('td', [_vm._v("\n                      " + _vm._s(meeting.decision) + "\n                  ")])])
-  }))]) : _vm._e()])]) : _vm._e(), _vm._v(" "), _c('add-decision'), _vm._v(" "), _c('edit-decision')], 1)
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('thead', {
-    staticClass: "thead-inverse"
-  }, [_c('tr', [_c('th', [_vm._v("الرول")]), _vm._v(" "), _c('th', [_vm._v("تـــاريخ الجـــلــــسة")]), _vm._v(" "), _c('th', [_vm._v("القــرار")]), _vm._v(" "), _c('th', [_vm._v("مـــلاحــــظات")]), _vm._v(" "), _c('th', [_vm._v("الاحــكــــام")])])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('thead', {
-    staticClass: "thead-inverse"
-  }, [_c('tr', [_c('th', [_vm._v("تـــاريخ القرار")]), _vm._v(" "), _c('th', [_vm._v("القــرار")])])])
-}]}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-237c354b", module.exports)
-  }
-}
-
-/***/ }),
-/* 239 */,
-/* 240 */,
-/* 241 */,
-/* 242 */,
-/* 243 */
-/***/ (function(module, exports, __webpack_require__) {
-
 var disposed = false
 var Component = __webpack_require__(11)(
   /* script */
-  __webpack_require__(244),
+  __webpack_require__(239),
   /* template */
-  __webpack_require__(245),
+  __webpack_require__(240),
   /* styles */
   null,
   /* scopeId */
@@ -41508,7 +41376,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 244 */
+/* 239 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41556,7 +41424,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 245 */
+/* 240 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -41695,15 +41563,15 @@ if (false) {
 }
 
 /***/ }),
-/* 246 */
+/* 241 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var Component = __webpack_require__(11)(
   /* script */
-  __webpack_require__(247),
+  __webpack_require__(242),
   /* template */
-  __webpack_require__(248),
+  __webpack_require__(243),
   /* styles */
   null,
   /* scopeId */
@@ -41735,7 +41603,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 247 */
+/* 242 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41799,7 +41667,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 248 */
+/* 243 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -41934,6 +41802,134 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
      require("vue-hot-reload-api").rerender("data-v-362849bc", module.exports)
+  }
+}
+
+/***/ }),
+/* 244 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    attrs: {
+      "id": "issueMeetings"
+    }
+  }, [(_vm.issue.type != 4) ? _c('div', {
+    staticClass: "card text-center"
+  }, [_c('div', {
+    staticClass: "card-header"
+  }, [_c('h4', {
+    staticClass: "card-title"
+  }, [_vm._v("\n              الـجـلــسات\n              "), (!_vm.meetings.length) ? _c('button', {
+    staticClass: "btn pull-left btn-success",
+    attrs: {
+      "data-toggle": "modal",
+      "data-target": "#addMeeting"
+    }
+  }, [_vm._v("اضافة جلسة")]) : _vm._e()])]), _vm._v(" "), _c('div', {
+    staticClass: "panel-body"
+  }, [(_vm.meetings.length) ? _c('table', {
+    staticClass: "table table-striped table-bordered table-responsive"
+  }, [_vm._m(0), _vm._v(" "), _c('tbody', _vm._l((_vm.meetings), function(meeting) {
+    return _c('tr', {
+      key: meeting.id
+    }, [_c('td', [_vm._v("\n                      " + _vm._s(meeting.role) + "\n                  ")]), _vm._v(" "), _c('td', [_vm._v("\n                      " + _vm._s(meeting.date) + "\n                      "), (!meeting.judgements.length && !meeting.child_meetings.length) ? _c('button', {
+      staticClass: "btn btn-sm btn-danger pull-left",
+      on: {
+        "click": function($event) {
+          _vm.deleteMeeting(meeting)
+        }
+      }
+    }, [_c('i', {
+      staticClass: "fa fa-times",
+      attrs: {
+        "aria-hidden": "true"
+      }
+    })]) : _vm._e(), _vm._v(" "), _c('button', {
+      staticClass: "btn btn-sm btn-info pull-left",
+      on: {
+        "click": function($event) {
+          _vm.editMeeting(meeting)
+        }
+      }
+    }, [_c('i', {
+      staticClass: "fa fa-pencil-square-o",
+      attrs: {
+        "aria-hidden": "true"
+      }
+    })]), _vm._v(" "), (!meeting.judgements.length && !meeting.child_meetings.length) ? _c('button', {
+      staticClass: "btn btn-sm btn-dark pull-left",
+      on: {
+        "click": function($event) {
+          _vm.delayMeeting(meeting)
+        }
+      }
+    }, [_vm._v("تأجيل")]) : _vm._e()]), _vm._v(" "), _c('td', [_vm._v("\n                      " + _vm._s(meeting.decision) + "\n                  ")]), _vm._v(" "), _c('td', [_vm._v("\n                      " + _vm._s(_vm.ownerOf(meeting))), _c('br'), _vm._v("\n                      " + _vm._s(meeting.notes) + "\n                  ")]), _vm._v(" "), _c('td', [_c('meeting-judgements', {
+      attrs: {
+        "issue": _vm.issue,
+        "accusedopenents": _vm.accusedopenents,
+        "meeting": meeting
+      }
+    })], 1)])
+  }))]) : _vm._e()])]) : _vm._e(), _vm._v(" "), _c('add-meeting'), _vm._v(" "), _c('edit-meeting'), _vm._v(" "), _c('delay-meeting'), _vm._v(" "), (_vm.issue.type == 4) ? _c('div', {
+    staticClass: "card text-center"
+  }, [_c('div', {
+    staticClass: "card-header"
+  }, [_c('h4', {
+    staticClass: "card-title"
+  }, [_vm._v("\n              الـقـــرار\n              "), (!_vm.meetings.length) ? _c('button', {
+    staticClass: "btn pull-left btn-success",
+    attrs: {
+      "data-toggle": "modal",
+      "data-target": "#addDecision"
+    }
+  }, [_vm._v("اضافة القرار")]) : _vm._e()])]), _vm._v(" "), _c('div', {
+    staticClass: "panel-body"
+  }, [(_vm.meetings.length) ? _c('table', {
+    staticClass: "table table-striped table-bordered table-responsive"
+  }, [_vm._m(1), _vm._v(" "), _c('tbody', _vm._l((_vm.meetings), function(meeting) {
+    return _c('tr', {
+      key: meeting.id
+    }, [_c('td', [_vm._v("\n                      " + _vm._s(meeting.date) + "\n                      "), (!meeting.judgements.length && !meeting.child_meetings.length) ? _c('button', {
+      staticClass: "btn btn-sm btn-danger pull-left",
+      on: {
+        "click": function($event) {
+          _vm.deleteDecision(meeting)
+        }
+      }
+    }, [_c('i', {
+      staticClass: "fa fa-times",
+      attrs: {
+        "aria-hidden": "true"
+      }
+    })]) : _vm._e(), _vm._v(" "), _c('button', {
+      staticClass: "btn btn-sm btn-info pull-left",
+      on: {
+        "click": function($event) {
+          _vm.editDecision(meeting)
+        }
+      }
+    }, [_c('i', {
+      staticClass: "fa fa-pencil-square-o",
+      attrs: {
+        "aria-hidden": "true"
+      }
+    })])]), _vm._v(" "), _c('td', [_vm._v("\n                      " + _vm._s(meeting.decision) + "\n                  ")])])
+  }))]) : _vm._e()])]) : _vm._e(), _vm._v(" "), _c('add-decision'), _vm._v(" "), _c('edit-decision')], 1)
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('thead', {
+    staticClass: "thead-inverse"
+  }, [_c('tr', [_c('th', [_vm._v("الرول")]), _vm._v(" "), _c('th', [_vm._v("تـــاريخ الجـــلــــسة")]), _vm._v(" "), _c('th', [_vm._v("القــرار")]), _vm._v(" "), _c('th', [_vm._v("مـــلاحــــظات")]), _vm._v(" "), _c('th', [_vm._v("الاحــكــــام")])])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('thead', {
+    staticClass: "thead-inverse"
+  }, [_c('tr', [_c('th', [_vm._v("تـــاريخ القرار")]), _vm._v(" "), _c('th', [_vm._v("القــرار")])])])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-237c354b", module.exports)
   }
 }
 

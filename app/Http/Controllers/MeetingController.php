@@ -34,21 +34,25 @@ class MeetingController extends Controller
             $nextWeekEnd = Carbon::parse('next week +4 days')->endOfDay();
 
             $thisWeekCevil = Meeting::whereBetween('date', [$thisWeekStart, $thisWeekEnd])
+                    ->with('issue.openents')
                     ->cevil()
                     ->meetingOrder()
                     ->get();
 
             $thisWeekCriminal = Meeting::whereBetween('date', [$thisWeekStart, $thisWeekEnd])
+                    ->with('issue.openents')
                     ->criminal()
                     ->meetingOrder()
                     ->get();
 
             $nextWeekCevil = Meeting::whereBetween('date', [$nextWeekStart, $nextWeekEnd])
+                    ->with('issue.openents')
                     ->cevil()
                     ->meetingOrder()
                     ->get();
 
             $nextWeekCriminal = Meeting::whereBetween('date', [$nextWeekStart, $nextWeekEnd])
+                    ->with('issue.openents')
                     ->criminal()
                     ->meetingOrder()
                     ->get();
@@ -61,11 +65,13 @@ class MeetingController extends Controller
         $end = Carbon::parse($end)->endOfDay();
 
         $cevil = Meeting::whereBetween('date', [$start, $end])
+                    ->with('issue.openents')
                     ->cevil()
                     ->meetingOrder()
                     ->get();
 
         $criminal = Meeting::whereBetween('date', [$start, $end])
+                    ->with('issue.openents')
                     ->criminal()
                     ->meetingOrder()
                     ->get();

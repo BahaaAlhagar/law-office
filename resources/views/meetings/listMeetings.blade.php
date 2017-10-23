@@ -16,6 +16,7 @@
 
       <div id="listMeetings">
         <!-- Meetings List -->
+        <meetings-table :header="header" :data="thisweekcevil"></meetings-table>
 
       </div>
 @endsection

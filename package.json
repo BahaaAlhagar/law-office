@@ -33,6 +33,7 @@
     "vue-md-date-picker": "^1.0.9",
     "vue-select": "github:sagalbot/vue-select",
     "vue-strap": "github:wffranco/vue-strap",
+    "vue-table-component": "^1.6.1",
     "vuejs-simple-datepicker": "^0.2.2"
   }
 }
