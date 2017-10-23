@@ -47,4 +47,28 @@ class Meeting extends Model
     {
     	return $this->belongsTo(Meeting::class, 'parent_id');
     }
+
+    public function scopeCevil($query)
+    {
+        return $query->whereHas('issue', function($query)
+            {
+                $query->where('type', '>', 4);
+            });
+    }
+
+    public function scopeCriminal($query)
+    {
+        return $query->whereHas('issue', function($query)
+            {
+                $query->where('type', '<', 4);
+            });
+    }
+
+    public function scopeMeetingOrder($query)
+    {
+        return $query->orderBy('date', 'asc')
+                     ->orderBy('level', 'asc')
+                     ->orderBy('role', 'asc');
+    }
+    
 }

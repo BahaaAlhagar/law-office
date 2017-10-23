@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Issue;
 use App\Meeting;
+use Carbon\Carbon;
 use App\Http\Requests\storeMeetingRequest;
 use Illuminate\Http\Request;
 
@@ -13,6 +14,63 @@ class MeetingController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('admin');
+    }
+
+    /**
+     * Display a listing of the resource.
+     * @param    $start
+     * @param    $end
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function listMeetings($start = null, $end = null)
+    {
+        if(!$start && !$end){
+
+            $thisWeekStart = Carbon::parse('this week -2 days')->startOfDay();
+            $thisWeekEnd = Carbon::parse('this week +4 days')->endOfDay();
+
+            $nextWeekStart = Carbon::parse('next week -2 days')->startOfDay();
+            $nextWeekEnd = Carbon::parse('next week +4 days')->endOfDay();
+
+            $thisWeekCevil = Meeting::whereBetween('date', [$thisWeekStart, $thisWeekEnd])
+                    ->cevil()
+                    ->meetingOrder()
+                    ->get();
+
+            $thisWeekCriminal = Meeting::whereBetween('date', [$thisWeekStart, $thisWeekEnd])
+                    ->criminal()
+                    ->meetingOrder()
+                    ->get();
+
+            $nextWeekCevil = Meeting::whereBetween('date', [$nextWeekStart, $nextWeekEnd])
+                    ->cevil()
+                    ->meetingOrder()
+                    ->get();
+
+            $nextWeekCriminal = Meeting::whereBetween('date', [$nextWeekStart, $nextWeekEnd])
+                    ->criminal()
+                    ->meetingOrder()
+                    ->get();
+
+            return $this->makeResponse('meetings/listMeetings', compact('thisWeekCevil', 'thisWeekCriminal', 'nextWeekCevil', 'nextWeekCriminal'));
+        }
+
+
+        $start = Carbon::parse($start)->startOfDay();
+        $end = Carbon::parse($end)->endOfDay();
+
+        $cevil = Meeting::whereBetween('date', [$start, $end])
+                    ->cevil()
+                    ->meetingOrder()
+                    ->get();
+
+        $criminal = Meeting::whereBetween('date', [$start, $end])
+                    ->criminal()
+                    ->meetingOrder()
+                    ->get();
+
+        return $this->makeResponse('meetings/listMeetings', compact('cevil', 'criminal'));
     }
     
     /**

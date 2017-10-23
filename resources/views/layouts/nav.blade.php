@@ -19,6 +19,9 @@
         <a class="nav-link" href="{{ route('todos.index') }}"> الاعمال الادارية </a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" href="{{ route('meetings.list') }}"> الجلســـات </a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link disabled" href="#">Disabled</a>
       </li>
       <li class="nav-item dropdown">

@@ -47,4 +47,21 @@ class Judgement extends Model
     {
         return $query->where('present', 1);
     }
+
+    public function scopeCevil($query)
+    {
+        return $query->whereHas('issue', function($query)
+            {
+                $query->where('type', '>', 4);
+            });
+    }
+
+    public function scopeCriminal($query)
+    {
+        return $query->whereHas('issue', function($query)
+            {
+                $query->where('type', '<', 4);
+            });
+    }
+
 }

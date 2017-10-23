@@ -16,12 +16,19 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-Route::view('change_password', 'user.changePassword');
+Route::view('change_password', 'user.changePassword')->middleware('auth');
 Route::post('change_password', 'Auth\UpdatePasswordController@update');
 
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+
+
+// office services starts here
+
+Route::get('meetings/list/{start?}/{end?}', 'MeetingController@listMeetings')->name('meetings.list');
+
+// office services end
 
 
 route::get('/filtered-ppl/{filter?}', 'PersonController@index');

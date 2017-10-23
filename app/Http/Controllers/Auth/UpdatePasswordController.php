@@ -13,10 +13,9 @@ class UpdatePasswordController extends Controller
     /*
      * Ensure the user is signed in to access this page
      */
-    public function __construct() {
-
+    public function __construct()
+    {
         $this->middleware('auth');
-
     }
 
     /**
