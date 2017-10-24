@@ -7239,6 +7239,12 @@ var _MeetingsTable = __webpack_require__(249);
 
 var _MeetingsTable2 = _interopRequireDefault(_MeetingsTable);
 
+var _vueFlatpickrComponent = __webpack_require__(111);
+
+var _vueFlatpickrComponent2 = _interopRequireDefault(_vueFlatpickrComponent);
+
+__webpack_require__(112);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 __webpack_require__(89);
@@ -7248,6 +7254,8 @@ window.Vue = __webpack_require__(117);
 window.Form = _Form2.default;
 
 window.toastr = _toastr2.default;
+
+var Arabic = __webpack_require__(113).ar;
 
 window.eventBus = new Vue();
 
@@ -7261,11 +7269,14 @@ var listMeetings = new Vue({
     cevil: [],
     criminal: [],
     resource_url: '/meetings/list',
+    showDefault: true,
     start: '',
-    end: ''
+    end: '',
+    config: { locale: Arabic }
   },
   components: {
-    MeetingsTable: _MeetingsTable2.default
+    MeetingsTable: _MeetingsTable2.default,
+    flatPickr: _vueFlatpickrComponent2.default
   },
   methods: {
     fetchData: function fetchData() {
@@ -7280,8 +7291,10 @@ var listMeetings = new Vue({
       this.thisweekcriminal = response.data.thisWeekCriminal;
       this.nextweekcevil = response.data.nextWeekCevil;
       this.nextweekcriminal = response.data.nextWeekCriminal;
-      this.cevil = response.data.cevil;
-      this.criminal = response.data.criminal;
+      if (!this.showDefault) {
+        this.cevil = response.data.cevil;
+        this.criminal = response.data.criminal;
+      }
     },
     printPage: function printPage() {
       $('.print-hidden').hide();
@@ -7291,6 +7304,18 @@ var listMeetings = new Vue({
       $('.print-hidden').show();
       $('.btn').show();
       $('.heading').show();
+    },
+    listDates: function listDates() {
+      if (this.start && this.end) {
+        this.resource_url = '/meetings/list/' + this.start + '/' + this.end;
+        this.showDefault = false;
+        this.fetchData();
+      }
+    },
+    dayFromat: function dayFromat(meetingdate) {
+      var d = new Date(meetingdate);
+      var days = ["الاحــد", "الاثــنين", "الثلاثــاء", "الاربعــاء", "الخمــيس", "الجمـــعة", "الســبت"];
+      return days[d.getDay()] + ' ' + meetingdate;
     }
   },
   created: function created() {
