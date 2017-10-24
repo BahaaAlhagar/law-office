@@ -7260,7 +7260,6 @@ var listMeetings = new Vue({
     nextweekcriminal: [],
     cevil: [],
     criminal: [],
-    header: 'الهيدر',
     resource_url: '/meetings/list',
     start: '',
     end: ''
@@ -7283,6 +7282,15 @@ var listMeetings = new Vue({
       this.nextweekcriminal = response.data.nextWeekCriminal;
       this.cevil = response.data.cevil;
       this.criminal = response.data.criminal;
+    },
+    printPage: function printPage() {
+      $('.print-hidden').hide();
+      $('.btn').hide();
+      $('.heading').hide();
+      window.print();
+      $('.print-hidden').show();
+      $('.btn').show();
+      $('.heading').show();
     }
   },
   created: function created() {
@@ -7357,7 +7365,7 @@ var _editMeeting2 = _interopRequireDefault(_editMeeting);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
-	props: ['header', 'data'],
+	props: ['header', 'data', 'id'],
 	methods: {
 		editMeeting: function editMeeting(meeting) {
 			eventBus.$emit('editMeeting', meeting);
@@ -7446,6 +7454,10 @@ exports.default = {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
+    attrs: {
+      "id": _vm.id
+    }
+  }, [_c('div', {
     staticClass: "card text-center mr-auto"
   }, [_c('div', {
     staticClass: "card-header"
@@ -7463,31 +7475,31 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       attrs: {
         "href": '/issues/' + meeting.issue.id
       }
-    }, [_vm._v("\n        \t\t" + _vm._s(_vm.dayFromat(meeting.date)) + "\n        \t\t")])]), _vm._v(" "), _c('td', [_vm._v(_vm._s(meeting.role))]), _vm._v(" "), _c('td', [_c('span', {
+    }, [_vm._v("\n          \t\t" + _vm._s(_vm.dayFromat(meeting.date)) + "\n          \t\t")])]), _vm._v(" "), _c('td', [_vm._v(_vm._s(meeting.role))]), _vm._v(" "), _c('td', [_c('span', {
       directives: [{
         name: "show",
         rawName: "v-show",
         value: (meeting.issue.number),
         expression: "meeting.issue.number"
       }]
-    }, [_vm._v("\n                " + _vm._s(meeting.issue.number) + " لسنة " + _vm._s(meeting.issue.year) + " " + _vm._s(_vm.issueType(meeting)) + "\n              ")]), _vm._v(" "), _c('span', {
+    }, [_vm._v("\n                  " + _vm._s(meeting.issue.number) + " لسنة " + _vm._s(meeting.issue.year) + " " + _vm._s(_vm.issueType(meeting)) + "\n                ")]), _vm._v(" "), _c('span', {
       directives: [{
         name: "show",
         rawName: "v-show",
         value: (meeting.issue.adv_number),
         expression: "meeting.issue.adv_number"
       }]
-    }, [_c('br'), _vm._v(_vm._s(meeting.issue.adv_number) + " لسنة " + _vm._s(meeting.issue.adv_year) + " س\n              ")])]), _vm._v(" "), _c('td', [_vm._v("\n        \t  " + _vm._s(meeting.issue.court) + " \n              "), _c('span', {
+    }, [_c('br'), _vm._v(_vm._s(meeting.issue.adv_number) + " لسنة " + _vm._s(meeting.issue.adv_year) + " س\n                ")])]), _vm._v(" "), _c('td', [_vm._v("\n          \t  " + _vm._s(meeting.issue.court) + " \n                "), _c('span', {
       directives: [{
         name: "show",
         rawName: "v-show",
         value: (meeting.issue.room),
         expression: "meeting.issue.room"
       }]
-    }, [_vm._v("\n                - الدائــرة " + _vm._s(meeting.issue.room) + "\n              ")]), _vm._v(" "), _c('br'), _vm._v(_vm._s(meeting.decision) + "\n        \t")]), _vm._v(" "), _c('td', _vm._l((meeting.issue.openents), function(openent) {
+    }, [_vm._v("\n                  - الدائــرة " + _vm._s(meeting.issue.room) + "\n                ")]), _vm._v(" "), _c('br'), _vm._v(_vm._s(meeting.decision) + "\n          \t")]), _vm._v(" "), _c('td', _vm._l((meeting.issue.openents), function(openent) {
       return (meeting.issue.openents.length) ? _c('span', {
         key: openent.id
-      }, [_c('span', [_vm._v("\n        \t\t\t\t" + _vm._s(openent.name) + " / " + _vm._s(_vm.openentType(openent)) + " "), _c('br')])]) : _vm._e()
+      }, [_c('span', [_vm._v("\n          \t\t\t\t" + _vm._s(openent.name) + " / " + _vm._s(_vm.openentType(openent)) + " "), _c('br')])]) : _vm._e()
     })), _vm._v(" "), _c('td', {
       staticClass: "print-hidden"
     }, [_c('button', {
@@ -7507,7 +7519,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "href": '/issues/' + meeting.issue.id
       }
     }, [_vm._m(1, true)])])])
-  })], 2)])]), _vm._v(" "), _c('edit-meeting')], 1)
+  })], 2)])]), _vm._v(" "), _c('edit-meeting')], 1)])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('tr', [_c('th', [_c('strong', [_vm._v("تاريخ الجلسة")])]), _vm._v(" "), _c('th', [_c('strong', [_vm._v("الرول")])]), _vm._v(" "), _c('th', [_c('strong', [_vm._v("بيانات القضية")])]), _vm._v(" "), _c('th', [_c('strong', [_vm._v("المحكمة والدائرة والقرار")])]), _vm._v(" "), _c('th', [_c('strong', [_vm._v("الخصوم")])]), _vm._v(" "), _c('th', {
     staticClass: "print-hidden"

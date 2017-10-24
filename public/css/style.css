@@ -104,6 +104,7 @@ td ul li {
   text-align: center;
   font-weight: bold;
   font-family: 'Amiri', sans-serif, arial;
+  font-size: 18px;
 }
 
 .modal {
@@ -126,29 +127,7 @@ td ul li {
   font-weight: bold;
   max-width: 1000px;
 }
-
-
-
-#UploadFileForm {
-  display: relative;
-  justify-content: center;
-  align-content: center;
-  text-align: center;
-}
-
-.panel-heading {
-  font-weight: bold;
-}
-
-#extentions {
-  display: inline-block;
-  font-weight: bold;
-  text-align: center;
-  margin-top: 7px;
-  font-size: 16px;
-}*/
-
-
+*/
 
 /**
  * Panels

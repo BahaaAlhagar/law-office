@@ -30,7 +30,6 @@ const listMeetings = new Vue({
     	nextweekcriminal: [],
       cevil: [],
       criminal: [],
-      header: 'الهيدر',
     	resource_url: '/meetings/list',
       start: '',
       end: ''
@@ -50,6 +49,15 @@ const listMeetings = new Vue({
         this.nextweekcriminal = response.data.nextWeekCriminal;
         this.cevil = response.data.cevil;
         this.criminal = response.data.criminal;
+      },
+      printPage(){
+          $('.print-hidden').hide();
+          $('.btn').hide();
+          $('.heading').hide();
+          window.print()
+          $('.print-hidden').show();
+          $('.btn').show();
+          $('.heading').show();
       }
     },
     created() {

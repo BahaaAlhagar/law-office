@@ -1,4 +1,5 @@
 <template>
+      <div :id="id">
         <div class="card text-center mr-auto">
           <div class="card-header">
           <h4 class="card-title">{{ header }}</h4>
@@ -57,13 +58,14 @@
           </div>
           <edit-meeting></edit-meeting>
         </div>
+      </div>
 </template>
 
 <script>
 	import editMeeting from '../issue/meetings/editMeeting';
 
 	export default {
-		props: ['header', 'data'],
+		props: ['header', 'data', 'id'],
 		methods: {
 		  editMeeting(meeting){
 	        eventBus.$emit('editMeeting', meeting);
