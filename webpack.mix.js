@@ -19,4 +19,5 @@ mix.js('resources/assets/js/managePeople.js', 'public/js')
 	.js('resources/assets/js/issueProfile.js', 'public/js')
 	.js('resources/assets/js/personFiles.js', 'public/js')
 	.js('resources/assets/js/listMeetings.js', 'public/js')
-	.js('resources/assets/js/contractProfile.js', 'public/js');
+	.js('resources/assets/js/contractProfile.js', 'public/js')
+	.extract(['vue', 'bootstrap', 'toastr', 'dropzone', 'jquery']);

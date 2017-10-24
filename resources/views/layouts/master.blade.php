@@ -47,10 +47,13 @@
         <!-- jquery & bootstrap requirements -->
         <script src="{{ URL::asset('js/jquery-3.2.1.slim.min.js') }}"></script>
         <script src="{{ URL::asset('js/popper.min.js') }}"></script>
-        <script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
         
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
         <script src="{{ URL::asset('js/ie10-viewport-bug-workaround.js') }}"></script>
+
+        <!-- webpack vendor packages -->
+        <script src="{{ URL::asset('js/manifest.js') }}"></script>
+        <script src="{{ URL::asset('js/vendor.js') }}"></script>
 
 @yield('js')
 
