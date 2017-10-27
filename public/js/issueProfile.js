@@ -9539,9 +9539,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v(" لا يوجد خصوم بعد ")])]), _vm._v(" "), _vm._l((_vm.openents), function(openent) {
     return _c('tr', {
       key: openent.id
-    }, [_c('td', [_vm._v("\n                " + _vm._s(openent.name) + " "), _c('span', {
+    }, [_c('td', [_c('a', {
+      attrs: {
+        "href": '/people/' + openent.id
+      }
+    }, [_vm._v("\n                  " + _vm._s(openent.name) + " "), _c('span', {
       staticClass: "green"
-    }, [_vm._v(_vm._s(_vm.clientCheck(openent)))]), _vm._v(" "), _c('button', {
+    }, [_vm._v(_vm._s(_vm.clientCheck(openent)))])]), _vm._v(" "), _c('button', {
       staticClass: "btn btn-sm btn-danger pull-left",
       on: {
         "click": function($event) {
@@ -12532,7 +12536,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "value": "4"
     }
-  }, [_vm._v("معارضة استئنافية")]) : _vm._e(), _vm._v(" "), (_vm.judgement.level >= 3 && _vm.judgement.present) ? _c('option', {
+  }, [_vm._v("معارضة استئنافية")]) : _vm._e(), _vm._v(" "), (_vm.judgement.level >= 3) ? _c('option', {
     attrs: {
       "value": "5"
     }

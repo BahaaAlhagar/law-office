@@ -32,7 +32,7 @@
 
                             <option v-if="issue.type == 1 && judgement.level == 3 && !judgement.present" value="4">معارضة استئنافية</option>
 
-                            <option v-if="judgement.level >= 3 && judgement.present" value="5">نـــقـــض</option>
+                            <option v-if="judgement.level >= 3" value="5">نـــقـــض</option>
                         </select>
 
                         <span class="alert-danger" v-if="CriminalChallengeForm.errors.has('level')" v-text="CriminalChallengeForm.errors.get('level')"></span>

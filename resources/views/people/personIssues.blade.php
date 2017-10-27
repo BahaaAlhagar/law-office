@@ -54,6 +54,16 @@
             </span>
         </div>
 
+        <div>
+            <span v-if="records.length">
+              <button class="btn btn-sm btn-danger pull-left" data-toggle="collapse" data-target="#records"><i class="fa fa-window-minimize" aria-hidden="true"></i></button>
+              <judgements-table :header="'الاحكام الجنائية الصادرة ضد الشخص'" :id="'records'" :data="records"></judgements-table>
+            </span>
+            <span v-else class="alert alert-info heading col-xs-12">
+              لا يوجد احكام جنائية ضد هذا الشخص
+            </span>
+        </div>
+
       </div>
 @endsection
 
