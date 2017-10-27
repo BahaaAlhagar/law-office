@@ -47,22 +47,23 @@ class Issue extends Model
 
     public function getLastMeetingDateAttribute()
     {
-        return $this->meetings()->orderBy('date', 'desc')->first()->date;
+        if($this->meetings()->count())
+        {
+            return $this->meetings()->orderBy('date', 'desc')->first()->date;
+        } else {
+            return null;
+        }
     }
 
     public function getLastJudgementDateAttribute()
-    {
-        return $this->judgements()->orderBy('date', 'desc')->first()->date;
-    }
+    {   
+        if($this->judgements()->count())
+        {
+            return $this->judgements()->orderBy('date', 'desc')->first()->date;
+        } else {
+            return null;
+        }
 
-/*    public function setLastMeetingDateAttribute()
-    {
-        return $this->meetings()->orderBy('date', 'desc')->first()->date;
     }
-
-    public function setLastJudgementDateAttribute()
-    {
-        return $this->judgements()->orderBy('date', 'desc')->first()->date;
-    }*/
 
 }

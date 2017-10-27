@@ -46,8 +46,9 @@
             </table>
             <div class="mr-auto card-footer">
                 <button class="btn btn-info" @click="editPerson(person)">تعديل البيانات</button>
-                <button class="btn btn-dark" >عرض الدعاوى</button>
-                <button class="btn btn-info" >عرض الاحكام</button>
+                <a :href="'/people/' + person.id + '/issues'">
+                  <button class="btn btn-dark" >عرض الدعاوى و الاحكام</button>
+                </a>
                 <a :href="'/people/' + person.id + '/files'">
                   <button class="btn btn-primary">مستندات الشخص</button>
                 </a>

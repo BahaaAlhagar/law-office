@@ -1,4 +1,4 @@
-webpackJsonp([5],[
+webpackJsonp([4],[
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -7441,16 +7441,14 @@ if (false) {
 /* 247 */,
 /* 248 */,
 /* 249 */,
-/* 250 */,
-/* 251 */,
-/* 252 */
+/* 250 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(253);
+module.exports = __webpack_require__(251);
 
 
 /***/ }),
-/* 253 */
+/* 251 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7476,12 +7474,6 @@ var _MeetingsTable = __webpack_require__(155);
 
 var _MeetingsTable2 = _interopRequireDefault(_MeetingsTable);
 
-var _vueFlatpickrComponent = __webpack_require__(47);
-
-var _vueFlatpickrComponent2 = _interopRequireDefault(_vueFlatpickrComponent);
-
-__webpack_require__(48);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 __webpack_require__(92);
@@ -7492,48 +7484,32 @@ window.Form = _Form2.default;
 
 window.toastr = _toastr2.default;
 
-var Arabic = __webpack_require__(49).ar;
-
 window.eventBus = new Vue();
 
-var listMeetings = new Vue({
-  el: '#listMeetings',
+var personIssues = new Vue({
+  el: '#personIssues',
   data: {
-    thisweekcevil: [],
-    thisweekcriminal: [],
-    nextweekcevil: [],
-    nextweekcriminal: [],
-    cevil: [],
-    criminal: [],
-    resource_url: '/meetings/list',
-    showDefault: true,
-    start: '',
-    end: '',
-    printed_start: '',
-    printed_end: '',
-    config: { locale: Arabic }
+    cevil_issues: [],
+    criminal_issues: [],
+    excutive_issues: [],
+    records: []
   },
   components: {
-    MeetingsTable: _MeetingsTable2.default,
-    flatPickr: _vueFlatpickrComponent2.default
+    MeetingsTable: _MeetingsTable2.default
   },
   methods: {
     fetchData: function fetchData() {
       var _this = this;
 
-      axios.get(this.resource_url).then(function (response) {
+      axios.get(window.location.pathname).then(function (response) {
         return _this.assignData(response);
       });
     },
     assignData: function assignData(response) {
-      this.thisweekcevil = response.data.thisWeekCevil;
-      this.thisweekcriminal = response.data.thisWeekCriminal;
-      this.nextweekcevil = response.data.nextWeekCevil;
-      this.nextweekcriminal = response.data.nextWeekCriminal;
-      if (!this.showDefault) {
-        this.cevil = response.data.cevil;
-        this.criminal = response.data.criminal;
-      }
+      this.cevil_issues = response.data.cevilIssues;
+      this.criminal_issues = response.data.criminalIssues;
+      this.excutive_issues = response.data.excutiveIssues;
+      this.records = response.data.records;
     },
     printPage: function printPage() {
       $('.print-hidden').hide();
@@ -7543,27 +7519,6 @@ var listMeetings = new Vue({
       $('.print-hidden').show();
       $('.btn').show();
       $('.heading').show();
-    },
-    listDates: function listDates() {
-      if (this.start && this.end) {
-        this.resource_url = '/meetings/list/' + this.start + '/' + this.end;
-        this.showDefault = false;
-        this.printed_start = this.start;
-        this.printed_end = this.end;
-        this.fetchData();
-      }
-    },
-    dayFromat: function dayFromat(meetingdate) {
-      var d = new Date(meetingdate);
-      var days = ["الاحــد", "الاثــنين", "الثلاثــاء", "الاربعــاء", "الخمــيس", "الجمـــعة", "الســبت"];
-      return days[d.getDay()] + ' ' + meetingdate;
-    },
-    echoDatesRange: function echoDatesRange() {
-      if (this.printed_start !== this.printed_end) {
-        return 'من ' + this.dayFromat(this.printed_start) + ' حتى ' + this.dayFromat(this.printed_end);
-      } else {
-        return 'ليوم ' + this.dayFromat(this.printed_start);
-      }
     }
   },
   created: function created() {
@@ -7581,4 +7536,4 @@ _toastr2.default.options = {
 };
 
 /***/ })
-],[252]);
+],[250]);
