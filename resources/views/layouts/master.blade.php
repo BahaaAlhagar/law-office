@@ -57,6 +57,9 @@
 
 @yield('js')
 
+<!-- space for footer -->
+<div style="margin-bottom: 35px;"></div>
+
 <footer class="footer print-hidden">
 @yield('footer')
   <b>&copy; Copyright 2017 by <a href="https://github.com/BahaaAlhagar" target="_blank">Bahaa Alhagar</a>.</b>

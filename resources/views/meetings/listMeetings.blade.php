@@ -77,21 +77,20 @@
         <div v-if="!showDefault">
             <span v-if="cevil.length">
                 <button class="btn btn-sm btn-info pull-left" data-toggle="collapse" data-target="#cevil"><i class="fa fa-window-minimize" aria-hidden="true"></i></button>
-                <meetings-table :header="'الجلسات المدنية والتجارية والادارية من ' + dayFromat(start) + ' حتى ' + dayFromat(end)" :id="'cevil'" :data="cevil"></meetings-table>
+                <meetings-table :header="'الجلسات المدنية والتجارية والادارية ' + echoDatesRange()" :id="'cevil'" :data="cevil"></meetings-table>
             </span>
             <span v-else class="alert alert-info heading col-xs-12">
-                لا يوجد جلسات مدنية او تجارية فى هذه الفترة
+                لا يوجد جلسات مدنية او تجارية فى هذا اليوم او هذه الفترة
             </span>
 
             <span v-if="criminal.length">
                 <button class="btn btn-sm btn-dark pull-left" data-toggle="collapse" data-target="#criminal"><i class="fa fa-window-minimize" aria-hidden="true"></i></button>
-                <meetings-table :header="'الجلسات الجنائية من ' + dayFromat(start) + ' حتى ' + dayFromat(end)" :id="'criminal'" :data="criminal"></meetings-table>
+                <meetings-table :header="'الجلسات الجنائية ' + echoDatesRange()" :id="'criminal'" :data="criminal"></meetings-table>
             </span>
             <span v-else class="alert alert-info heading col-xs-12">
-                لا يوجد جلسات جنائية فى هذه الفترة
+                لا يوجد جلسات جنائية فى هذا اليوم او هذه الفترة
             </span>
         </div>
-
       </div>
 @endsection
 

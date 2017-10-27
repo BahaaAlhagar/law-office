@@ -7272,6 +7272,8 @@ var listMeetings = new Vue({
     showDefault: true,
     start: '',
     end: '',
+    printed_start: '',
+    printed_end: '',
     config: { locale: Arabic }
   },
   components: {
@@ -7309,6 +7311,8 @@ var listMeetings = new Vue({
       if (this.start && this.end) {
         this.resource_url = '/meetings/list/' + this.start + '/' + this.end;
         this.showDefault = false;
+        this.printed_start = this.start;
+        this.printed_end = this.end;
         this.fetchData();
       }
     },
@@ -7316,6 +7320,13 @@ var listMeetings = new Vue({
       var d = new Date(meetingdate);
       var days = ["الاحــد", "الاثــنين", "الثلاثــاء", "الاربعــاء", "الخمــيس", "الجمـــعة", "الســبت"];
       return days[d.getDay()] + ' ' + meetingdate;
+    },
+    echoDatesRange: function echoDatesRange() {
+      if (this.printed_start != this.printed_end) {
+        return 'من ' + this.dayFromat(this.printed_start) + ' حتى ' + this.dayFromat(this.printed_end);
+      } else {
+        return 'ليوم ' + this.dayFromat(this.printed_start);
+      }
     }
   },
   created: function created() {
