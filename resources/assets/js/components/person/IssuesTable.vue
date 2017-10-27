@@ -2,18 +2,18 @@
       <div :id="id">
         <div class="card text-center mr-auto">
           <div class="card-header">
-          <h4 class="card-title">{{ header }}</h4>
+          <h4 class="card-title green">{{ header }}</h4>
           </div>
           <div class="panel-body">
             <table class="table table-responsive">
               <tbody>
                 <tr>
-                  <th><strong>رقم القضية</strong></th>
-                	<th><strong>مـوضـــوعها</strong></th>
-                	<th><strong>الخـصـــوم</strong></th>
-                	<th><strong>اخر جلــسة</strong></th>
-                  <th><strong>اخر حـــكــم</strong></th>
-                	<th><strong>تاريخ اخر حكم</strong></th>
+                  <th class="brown"><strong>رقم القضية</strong></th>
+                	<th class="brown"><strong>مـوضـــوعها</strong></th>
+                	<th class="brown"><strong>الخـصـــوم</strong></th>
+                	<th class="brown"><strong>اخر جلــسة</strong></th>
+                  <th class="brown"><strong>اخر حـــكــم</strong></th>
+                	<th class="brown"><strong>تاريخ اخر حكم</strong></th>
                 	<th class="print-hidden"></th>
                 </tr>
                 <tr v-for="issue in data" :key="issue.id">
@@ -31,7 +31,7 @@
                 	<td>
                       <span v-if="issue.openents.length" v-for="openent in issue.openents" :key="openent.id">
                         <span>
-                          {{ openent.name }} / {{ openentType(openent) }} <br>
+                          <a :href="'/people/' + openent.id">{{ openent.name }}</a> / {{ openentType(openent) }} <br>
                         </span>
                       </span>
                 	</td>
@@ -49,7 +49,6 @@
                 			<button class="btn btn-sm btn-dark pull-left"><i class="fa fa-balance-scale" aria-hidden="true"></i></button>
                 		</a>
                 	</td>
-                	
                 </tr>
               </tbody>
             </table>

@@ -114,23 +114,9 @@ td ul li {
   font-weight: bold;
 }
 
-.dates-form {
-  margin: 0 auto;
-  text-align: center;
-  width: 100%;
-  display: inline-block;
-  font-weight: bolder;
-  font-size: 18px;
+div {
+  margin: 10px 0;
 }
-
-
-
-/*#searchpanel {
-  margin: 15px auto;
-  font-weight: bold;
-  max-width: 1000px;
-}
-*/
 
 /**
  * Panels

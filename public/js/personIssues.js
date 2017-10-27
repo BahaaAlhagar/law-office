@@ -4153,7 +4153,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('div', {
     staticClass: "card-header"
   }, [_c('h4', {
-    staticClass: "card-title"
+    staticClass: "card-title green"
   }, [_vm._v(_vm._s(_vm.header))])]), _vm._v(" "), _c('div', {
     staticClass: "panel-body"
   }, [_c('table', {
@@ -4182,7 +4182,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_c('br'), _vm._v(_vm._s(issue.adv_number) + " لسنة " + _vm._s(issue.adv_year) + " س\n                ")])])]), _vm._v(" "), _c('td', [_vm._v(_vm._s(issue.subject))]), _vm._v(" "), _c('td', _vm._l((issue.openents), function(openent) {
       return (issue.openents.length) ? _c('span', {
         key: openent.id
-      }, [_c('span', [_vm._v("\n                    " + _vm._s(openent.name) + " / " + _vm._s(_vm.openentType(openent)) + " "), _c('br')])]) : _vm._e()
+      }, [_c('span', [_c('a', {
+        attrs: {
+          "href": '/people/' + openent.id
+        }
+      }, [_vm._v(_vm._s(openent.name))]), _vm._v(" / " + _vm._s(_vm.openentType(openent)) + " "), _c('br')])]) : _vm._e()
     })), _vm._v(" "), _c('td', [_vm._v("\n          \t  " + _vm._s(issue.last_meeting_date) + " \n          \t")]), _vm._v(" "), _c('td', [_vm._v("\n              " + _vm._s(issue.last_judgement_body) + "\n          \t")]), _vm._v(" "), _c('td', [_vm._v("\n              " + _vm._s(issue.last_judgement_date) + "\n            ")]), _vm._v(" "), _c('td', {
       staticClass: "print-hidden"
     }, [_c('a', {
@@ -4192,7 +4196,19 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_vm._m(1, true)])])])
   })], 2)])])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('tr', [_c('th', [_c('strong', [_vm._v("رقم القضية")])]), _vm._v(" "), _c('th', [_c('strong', [_vm._v("مـوضـــوعها")])]), _vm._v(" "), _c('th', [_c('strong', [_vm._v("الخـصـــوم")])]), _vm._v(" "), _c('th', [_c('strong', [_vm._v("اخر جلــسة")])]), _vm._v(" "), _c('th', [_c('strong', [_vm._v("اخر حـــكــم")])]), _vm._v(" "), _c('th', [_c('strong', [_vm._v("تاريخ اخر حكم")])]), _vm._v(" "), _c('th', {
+  return _c('tr', [_c('th', {
+    staticClass: "brown"
+  }, [_c('strong', [_vm._v("رقم القضية")])]), _vm._v(" "), _c('th', {
+    staticClass: "brown"
+  }, [_c('strong', [_vm._v("مـوضـــوعها")])]), _vm._v(" "), _c('th', {
+    staticClass: "brown"
+  }, [_c('strong', [_vm._v("الخـصـــوم")])]), _vm._v(" "), _c('th', {
+    staticClass: "brown"
+  }, [_c('strong', [_vm._v("اخر جلــسة")])]), _vm._v(" "), _c('th', {
+    staticClass: "brown"
+  }, [_c('strong', [_vm._v("اخر حـــكــم")])]), _vm._v(" "), _c('th', {
+    staticClass: "brown"
+  }, [_c('strong', [_vm._v("تاريخ اخر حكم")])]), _vm._v(" "), _c('th', {
     staticClass: "print-hidden"
   })])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
