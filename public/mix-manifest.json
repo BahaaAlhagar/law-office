@@ -10,5 +10,6 @@
     "/js/contractProfile.js": "/js/contractProfile.js",
     "/js/personProfile.js": "/js/personProfile.js",
     "/js/vendor.js": "/js/vendor.js",
+    "/js/listRecords.js": "/js/listRecords.js",
     "/js/manifest.js": "/js/manifest.js"
 }
