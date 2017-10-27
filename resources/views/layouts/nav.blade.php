@@ -22,7 +22,7 @@
         <a class="nav-link" href="{{ route('meetings.list') }}"> الجلســـات </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
+        <a class="nav-link" href="{{ route('office.records') }}"> ارقام الحصر </a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

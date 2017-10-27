@@ -28,6 +28,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('meetings/list/{start?}/{end?}', 'MeetingController@listMeetings')->name('meetings.list');
 
+route::get('records', 'OfficeController@records')->name('office.records');
+
 // office services end
 
 
