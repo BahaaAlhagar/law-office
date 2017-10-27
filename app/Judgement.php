@@ -64,4 +64,9 @@ class Judgement extends Model
             });
     }
 
+    public function scopeNoChild($query)
+    {
+        return $query->doesntHave('childMeeting');
+    }
+
 }

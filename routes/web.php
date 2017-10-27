@@ -39,6 +39,8 @@ route::post('people/{person}/files', 'PersonController@storeFile');
 
 route::get('people/{person}/files', 'PersonController@filesIndex');
 
+route::get('people/{person}/issues', 'PersonController@issues');
+
 route::resource('people', 'PersonController', ['except' => ['create', 'edit']]);
 
 

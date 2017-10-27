@@ -13,6 +13,8 @@ class Issue extends Model
 
     protected $guarded = ['id'];
 
+    protected $appends = ['last_meeting_date', 'last_judgement_date'];
+
     public function openents()
     {
     	return $this->belongsToMany(Person::class)
@@ -42,5 +44,25 @@ class Issue extends Model
     {
         return $this->hasMany(Judgement::class);
     }
+
+    public function getLastMeetingDateAttribute()
+    {
+        return $this->meetings()->orderBy('date', 'desc')->first()->date;
+    }
+
+    public function getLastJudgementDateAttribute()
+    {
+        return $this->judgements()->orderBy('date', 'desc')->first()->date;
+    }
+
+/*    public function setLastMeetingDateAttribute()
+    {
+        return $this->meetings()->orderBy('date', 'desc')->first()->date;
+    }
+
+    public function setLastJudgementDateAttribute()
+    {
+        return $this->judgements()->orderBy('date', 'desc')->first()->date;
+    }*/
 
 }

@@ -83,7 +83,7 @@ const listMeetings = new Vue({
           return days[d.getDay()] + ' ' + meetingdate;
       },
       echoDatesRange(){
-        if(this.printed_start != this.printed_end){
+        if(this.printed_start !== this.printed_end){
           return 'من ' + this.dayFromat(this.printed_start) + ' حتى ' + this.dayFromat(this.printed_end);
         } else {
           return 'ليوم ' + this.dayFromat(this.printed_start);

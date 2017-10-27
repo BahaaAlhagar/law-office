@@ -141,5 +141,30 @@ class PersonController extends Controller
         return ['message' => 'something went Wrong'];
     }
 
+    public function issues(Person $person)
+    {
+        $cevilIssues = $person->issues()->where('type', '<', 4)
+                              ->with('openents')
+                              ->latest()
+                              ->get();
+
+        $criminalIssues = $person->issues()->where('type', '<', 4)
+                              ->with('accusedOpenents')
+                              ->latest()
+                              ->get();
+
+        $excutiveIssues = $person->issues()->where('type', 4)
+                              ->with('openents')
+                              ->latest()
+                              ->get();
+
+        $records = $person->judgements()
+                          ->noChild()
+                          ->with('issue')
+                          ->get();
+
+
+        return $this->makeResponse('people/personIssues', compact('person', 'criminalIssues', 'cevilIssues', 'excutiveIssues', 'records'));
+    }
 
 }
