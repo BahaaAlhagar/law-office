@@ -15,7 +15,7 @@ body {
   /* right to left addon */
   direction: rtl;
   font-size: 16px;
-  font-family: 'Amiri', arial;
+  font-family: sans-serif, arial;
 }
 
 .footer {
@@ -54,15 +54,14 @@ table caption {
 table th {
   text-align: center;
   max-width: 350px;
-  font-family: sans-serif, arial;
 }
+
 table td {
   text-align: center;
   max-width: 350px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font-family: sans-serif, arial;
 }
 
 table a {

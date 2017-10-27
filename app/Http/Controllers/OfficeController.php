@@ -15,25 +15,23 @@ class OfficeController extends Controller
 
     public function records()
     {
-    	$records = Judgement::whereNotNull('record')
-    						->noChild()
-    			   			->active()
-    			   			->where('type', '<', 3)
-    			   			->where('level', '=<', 2)
-    			   			->openent()
-    			   			->with('person', 'issue')
-    			   			->orderBy('date')
-    			   			->get();
+    	$records = Judgement::openJudgement()
+    					->noChild()
+    					->openent()
+    					->active()
+    					->where('level', '<', 3)
+    					->with('person', 'issue')
+    					->get();
 
-    	$advancedRecords = Judgement::whereNotNull('record')
+
+    	$advancedRecords = Judgement::openJudgement()
     						->noChild()
-    			   			->active()
-							->where('type', '<', 3)
-    			   			->whereBetween('level', [3, 4])
     			   			->openent()
+							->active()
+    			   			->whereBetween('level', [3, 4])
     			   			->with('person', 'issue')
-    			   			->orderBy('date')
     			   			->get();
+    			   			
     	
     	return $this->makeResponse('office/listRecords', compact('records', 'advancedRecords'));
     }

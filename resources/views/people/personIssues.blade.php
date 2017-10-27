@@ -16,7 +16,7 @@
 
       <div id="personIssues">
         <!-- person Issues -->
-        <div class="col-xs-12">
+        <div class="col-xs-12 heading">
         	قضايا واحكام : 
 	        <a href="{{ route('people.show', $person->id) }}">
 	        	{{ $person->name }}

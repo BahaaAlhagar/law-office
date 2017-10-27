@@ -69,11 +69,18 @@ class Judgement extends Model
         return $query->doesntHave('childMeeting');
     }
 
-    public function scopeOpenent()
+    public function scopeOpenent($query)
     {
-        return $this->whereHas('person', function($query)
+        return $query->whereHas('person', function($query)
         {
             $query->where('is_client', 0);
         });
+    }
+
+    public function scopeOpenJudgement($query)
+    {
+        return $query->whereNotNull('record')
+                    ->where('type', '<', 3)
+                    ->orderBy('date', 'asc');
     }
 }
