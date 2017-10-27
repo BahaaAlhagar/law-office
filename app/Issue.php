@@ -13,7 +13,7 @@ class Issue extends Model
 
     protected $guarded = ['id'];
 
-    protected $appends = ['last_meeting_date', 'last_judgement_date'];
+    protected $appends = ['last_meeting_date', 'last_judgement_date', 'last_judgement_body'];
 
     public function openents()
     {
@@ -63,7 +63,16 @@ class Issue extends Model
         } else {
             return null;
         }
+    }
 
+    public function getLastJudgementBodyAttribute()
+    {   
+        if($this->judgements()->count())
+        {
+            return $this->judgements()->orderBy('date', 'desc')->first()->body;
+        } else {
+            return null;
+        }
     }
 
 }

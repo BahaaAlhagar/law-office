@@ -143,13 +143,13 @@ class PersonController extends Controller
 
     public function issues(Person $person)
     {
-        $cevilIssues = $person->issues()->where('type', '<', 4)
+        $cevilIssues = $person->issues()->where('type', '>', 4)
                               ->with('openents')
                               ->latest()
                               ->get();
 
         $criminalIssues = $person->issues()->where('type', '<', 4)
-                              ->with('accusedOpenents')
+                              ->with('openents')
                               ->latest()
                               ->get();
 

@@ -16,7 +16,7 @@ import bootstrap from 'bootstrap';
 window.toastr = toastr;
 
 
-import MeetingsTable from './components/meetings/MeetingsTable';
+import IssuesTable from './components/person/IssuesTable';
 
 
 window.eventBus = new Vue();
@@ -28,9 +28,6 @@ const personIssues = new Vue({
       criminal_issues: [],
       excutive_issues: [],
       records: []
-    },
-    components: {
-      MeetingsTable
     },
     methods: {
       fetchData(){
@@ -52,6 +49,9 @@ const personIssues = new Vue({
           $('.btn').show();
           $('.heading').show();
         }
+    },
+    components: {
+      IssuesTable
     },
     created() {
       this.fetchData();
