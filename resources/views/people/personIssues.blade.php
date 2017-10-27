@@ -30,7 +30,7 @@
               <issues-table :header="'القضايا المدنية والتجارية'" :id="'cevil_issues'" :data="cevil_issues"></issues-table>
             </span>
             <span v-else class="alert alert-info heading col-xs-12">
-              لا يوجد قضايا مدنية او تجارية لهذا الموكل
+              لا يوجد قضايا مدنية او تجارية لهذا الشخص
             </span>
         </div>
 
@@ -40,7 +40,17 @@
               <issues-table :header="'القضايا الجنائية'" :id="'criminal_issues'" :data="criminal_issues"></issues-table>
             </span>
             <span v-else class="alert alert-info heading col-xs-12">
-              لا يوجد قضايا جنائية لهذا الموكل
+              لا يوجد قضايا جنائية لهذا الشخص
+            </span>
+        </div>
+
+        <div>
+            <span v-if="excutive_issues.length">
+              <button class="btn btn-sm btn-success pull-left" data-toggle="collapse" data-target="#excutive_issues"><i class="fa fa-window-minimize" aria-hidden="true"></i></button>
+              <excutive-issue-table :header="'القضايا الادارية'" :id="'excutive_issues'" :data="excutive_issues"></excutive-issue-table>
+            </span>
+            <span v-else class="alert alert-info heading col-xs-12">
+              لا يوجد قضايا ادارية لهذا الشخص
             </span>
         </div>
 

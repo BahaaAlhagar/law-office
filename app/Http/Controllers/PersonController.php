@@ -154,7 +154,7 @@ class PersonController extends Controller
                               ->get();
 
         $excutiveIssues = $person->issues()->where('type', 4)
-                              ->with('openents')
+                              ->with('openents', 'meetings')
                               ->latest()
                               ->get();
 

@@ -17,6 +17,7 @@ window.toastr = toastr;
 
 
 import IssuesTable from './components/person/IssuesTable';
+import excutiveIssueTable from './components/person/excutiveIssueTable';
 
 
 window.eventBus = new Vue();
@@ -51,7 +52,8 @@ const personIssues = new Vue({
         }
     },
     components: {
-      IssuesTable
+      IssuesTable,
+      excutiveIssueTable
     },
     created() {
       this.fetchData();
