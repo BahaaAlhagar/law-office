@@ -49,16 +49,16 @@ class OfficeController extends Controller
                                 ->orderBy('date')
                                 ->get();
 
-        $firstCMeetings = Meeting::criminal()
+        $criminalPartOne = Meeting::criminal()
                                 ->where('date', '<', Carbon::parse('today'))
                                 ->whereNotNull('person_id')
                                 ->doesntHave('childMeetings')
                                 ->doesntHave('judgements')
-                                ->with('issue.openents')
+                                ->with('issue.openents', 'person')
                                 ->orderBy('date')
                                 ->get();
 
-        $secondCMeetings = Meeting::criminal()
+        $criminalPartTwo = Meeting::criminal()
                                 ->where('date', '<', Carbon::parse('today'))
                                 ->whereNull('person_id')
                                 ->noFullDelay()
@@ -67,11 +67,11 @@ class OfficeController extends Controller
                                 ->get();
 
 
-        $filteredCMeetings = $secondCMeetings->filter(function($meeting){
+        $filteredCMeetings = $criminalPartTwo->filter(function($meeting){
             return $meeting->accused_count > $meeting->childs_count;
         });
 
-        $criminalMeetings = $firstCMeetings->union($filteredCMeetings);
+        $criminalMeetings = array_merge($criminalPartOne->toArray(), $filteredCMeetings->toArray());
         
         return $this->makeResponse('office/lateMeetings', compact('criminalMeetings', 'cevilMeetings'));
     }

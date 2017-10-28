@@ -362,7 +362,7 @@ module.exports = function (it) {
 
 var global = __webpack_require__(1);
 var core = __webpack_require__(3);
-var ctx = __webpack_require__(12);
+var ctx = __webpack_require__(11);
 var hide = __webpack_require__(6);
 var PROTOTYPE = 'prototype';
 
@@ -487,6 +487,63 @@ module.exports = {};
 
 /***/ }),
 /* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// optional / simple context binding
+var aFunction = __webpack_require__(12);
+module.exports = function (fn, that, length) {
+  aFunction(fn);
+  if (that === undefined) return fn;
+  switch (length) {
+    case 1: return function (a) {
+      return fn.call(that, a);
+    };
+    case 2: return function (a, b) {
+      return fn.call(that, a, b);
+    };
+    case 3: return function (a, b, c) {
+      return fn.call(that, a, b, c);
+    };
+  }
+  return function (/* ...args */) {
+    return fn.apply(that, arguments);
+  };
+};
+
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports) {
+
+module.exports = function (it) {
+  if (typeof it != 'function') throw TypeError(it + ' is not a function!');
+  return it;
+};
+
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports) {
+
+var hasOwnProperty = {}.hasOwnProperty;
+module.exports = function (it, key) {
+  return hasOwnProperty.call(it, key);
+};
+
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports) {
+
+var toString = {}.toString;
+
+module.exports = function (it) {
+  return toString.call(it).slice(8, -1);
+};
+
+
+/***/ }),
+/* 15 */
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -583,63 +640,6 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 12 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// optional / simple context binding
-var aFunction = __webpack_require__(13);
-module.exports = function (fn, that, length) {
-  aFunction(fn);
-  if (that === undefined) return fn;
-  switch (length) {
-    case 1: return function (a) {
-      return fn.call(that, a);
-    };
-    case 2: return function (a, b) {
-      return fn.call(that, a, b);
-    };
-    case 3: return function (a, b, c) {
-      return fn.call(that, a, b, c);
-    };
-  }
-  return function (/* ...args */) {
-    return fn.apply(that, arguments);
-  };
-};
-
-
-/***/ }),
-/* 13 */
-/***/ (function(module, exports) {
-
-module.exports = function (it) {
-  if (typeof it != 'function') throw TypeError(it + ' is not a function!');
-  return it;
-};
-
-
-/***/ }),
-/* 14 */
-/***/ (function(module, exports) {
-
-var hasOwnProperty = {}.hasOwnProperty;
-module.exports = function (it, key) {
-  return hasOwnProperty.call(it, key);
-};
-
-
-/***/ }),
-/* 15 */
-/***/ (function(module, exports) {
-
-var toString = {}.toString;
-
-module.exports = function (it) {
-  return toString.call(it).slice(8, -1);
-};
-
-
-/***/ }),
 /* 16 */
 /***/ (function(module, exports) {
 
@@ -716,7 +716,7 @@ module.exports = function (key) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var def = __webpack_require__(8).f;
-var has = __webpack_require__(14);
+var has = __webpack_require__(13);
 var TAG = __webpack_require__(2)('toStringTag');
 
 module.exports = function (it, tag, stat) {
@@ -731,7 +731,7 @@ module.exports = function (it, tag, stat) {
 "use strict";
 
 // 25.4.1.5 NewPromiseCapability(C)
-var aFunction = __webpack_require__(13);
+var aFunction = __webpack_require__(12);
 
 function PromiseCapability(C) {
   var resolve, reject;
@@ -859,7 +859,7 @@ var LIBRARY = __webpack_require__(26);
 var $export = __webpack_require__(5);
 var redefine = __webpack_require__(55);
 var hide = __webpack_require__(6);
-var has = __webpack_require__(14);
+var has = __webpack_require__(13);
 var Iterators = __webpack_require__(10);
 var $iterCreate = __webpack_require__(56);
 var setToStringTag = __webpack_require__(22);
@@ -1029,7 +1029,7 @@ module.exports = function (it) {
 /***/ (function(module, exports, __webpack_require__) {
 
 // getting tag from 19.1.3.6 Object.prototype.toString()
-var cof = __webpack_require__(15);
+var cof = __webpack_require__(14);
 var TAG = __webpack_require__(2)('toStringTag');
 // ES3 wrong here
 var ARG = cof(function () { return arguments; }()) == 'Arguments';
@@ -1059,7 +1059,7 @@ module.exports = function (it) {
 
 // 7.3.20 SpeciesConstructor(O, defaultConstructor)
 var anObject = __webpack_require__(4);
-var aFunction = __webpack_require__(13);
+var aFunction = __webpack_require__(12);
 var SPECIES = __webpack_require__(2)('species');
 module.exports = function (O, D) {
   var C = anObject(O).constructor;
@@ -1072,7 +1072,7 @@ module.exports = function (O, D) {
 /* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var ctx = __webpack_require__(12);
+var ctx = __webpack_require__(11);
 var invoke = __webpack_require__(74);
 var html = __webpack_require__(33);
 var cel = __webpack_require__(19);
@@ -1115,7 +1115,7 @@ if (!setTask || !clearTask) {
     delete queue[id];
   };
   // Node.js 0.8-
-  if (__webpack_require__(15)(process) == 'process') {
+  if (__webpack_require__(14)(process) == 'process') {
     defer = function (id) {
       process.nextTick(ctx(run, id, 1));
     };
@@ -1817,7 +1817,7 @@ module.exports = __webpack_require__(7) ? Object.defineProperties : function def
 /* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var has = __webpack_require__(14);
+var has = __webpack_require__(13);
 var toIObject = __webpack_require__(20);
 var arrayIndexOf = __webpack_require__(61)(false);
 var IE_PROTO = __webpack_require__(21)('IE_PROTO');
@@ -1841,7 +1841,7 @@ module.exports = function (object, names) {
 /***/ (function(module, exports, __webpack_require__) {
 
 // fallback for non-array-like ES3 and non-enumerable old V8 strings
-var cof = __webpack_require__(15);
+var cof = __webpack_require__(14);
 // eslint-disable-next-line no-prototype-builtins
 module.exports = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
   return cof(it) == 'String' ? it.split('') : Object(it);
@@ -1895,7 +1895,7 @@ module.exports = function (index, length) {
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.9 / 15.2.3.2 Object.getPrototypeOf(O)
-var has = __webpack_require__(14);
+var has = __webpack_require__(13);
 var toObject = __webpack_require__(34);
 var IE_PROTO = __webpack_require__(21)('IE_PROTO');
 var ObjectProto = Object.prototype;
@@ -1999,11 +1999,11 @@ module.exports = function (done, value) {
 
 var LIBRARY = __webpack_require__(26);
 var global = __webpack_require__(1);
-var ctx = __webpack_require__(12);
+var ctx = __webpack_require__(11);
 var classof = __webpack_require__(35);
 var $export = __webpack_require__(5);
 var isObject = __webpack_require__(9);
-var aFunction = __webpack_require__(13);
+var aFunction = __webpack_require__(12);
 var anInstance = __webpack_require__(69);
 var forOf = __webpack_require__(70);
 var speciesConstructor = __webpack_require__(36);
@@ -2293,7 +2293,7 @@ module.exports = function (it, Constructor, name, forbiddenField) {
 /* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var ctx = __webpack_require__(12);
+var ctx = __webpack_require__(11);
 var call = __webpack_require__(71);
 var isArrayIter = __webpack_require__(72);
 var anObject = __webpack_require__(4);
@@ -2397,7 +2397,7 @@ var macrotask = __webpack_require__(37).set;
 var Observer = global.MutationObserver || global.WebKitMutationObserver;
 var process = global.process;
 var Promise = global.Promise;
-var isNode = __webpack_require__(15)(process) == 'process';
+var isNode = __webpack_require__(14)(process) == 'process';
 
 module.exports = function () {
   var head, last, notify;
@@ -7025,23 +7025,345 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 128 */,
-/* 129 */,
-/* 130 */,
+/* 128 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(15)(
+  /* script */
+  __webpack_require__(129),
+  /* template */
+  __webpack_require__(130),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "D:\\www\\law-office\\resources\\assets\\js\\components\\issue\\meetings\\editMeeting.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] editMeeting.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0dcae90b", Component.options)
+  } else {
+    hotAPI.reload("data-v-0dcae90b", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 129 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _vueFlatpickrComponent = __webpack_require__(111);
+
+var _vueFlatpickrComponent2 = _interopRequireDefault(_vueFlatpickrComponent);
+
+__webpack_require__(112);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Arabic = __webpack_require__(113).ar;
+
+exports.default = {
+    data: function data() {
+        return {
+            editMeetingForm: new Form({
+                person_id: '',
+                parent_id: '',
+                judgement_id: '',
+                level: '',
+                role: '',
+                date: '',
+                decision: '',
+                notes: ''
+            }),
+            meeting_id: '',
+            config: {
+                locale: Arabic
+            }
+        };
+    },
+
+    methods: {
+        onMeetingUpdate: function onMeetingUpdate() {
+            this.editMeetingForm.patch('/meetings/' + this.meeting_id).then(function (response) {
+                return eventBus.$emit('meetingUpdated', response);
+            });
+        },
+        editMeetingModal: function editMeetingModal(meeting) {
+            this.editMeetingForm.reset();
+            this.editMeetingForm.person_id = meeting.person_id;
+            this.editMeetingForm.parent_id = meeting.parent_id;
+            this.editMeetingForm.judgement_id = meeting.judgement_id;
+            this.editMeetingForm.level = meeting.level;
+            this.editMeetingForm.role = meeting.role;
+            this.editMeetingForm.decision = meeting.decision;
+            this.editMeetingForm.date = meeting.date;
+            this.editMeetingForm.notes = meeting.notes;
+            this.meeting_id = meeting.id;
+        }
+    },
+    created: function created() {
+        var _this = this;
+
+        eventBus.$on('editMeeting', function (meeting) {
+            return _this.editMeetingModal(meeting);
+        });
+    },
+
+    components: {
+        flatPickr: _vueFlatpickrComponent2.default
+    }
+
+};
+
+/***/ }),
+/* 130 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "modal fade",
+    attrs: {
+      "id": "editMeeting",
+      "role": "dialog",
+      "aria-labelledby": "myModalLabel"
+    }
+  }, [_c('div', {
+    staticClass: "modal-dialog",
+    attrs: {
+      "role": "document"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "modal-body"
+  }, [_c('form', {
+    attrs: {
+      "method": "POST",
+      "action": "/people"
+    },
+    on: {
+      "submit": function($event) {
+        $event.preventDefault();
+        _vm.onMeetingUpdate($event)
+      },
+      "keydown": function($event) {
+        _vm.editMeetingForm.errors.clear($event.target.name)
+      },
+      "change": function($event) {
+        _vm.editMeetingForm.errors.clear($event.target.name)
+      },
+      "input": function($event) {
+        _vm.editMeetingForm.errors.clear($event.target.name)
+      }
+    }
+  }, [_c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "role"
+    }
+  }, [_vm._v("رقم الرول:")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editMeetingForm.role),
+      expression: "editMeetingForm.role"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "role",
+      "name": "role"
+    },
+    domProps: {
+      "value": (_vm.editMeetingForm.role)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.editMeetingForm.role = $event.target.value
+      }
+    }
+  }), _vm._v(" "), (_vm.editMeetingForm.errors.has('role')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.editMeetingForm.errors.get('role'))
+    }
+  }) : _vm._e()]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "date"
+    }
+  }, [_vm._v("التاريخ:")]), _vm._v(" "), _c('flat-pickr', {
+    attrs: {
+      "name": "date",
+      "config": _vm.config,
+      "placeholder": "اختر تاريخ الجلــسة"
+    },
+    model: {
+      value: (_vm.editMeetingForm.date),
+      callback: function($$v) {
+        _vm.editMeetingForm.date = $$v
+      },
+      expression: "editMeetingForm.date"
+    }
+  }), _vm._v(" "), (_vm.editMeetingForm.errors.has('date')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.editMeetingForm.errors.get('date'))
+    }
+  }) : _vm._e()], 1), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "decision"
+    }
+  }, [_vm._v("القرار:")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editMeetingForm.decision),
+      expression: "editMeetingForm.decision"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "decision",
+      "name": "decision"
+    },
+    domProps: {
+      "value": (_vm.editMeetingForm.decision)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.editMeetingForm.decision = $event.target.value
+      }
+    }
+  }), _vm._v(" "), (_vm.editMeetingForm.errors.has('decision')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.editMeetingForm.errors.get('decision'))
+    }
+  }) : _vm._e()]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "notes"
+    }
+  }, [_vm._v("ملاحظات:")]), _vm._v(" "), _c('textarea', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editMeetingForm.notes),
+      expression: "editMeetingForm.notes"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "notes",
+      "name": "notes",
+      "rows": "5"
+    },
+    domProps: {
+      "value": (_vm.editMeetingForm.notes)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.editMeetingForm.notes = $event.target.value
+      }
+    }
+  }), _vm._v(" "), (_vm.editMeetingForm.errors.has('notes')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.editMeetingForm.errors.get('notes'))
+    }
+  }) : _vm._e()]), _vm._v(" "), _c('div', {
+    staticClass: "form-group heading"
+  }, [_c('button', {
+    staticClass: "button btn-lg btn-success",
+    attrs: {
+      "disabled": _vm.editMeetingForm.errors.any()
+    }
+  }, [_vm._v("تعديل")])])])])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "modal-header"
+  }, [_c('button', {
+    staticClass: "close",
+    attrs: {
+      "type": "button",
+      "data-dismiss": "modal",
+      "aria-label": "Close"
+    }
+  }, [_c('span', {
+    attrs: {
+      "aria-hidden": "true"
+    }
+  }, [_vm._v("×")])]), _vm._v(" "), _c('span', {
+    staticClass: "form-control-static pull-left"
+  }, [_c('h4', {
+    staticClass: "modal-title",
+    attrs: {
+      "id": "myModalLabel"
+    }
+  }, [_vm._v(" تعديل جلـــسة ")])])])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-0dcae90b", module.exports)
+  }
+}
+
+/***/ }),
 /* 131 */,
 /* 132 */,
 /* 133 */,
 /* 134 */,
 /* 135 */,
-/* 136 */
+/* 136 */,
+/* 137 */,
+/* 138 */,
+/* 139 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var Component = __webpack_require__(11)(
+var Component = __webpack_require__(15)(
   /* script */
-  __webpack_require__(137),
+  __webpack_require__(140),
   /* template */
-  __webpack_require__(138),
+  __webpack_require__(141),
   /* styles */
   null,
   /* scopeId */
@@ -7073,7 +7395,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 137 */
+/* 140 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7126,7 +7448,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 138 */
+/* 141 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -7444,15 +7766,15 @@ if (false) {
 }
 
 /***/ }),
-/* 139 */
+/* 142 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var Component = __webpack_require__(11)(
+var Component = __webpack_require__(15)(
   /* script */
-  __webpack_require__(140),
+  __webpack_require__(143),
   /* template */
-  __webpack_require__(148),
+  __webpack_require__(151),
   /* styles */
   null,
   /* scopeId */
@@ -7484,7 +7806,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 140 */
+/* 143 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7494,7 +7816,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _customDropzone = __webpack_require__(141);
+var _customDropzone = __webpack_require__(144);
 
 var _customDropzone2 = _interopRequireDefault(_customDropzone);
 
@@ -7513,19 +7835,19 @@ exports.default = {
 };
 
 /***/ }),
-/* 141 */
+/* 144 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(142)
+  __webpack_require__(145)
 }
-var Component = __webpack_require__(11)(
+var Component = __webpack_require__(15)(
   /* script */
-  __webpack_require__(145),
+  __webpack_require__(148),
   /* template */
-  __webpack_require__(147),
+  __webpack_require__(150),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -7557,13 +7879,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 142 */
+/* 145 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(143);
+var content = __webpack_require__(146);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -7583,12 +7905,12 @@ if(false) {
 }
 
 /***/ }),
-/* 143 */
+/* 146 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(110)(undefined);
 // imports
-exports.i(__webpack_require__(144), "");
+exports.i(__webpack_require__(147), "");
 
 // module
 exports.push([module.i, "\n", ""]);
@@ -7597,7 +7919,7 @@ exports.push([module.i, "\n", ""]);
 
 
 /***/ }),
-/* 144 */
+/* 147 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(110)(undefined);
@@ -7611,7 +7933,7 @@ exports.push([module.i, "/*\n * The MIT License\n * Copyright (c) 2012 Matias Me
 
 
 /***/ }),
-/* 145 */
+/* 148 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7629,7 +7951,7 @@ exports.default = {
         };
     },
     mounted: function mounted() {
-        var Dropzone = __webpack_require__(146);
+        var Dropzone = __webpack_require__(149);
         Dropzone.autoDiscover = false;
 
         var element = document.getElementById(this.id);
@@ -7710,8 +8032,8 @@ exports.default = {
 };
 
 /***/ }),
-/* 146 */,
-/* 147 */
+/* 149 */,
+/* 150 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -7750,7 +8072,7 @@ if (false) {
 }
 
 /***/ }),
-/* 148 */
+/* 151 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -7812,15 +8134,15 @@ if (false) {
 }
 
 /***/ }),
-/* 149 */
+/* 152 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var Component = __webpack_require__(11)(
+var Component = __webpack_require__(15)(
   /* script */
-  __webpack_require__(150),
+  __webpack_require__(153),
   /* template */
-  __webpack_require__(151),
+  __webpack_require__(154),
   /* styles */
   null,
   /* scopeId */
@@ -7852,7 +8174,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 150 */
+/* 153 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7893,7 +8215,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 151 */
+/* 154 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -8008,333 +8330,11 @@ if (false) {
 }
 
 /***/ }),
-/* 152 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var Component = __webpack_require__(11)(
-  /* script */
-  __webpack_require__(153),
-  /* template */
-  __webpack_require__(154),
-  /* styles */
-  null,
-  /* scopeId */
-  null,
-  /* moduleIdentifier (server only) */
-  null
-)
-Component.options.__file = "D:\\www\\law-office\\resources\\assets\\js\\components\\issue\\meetings\\editMeeting.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] editMeeting.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-0dcae90b", Component.options)
-  } else {
-    hotAPI.reload("data-v-0dcae90b", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 153 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _vueFlatpickrComponent = __webpack_require__(111);
-
-var _vueFlatpickrComponent2 = _interopRequireDefault(_vueFlatpickrComponent);
-
-__webpack_require__(112);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Arabic = __webpack_require__(113).ar;
-
-exports.default = {
-    data: function data() {
-        return {
-            editMeetingForm: new Form({
-                person_id: '',
-                parent_id: '',
-                judgement_id: '',
-                level: '',
-                role: '',
-                date: '',
-                decision: '',
-                notes: ''
-            }),
-            meeting_id: '',
-            config: {
-                locale: Arabic
-            }
-        };
-    },
-
-    methods: {
-        onMeetingUpdate: function onMeetingUpdate() {
-            this.editMeetingForm.patch('/meetings/' + this.meeting_id).then(function (response) {
-                return eventBus.$emit('meetingUpdated', response);
-            });
-        },
-        editMeetingModal: function editMeetingModal(meeting) {
-            this.editMeetingForm.reset();
-            this.editMeetingForm.person_id = meeting.person_id;
-            this.editMeetingForm.parent_id = meeting.parent_id;
-            this.editMeetingForm.judgement_id = meeting.judgement_id;
-            this.editMeetingForm.level = meeting.level;
-            this.editMeetingForm.role = meeting.role;
-            this.editMeetingForm.decision = meeting.decision;
-            this.editMeetingForm.date = meeting.date;
-            this.editMeetingForm.notes = meeting.notes;
-            this.meeting_id = meeting.id;
-        }
-    },
-    created: function created() {
-        var _this = this;
-
-        eventBus.$on('editMeeting', function (meeting) {
-            return _this.editMeetingModal(meeting);
-        });
-    },
-
-    components: {
-        flatPickr: _vueFlatpickrComponent2.default
-    }
-
-};
-
-/***/ }),
-/* 154 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "modal fade",
-    attrs: {
-      "id": "editMeeting",
-      "role": "dialog",
-      "aria-labelledby": "myModalLabel"
-    }
-  }, [_c('div', {
-    staticClass: "modal-dialog",
-    attrs: {
-      "role": "document"
-    }
-  }, [_c('div', {
-    staticClass: "modal-content"
-  }, [_vm._m(0), _vm._v(" "), _c('div', {
-    staticClass: "modal-body"
-  }, [_c('form', {
-    attrs: {
-      "method": "POST",
-      "action": "/people"
-    },
-    on: {
-      "submit": function($event) {
-        $event.preventDefault();
-        _vm.onMeetingUpdate($event)
-      },
-      "keydown": function($event) {
-        _vm.editMeetingForm.errors.clear($event.target.name)
-      },
-      "change": function($event) {
-        _vm.editMeetingForm.errors.clear($event.target.name)
-      },
-      "input": function($event) {
-        _vm.editMeetingForm.errors.clear($event.target.name)
-      }
-    }
-  }, [_c('div', {
-    staticClass: "form-group"
-  }, [_c('label', {
-    staticClass: "label",
-    attrs: {
-      "for": "role"
-    }
-  }, [_vm._v("رقم الرول:")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.editMeetingForm.role),
-      expression: "editMeetingForm.role"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "type": "text",
-      "id": "role",
-      "name": "role"
-    },
-    domProps: {
-      "value": (_vm.editMeetingForm.role)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.editMeetingForm.role = $event.target.value
-      }
-    }
-  }), _vm._v(" "), (_vm.editMeetingForm.errors.has('role')) ? _c('span', {
-    staticClass: "alert-danger",
-    domProps: {
-      "textContent": _vm._s(_vm.editMeetingForm.errors.get('role'))
-    }
-  }) : _vm._e()]), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
-  }, [_c('label', {
-    staticClass: "label",
-    attrs: {
-      "for": "date"
-    }
-  }, [_vm._v("التاريخ:")]), _vm._v(" "), _c('flat-pickr', {
-    attrs: {
-      "name": "date",
-      "config": _vm.config,
-      "placeholder": "اختر تاريخ الجلــسة"
-    },
-    model: {
-      value: (_vm.editMeetingForm.date),
-      callback: function($$v) {
-        _vm.editMeetingForm.date = $$v
-      },
-      expression: "editMeetingForm.date"
-    }
-  }), _vm._v(" "), (_vm.editMeetingForm.errors.has('date')) ? _c('span', {
-    staticClass: "alert-danger",
-    domProps: {
-      "textContent": _vm._s(_vm.editMeetingForm.errors.get('date'))
-    }
-  }) : _vm._e()], 1), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
-  }, [_c('label', {
-    staticClass: "label",
-    attrs: {
-      "for": "decision"
-    }
-  }, [_vm._v("القرار:")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.editMeetingForm.decision),
-      expression: "editMeetingForm.decision"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "type": "text",
-      "id": "decision",
-      "name": "decision"
-    },
-    domProps: {
-      "value": (_vm.editMeetingForm.decision)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.editMeetingForm.decision = $event.target.value
-      }
-    }
-  }), _vm._v(" "), (_vm.editMeetingForm.errors.has('decision')) ? _c('span', {
-    staticClass: "alert-danger",
-    domProps: {
-      "textContent": _vm._s(_vm.editMeetingForm.errors.get('decision'))
-    }
-  }) : _vm._e()]), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
-  }, [_c('label', {
-    staticClass: "label",
-    attrs: {
-      "for": "notes"
-    }
-  }, [_vm._v("ملاحظات:")]), _vm._v(" "), _c('textarea', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.editMeetingForm.notes),
-      expression: "editMeetingForm.notes"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "type": "text",
-      "id": "notes",
-      "name": "notes",
-      "rows": "5"
-    },
-    domProps: {
-      "value": (_vm.editMeetingForm.notes)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.editMeetingForm.notes = $event.target.value
-      }
-    }
-  }), _vm._v(" "), (_vm.editMeetingForm.errors.has('notes')) ? _c('span', {
-    staticClass: "alert-danger",
-    domProps: {
-      "textContent": _vm._s(_vm.editMeetingForm.errors.get('notes'))
-    }
-  }) : _vm._e()]), _vm._v(" "), _c('div', {
-    staticClass: "form-group heading"
-  }, [_c('button', {
-    staticClass: "button btn-lg btn-success",
-    attrs: {
-      "disabled": _vm.editMeetingForm.errors.any()
-    }
-  }, [_vm._v("تعديل")])])])])])])])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "modal-header"
-  }, [_c('button', {
-    staticClass: "close",
-    attrs: {
-      "type": "button",
-      "data-dismiss": "modal",
-      "aria-label": "Close"
-    }
-  }, [_c('span', {
-    attrs: {
-      "aria-hidden": "true"
-    }
-  }, [_vm._v("×")])]), _vm._v(" "), _c('span', {
-    staticClass: "form-control-static pull-left"
-  }, [_c('h4', {
-    staticClass: "modal-title",
-    attrs: {
-      "id": "myModalLabel"
-    }
-  }, [_vm._v(" تعديل جلـــسة ")])])])
-}]}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-0dcae90b", module.exports)
-  }
-}
-
-/***/ }),
 /* 155 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var Component = __webpack_require__(11)(
+var Component = __webpack_require__(15)(
   /* script */
   __webpack_require__(215),
   /* template */
@@ -8537,7 +8537,7 @@ toastr.options = {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var Component = __webpack_require__(11)(
+var Component = __webpack_require__(15)(
   /* script */
   __webpack_require__(191),
   /* template */
@@ -8583,7 +8583,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _editIssue = __webpack_require__(136);
+var _editIssue = __webpack_require__(139);
 
 var _editIssue2 = _interopRequireDefault(_editIssue);
 
@@ -8740,7 +8740,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var Component = __webpack_require__(11)(
+var Component = __webpack_require__(15)(
   /* script */
   __webpack_require__(194),
   /* template */
@@ -8890,7 +8890,7 @@ function injectStyle (ssrContext) {
   if (disposed) return
   __webpack_require__(196)
 }
-var Component = __webpack_require__(11)(
+var Component = __webpack_require__(15)(
   /* script */
   __webpack_require__(198),
   /* template */
@@ -9198,7 +9198,7 @@ function injectStyle (ssrContext) {
   if (disposed) return
   __webpack_require__(201)
 }
-var Component = __webpack_require__(11)(
+var Component = __webpack_require__(15)(
   /* script */
   __webpack_require__(203),
   /* template */
@@ -9610,7 +9610,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var Component = __webpack_require__(11)(
+var Component = __webpack_require__(15)(
   /* script */
   __webpack_require__(207),
   /* template */
@@ -9656,11 +9656,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _fileUploader = __webpack_require__(139);
+var _fileUploader = __webpack_require__(142);
 
 var _fileUploader2 = _interopRequireDefault(_fileUploader);
 
-var _editFile = __webpack_require__(149);
+var _editFile = __webpack_require__(152);
 
 var _editFile2 = _interopRequireDefault(_editFile);
 
@@ -9805,7 +9805,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var Component = __webpack_require__(11)(
+var Component = __webpack_require__(15)(
   /* script */
   __webpack_require__(211),
   /* template */
@@ -9855,7 +9855,7 @@ var _addMeeting = __webpack_require__(212);
 
 var _addMeeting2 = _interopRequireDefault(_addMeeting);
 
-var _editMeeting = __webpack_require__(152);
+var _editMeeting = __webpack_require__(128);
 
 var _editMeeting2 = _interopRequireDefault(_editMeeting);
 
@@ -10017,7 +10017,7 @@ exports.default = {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var Component = __webpack_require__(11)(
+var Component = __webpack_require__(15)(
   /* script */
   __webpack_require__(213),
   /* template */
@@ -10604,7 +10604,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var Component = __webpack_require__(11)(
+var Component = __webpack_require__(15)(
   /* script */
   __webpack_require__(218),
   /* template */
@@ -10764,7 +10764,7 @@ exports.default = {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var Component = __webpack_require__(11)(
+var Component = __webpack_require__(15)(
   /* script */
   __webpack_require__(220),
   /* template */
@@ -11200,7 +11200,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var Component = __webpack_require__(11)(
+var Component = __webpack_require__(15)(
   /* script */
   __webpack_require__(223),
   /* template */
@@ -11653,7 +11653,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var Component = __webpack_require__(11)(
+var Component = __webpack_require__(15)(
   /* script */
   __webpack_require__(226),
   /* template */
@@ -11936,7 +11936,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var Component = __webpack_require__(11)(
+var Component = __webpack_require__(15)(
   /* script */
   __webpack_require__(229),
   /* template */
@@ -12348,7 +12348,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var Component = __webpack_require__(11)(
+var Component = __webpack_require__(15)(
   /* script */
   __webpack_require__(232),
   /* template */
@@ -12645,7 +12645,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var Component = __webpack_require__(11)(
+var Component = __webpack_require__(15)(
   /* script */
   __webpack_require__(235),
   /* template */
@@ -13084,7 +13084,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var Component = __webpack_require__(11)(
+var Component = __webpack_require__(15)(
   /* script */
   __webpack_require__(239),
   /* template */
@@ -13311,7 +13311,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var Component = __webpack_require__(11)(
+var Component = __webpack_require__(15)(
   /* script */
   __webpack_require__(242),
   /* template */
