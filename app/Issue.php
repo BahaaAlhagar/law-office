@@ -75,4 +75,10 @@ class Issue extends Model
         }
     }
 
+    public function scopeHasAdvancedMeeting($query)
+    {
+        return $query->whereHas('meetings', function($query){
+            $query->where('level', '>', 2);
+        });
+    }
 }

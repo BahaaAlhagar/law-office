@@ -32,6 +32,8 @@ route::get('records', 'OfficeController@records')->name('office.records');
 
 route::get('meetings/late', 'OfficeController@lateMeetings')->name('office.late');
 
+route::get('missingdata', 'OfficeController@missingData')->name('office.missingData');
+
 // office services end
 
 

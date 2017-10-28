@@ -30,8 +30,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="{{ route('office.late') }}">قرارات الجلــسات</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
+          <a class="dropdown-item" href="{{ route('office.missingData') }}">بيانات القضايا وارقام الحصر</a>
         </div>
       </li>
     </ul>

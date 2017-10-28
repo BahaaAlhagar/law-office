@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Issue;
 use App\Meeting;
 use App\Judgement;
 
@@ -74,5 +75,35 @@ class OfficeController extends Controller
         $criminalMeetings = array_merge($criminalPartOne->toArray(), $filteredCMeetings->toArray());
         
         return $this->makeResponse('office/lateMeetings', compact('criminalMeetings', 'cevilMeetings'));
+    }
+
+    public function missingData()
+    {
+        $issueNumbers = Issue::whereNull('number')
+                                ->with('openents')
+                                ->orderBy('type')
+                                ->get();
+
+        $issueAdvNumbers = Issue::whereNull('adv_number')
+                                ->with('openents')
+                                ->hasAdvancedMeeting()
+                                ->orderBy('type')
+                                ->get();
+
+        $records = Judgement::criminal()
+                                ->whereNull('record')
+                                ->with('issue')
+                                ->orderBy('date')
+                                ->get();
+
+        $dates = Issue::doesntHave('openents')
+                                ->orHas('openents', '=<', 1)
+                                ->orDoesntHave('meetings')
+                                ->with('openents')
+                                ->orderBy('type')
+                                ->get();
+
+        
+        return $this->makeResponse('office/missingData', compact('issueNumbers', 'issueAdvNumbers', 'records', 'dates'));
     }
 }
