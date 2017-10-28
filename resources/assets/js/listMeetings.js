@@ -49,6 +49,11 @@ const listMeetings = new Vue({
         axios.get(this.resource_url)
           .then(response => this.assignData(response));
       },
+      afterMeetingUpdated(response){
+        $('#editMeeting').modal('hide');
+        toastr.info(response.message);
+        this.fetchData();
+      },
       assignData(response){
         this.thisweekcevil = response.data.thisWeekCevil;
         this.thisweekcriminal = response.data.thisWeekCriminal;
@@ -90,9 +95,9 @@ const listMeetings = new Vue({
         }
       }
     },
-    created() {
+    mounted() {
       this.fetchData();
-      eventBus.$on('refetchData', event => this.fetchData());
+      eventBus.$on('meetingUpdated', response => this.afterMeetingUpdated(response));
     }
 });
 

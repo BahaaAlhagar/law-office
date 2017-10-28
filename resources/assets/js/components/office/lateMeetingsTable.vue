@@ -15,7 +15,7 @@
                 	<th class="brown"><strong>المحكمة - الدائرة - القرار</strong></th>
                 	<th class="print-hidden"></th>
                 </tr>
-                <tr v-for="meeting in data" :key="meeting.id" class="{ talbe-info: meeting.level > 2 }">
+                <tr v-for="meeting in data" :key="meeting.id" :class="levelCheck(meeting)">
                   <td>{{ meeting.role }}</td>
                   <td>
                       {{ dayFormat(meeting.date) }}
@@ -103,6 +103,12 @@
           var d = new Date(meetingdate);
           var days = ["الاحــد","الاثــنين","الثلاثــاء","الاربعــاء","الخمــيس","الجمـــعة","الســبت"];
           return days[d.getDay()] + ' ' + meetingdate;
+        },
+        levelCheck(meeting){
+            if(meeting.level > 2){
+              return 'table-info';
+            }
+            return false;
         }
 		},
     components: {

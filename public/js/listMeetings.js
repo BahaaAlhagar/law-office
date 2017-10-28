@@ -7299,6 +7299,11 @@ var listMeetings = new Vue({
         return _this.assignData(response);
       });
     },
+    afterMeetingUpdated: function afterMeetingUpdated(response) {
+      $('#editMeeting').modal('hide');
+      _toastr2.default.info(response.message);
+      this.fetchData();
+    },
     assignData: function assignData(response) {
       this.thisweekcevil = response.data.thisWeekCevil;
       this.thisweekcriminal = response.data.thisWeekCriminal;
@@ -7340,12 +7345,12 @@ var listMeetings = new Vue({
       }
     }
   },
-  created: function created() {
+  mounted: function mounted() {
     var _this2 = this;
 
     this.fetchData();
-    eventBus.$on('refetchData', function (event) {
-      return _this2.fetchData();
+    eventBus.$on('meetingUpdated', function (response) {
+      return _this2.afterMeetingUpdated(response);
     });
   }
 });
@@ -7418,11 +7423,6 @@ exports.default = {
 			eventBus.$emit('editMeeting', meeting);
 			$('#editMeeting').modal('show');
 		},
-		afterMeetingUpdated: function afterMeetingUpdated(response) {
-			$('#editMeeting').modal('hide');
-			toastr.info(response.message);
-			eventBus.$emit('refetchData');
-		},
 		openentType: function openentType(openent) {
 			var type = openent.pivot.person_type;
 			switch (type) {
@@ -7485,13 +7485,6 @@ exports.default = {
 	},
 	components: {
 		editMeeting: _editMeeting2.default
-	},
-	mounted: function mounted() {
-		var _this = this;
-
-		eventBus.$on('meetingUpdated', function (response) {
-			return _this.afterMeetingUpdated(response);
-		});
 	}
 };
 

@@ -71,11 +71,6 @@
 	        eventBus.$emit('editMeeting', meeting);
 	        $('#editMeeting').modal('show');
 	      },
-	      afterMeetingUpdated(response){
-	        $('#editMeeting').modal('hide');
-	        toastr.info(response.message);
-	        eventBus.$emit('refetchData');
-	      },
 	      openentType(openent){
           let type = openent.pivot.person_type;
           switch(type) {
@@ -115,13 +110,10 @@
 		      		return 'table-info';
 		      	}
 		      	return false;
-	      	}
+	      }
 		},
 		components: {
 			editMeeting
-		},
-		mounted() {
-			eventBus.$on('meetingUpdated', response => this.afterMeetingUpdated(response));
 		}
 	}
 </script>

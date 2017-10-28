@@ -7436,6 +7436,12 @@ exports.default = {
       var d = new Date(meetingdate);
       var days = ["الاحــد", "الاثــنين", "الثلاثــاء", "الاربعــاء", "الخمــيس", "الجمـــعة", "الســبت"];
       return days[d.getDay()] + ' ' + meetingdate;
+    },
+    levelCheck: function levelCheck(meeting) {
+      if (meeting.level > 2) {
+        return 'table-info';
+      }
+      return false;
     }
   },
   components: {
@@ -7465,7 +7471,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('tbody', [_vm._m(0), _vm._v(" "), _vm._l((_vm.data), function(meeting) {
     return _c('tr', {
       key: meeting.id,
-      staticClass: "{ talbe-info: meeting.level > 2 }"
+      class: _vm.levelCheck(meeting)
     }, [_c('td', [_vm._v(_vm._s(meeting.role))]), _vm._v(" "), _c('td', [_vm._v("\n                " + _vm._s(_vm.dayFormat(meeting.date)) + "\n            ")]), _vm._v(" "), _c('td', [_c('a', {
       attrs: {
         "href": '/issues/' + meeting.issue.id
