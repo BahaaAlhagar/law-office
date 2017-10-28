@@ -18,6 +18,22 @@ class Meeting extends Model
 
     public $timestamps = false;
 
+    protected $appends = ['accused_count', 'childs_count'];
+
+
+    public function getChildsCountAttribute()
+    {   
+
+        return $this->judgements()->count() + $this->childMeetings()->count();
+
+    }
+
+    public function getAccusedCountAttribute()
+    {   
+            return $this->issue->accusedOpenents()->count();
+    }
+
+
     public function issue()
     {
     	return $this->belongsTo(Issue::class);
@@ -70,5 +86,13 @@ class Meeting extends Model
                      ->orderBy('level', 'asc')
                      ->orderBy('role', 'asc');
     }
-    
+
+
+    public function scopeNoFullDelay($query)
+    {
+        return $query->whereDoesntHave('childMeetings', function($query)
+        {
+            $query->whereNull('person_id');
+        });
+    }
 }

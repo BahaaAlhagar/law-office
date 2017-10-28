@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Meeting;
 use App\Judgement;
+
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class OfficeController extends Controller
@@ -34,5 +37,42 @@ class OfficeController extends Controller
     			   			
     	
     	return $this->makeResponse('office/listRecords', compact('records', 'advancedRecords'));
+    }
+
+    public function lateMeetings()
+    {
+        $cevilMeetings = Meeting::cevil()
+                                ->where('date', '<', Carbon::parse('today'))
+                                ->doesntHave('childMeetings')
+                                ->doesntHave('judgements')
+                                ->with('issue.openents')
+                                ->orderBy('date')
+                                ->get();
+
+        $firstCMeetings = Meeting::criminal()
+                                ->where('date', '<', Carbon::parse('today'))
+                                ->whereNotNull('person_id')
+                                ->doesntHave('childMeetings')
+                                ->doesntHave('judgements')
+                                ->with('issue.openents')
+                                ->orderBy('date')
+                                ->get();
+
+        $secondCMeetings = Meeting::criminal()
+                                ->where('date', '<', Carbon::parse('today'))
+                                ->whereNull('person_id')
+                                ->noFullDelay()
+                                ->with('issue.openents')
+                                ->orderBy('date')
+                                ->get();
+
+
+        $filteredCMeetings = $secondCMeetings->filter(function($meeting){
+            return $meeting->accused_count > $meeting->childs_count;
+        });
+
+        $criminalMeetings = $firstCMeetings->union($filteredCMeetings);
+        
+        return $this->makeResponse('office/lateMeetings', compact('criminalMeetings', 'cevilMeetings'));
     }
 }

@@ -30,6 +30,8 @@ Route::get('meetings/list/{start?}/{end?}', 'MeetingController@listMeetings')->n
 
 route::get('records', 'OfficeController@records')->name('office.records');
 
+route::get('meetings/late', 'OfficeController@lateMeetings')->name('office.late');
+
 // office services end
 
 
