@@ -1,4 +1,4 @@
-webpackJsonp([11],[
+webpackJsonp([12],[
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4174,8 +4174,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "table table-responsive"
   }, [_c('tbody', [_vm._m(0), _vm._v(" "), _vm._l((_vm.data), function(judgement) {
     return _c('tr', {
-      key: judgement.id,
-      staticClass: "{ talbe-info: judgement.level > 2 }"
+      key: judgement.id
     }, [_c('td', [_c('a', {
       attrs: {
         "href": '/issues/' + judgement.issue.id

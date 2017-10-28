@@ -3,6 +3,7 @@
     "/js/personFiles.js": "/js/personFiles.js",
     "/js/manageTodos.js": "/js/manageTodos.js",
     "/js/manageContracts.js": "/js/manageContracts.js",
+    "/js/missingData.js": "/js/missingData.js",
     "/js/listMeetings.js": "/js/listMeetings.js",
     "/js/lateMeetings.js": "/js/lateMeetings.js",
     "/js/personIssues.js": "/js/personIssues.js",

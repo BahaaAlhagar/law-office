@@ -3796,7 +3796,10 @@ module.exports = function spread(callback) {
 
 
 /***/ }),
-/* 110 */
+/* 110 */,
+/* 111 */,
+/* 112 */,
+/* 113 */
 /***/ (function(module, exports) {
 
 /*
@@ -3878,9 +3881,6 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 111 */,
-/* 112 */,
-/* 113 */,
 /* 114 */,
 /* 115 */,
 /* 116 */,
@@ -3904,7 +3904,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(122)
+var listToStyles = __webpack_require__(126)
 
 /*
 type StyleObject = {
@@ -5932,7 +5932,11 @@ return /******/ (function(modules) { // webpackBootstrap
 //# sourceMappingURL=vuejs-paginator.js.map
 
 /***/ }),
-/* 122 */
+/* 122 */,
+/* 123 */,
+/* 124 */,
+/* 125 */,
+/* 126 */
 /***/ (function(module, exports) {
 
 /**
@@ -5965,10 +5969,6 @@ module.exports = function listToStyles (parentId, list) {
 
 
 /***/ }),
-/* 123 */,
-/* 124 */,
-/* 125 */,
-/* 126 */,
 /* 127 */,
 /* 128 */,
 /* 129 */,
@@ -6126,7 +6126,7 @@ if(false) {
 /* 146 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(110)(undefined);
+exports = module.exports = __webpack_require__(113)(undefined);
 // imports
 exports.i(__webpack_require__(147), "");
 
@@ -6140,7 +6140,7 @@ exports.push([module.i, "\n", ""]);
 /* 147 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(110)(undefined);
+exports = module.exports = __webpack_require__(113)(undefined);
 // imports
 
 
@@ -6638,14 +6638,17 @@ if (false) {
 /* 242 */,
 /* 243 */,
 /* 244 */,
-/* 245 */
+/* 245 */,
+/* 246 */,
+/* 247 */,
+/* 248 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(246);
+module.exports = __webpack_require__(249);
 
 
 /***/ }),
-/* 246 */
+/* 249 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6779,4 +6782,4 @@ _toastr2.default.options = {
 };
 
 /***/ })
-],[245]);
+],[248]);

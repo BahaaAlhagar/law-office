@@ -2,7 +2,7 @@
       <div :id="id">
         <div class="card text-center mr-auto">
           <div class="card-header">
-          <h4 class="card-title">{{ header }}</h4>
+          <h4 class="card-title green">{{ header }}</h4>
           </div>
           <div class="panel-body">
             <table class="table table-responsive">

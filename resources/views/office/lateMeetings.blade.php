@@ -16,7 +16,7 @@
 
       <div id="lateMeetings">
         <!-- list Records -->
-        <div class="heading col-md-12 print-hidden">
+        <div class="heading col-md-12">
 			عرض الجلسات السابقة التى لم يتم تسجيل قراراتها بعد لاستكمال قراراتها
 			<button @click="printPage()" class="btn btn-sm btn-success pull-left">طباعة الصفحة</button>
 		</div>

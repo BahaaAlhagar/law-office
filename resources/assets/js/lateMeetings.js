@@ -41,7 +41,7 @@ const lateMeetings = new Vue({
           $('.btn').hide();
           window.print()
           $('.print-hidden').show();
-          $('.btn').show();
+          $('.btn').show(); 
         },
       afterMeetingUpdated(response){
           $('#editMeeting').modal('hide');

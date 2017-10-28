@@ -16,7 +16,7 @@
                   <th class="brown"><strong>رقم القضية</strong></th>
                 	<th class="print-hidden"></th>
                 </tr>
-                <tr v-for="judgement in data" :key="judgement.id" class="{ talbe-info: judgement.level > 2 }">
+                <tr v-for="judgement in data" :key="judgement.id">
                 	<td>
                 		<a :href="'/issues/' + judgement.issue.id">
                         {{ judgement.record }} لسنة {{ judgement.year }} <br> {{ judgementType(judgement) }}

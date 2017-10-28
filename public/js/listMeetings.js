@@ -1,4 +1,4 @@
-webpackJsonp([4],[
+webpackJsonp([5],[
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3797,6 +3797,62 @@ module.exports = function spread(callback) {
 
 /***/ }),
 /* 110 */
+/***/ (function(module, exports, __webpack_require__) {
+
+!function(t,e){ true?module.exports=e(__webpack_require__(122)):"function"==typeof define&&define.amd?define("VueFlatpickr",["flatpickr"],e):"object"==typeof exports?exports.VueFlatpickr=e(require("flatpickr")):t.VueFlatpickr=e(t.flatpickr)}(this,function(t){return function(t){function e(r){if(n[r])return n[r].exports;var i=n[r]={i:r,l:!1,exports:{}};return t[r].call(i.exports,i,i.exports,e),i.l=!0,i.exports}var n={};return e.m=t,e.c=n,e.d=function(t,n,r){e.o(t,n)||Object.defineProperty(t,n,{configurable:!1,enumerable:!0,get:r})},e.n=function(t){var n=t&&t.__esModule?function(){return t.default}:function(){return t};return e.d(n,"a",n),n},e.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},e.p="",e(e.s=0)}([function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),n.d(e,"flatPickrPlugin",function(){return i});var r=n(1);n.d(e,"component",function(){return r.a});var i=function(t,e){var n="flat-pickr";"string"==typeof e&&(n=e),t.component(n,r.a)};r.a.install=i,e.default=r.a},function(t,e,n){"use strict";var r=n(3),i=n(5),o=n(2),a=o(r.a,i.a,null,null,null);e.a=a.exports},function(t,e){t.exports=function(t,e,n,r,i){var o,a=t=t||{},u=typeof t.default;"object"!==u&&"function"!==u||(o=t,a=t.default);var s="function"==typeof a?a.options:a;e&&(s.render=e.render,s.staticRenderFns=e.staticRenderFns),r&&(s._scopeId=r);var l;if(i?(l=function(t){t=t||this.$vnode&&this.$vnode.ssrContext||this.parent&&this.parent.$vnode&&this.parent.$vnode.ssrContext,t||"undefined"==typeof __VUE_SSR_CONTEXT__||(t=__VUE_SSR_CONTEXT__),n&&n.call(this,t),t&&t._registeredComponents&&t._registeredComponents.add(i)},s._ssrRegister=l):n&&(l=n),l){var f=s.functional,c=f?s.render:s.beforeCreate;f?s.render=function(t,e){return l.call(e),c(t,e)}:s.beforeCreate=c?[].concat(c,l):[l]}return{esModule:o,exports:a,options:s}}},function(t,e,n){"use strict";function r(t){if(Array.isArray(t)){for(var e=0,n=Array(t.length);e<t.length;e++)n[e]=t[e];return n}return Array.from(t)}var i=n(4),o=n.n(i);e.a={name:"flat-pickr",props:{value:{default:null,required:!0,validate:function(t){return null===t||t instanceof Date||"string"==typeof t||t instanceof String||t instanceof Array}},config:{type:Object,default:function(){return{wrap:!1}}},placeholder:{type:String,default:""},inputClass:{type:[String,Object],default:"form-control input"},name:{type:String,default:"date-time"},required:{type:Boolean,default:!1},id:{type:String}},data:function(){return{mutableValue:this.value,fp:null,oldOnChange:null}},mounted:function(){if(!this.fp){this.oldOnChange=this.config.onChange,this.config.onChange=this.onChange;var t=this.config.wrap?this.$el.parentNode:this.$el;this.fp=new o.a(t,this.config)}},beforeDestroy:function(){this.fp&&(this.fp.destroy(),this.fp=null,this.oldOnChange=null,this.config.onChange=null)},methods:{onChange:function(){for(var t=arguments.length,e=Array(t),n=0;n<t;n++)e[n]=arguments[n];"function"==typeof this.oldOnChange&&this.oldOnChange.apply(this,r(e)),this.$emit.apply(this,["onChange"].concat(r(e)))}},watch:{config:function(t){this.fp.config=Object.assign(this.fp.config,t),this.fp.redraw(),this.fp.setDate(this.value,!0)},mutableValue:function(t){this.$emit("input",t)},value:function(t){t!==this.mutableValue&&this.fp&&this.fp.setDate(t,!0)}}}},function(e,n){e.exports=t},function(t,e,n){"use strict";var r=function(){var t=this,e=t.$createElement;return(t._self._c||e)("input",{directives:[{name:"model",rawName:"v-model",value:t.mutableValue,expression:"mutableValue"}],class:t.inputClass,attrs:{type:"text",id:t.id,name:t.name,placeholder:t.placeholder,required:t.required,"data-input":""},domProps:{value:t.mutableValue},on:{input:function(e){e.target.composing||(t.mutableValue=e.target.value)}}})},i=[],o={render:r,staticRenderFns:i};e.a=o}])});
+
+/***/ }),
+/* 111 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(123);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(124)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../css-loader/index.js!./flatpickr.css", function() {
+			var newContent = require("!!../../css-loader/index.js!./flatpickr.css");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 112 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* Arabic locals for flatpickr */
+var flatpickr = flatpickr || { l10ns: {} };
+flatpickr.l10ns.ar = {};
+
+flatpickr.l10ns.ar.weekdays = {
+	shorthand: ["أحد", "اثنين", "ثلاثاء", "أربعاء", "خميس", "جمعة", "سبت"],
+	longhand: ["الأحد", "الاثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة", "السبت"]
+};
+
+flatpickr.l10ns.ar.months = {
+	shorthand: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
+	longhand: ["يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو", "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"]
+};
+if (true) module.exports = flatpickr.l10ns;
+
+/***/ }),
+/* 113 */
 /***/ (function(module, exports) {
 
 /*
@@ -3878,62 +3934,6 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 111 */
-/***/ (function(module, exports, __webpack_require__) {
-
-!function(t,e){ true?module.exports=e(__webpack_require__(124)):"function"==typeof define&&define.amd?define("VueFlatpickr",["flatpickr"],e):"object"==typeof exports?exports.VueFlatpickr=e(require("flatpickr")):t.VueFlatpickr=e(t.flatpickr)}(this,function(t){return function(t){function e(r){if(n[r])return n[r].exports;var i=n[r]={i:r,l:!1,exports:{}};return t[r].call(i.exports,i,i.exports,e),i.l=!0,i.exports}var n={};return e.m=t,e.c=n,e.d=function(t,n,r){e.o(t,n)||Object.defineProperty(t,n,{configurable:!1,enumerable:!0,get:r})},e.n=function(t){var n=t&&t.__esModule?function(){return t.default}:function(){return t};return e.d(n,"a",n),n},e.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},e.p="",e(e.s=0)}([function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),n.d(e,"flatPickrPlugin",function(){return i});var r=n(1);n.d(e,"component",function(){return r.a});var i=function(t,e){var n="flat-pickr";"string"==typeof e&&(n=e),t.component(n,r.a)};r.a.install=i,e.default=r.a},function(t,e,n){"use strict";var r=n(3),i=n(5),o=n(2),a=o(r.a,i.a,null,null,null);e.a=a.exports},function(t,e){t.exports=function(t,e,n,r,i){var o,a=t=t||{},u=typeof t.default;"object"!==u&&"function"!==u||(o=t,a=t.default);var s="function"==typeof a?a.options:a;e&&(s.render=e.render,s.staticRenderFns=e.staticRenderFns),r&&(s._scopeId=r);var l;if(i?(l=function(t){t=t||this.$vnode&&this.$vnode.ssrContext||this.parent&&this.parent.$vnode&&this.parent.$vnode.ssrContext,t||"undefined"==typeof __VUE_SSR_CONTEXT__||(t=__VUE_SSR_CONTEXT__),n&&n.call(this,t),t&&t._registeredComponents&&t._registeredComponents.add(i)},s._ssrRegister=l):n&&(l=n),l){var f=s.functional,c=f?s.render:s.beforeCreate;f?s.render=function(t,e){return l.call(e),c(t,e)}:s.beforeCreate=c?[].concat(c,l):[l]}return{esModule:o,exports:a,options:s}}},function(t,e,n){"use strict";function r(t){if(Array.isArray(t)){for(var e=0,n=Array(t.length);e<t.length;e++)n[e]=t[e];return n}return Array.from(t)}var i=n(4),o=n.n(i);e.a={name:"flat-pickr",props:{value:{default:null,required:!0,validate:function(t){return null===t||t instanceof Date||"string"==typeof t||t instanceof String||t instanceof Array}},config:{type:Object,default:function(){return{wrap:!1}}},placeholder:{type:String,default:""},inputClass:{type:[String,Object],default:"form-control input"},name:{type:String,default:"date-time"},required:{type:Boolean,default:!1},id:{type:String}},data:function(){return{mutableValue:this.value,fp:null,oldOnChange:null}},mounted:function(){if(!this.fp){this.oldOnChange=this.config.onChange,this.config.onChange=this.onChange;var t=this.config.wrap?this.$el.parentNode:this.$el;this.fp=new o.a(t,this.config)}},beforeDestroy:function(){this.fp&&(this.fp.destroy(),this.fp=null,this.oldOnChange=null,this.config.onChange=null)},methods:{onChange:function(){for(var t=arguments.length,e=Array(t),n=0;n<t;n++)e[n]=arguments[n];"function"==typeof this.oldOnChange&&this.oldOnChange.apply(this,r(e)),this.$emit.apply(this,["onChange"].concat(r(e)))}},watch:{config:function(t){this.fp.config=Object.assign(this.fp.config,t),this.fp.redraw(),this.fp.setDate(this.value,!0)},mutableValue:function(t){this.$emit("input",t)},value:function(t){t!==this.mutableValue&&this.fp&&this.fp.setDate(t,!0)}}}},function(e,n){e.exports=t},function(t,e,n){"use strict";var r=function(){var t=this,e=t.$createElement;return(t._self._c||e)("input",{directives:[{name:"model",rawName:"v-model",value:t.mutableValue,expression:"mutableValue"}],class:t.inputClass,attrs:{type:"text",id:t.id,name:t.name,placeholder:t.placeholder,required:t.required,"data-input":""},domProps:{value:t.mutableValue},on:{input:function(e){e.target.composing||(t.mutableValue=e.target.value)}}})},i=[],o={render:r,staticRenderFns:i};e.a=o}])});
-
-/***/ }),
-/* 112 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(125);
-if(typeof content === 'string') content = [[module.i, content, '']];
-// Prepare cssTransformation
-var transform;
-
-var options = {}
-options.transform = transform
-// add the styles to the DOM
-var update = __webpack_require__(126)(content, options);
-if(content.locals) module.exports = content.locals;
-// Hot Module Replacement
-if(false) {
-	// When the styles change, update the <style> tags
-	if(!content.locals) {
-		module.hot.accept("!!../../css-loader/index.js!./flatpickr.css", function() {
-			var newContent = require("!!../../css-loader/index.js!./flatpickr.css");
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-	}
-	// When the module is disposed, remove the <style> tags
-	module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 113 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* Arabic locals for flatpickr */
-var flatpickr = flatpickr || { l10ns: {} };
-flatpickr.l10ns.ar = {};
-
-flatpickr.l10ns.ar.weekdays = {
-	shorthand: ["أحد", "اثنين", "ثلاثاء", "أربعاء", "خميس", "جمعة", "سبت"],
-	longhand: ["الأحد", "الاثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة", "السبت"]
-};
-
-flatpickr.l10ns.ar.months = {
-	shorthand: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
-	longhand: ["يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو", "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"]
-};
-if (true) module.exports = flatpickr.l10ns;
-
-/***/ }),
 /* 114 */,
 /* 115 */,
 /* 116 */,
@@ -3942,9 +3942,7 @@ if (true) module.exports = flatpickr.l10ns;
 /* 119 */,
 /* 120 */,
 /* 121 */,
-/* 122 */,
-/* 123 */,
-/* 124 */
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -6300,10 +6298,10 @@ Date.prototype.fp_incr = function (days) {
 if (true) module.exports = flatpickr;
 
 /***/ }),
-/* 125 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(110)(undefined);
+exports = module.exports = __webpack_require__(113)(undefined);
 // imports
 
 
@@ -6314,7 +6312,7 @@ exports.push([module.i, ".flatpickr-calendar {\n  background: transparent;\n  ov
 
 
 /***/ }),
-/* 126 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -6360,7 +6358,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(127);
+var	fixUrls = __webpack_require__(125);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -6673,7 +6671,7 @@ function updateLink (link, options, obj) {
 
 
 /***/ }),
-/* 127 */
+/* 125 */
 /***/ (function(module, exports) {
 
 
@@ -6768,6 +6766,8 @@ module.exports = function (css) {
 
 
 /***/ }),
+/* 126 */,
+/* 127 */,
 /* 128 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6818,15 +6818,15 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _vueFlatpickrComponent = __webpack_require__(111);
+var _vueFlatpickrComponent = __webpack_require__(110);
 
 var _vueFlatpickrComponent2 = _interopRequireDefault(_vueFlatpickrComponent);
 
-__webpack_require__(112);
+__webpack_require__(111);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Arabic = __webpack_require__(113).ar;
+var Arabic = __webpack_require__(112).ar;
 
 exports.default = {
     data: function data() {
@@ -7114,9 +7114,229 @@ if (false) {
 /* 152 */,
 /* 153 */,
 /* 154 */,
-/* 155 */,
-/* 156 */,
-/* 157 */,
+/* 155 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(15)(
+  /* script */
+  __webpack_require__(156),
+  /* template */
+  __webpack_require__(157),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "D:\\www\\law-office\\resources\\assets\\js\\components\\meetings\\MeetingsTable.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] MeetingsTable.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-14691d0c", Component.options)
+  } else {
+    hotAPI.reload("data-v-14691d0c", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 156 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _editMeeting = __webpack_require__(128);
+
+var _editMeeting2 = _interopRequireDefault(_editMeeting);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+	props: ['header', 'data', 'id'],
+	methods: {
+		editMeeting: function editMeeting(meeting) {
+			eventBus.$emit('editMeeting', meeting);
+			$('#editMeeting').modal('show');
+		},
+		openentType: function openentType(openent) {
+			var type = openent.pivot.person_type;
+			switch (type) {
+				case 1:
+					return "مــتــهــم";break;
+				case 2:
+					return "مجنى عليه";break;
+				case 3:
+					return "مدعى بالحق المدنى";break;
+				case 4:
+					return "مدعى";break;
+				case 5:
+					return "مدعى عليه";break;
+				case 6:
+					return "شــاكى";break;
+				case 7:
+					return "مشكو فى حقه";break;
+			}
+		},
+		issueType: function issueType(meeting) {
+			var type = meeting.issue.type;
+			switch (type) {
+				case 1:
+					return 'جـنــح';break;
+				case 2:
+					return 'جـنــايــات';break;
+				case 3:
+					return 'مــخــالفــات';break;
+				case 4:
+					return 'أدارى';break;
+				case 5:
+					return 'مــدنـى جــزئى';break;
+				case 6:
+					return 'مــدنـى كــلـى';break;
+				case 7:
+					return 'صــحــة توقيــع';break;
+				case 8:
+					return 'أســـرة';break;
+				case 9:
+					return 'وراثــــات';break;
+				case 10:
+					return 'تـجـــارى';break;
+				case 11:
+					return 'أدارى(مجلــس الدولة)';break;
+				case 12:
+					return 'اقتصـــادية';break;
+			}
+		},
+		dayFromat: function dayFromat(meetingdate) {
+			var d = new Date(meetingdate);
+			var days = ["الاحــد", "الاثــنين", "الثلاثــاء", "الاربعــاء", "الخمــيس", "الجمـــعة", "الســبت"];
+			return days[d.getDay()] + ' ' + meetingdate;
+		},
+		levelCheck: function levelCheck(meeting) {
+			if (meeting.level > 2) {
+				return 'table-info';
+			}
+			return false;
+		}
+	},
+	components: {
+		editMeeting: _editMeeting2.default
+	}
+};
+
+/***/ }),
+/* 157 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    attrs: {
+      "id": _vm.id
+    }
+  }, [_c('div', {
+    staticClass: "card text-center mr-auto"
+  }, [_c('div', {
+    staticClass: "card-header"
+  }, [_c('h4', {
+    staticClass: "card-title green"
+  }, [_vm._v(_vm._s(_vm.header))])]), _vm._v(" "), _c('div', {
+    staticClass: "panel-body"
+  }, [_c('table', {
+    staticClass: "table table-responsive"
+  }, [_c('tbody', [_vm._m(0), _vm._v(" "), _vm._l((_vm.data), function(meeting) {
+    return _c('tr', {
+      key: meeting.id,
+      class: _vm.levelCheck(meeting)
+    }, [_c('td', [_c('a', {
+      attrs: {
+        "href": '/issues/' + meeting.issue.id
+      }
+    }, [_vm._v("\n          \t\t" + _vm._s(_vm.dayFromat(meeting.date)) + "\n          \t\t")])]), _vm._v(" "), _c('td', [_vm._v(_vm._s(meeting.role))]), _vm._v(" "), _c('td', [_c('span', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: (meeting.issue.number),
+        expression: "meeting.issue.number"
+      }]
+    }, [_vm._v("\n                  " + _vm._s(meeting.issue.number) + " لسنة " + _vm._s(meeting.issue.year) + " " + _vm._s(_vm.issueType(meeting)) + "\n                ")]), _vm._v(" "), _c('span', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: (meeting.issue.adv_number),
+        expression: "meeting.issue.adv_number"
+      }]
+    }, [_c('br'), _vm._v(_vm._s(meeting.issue.adv_number) + " لسنة " + _vm._s(meeting.issue.adv_year) + " س\n                ")])]), _vm._v(" "), _c('td', [_vm._v("\n          \t  " + _vm._s(meeting.issue.court) + " \n                "), _c('span', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: (meeting.issue.room),
+        expression: "meeting.issue.room"
+      }]
+    }, [_vm._v("\n                  - الدائــرة " + _vm._s(meeting.issue.room) + "\n                ")]), _vm._v(" "), _c('br'), _vm._v(_vm._s(meeting.decision) + "\n          \t")]), _vm._v(" "), _c('td', _vm._l((meeting.issue.openents), function(openent) {
+      return (meeting.issue.openents.length) ? _c('span', {
+        key: openent.id
+      }, [_c('span', [_vm._v("\n          \t\t\t\t" + _vm._s(openent.name) + " / " + _vm._s(_vm.openentType(openent)) + " "), _c('br')])]) : _vm._e()
+    })), _vm._v(" "), _c('td', {
+      staticClass: "print-hidden"
+    }, [_c('button', {
+      staticClass: "btn btn-sm btn-info pull-left",
+      on: {
+        "click": function($event) {
+          _vm.editMeeting(meeting)
+        }
+      }
+    }, [_c('i', {
+      staticClass: "fa fa-pencil-square-o",
+      attrs: {
+        "aria-hidden": "true"
+      }
+    })]), _vm._v(" "), _c('a', {
+      attrs: {
+        "href": '/issues/' + meeting.issue.id
+      }
+    }, [_vm._m(1, true)])])])
+  })], 2)])]), _vm._v(" "), _c('edit-meeting')], 1)])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('tr', [_c('th', [_c('strong', [_vm._v("تاريخ الجلسة")])]), _vm._v(" "), _c('th', [_c('strong', [_vm._v("الرول")])]), _vm._v(" "), _c('th', [_c('strong', [_vm._v("بيانات القضية")])]), _vm._v(" "), _c('th', [_c('strong', [_vm._v("المحكمة والدائرة والقرار")])]), _vm._v(" "), _c('th', [_c('strong', [_vm._v("الخصوم")])]), _vm._v(" "), _c('th', {
+    staticClass: "print-hidden"
+  })])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('button', {
+    staticClass: "btn btn-sm btn-dark pull-left"
+  }, [_c('i', {
+    staticClass: "fa fa-balance-scale",
+    attrs: {
+      "aria-hidden": "true"
+    }
+  })])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-14691d0c", module.exports)
+  }
+}
+
+/***/ }),
 /* 158 */,
 /* 159 */,
 /* 160 */,
@@ -7217,14 +7437,17 @@ if (false) {
 /* 255 */,
 /* 256 */,
 /* 257 */,
-/* 258 */
+/* 258 */,
+/* 259 */,
+/* 260 */,
+/* 261 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(259);
+module.exports = __webpack_require__(262);
 
 
 /***/ }),
-/* 259 */
+/* 262 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7246,15 +7469,15 @@ var _bootstrap = __webpack_require__(116);
 
 var _bootstrap2 = _interopRequireDefault(_bootstrap);
 
-var _MeetingsTable = __webpack_require__(260);
+var _MeetingsTable = __webpack_require__(155);
 
 var _MeetingsTable2 = _interopRequireDefault(_MeetingsTable);
 
-var _vueFlatpickrComponent = __webpack_require__(111);
+var _vueFlatpickrComponent = __webpack_require__(110);
 
 var _vueFlatpickrComponent2 = _interopRequireDefault(_vueFlatpickrComponent);
 
-__webpack_require__(112);
+__webpack_require__(111);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -7266,7 +7489,7 @@ window.Form = _Form2.default;
 
 window.toastr = _toastr2.default;
 
-var Arabic = __webpack_require__(113).ar;
+var Arabic = __webpack_require__(112).ar;
 
 window.eventBus = new Vue();
 
@@ -7359,228 +7582,5 @@ _toastr2.default.options = {
   "positionClass": "toast-bottom-right"
 };
 
-/***/ }),
-/* 260 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var Component = __webpack_require__(15)(
-  /* script */
-  __webpack_require__(261),
-  /* template */
-  __webpack_require__(262),
-  /* styles */
-  null,
-  /* scopeId */
-  null,
-  /* moduleIdentifier (server only) */
-  null
-)
-Component.options.__file = "D:\\www\\law-office\\resources\\assets\\js\\components\\meetings\\MeetingsTable.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] MeetingsTable.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-14691d0c", Component.options)
-  } else {
-    hotAPI.reload("data-v-14691d0c", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 261 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _editMeeting = __webpack_require__(128);
-
-var _editMeeting2 = _interopRequireDefault(_editMeeting);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = {
-	props: ['header', 'data', 'id'],
-	methods: {
-		editMeeting: function editMeeting(meeting) {
-			eventBus.$emit('editMeeting', meeting);
-			$('#editMeeting').modal('show');
-		},
-		openentType: function openentType(openent) {
-			var type = openent.pivot.person_type;
-			switch (type) {
-				case 1:
-					return "مــتــهــم";break;
-				case 2:
-					return "مجنى عليه";break;
-				case 3:
-					return "مدعى بالحق المدنى";break;
-				case 4:
-					return "مدعى";break;
-				case 5:
-					return "مدعى عليه";break;
-				case 6:
-					return "شــاكى";break;
-				case 7:
-					return "مشكو فى حقه";break;
-			}
-		},
-		issueType: function issueType(meeting) {
-			var type = meeting.issue.type;
-			switch (type) {
-				case 1:
-					return 'جـنــح';break;
-				case 2:
-					return 'جـنــايــات';break;
-				case 3:
-					return 'مــخــالفــات';break;
-				case 4:
-					return 'أدارى';break;
-				case 5:
-					return 'مــدنـى جــزئى';break;
-				case 6:
-					return 'مــدنـى كــلـى';break;
-				case 7:
-					return 'صــحــة توقيــع';break;
-				case 8:
-					return 'أســـرة';break;
-				case 9:
-					return 'وراثــــات';break;
-				case 10:
-					return 'تـجـــارى';break;
-				case 11:
-					return 'أدارى(مجلــس الدولة)';break;
-				case 12:
-					return 'اقتصـــادية';break;
-			}
-		},
-		dayFromat: function dayFromat(meetingdate) {
-			var d = new Date(meetingdate);
-			var days = ["الاحــد", "الاثــنين", "الثلاثــاء", "الاربعــاء", "الخمــيس", "الجمـــعة", "الســبت"];
-			return days[d.getDay()] + ' ' + meetingdate;
-		},
-		levelCheck: function levelCheck(meeting) {
-			if (meeting.level > 2) {
-				return 'table-info';
-			}
-			return false;
-		}
-	},
-	components: {
-		editMeeting: _editMeeting2.default
-	}
-};
-
-/***/ }),
-/* 262 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    attrs: {
-      "id": _vm.id
-    }
-  }, [_c('div', {
-    staticClass: "card text-center mr-auto"
-  }, [_c('div', {
-    staticClass: "card-header"
-  }, [_c('h4', {
-    staticClass: "card-title"
-  }, [_vm._v(_vm._s(_vm.header))])]), _vm._v(" "), _c('div', {
-    staticClass: "panel-body"
-  }, [_c('table', {
-    staticClass: "table table-responsive"
-  }, [_c('tbody', [_vm._m(0), _vm._v(" "), _vm._l((_vm.data), function(meeting) {
-    return _c('tr', {
-      key: meeting.id,
-      class: _vm.levelCheck(meeting)
-    }, [_c('td', [_c('a', {
-      attrs: {
-        "href": '/issues/' + meeting.issue.id
-      }
-    }, [_vm._v("\n          \t\t" + _vm._s(_vm.dayFromat(meeting.date)) + "\n          \t\t")])]), _vm._v(" "), _c('td', [_vm._v(_vm._s(meeting.role))]), _vm._v(" "), _c('td', [_c('span', {
-      directives: [{
-        name: "show",
-        rawName: "v-show",
-        value: (meeting.issue.number),
-        expression: "meeting.issue.number"
-      }]
-    }, [_vm._v("\n                  " + _vm._s(meeting.issue.number) + " لسنة " + _vm._s(meeting.issue.year) + " " + _vm._s(_vm.issueType(meeting)) + "\n                ")]), _vm._v(" "), _c('span', {
-      directives: [{
-        name: "show",
-        rawName: "v-show",
-        value: (meeting.issue.adv_number),
-        expression: "meeting.issue.adv_number"
-      }]
-    }, [_c('br'), _vm._v(_vm._s(meeting.issue.adv_number) + " لسنة " + _vm._s(meeting.issue.adv_year) + " س\n                ")])]), _vm._v(" "), _c('td', [_vm._v("\n          \t  " + _vm._s(meeting.issue.court) + " \n                "), _c('span', {
-      directives: [{
-        name: "show",
-        rawName: "v-show",
-        value: (meeting.issue.room),
-        expression: "meeting.issue.room"
-      }]
-    }, [_vm._v("\n                  - الدائــرة " + _vm._s(meeting.issue.room) + "\n                ")]), _vm._v(" "), _c('br'), _vm._v(_vm._s(meeting.decision) + "\n          \t")]), _vm._v(" "), _c('td', _vm._l((meeting.issue.openents), function(openent) {
-      return (meeting.issue.openents.length) ? _c('span', {
-        key: openent.id
-      }, [_c('span', [_vm._v("\n          \t\t\t\t" + _vm._s(openent.name) + " / " + _vm._s(_vm.openentType(openent)) + " "), _c('br')])]) : _vm._e()
-    })), _vm._v(" "), _c('td', {
-      staticClass: "print-hidden"
-    }, [_c('button', {
-      staticClass: "btn btn-sm btn-info pull-left",
-      on: {
-        "click": function($event) {
-          _vm.editMeeting(meeting)
-        }
-      }
-    }, [_c('i', {
-      staticClass: "fa fa-pencil-square-o",
-      attrs: {
-        "aria-hidden": "true"
-      }
-    })]), _vm._v(" "), _c('a', {
-      attrs: {
-        "href": '/issues/' + meeting.issue.id
-      }
-    }, [_vm._m(1, true)])])])
-  })], 2)])]), _vm._v(" "), _c('edit-meeting')], 1)])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('tr', [_c('th', [_c('strong', [_vm._v("تاريخ الجلسة")])]), _vm._v(" "), _c('th', [_c('strong', [_vm._v("الرول")])]), _vm._v(" "), _c('th', [_c('strong', [_vm._v("بيانات القضية")])]), _vm._v(" "), _c('th', [_c('strong', [_vm._v("المحكمة والدائرة والقرار")])]), _vm._v(" "), _c('th', [_c('strong', [_vm._v("الخصوم")])]), _vm._v(" "), _c('th', {
-    staticClass: "print-hidden"
-  })])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('button', {
-    staticClass: "btn btn-sm btn-dark pull-left"
-  }, [_c('i', {
-    staticClass: "fa fa-balance-scale",
-    attrs: {
-      "aria-hidden": "true"
-    }
-  })])
-}]}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-14691d0c", module.exports)
-  }
-}
-
 /***/ })
-],[258]);
+],[261]);
