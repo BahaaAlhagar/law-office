@@ -78,7 +78,6 @@ const manageIssues = new Vue({
           .then(response => this.assignData(response));
           this.resource_url = '/issue/' + this.current_view;
         }
-        
       },
       assignData(response){
           this.issues = response.data.issues.data;
@@ -94,6 +93,18 @@ const manageIssues = new Vue({
       issueRestored(response){
         this.reloadData();
         toastr.success(response.data.message);
+      },
+      openentType(person){
+          let type = person.pivot.person_type;
+          switch(type) {
+            case 1: return "مــتــهــم"; break;
+            case 2: return "مجنى عليه"; break;
+            case 3: return "مدعى بالحق المدنى"; break;
+            case 4: return "مدعى"; break;
+            case 5: return "مدعى عليه"; break;
+            case 6: return "شــاكى"; break;
+            case 7: return "مشكو فى حقه"; break;
+          }
       },
       printTable(){
         $('.print-hidden').hide()

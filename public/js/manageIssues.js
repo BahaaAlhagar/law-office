@@ -6225,6 +6225,25 @@ var manageIssues = new Vue({
       this.reloadData();
       _toastr2.default.success(response.data.message);
     },
+    openentType: function openentType(person) {
+      var type = person.pivot.person_type;
+      switch (type) {
+        case 1:
+          return "مــتــهــم";break;
+        case 2:
+          return "مجنى عليه";break;
+        case 3:
+          return "مدعى بالحق المدنى";break;
+        case 4:
+          return "مدعى";break;
+        case 5:
+          return "مدعى عليه";break;
+        case 6:
+          return "شــاكى";break;
+        case 7:
+          return "مشكو فى حقه";break;
+      }
+    },
     printTable: function printTable() {
       $('.print-hidden').hide();
       $('.btn').hide();
