@@ -18,6 +18,7 @@ window.toastr = toastr;
 
 import IssueNumbersTable from './components/office/IssueNumbersTable';
 import IssueAdvNumbersTable from './components/office/IssueAdvNumbersTable';
+import missingRecordsTable from './components/office/missingRecordsTable';
 
 
 window.eventBus = new Vue();
@@ -28,7 +29,8 @@ const missingData = new Vue({
       issue_numbers: [],
       issue_adv_numbers: [],
       records: [],
-    	dates: []
+    	dates: [],
+      fetched: false
     },
    	methods: {
       fetchData(){
@@ -36,6 +38,7 @@ const missingData = new Vue({
           .then(response => this.assignData(response));
       },
       assignData(response){
+        this.fetched = true;
         this.issue_numbers = response.data.issueNumbers;
         this.issue_adv_numbers = response.data.issueAdvNumbers;
         this.records = response.data.records;
@@ -61,12 +64,13 @@ const missingData = new Vue({
     },
     components: {
       IssueNumbersTable,
-      IssueAdvNumbersTable
+      IssueAdvNumbersTable,
+      missingRecordsTable
     },
     mounted() {
       this.fetchData();
       eventBus.$on('IssueUpdated', response => this.afterIssueUpdated(response));
-    }
+      }
 });
 
 

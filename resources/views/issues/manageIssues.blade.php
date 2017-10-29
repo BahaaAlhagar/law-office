@@ -114,12 +114,16 @@
 
 					<td>
 						<ul>
-							<li v-for="person in issue.openents">@{{ person.name }} / @{{ openentType(person) }}</li>
+							<span v-for="person in issue.openents">@{{ person.name }} / @{{ openentType(person) }}<br>
+							</span>
 						</ul>
 					</td>
 
 					<td v-if="current_view != 'trashed'" class="print-hidden">
 						<button @click="editIssue(issue)" data-toggle="modal" class="btn btn-sm btn-info" type="button">تـعــديل</button>
+						<a :href="'/issues/' + issue.id">
+                			<button class="btn btn-sm btn-dark pull-left"><i class="fa fa-balance-scale" aria-hidden="true"></i></button>
+                		</a>
 						<button @click="deleteIssue(issue)" class="btn btn-sm btn-danger" type="button">حـذف</button>
 					</td>
 					<td v-else class="print-hidden">

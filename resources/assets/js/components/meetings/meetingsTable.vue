@@ -67,7 +67,7 @@
 	export default {
 		props: ['header', 'data', 'id'],
 		methods: {
-		  editMeeting(meeting){
+		    editMeeting(meeting){
 	        eventBus.$emit('editMeeting', meeting);
 	        $('#editMeeting').modal('show');
 	      },

@@ -4404,6 +4404,10 @@ var _IssueAdvNumbersTable = __webpack_require__(281);
 
 var _IssueAdvNumbersTable2 = _interopRequireDefault(_IssueAdvNumbersTable);
 
+var _missingRecordsTable = __webpack_require__(284);
+
+var _missingRecordsTable2 = _interopRequireDefault(_missingRecordsTable);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 __webpack_require__(89);
@@ -4422,7 +4426,8 @@ var missingData = new Vue({
     issue_numbers: [],
     issue_adv_numbers: [],
     records: [],
-    dates: []
+    dates: [],
+    fetched: false
   },
   methods: {
     fetchData: function fetchData() {
@@ -4433,6 +4438,7 @@ var missingData = new Vue({
       });
     },
     assignData: function assignData(response) {
+      this.fetched = true;
       this.issue_numbers = response.data.issueNumbers;
       this.issue_adv_numbers = response.data.issueAdvNumbers;
       this.records = response.data.records;
@@ -4458,7 +4464,8 @@ var missingData = new Vue({
   },
   components: {
     IssueNumbersTable: _IssueNumbersTable2.default,
-    IssueAdvNumbersTable: _IssueAdvNumbersTable2.default
+    IssueAdvNumbersTable: _IssueAdvNumbersTable2.default,
+    missingRecordsTable: _missingRecordsTable2.default
   },
   mounted: function mounted() {
     var _this2 = this;
@@ -4868,6 +4875,223 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
      require("vue-hot-reload-api").rerender("data-v-4bbce9c6", module.exports)
+  }
+}
+
+/***/ }),
+/* 284 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(15)(
+  /* script */
+  __webpack_require__(285),
+  /* template */
+  __webpack_require__(286),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "D:\\www\\law-office\\resources\\assets\\js\\components\\office\\missingRecordsTable.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] missingRecordsTable.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-18ca9a9a", Component.options)
+  } else {
+    hotAPI.reload("data-v-18ca9a9a", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 285 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {
+  props: ['header', 'data', 'id'],
+  methods: {
+    openentType: function openentType(openent) {
+      var type = openent.pivot.person_type;
+      switch (type) {
+        case 1:
+          return "مــتــهــم";break;
+        case 2:
+          return "مجنى عليه";break;
+        case 3:
+          return "مدعى بالحق المدنى";break;
+        case 4:
+          return "مدعى";break;
+        case 5:
+          return "مدعى عليه";break;
+        case 6:
+          return "شــاكى";break;
+        case 7:
+          return "مشكو فى حقه";break;
+      }
+    },
+    level: function level(judgement) {
+      var level = judgement.level;
+      switch (level) {
+        case 1:
+          return "اول درجة";break;
+        case 2:
+          return "معارضة";break;
+        case 3:
+          return "استئناف";break;
+        case 4:
+          return "معارضة استئنافية";break;
+      }
+    },
+    issueType: function issueType(issue) {
+      var type = issue.type;
+      switch (type) {
+        case 1:
+          return 'جـنــح';break;
+        case 2:
+          return 'جـنــايــات';break;
+        case 3:
+          return 'مــخــالفــات';break;
+        case 4:
+          return 'أدارى';break;
+        case 5:
+          return 'مــدنـى جــزئى';break;
+        case 6:
+          return 'مــدنـى كــلـى';break;
+        case 7:
+          return 'صــحــة توقيــع';break;
+        case 8:
+          return 'أســـرة';break;
+        case 9:
+          return 'وراثــــات';break;
+        case 10:
+          return 'تـجـــارى';break;
+        case 11:
+          return 'أدارى(مجلــس الدولة)';break;
+        case 12:
+          return 'اقتصـــادية';break;
+      }
+    },
+    judgementStatus: function judgementStatus(judgement) {
+      if (judgement.present) {
+        return 'ح';
+      } else {
+        return 'غ';
+      }
+    },
+    judgementType: function judgementType(judgement) {
+      if (judgement.level < 3) {
+        return this.issueType(judgement.issue) + ' ' + judgement.issue.court;
+      } else {
+        return this.issueType(judgement.issue) + ' مستأنف ' + judgement.issue.court;
+      }
+    }
+  }
+};
+
+/***/ }),
+/* 286 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    attrs: {
+      "id": _vm.id
+    }
+  }, [_c('div', {
+    staticClass: "card text-center mr-auto"
+  }, [_c('div', {
+    staticClass: "card-header"
+  }, [_c('h4', {
+    staticClass: "card-title blue"
+  }, [_vm._v(_vm._s(_vm.header))])]), _vm._v(" "), _c('div', {
+    staticClass: "panel-body"
+  }, [_c('table', {
+    staticClass: "table table-responsive"
+  }, [_c('tbody', [_vm._m(0), _vm._v(" "), _vm._l((_vm.data), function(judgement) {
+    return _c('tr', {
+      key: judgement.id
+    }, [_c('td', [_c('a', {
+      attrs: {
+        "href": '/issues/' + judgement.issue.id
+      }
+    }, [_c('span', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: (judgement.issue.number),
+        expression: "judgement.issue.number"
+      }]
+    }, [_vm._v("\n                  " + _vm._s(judgement.issue.number) + " لسنة " + _vm._s(judgement.issue.year) + " " + _vm._s(_vm.issueType(judgement.issue)) + "\n                ")]), _vm._v(" "), _c('span', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: (judgement.issue.adv_number),
+        expression: "judgement.issue.adv_number"
+      }]
+    }, [_c('br'), _vm._v(_vm._s(judgement.issue.adv_number) + " لسنة " + _vm._s(judgement.issue.adv_year) + " س\n                ")])])]), _vm._v(" "), _c('td', [_vm._v(_vm._s(judgement.issue.subject))]), _vm._v(" "), _c('td', [_c('a', {
+      attrs: {
+        "href": '/people/' + judgement.person.id
+      }
+    }, [_vm._v("\n                    " + _vm._s(judgement.person.name) + "\n                ")])]), _vm._v(" "), _c('td', [_vm._v("\n                " + _vm._s(_vm.judgementStatus(judgement)) + " - " + _vm._s(judgement.body) + "\n          \t")]), _vm._v(" "), _c('td', [_vm._v("\n              " + _vm._s(judgement.date) + "\n          \t")]), _vm._v(" "), _c('td', [_vm._v("\n              " + _vm._s(_vm.level(judgement)) + "\n            ")]), _vm._v(" "), _c('td', {
+      staticClass: "print-hidden"
+    }, [_c('a', {
+      attrs: {
+        "href": '/issues/' + judgement.issue.id
+      }
+    }, [_vm._m(1, true)])])])
+  })], 2)])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('tr', [_c('th', {
+    staticClass: "brown"
+  }, [_c('strong', [_vm._v("رقم القضية")])]), _vm._v(" "), _c('th', {
+    staticClass: "brown"
+  }, [_c('strong', [_vm._v("موضوع القضية")])]), _vm._v(" "), _c('th', {
+    staticClass: "brown"
+  }, [_c('strong', [_vm._v("اسم المتهم")])]), _vm._v(" "), _c('th', {
+    staticClass: "brown"
+  }, [_c('strong', [_vm._v("الحكم")])]), _vm._v(" "), _c('th', {
+    staticClass: "brown"
+  }, [_c('strong', [_vm._v("تــاريخ الحــكـم")])]), _vm._v(" "), _c('th', {
+    staticClass: "brown"
+  }, [_c('strong', [_vm._v("مرحلة التقاضى")])]), _vm._v(" "), _c('th', {
+    staticClass: "print-hidden"
+  })])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('button', {
+    staticClass: "btn btn-sm btn-dark pull-left"
+  }, [_c('i', {
+    staticClass: "fa fa-balance-scale",
+    attrs: {
+      "aria-hidden": "true"
+    }
+  })])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-18ca9a9a", module.exports)
   }
 }
 

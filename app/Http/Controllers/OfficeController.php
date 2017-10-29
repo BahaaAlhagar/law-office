@@ -91,8 +91,10 @@ class OfficeController extends Controller
                                 ->get();
 
         $records = Judgement::criminal()
+                                ->noChild()
+                                ->where('type', '<', 3)
                                 ->whereNull('record')
-                                ->with('issue')
+                                ->with('issue', 'person')
                                 ->orderBy('date')
                                 ->get();
 
