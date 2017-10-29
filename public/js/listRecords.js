@@ -4197,7 +4197,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         value: (judgement.issue.adv_number),
         expression: "judgement.issue.adv_number"
       }]
-    }, [_c('br'), _vm._v(_vm._s(judgement.issue.adv_number) + " لسنة " + _vm._s(judgement.issue.adv_year) + " س\n                ")])])]), _vm._v(" "), _c('td', {
+    }, [_c('br'), _vm._v(_vm._s(judgement.issue.adv_number) + " لسنة " + _vm._s(judgement.issue.adv_year) + " س\n                ")])])]), _vm._v(" "), _c('td', [_vm._v("\n              " + _vm._s(judgement.expire_at) + "\n            ")]), _vm._v(" "), _c('td', {
       staticClass: "print-hidden"
     }, [_c('a', {
       attrs: {
@@ -4219,6 +4219,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('strong', [_vm._v("تــاريخ الحــكـم")])]), _vm._v(" "), _c('th', {
     staticClass: "brown"
   }, [_c('strong', [_vm._v("رقم القضية")])]), _vm._v(" "), _c('th', {
+    staticClass: "brown"
+  }, [_c('strong', [_vm._v("اخر ايام العقوبة")])]), _vm._v(" "), _c('th', {
     staticClass: "print-hidden"
   })])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;

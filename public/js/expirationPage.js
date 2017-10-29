@@ -7115,31 +7115,15 @@ if (false) {
 /* 262 */,
 /* 263 */,
 /* 264 */,
-/* 265 */,
-/* 266 */,
-/* 267 */,
-/* 268 */,
-/* 269 */,
-/* 270 */,
-/* 271 */,
-/* 272 */,
-/* 273 */,
-/* 274 */,
-/* 275 */,
-/* 276 */,
-/* 277 */,
-/* 278 */,
-/* 279 */,
-/* 280 */,
-/* 281 */
+/* 265 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var Component = __webpack_require__(15)(
   /* script */
-  __webpack_require__(282),
+  __webpack_require__(266),
   /* template */
-  __webpack_require__(283),
+  __webpack_require__(267),
   /* styles */
   null,
   /* scopeId */
@@ -7147,9 +7131,9 @@ var Component = __webpack_require__(15)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "D:\\www\\law-office\\resources\\assets\\js\\components\\office\\missingRecordsTable.vue"
+Component.options.__file = "D:\\www\\law-office\\resources\\assets\\js\\components\\office\\recordsTable.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] missingRecordsTable.vue: functional components are not supported with templates, they should use render functions.")}
+if (Component.options.functional) {console.error("[vue-loader] recordsTable.vue: functional components are not supported with templates, they should use render functions.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -7158,9 +7142,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-18ca9a9a", Component.options)
+    hotAPI.createRecord("data-v-caafe118", Component.options)
   } else {
-    hotAPI.reload("data-v-18ca9a9a", Component.options)
+    hotAPI.reload("data-v-caafe118", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -7171,7 +7155,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 282 */
+/* 266 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7200,19 +7184,6 @@ exports.default = {
           return "شــاكى";break;
         case 7:
           return "مشكو فى حقه";break;
-      }
-    },
-    level: function level(judgement) {
-      var level = judgement.level;
-      switch (level) {
-        case 1:
-          return "اول درجة";break;
-        case 2:
-          return "معارضة";break;
-        case 3:
-          return "استئناف";break;
-        case 4:
-          return "معارضة استئنافية";break;
       }
     },
     issueType: function issueType(issue) {
@@ -7262,7 +7233,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 283 */
+/* 267 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -7287,6 +7258,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       attrs: {
         "href": '/issues/' + judgement.issue.id
       }
+    }, [_vm._v("\n                  " + _vm._s(judgement.record) + " لسنة " + _vm._s(judgement.year) + " "), _c('br'), _vm._v(" " + _vm._s(_vm.judgementType(judgement)) + "\n\n          \t\t")])]), _vm._v(" "), _c('td', [_vm._v(_vm._s(judgement.person.name))]), _vm._v(" "), _c('td', [_vm._v("\n                " + _vm._s(judgement.person.location) + "\n          \t")]), _vm._v(" "), _c('td', [_vm._v("\n                " + _vm._s(_vm.judgementStatus(judgement)) + " - " + _vm._s(judgement.body) + "\n          \t")]), _vm._v(" "), _c('td', [_vm._v("\n              " + _vm._s(judgement.date) + "\n          \t")]), _vm._v(" "), _c('td', [_c('a', {
+      attrs: {
+        "href": '/issues/' + judgement.issue.id
+      }
     }, [_c('span', {
       directives: [{
         name: "show",
@@ -7301,11 +7276,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         value: (judgement.issue.adv_number),
         expression: "judgement.issue.adv_number"
       }]
-    }, [_c('br'), _vm._v(_vm._s(judgement.issue.adv_number) + " لسنة " + _vm._s(judgement.issue.adv_year) + " س\n                ")])])]), _vm._v(" "), _c('td', [_vm._v(_vm._s(judgement.issue.subject))]), _vm._v(" "), _c('td', [_c('a', {
-      attrs: {
-        "href": '/people/' + judgement.person.id
-      }
-    }, [_vm._v("\n                    " + _vm._s(judgement.person.name) + "\n                ")])]), _vm._v(" "), _c('td', [_vm._v("\n                " + _vm._s(_vm.judgementStatus(judgement)) + " - " + _vm._s(judgement.body) + "\n          \t")]), _vm._v(" "), _c('td', [_vm._v("\n              " + _vm._s(judgement.date) + "\n          \t")]), _vm._v(" "), _c('td', [_vm._v("\n              " + _vm._s(_vm.level(judgement)) + "\n            ")]), _vm._v(" "), _c('td', {
+    }, [_c('br'), _vm._v(_vm._s(judgement.issue.adv_number) + " لسنة " + _vm._s(judgement.issue.adv_year) + " س\n                ")])])]), _vm._v(" "), _c('td', [_vm._v("\n              " + _vm._s(judgement.expire_at) + "\n            ")]), _vm._v(" "), _c('td', {
       staticClass: "print-hidden"
     }, [_c('a', {
       attrs: {
@@ -7316,17 +7287,19 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('tr', [_c('th', {
     staticClass: "brown"
-  }, [_c('strong', [_vm._v("رقم القضية")])]), _vm._v(" "), _c('th', {
-    staticClass: "brown"
-  }, [_c('strong', [_vm._v("موضوع القضية")])]), _vm._v(" "), _c('th', {
+  }, [_c('strong', [_vm._v("رقم الحصر")])]), _vm._v(" "), _c('th', {
     staticClass: "brown"
   }, [_c('strong', [_vm._v("اسم المتهم")])]), _vm._v(" "), _c('th', {
+    staticClass: "brown"
+  }, [_c('strong', [_vm._v("محل الاقامة")])]), _vm._v(" "), _c('th', {
     staticClass: "brown"
   }, [_c('strong', [_vm._v("الحكم")])]), _vm._v(" "), _c('th', {
     staticClass: "brown"
   }, [_c('strong', [_vm._v("تــاريخ الحــكـم")])]), _vm._v(" "), _c('th', {
     staticClass: "brown"
-  }, [_c('strong', [_vm._v("مرحلة التقاضى")])]), _vm._v(" "), _c('th', {
+  }, [_c('strong', [_vm._v("رقم القضية")])]), _vm._v(" "), _c('th', {
+    staticClass: "brown"
+  }, [_c('strong', [_vm._v("اخر ايام العقوبة")])]), _vm._v(" "), _c('th', {
     staticClass: "print-hidden"
   })])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -7343,11 +7316,27 @@ module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-18ca9a9a", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-caafe118", module.exports)
   }
 }
 
 /***/ }),
+/* 268 */,
+/* 269 */,
+/* 270 */,
+/* 271 */,
+/* 272 */,
+/* 273 */,
+/* 274 */,
+/* 275 */,
+/* 276 */,
+/* 277 */,
+/* 278 */,
+/* 279 */,
+/* 280 */,
+/* 281 */,
+/* 282 */,
+/* 283 */,
 /* 284 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -7385,9 +7374,9 @@ var _CevilJudgementsTable = __webpack_require__(292);
 
 var _CevilJudgementsTable2 = _interopRequireDefault(_CevilJudgementsTable);
 
-var _missingRecordsTable = __webpack_require__(281);
+var _recordsTable = __webpack_require__(265);
 
-var _missingRecordsTable2 = _interopRequireDefault(_missingRecordsTable);
+var _recordsTable2 = _interopRequireDefault(_recordsTable);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -7448,7 +7437,7 @@ var expirationPage = new Vue({
   components: {
     NotPresentTable: _NotPresentTable2.default,
     CevilJudgementsTable: _CevilJudgementsTable2.default,
-    missingRecordsTable: _missingRecordsTable2.default
+    recordsTable: _recordsTable2.default
   },
   mounted: function mounted() {
     var _this2 = this;

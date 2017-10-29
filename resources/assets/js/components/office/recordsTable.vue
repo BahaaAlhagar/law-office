@@ -14,6 +14,7 @@
                 	<th class="brown"><strong>الحكم</strong></th>
                   <th class="brown"><strong>تــاريخ الحــكـم</strong></th>
                   <th class="brown"><strong>رقم القضية</strong></th>
+                  <th class="brown"><strong>اخر ايام العقوبة</strong></th>
                 	<th class="print-hidden"></th>
                 </tr>
                 <tr v-for="judgement in data" :key="judgement.id">
@@ -42,6 +43,9 @@
                         <br>{{ judgement.issue.adv_number }} لسنة {{ judgement.issue.adv_year }} س
                       </span>
                     </a>
+                  </td>
+                  <td>
+                    {{ judgement.expire_at }}
                   </td>
                 	<td class="print-hidden">
                 		<a :href="'/issues/' + judgement.issue.id">

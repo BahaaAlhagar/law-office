@@ -18,7 +18,7 @@ window.toastr = toastr;
 
 import NotPresentTable from './components/office/NotPresentTable';
 import CevilJudgementsTable from './components/office/CevilJudgementsTable';
-import missingRecordsTable from './components/office/missingRecordsTable';
+import recordsTable from './components/office/recordsTable';
 
 
 window.eventBus = new Vue();
@@ -67,7 +67,7 @@ const expirationPage = new Vue({
     components: {
       NotPresentTable,
       CevilJudgementsTable,
-      missingRecordsTable
+      recordsTable
     },
     mounted() {
       this.fetchData();
