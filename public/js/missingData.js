@@ -4850,7 +4850,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_vm._m(1, true)])])])
   })], 2)])]), _vm._v(" "), _c('edit-issue')], 1)])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('tr', [_c('th', [_c('strong', [_vm._v("رقم الدعوى")])]), _vm._v(" "), _c('th', [_c('strong', [_vm._v("الخصوم")])]), _vm._v(" "), _c('th', [_c('strong', [_vm._v("نوع الدعوى")])]), _vm._v(" "), _c('th', [_c('strong', [_vm._v("تاريخ اخر جلسة")])]), _vm._v(" "), _c('th', [_c('strong', [_vm._v("المحكمة")])]), _vm._v(" "), _c('th', {
+  return _c('tr', [_c('th', [_c('strong', [_vm._v("رقم الدعوى")])]), _vm._v(" "), _c('th', [_c('strong', [_vm._v("موضوع الدعوى")])]), _vm._v(" "), _c('th', [_c('strong', [_vm._v("الخصوم")])]), _vm._v(" "), _c('th', [_c('strong', [_vm._v("تاريخ اخر جلسة")])]), _vm._v(" "), _c('th', [_c('strong', [_vm._v("المحكمة")])]), _vm._v(" "), _c('th', {
     staticClass: "print-hidden"
   })])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;

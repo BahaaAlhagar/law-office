@@ -42,7 +42,7 @@
         
         <div>
           <span v-if="issue_adv_numbers.length">
-              <button class="btn btn-sm btn-info pull-left" data-toggle="collapse" data-target="#issue_adv_numbers"><i class="fa fa-window-minimize" aria-hidden="true"></i></button>
+              <button class="btn btn-sm btn-success pull-left" data-toggle="collapse" data-target="#issue_adv_numbers"><i class="fa fa-window-minimize" aria-hidden="true"></i></button>
                 <issue-adv-numbers-table :header="'قضايا لم يتم استيفاء ارقامها الاستئنافية بعد'" :id="'issue_adv_numbers'" :data="issue_adv_numbers"></issue-adv-numbers-table>
           </span>
           <span v-else class="alert alert-info heading col-xs-12">
@@ -51,6 +51,19 @@
         </div>
 
 
+        <!-- space -->
+        <div class="spacer"></div>
+
+        
+        <div>
+          <span v-if="dates.length">
+              <button class="btn btn-sm btn-info pull-left" data-toggle="collapse" data-target="#dates"><i class="fa fa-window-minimize" aria-hidden="true"></i></button>
+                <issue-adv-numbers-table :header="'قضايا لم تحدد بها اكثر من خصم او جلسات حتى الان'" :id="'dates'" :data="dates"></issue-adv-numbers-table>
+          </span>
+          <span v-else class="alert alert-info heading col-xs-12">
+            لا توجد قضايا لم تحدد بها اكثر من خصم او جلسات حتى الان
+          </span>
+        </div>
 
         
       </div>

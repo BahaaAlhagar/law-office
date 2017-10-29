@@ -9,8 +9,8 @@
               <tbody>
                 <tr>
                 	<th><strong>رقم الدعوى</strong></th>
+                	<th><strong>موضوع الدعوى</strong></th>
                 	<th><strong>الخصوم</strong></th>
-                	<th><strong>نوع الدعوى</strong></th>
                   <th><strong>تاريخ اخر جلسة</strong></th>
                 	<th><strong>المحكمة</strong></th>
                 	<th class="print-hidden"></th>
