@@ -9530,7 +9530,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "brown"
   }, [_vm._v("الأسم")]), _vm._v(" "), _c('th', {
     staticClass: "brown"
-  }, [_vm._v("التوكيل")]), _vm._v(" "), _c('th', {
+  }, [_vm._v("التوكيل - التوكيلات")]), _vm._v(" "), _c('th', {
     staticClass: "brown"
   }, [_vm._v("الصفة")])]) : _c('tr', [_c('td', {
     attrs: {
@@ -9569,13 +9569,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       attrs: {
         "aria-hidden": "true"
       }
-    })])]), _vm._v(" "), _c('td', [_c('ul', _vm._l((openent.contracts), function(contract) {
-      return _c('li', [_c('a', {
+    })])]), _vm._v(" "), _c('td', _vm._l((openent.contracts), function(contract) {
+      return _c('span', [_c('a', {
         attrs: {
           "href": '/contracts/' + contract.id
         }
-      }, [_vm._v(_vm._s(contract.number) + " لسنة " + _vm._s(contract.year) + " " + _vm._s(_vm.contractType(contract)))])])
-    }))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(_vm.openentType(openent)))])])
+      }, [_vm._v(_vm._s(contract.number) + " لسنة " + _vm._s(contract.year) + " " + _vm._s(_vm.contractType(contract)))]), _c('br')])
+    })), _vm._v(" "), _c('td', [_vm._v(_vm._s(_vm.openentType(openent)))])])
   })], 2)])]), _vm._v(" "), _c('add-openent', {
     attrs: {
       "issue": _vm.issue,

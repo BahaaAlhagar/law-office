@@ -12,7 +12,7 @@
                 <tbody>
                     <tr v-if="openents.length">
                         <th class="brown">الأسم</th>
-                        <th class="brown">التوكيل</th>
+                        <th class="brown">التوكيل - التوكيلات</th>
                         <th class="brown">الصفة</th>
                     </tr>
                     <tr v-else>
@@ -27,11 +27,9 @@
                         <button class="btn btn-sm btn-info pull-left" @click="editOpenent(openent)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                         </td>
                         <td>
-                          <ul>
-                            <li v-for="contract in openent.contracts">
-                              <a :href="'/contracts/' + contract.id">{{ contract.number }} لسنة {{ contract.year }} {{ contractType(contract) }}</a>
-                            </li>
-                          </ul>
+                            <span v-for="contract in openent.contracts">
+                              <a :href="'/contracts/' + contract.id">{{ contract.number }} لسنة {{ contract.year }} {{ contractType(contract) }}</a><br>
+                            </span>
                         </td>
                         <td>{{ openentType(openent) }}</td>
                     </tr>

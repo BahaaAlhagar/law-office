@@ -4452,8 +4452,8 @@ var missingData = new Vue({
     },
     afterIssueUpdated: function afterIssueUpdated(response) {
       $('#editIssue').modal('hide');
-      _toastr2.default.info(response.message);
       this.fetchData();
+      _toastr2.default.info(response.message);
     }
   },
   components: {
@@ -4630,7 +4630,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       return (issue.openents.length) ? _c('span', {
         key: openent.id
       }, [_c('span', [_vm._v("\n                    " + _vm._s(openent.name) + " / " + _vm._s(_vm.openentType(openent)) + " "), _c('br')])]) : _vm._e()
-    })), _vm._v(" "), _c('td', [_vm._v("\n                " + _vm._s(_vm.issueType(issue)) + "\n          \t")]), _vm._v(" "), _c('td', [(issue.last_meeting_date) ? _c('span', [_vm._v("\n          \t       " + _vm._s(_vm.dayFormat(issue.last_meeting_date)) + " \n                ")]) : _vm._e()]), _vm._v(" "), _c('td', {
+    })), _vm._v(" "), _c('td', [_vm._v("\n                " + _vm._s(_vm.issueType(issue)) + "\n          \t")]), _vm._v(" "), _c('td', [(issue.last_meeting_date) ? _c('span', [_vm._v("\n          \t       " + _vm._s(_vm.dayFormat(issue.last_meeting_date)) + " \n                ")]) : _vm._e()]), _vm._v(" "), _c('td', [_vm._v("\n                " + _vm._s(issue.court) + "\n            ")]), _vm._v(" "), _c('td', {
       staticClass: "print-hidden"
     }, [_c('button', {
       staticClass: "btn btn-sm btn-info pull-left",
@@ -4651,7 +4651,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_vm._m(1, true)])])])
   })], 2)])]), _vm._v(" "), _c('edit-issue')], 1)])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('tr', [_c('th', [_c('strong', [_vm._v("موضوع الدعوى")])]), _vm._v(" "), _c('th', [_c('strong', [_vm._v("الخصوم")])]), _vm._v(" "), _c('th', [_c('strong', [_vm._v("نوع الدعوى")])]), _vm._v(" "), _c('th', [_c('strong', [_vm._v("تاريخ اخر جلسة")])]), _vm._v(" "), _c('th', {
+  return _c('tr', [_c('th', [_c('strong', [_vm._v("موضوع الدعوى")])]), _vm._v(" "), _c('th', [_c('strong', [_vm._v("الخصوم")])]), _vm._v(" "), _c('th', [_c('strong', [_vm._v("نوع الدعوى")])]), _vm._v(" "), _c('th', [_c('strong', [_vm._v("تاريخ اخر جلسة")])]), _vm._v(" "), _c('th', [_c('strong', [_vm._v("المحكمة")])]), _vm._v(" "), _c('th', {
     staticClass: "print-hidden"
   })])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -4829,7 +4829,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       return (issue.openents.length) ? _c('span', {
         key: openent.id
       }, [_c('span', [_vm._v("\n                    " + _vm._s(openent.name) + " / " + _vm._s(_vm.openentType(openent)) + " "), _c('br')])]) : _vm._e()
-    })), _vm._v(" "), _c('td', [(issue.last_meeting_date) ? _c('span', [_vm._v("\n          \t       " + _vm._s(_vm.dayFormat(issue.last_meeting_date)) + " \n                ")]) : _vm._e()]), _vm._v(" "), _c('td', {
+    })), _vm._v(" "), _c('td', [(issue.last_meeting_date) ? _c('span', [_vm._v("\n          \t       " + _vm._s(_vm.dayFormat(issue.last_meeting_date)) + " \n                ")]) : _vm._e()]), _vm._v(" "), _c('td', [_vm._v("\n                " + _vm._s(issue.court) + "\n            ")]), _vm._v(" "), _c('td', {
       staticClass: "print-hidden"
     }, [_c('button', {
       staticClass: "btn btn-sm btn-info pull-left",
@@ -4850,7 +4850,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_vm._m(1, true)])])])
   })], 2)])]), _vm._v(" "), _c('edit-issue')], 1)])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('tr', [_c('th', [_c('strong', [_vm._v("موضوع الدعوى")])]), _vm._v(" "), _c('th', [_c('strong', [_vm._v("الخصوم")])]), _vm._v(" "), _c('th', [_c('strong', [_vm._v("نوع الدعوى")])]), _vm._v(" "), _c('th', [_c('strong', [_vm._v("تاريخ اخر جلسة")])]), _vm._v(" "), _c('th', {
+  return _c('tr', [_c('th', [_c('strong', [_vm._v("رقم الدعوى")])]), _vm._v(" "), _c('th', [_c('strong', [_vm._v("الخصوم")])]), _vm._v(" "), _c('th', [_c('strong', [_vm._v("نوع الدعوى")])]), _vm._v(" "), _c('th', [_c('strong', [_vm._v("تاريخ اخر جلسة")])]), _vm._v(" "), _c('th', [_c('strong', [_vm._v("المحكمة")])]), _vm._v(" "), _c('th', {
     staticClass: "print-hidden"
   })])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;

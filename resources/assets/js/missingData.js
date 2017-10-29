@@ -55,8 +55,8 @@ const missingData = new Vue({
       },
       afterIssueUpdated(response){
         $('#editIssue').modal('hide');
-        toastr.info(response.message);
         this.fetchData();
+        toastr.info(response.message);
       }
     },
     components: {

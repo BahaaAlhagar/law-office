@@ -8,10 +8,11 @@
             <table class="table table-responsive">
               <tbody>
                 <tr>
-                	<th><strong>موضوع الدعوى</strong></th>
+                	<th><strong>رقم الدعوى</strong></th>
                 	<th><strong>الخصوم</strong></th>
                 	<th><strong>نوع الدعوى</strong></th>
-                	<th><strong>تاريخ اخر جلسة</strong></th>
+                  <th><strong>تاريخ اخر جلسة</strong></th>
+                	<th><strong>المحكمة</strong></th>
                 	<th class="print-hidden"></th>
                 </tr>
                 <tr v-for="issue in data" :key="issue.id">
@@ -39,6 +40,9 @@
                 	       {{ dayFormat(issue.last_meeting_date) }} 
                       </span>
                 	</td>
+                  <td>
+                      {{ issue.court }}
+                  </td>
                 	<td class="print-hidden">
                 		<button class="btn btn-sm btn-info pull-left" @click="editIssue(issue)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                 		<a :href="'/issues/' + issue.id">

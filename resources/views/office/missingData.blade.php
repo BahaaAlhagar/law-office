@@ -43,7 +43,7 @@
         <div>
           <span v-if="issue_adv_numbers.length">
               <button class="btn btn-sm btn-info pull-left" data-toggle="collapse" data-target="#issue_adv_numbers"><i class="fa fa-window-minimize" aria-hidden="true"></i></button>
-                <issue-numbers-table :header="'قضايا لم يتم استيفاء ارقامها الاستئنافية بعد'" :id="'issue_adv_numbers'" :data="issue_adv_numbers"></issue-numbers-table>
+                <issue-adv-numbers-table :header="'قضايا لم يتم استيفاء ارقامها الاستئنافية بعد'" :id="'issue_adv_numbers'" :data="issue_adv_numbers"></issue-adv-numbers-table>
           </span>
           <span v-else class="alert alert-info heading col-xs-12">
             لا توجد قضايا لم يتم استيفاء ارقامها الاستئنافية بعد

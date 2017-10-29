@@ -97,8 +97,7 @@ class OfficeController extends Controller
                                 ->get();
 
         $dates = Issue::distinct()
-                                ->doesntHave('openents')
-                                ->orHas('openents', '=<', 1)
+                                ->has('openents', '=<', 1)
                                 ->orDoesntHave('meetings')
                                 ->with('openents')
                                 ->orderBy('type')
