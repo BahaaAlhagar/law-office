@@ -2,52 +2,42 @@
       <div :id="id">
         <div class="card text-center mr-auto">
           <div class="card-header">
-          <h4 class="card-title green">{{ header }}</h4>
+          <h4 class="card-title brown">{{ header }}</h4>
           </div>
           <div class="panel-body">
             <table class="table table-responsive">
               <tbody>
                 <tr>
-                	<th><strong>تاريخ الجلسة</strong></th>
-                	<th><strong>الرول</strong></th>
-                	<th><strong>بيانات القضية</strong></th>
-                	<th><strong>المحكمة والدائرة والقرار</strong></th>
+                	<th><strong>موضوع الدعوى</strong></th>
                 	<th><strong>الخصوم</strong></th>
+                	<th><strong>نوع الدعوى</strong></th>
+                	<th><strong>تاريخ اخر جلسة</strong></th>
                 	<th class="print-hidden"></th>
                 </tr>
-                <tr v-for="meeting in data" :key="meeting.id" :class="levelCheck(meeting)">
+                <tr v-for="issue in data" :key="issue.id">
                 	<td>
-                		<a :href="'/issues/' + meeting.issue.id">
-                		{{ dayFormat(meeting.date) }}
-                		</a>
-                	</td>
-                	<td>{{ meeting.role }}</td>
-                	<td>
-                      <span v-show="meeting.issue.number">
-                        {{ meeting.issue.number }} لسنة {{ meeting.issue.year }} {{ issueType(meeting) }}
-                      </span>
-                      <span v-show="meeting.issue.adv_number">
-                        <br>{{ meeting.issue.adv_number }} لسنة {{ meeting.issue.adv_year }} س
-                      </span>
+                		<a :href="/issues/ + issue.id">
+                        {{ issue.subject }} 
+                    </a>
                 	</td>
                 	<td>
-                	  {{ meeting.issue.court }} 
-                      <span v-show="meeting.issue.room">
-                        - الدائــرة {{ meeting.issue.room }}
+                      <span v-if="issue.openents.length" v-for="openent in issue.openents" :key="openent.id">
+                        <span>
+                          {{ openent.name }} / {{ openentType(openent) }} <br>
+                        </span>
                       </span>
-                      <br>{{ meeting.decision }}
+                  </td>
+                	<td>
+                      {{ issueType(issue) }}
                 	</td>
                 	<td>
-                		<span v-if="meeting.issue.openents.length" v-for="openent in meeting.issue.openents" :key="openent.id">
-                			<span>
-                				{{ openent.name }} / {{ openentType(openent) }} <br>
-                			</span>
-                		</span>
-                		
+                      <span v-if="issue.last_meeting_date">
+                	       {{ dayFormat(issue.last_meeting_date) }} 
+                      </span>
                 	</td>
                 	<td class="print-hidden">
-                		<button class="btn btn-sm btn-info pull-left" @click="editMeeting(meeting)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                		<a :href="'/issues/' + meeting.issue.id">
+                		<button class="btn btn-sm btn-info pull-left" @click="editIssue(issue)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                		<a :href="'/issues/' + issue.id">
                 			<button class="btn btn-sm btn-dark pull-left"><i class="fa fa-balance-scale" aria-hidden="true"></i></button>
                 		</a>
                 	</td>
@@ -56,20 +46,20 @@
               </tbody>
             </table>
           </div>
-          <edit-meeting></edit-meeting>
+          <edit-issue></edit-issue>
         </div>
       </div>
 </template>
 
 <script>
-	import editMeeting from '../issue/meetings/editMeeting';
+	import editIssue from '../issue/editIssue';
 
 	export default {
 		props: ['header', 'data', 'id'],
 		methods: {
-		  editMeeting(meeting){
-	        eventBus.$emit('editMeeting', meeting);
-	        $('#editMeeting').modal('show');
+		  editIssue(issue){
+	        eventBus.$emit('editIssue', issue);
+	        $('#editIssue').modal('show');
 	      },
 	      openentType(openent){
           let type = openent.pivot.person_type;
@@ -83,8 +73,8 @@
             case 7: return "مشكو فى حقه"; break;
           	}
           },
-	      issueType(meeting){
-          let type = meeting.issue.type;
+	      issueType(issue){
+          let type = issue.type;
           switch(type) {
             case 1: return 'جـنــح'; break;
             case 2: return 'جـنــايــات'; break;
@@ -104,16 +94,10 @@
 	      	var d = new Date(meetingdate);
 	        var days = ["الاحــد","الاثــنين","الثلاثــاء","الاربعــاء","الخمــيس","الجمـــعة","الســبت"];
 	        return days[d.getDay()] + ' ' + meetingdate;
-	      },
-	      levelCheck(meeting){
-		      	if(meeting.level > 2){
-		      		return 'table-info';
-		      	}
-		      	return false;
 	      }
 		},
 		components: {
-			editMeeting
+			editIssue
 		}
 	}
 </script>

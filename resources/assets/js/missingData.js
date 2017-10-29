@@ -16,7 +16,8 @@ import bootstrap from 'bootstrap';
 window.toastr = toastr;
 
 
-import MeetingsTable from './components/meetings/MeetingsTable';
+import IssueNumbersTable from './components/office/IssueNumbersTable';
+import IssueAdvNumbersTable from './components/office/IssueAdvNumbersTable';
 
 
 window.eventBus = new Vue();
@@ -28,9 +29,6 @@ const missingData = new Vue({
       issue_adv_numbers: [],
       records: [],
     	dates: []
-    },
-    components: {
-      MeetingsTable
     },
    	methods: {
       fetchData(){
@@ -54,10 +52,20 @@ const missingData = new Vue({
           var d = new Date(meetingdate);
           var days = ["الاحــد","الاثــنين","الثلاثــاء","الاربعــاء","الخمــيس","الجمـــعة","الســبت"];
           return days[d.getDay()] + ' ' + meetingdate;
+      },
+      afterIssueUpdated(response){
+        $('#editIssue').modal('hide');
+        toastr.info(response.message);
+        this.fetchData();
       }
+    },
+    components: {
+      IssueNumbersTable,
+      IssueAdvNumbersTable
     },
     mounted() {
       this.fetchData();
+      eventBus.$on('IssueUpdated', response => this.afterIssueUpdated(response));
     }
 });
 

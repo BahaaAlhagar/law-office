@@ -22,6 +22,36 @@
         </div><br>
 
 
+        <!-- space -->
+        <div class="spacer"></div>
+
+        
+        <div>
+          <span v-if="issue_numbers.length">
+              <button class="btn btn-sm btn-info pull-left" data-toggle="collapse" data-target="#issue_numbers"><i class="fa fa-window-minimize" aria-hidden="true"></i></button>
+                <issue-numbers-table :header="'قضايا لم يتم استيفاء ارقامها الجزئية'" :id="'issue_numbers'" :data="issue_numbers"></issue-numbers-table>
+          </span>
+          <span v-else class="alert alert-info heading col-xs-12">
+            لا توجد قضايا لم يتم استيفاء ارقامها الجزئية
+          </span>
+        </div>
+        
+        <!-- space -->
+        <div class="spacer"></div>
+
+        
+        <div>
+          <span v-if="issue_adv_numbers.length">
+              <button class="btn btn-sm btn-info pull-left" data-toggle="collapse" data-target="#issue_adv_numbers"><i class="fa fa-window-minimize" aria-hidden="true"></i></button>
+                <issue-numbers-table :header="'قضايا لم يتم استيفاء ارقامها الاستئنافية بعد'" :id="'issue_adv_numbers'" :data="issue_adv_numbers"></issue-numbers-table>
+          </span>
+          <span v-else class="alert alert-info heading col-xs-12">
+            لا توجد قضايا لم يتم استيفاء ارقامها الاستئنافية بعد
+          </span>
+        </div>
+
+
+
         
       </div>
       <div class="spacer"></div>
