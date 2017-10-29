@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use App\Scopes\ActiveIssueScope;
 use Illuminate\Database\Eloquent\Model;
 
@@ -17,6 +18,20 @@ class Judgement extends Model
     protected $guarded = ['id'];
 
     public $timestamps = false;
+
+    protected $appends = ['expire_at'];
+
+    public function getExpireAtAttribute()
+    {
+        if($this->level == 1)
+        {
+            return Carbon::parse($this->date)->addDays(39)->format('Y-m-d');
+        } elseif ($this->level == 3) {
+            return Carbon::parse($this->date)->addDays(59)->format('Y-m-d');
+        } else {
+            return null;
+        }
+    }
 
     public function issue()
     {
@@ -74,6 +89,14 @@ class Judgement extends Model
         return $query->whereHas('person', function($query)
         {
             $query->where('is_client', 0);
+        });
+    }
+
+    public function scopeClient($query)
+    {
+        return $query->whereHas('person', function($query)
+        {
+            $query->where('is_client', 1);
         });
     }
 

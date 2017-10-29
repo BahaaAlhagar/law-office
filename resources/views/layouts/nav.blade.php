@@ -33,6 +33,9 @@
           <a class="dropdown-item" href="{{ route('office.missingData') }}">بيانات القضايا وارقام الحصر</a>
         </div>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('office.expiration') }}"> المواعيد </a>
+      </li>
     </ul>
 
     <form class="form-inline my-2 my-lg-0 mr-auto">

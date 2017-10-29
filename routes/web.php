@@ -34,6 +34,8 @@ route::get('meetings/late', 'OfficeController@lateMeetings')->name('office.late'
 
 route::get('missingdata', 'OfficeController@missingData')->name('office.missingData');
 
+route::get('expiration', 'OfficeController@expiration')->name('office.expiration');
+
 // office services end
 
 

@@ -20,19 +20,19 @@ class OfficeController extends Controller
     public function records()
     {
     	$records = Judgement::openJudgement()
+                        ->active()
+                        ->where('level', '<', 3)
     					->noChild()
     					->openent()
-    					->active()
-    					->where('level', '<', 3)
     					->with('person', 'issue')
     					->get();
 
 
     	$advancedRecords = Judgement::openJudgement()
+                            ->active()
+                            ->whereBetween('level', [3, 4])
     						->noChild()
     			   			->openent()
-							->active()
-    			   			->whereBetween('level', [3, 4])
     			   			->with('person', 'issue')
     			   			->get();
     			   			
@@ -42,26 +42,26 @@ class OfficeController extends Controller
 
     public function lateMeetings()
     {
-        $cevilMeetings = Meeting::cevil()
-                                ->where('date', '<', Carbon::parse('today'))
+        $cevilMeetings = Meeting::where('date', '<', Carbon::parse('today'))
+                                ->cevil()
                                 ->doesntHave('childMeetings')
                                 ->doesntHave('judgements')
                                 ->with('issue.openents')
                                 ->orderBy('date')
                                 ->get();
 
-        $criminalPartOne = Meeting::criminal()
-                                ->where('date', '<', Carbon::parse('today'))
+        $criminalPartOne = Meeting::where('date', '<', Carbon::parse('today'))
                                 ->whereNotNull('person_id')
+                                ->criminal()
                                 ->doesntHave('childMeetings')
                                 ->doesntHave('judgements')
                                 ->with('issue.openents', 'person')
                                 ->orderBy('date')
                                 ->get();
 
-        $criminalPartTwo = Meeting::criminal()
-                                ->where('date', '<', Carbon::parse('today'))
+        $criminalPartTwo = Meeting::where('date', '<', Carbon::parse('today'))
                                 ->whereNull('person_id')
+                                ->criminal()
                                 ->noFullDelay()
                                 ->with('issue.openents')
                                 ->orderBy('date')
@@ -90,10 +90,10 @@ class OfficeController extends Controller
                                 ->orderBy('type')
                                 ->get();
 
-        $records = Judgement::criminal()
-                                ->noChild()
-                                ->where('type', '<', 3)
+        $records = Judgement::where('type', '<', 3)
                                 ->whereNull('record')
+                                ->noChild()
+                                ->criminal()
                                 ->with('issue', 'person')
                                 ->orderBy('date')
                                 ->get();
@@ -107,5 +107,55 @@ class OfficeController extends Controller
 
         
         return $this->makeResponse('office/missingData', compact('issueNumbers', 'issueAdvNumbers', 'records', 'dates'));
+    }
+
+    public function expiration()
+    {
+        $yasterDay = Carbon::yesterday();
+        $firstPeriod = Carbon::today()->subDays(50);
+        $latePeriod = Carbon::today()->subDays(70);
+
+        $notPresetJudgements = Judgement::where('level', 1)
+                                ->where('present', 0)
+                                ->where('date', '<', Carbon::parse('today'))
+                                ->noChild()
+                                ->cevil()
+                                ->orderBy('date')
+                                ->with('issue')
+                                ->get();
+
+        $firstJudgements = Judgement::where('level', 1)
+                                ->present()
+                                ->whereBetween('date', [$yasterDay, $firstPeriod])
+                                ->noChild()
+                                ->cevil()
+                                ->with('issue')
+                                ->orderBy('date')
+                                ->get();
+
+       $lateJudgements = Judgement::where('level', 3)
+                                ->present()
+                                ->whereBetween('date', [$yasterDay, $latePeriod])
+                                ->noChild()
+                                ->cevil()
+                                ->with('issue')
+                                ->orderBy('date')
+                                ->get();
+
+        $clientRecords = Judgement::active()
+                                ->openJudgement()
+                                ->client()
+                                ->noChild()
+                                ->with('person', 'issue')
+                                ->get();
+
+        $openentRecords = Judgement::active()
+                                ->openJudgement()
+                                ->openent()
+                                ->noChild()
+                                ->with('person', 'issue')
+                                ->get();
+
+        return $this->makeResponse('office/expirationPage', compact('notPresetJudgements', 'firstJudgements', 'lateJudgements', 'clientRecords', 'openentRecords'));
     }
 }
