@@ -1,4 +1,4 @@
-webpackJsonp([4],[
+webpackJsonp([6],[
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3814,26 +3814,15 @@ module.exports = function spread(callback) {
 /* 125 */,
 /* 126 */,
 /* 127 */,
-/* 128 */,
-/* 129 */,
-/* 130 */,
-/* 131 */,
-/* 132 */,
-/* 133 */,
-/* 134 */,
-/* 135 */,
-/* 136 */,
-/* 137 */,
-/* 138 */,
-/* 139 */
+/* 128 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var Component = __webpack_require__(15)(
   /* script */
-  __webpack_require__(140),
+  __webpack_require__(129),
   /* template */
-  __webpack_require__(141),
+  __webpack_require__(130),
   /* styles */
   null,
   /* scopeId */
@@ -3865,7 +3854,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 140 */
+/* 129 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3918,7 +3907,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 141 */
+/* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -4236,6 +4225,17 @@ if (false) {
 }
 
 /***/ }),
+/* 131 */,
+/* 132 */,
+/* 133 */,
+/* 134 */,
+/* 135 */,
+/* 136 */,
+/* 137 */,
+/* 138 */,
+/* 139 */,
+/* 140 */,
+/* 141 */,
 /* 142 */,
 /* 143 */,
 /* 144 */,
@@ -4396,15 +4396,15 @@ var _bootstrap = __webpack_require__(116);
 
 var _bootstrap2 = _interopRequireDefault(_bootstrap);
 
-var _IssueNumbersTable = __webpack_require__(278);
+var _IssueNumbersTable = __webpack_require__(275);
 
 var _IssueNumbersTable2 = _interopRequireDefault(_IssueNumbersTable);
 
-var _IssueAdvNumbersTable = __webpack_require__(281);
+var _IssueAdvNumbersTable = __webpack_require__(278);
 
 var _IssueAdvNumbersTable2 = _interopRequireDefault(_IssueAdvNumbersTable);
 
-var _missingRecordsTable = __webpack_require__(284);
+var _missingRecordsTable = __webpack_require__(281);
 
 var _missingRecordsTable2 = _interopRequireDefault(_missingRecordsTable);
 
@@ -4482,18 +4482,15 @@ _toastr2.default.options = {
 };
 
 /***/ }),
-/* 275 */,
-/* 276 */,
-/* 277 */,
-/* 278 */
+/* 275 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var Component = __webpack_require__(15)(
   /* script */
-  __webpack_require__(279),
+  __webpack_require__(276),
   /* template */
-  __webpack_require__(280),
+  __webpack_require__(277),
   /* styles */
   null,
   /* scopeId */
@@ -4525,6 +4522,201 @@ module.exports = Component.exports
 
 
 /***/ }),
+/* 276 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _editIssue = __webpack_require__(128);
+
+var _editIssue2 = _interopRequireDefault(_editIssue);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  props: ['header', 'data', 'id'],
+  methods: {
+    editIssue: function editIssue(issue) {
+      eventBus.$emit('editIssue', issue);
+      $('#editIssue').modal('show');
+    },
+    openentType: function openentType(openent) {
+      var type = openent.pivot.person_type;
+      switch (type) {
+        case 1:
+          return "مــتــهــم";break;
+        case 2:
+          return "مجنى عليه";break;
+        case 3:
+          return "مدعى بالحق المدنى";break;
+        case 4:
+          return "مدعى";break;
+        case 5:
+          return "مدعى عليه";break;
+        case 6:
+          return "شــاكى";break;
+        case 7:
+          return "مشكو فى حقه";break;
+      }
+    },
+    issueType: function issueType(issue) {
+      var type = issue.type;
+      switch (type) {
+        case 1:
+          return 'جـنــح';break;
+        case 2:
+          return 'جـنــايــات';break;
+        case 3:
+          return 'مــخــالفــات';break;
+        case 4:
+          return 'أدارى';break;
+        case 5:
+          return 'مــدنـى جــزئى';break;
+        case 6:
+          return 'مــدنـى كــلـى';break;
+        case 7:
+          return 'صــحــة توقيــع';break;
+        case 8:
+          return 'أســـرة';break;
+        case 9:
+          return 'وراثــــات';break;
+        case 10:
+          return 'تـجـــارى';break;
+        case 11:
+          return 'أدارى(مجلــس الدولة)';break;
+        case 12:
+          return 'اقتصـــادية';break;
+      }
+    },
+    dayFormat: function dayFormat(meetingdate) {
+      var d = new Date(meetingdate);
+      var days = ["الاحــد", "الاثــنين", "الثلاثــاء", "الاربعــاء", "الخمــيس", "الجمـــعة", "الســبت"];
+      return days[d.getDay()] + ' ' + meetingdate;
+    }
+  },
+  components: {
+    editIssue: _editIssue2.default
+  }
+};
+
+/***/ }),
+/* 277 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    attrs: {
+      "id": _vm.id
+    }
+  }, [_c('div', {
+    staticClass: "card text-center mr-auto"
+  }, [_c('div', {
+    staticClass: "card-header"
+  }, [_c('h4', {
+    staticClass: "card-title brown"
+  }, [_vm._v(_vm._s(_vm.header))])]), _vm._v(" "), _c('div', {
+    staticClass: "panel-body"
+  }, [_c('table', {
+    staticClass: "table table-responsive"
+  }, [_c('tbody', [_vm._m(0), _vm._v(" "), _vm._l((_vm.data), function(issue) {
+    return _c('tr', {
+      key: issue.id
+    }, [_c('td', [_c('a', {
+      attrs: {
+        "href": /issues/ + issue.id
+      }
+    }, [_vm._v("\n                  " + _vm._s(issue.subject) + " \n              ")])]), _vm._v(" "), _c('td', _vm._l((issue.openents), function(openent) {
+      return (issue.openents.length) ? _c('span', {
+        key: openent.id
+      }, [_c('span', [_vm._v("\n                    " + _vm._s(openent.name) + " / " + _vm._s(_vm.openentType(openent)) + " "), _c('br')])]) : _vm._e()
+    })), _vm._v(" "), _c('td', [_vm._v("\n                " + _vm._s(_vm.issueType(issue)) + "\n          \t")]), _vm._v(" "), _c('td', [(issue.last_meeting_date) ? _c('span', [_vm._v("\n          \t       " + _vm._s(_vm.dayFormat(issue.last_meeting_date)) + " \n                ")]) : _vm._e()]), _vm._v(" "), _c('td', [_vm._v("\n                " + _vm._s(issue.court) + "\n            ")]), _vm._v(" "), _c('td', {
+      staticClass: "print-hidden"
+    }, [_c('button', {
+      staticClass: "btn btn-sm btn-info pull-left",
+      on: {
+        "click": function($event) {
+          _vm.editIssue(issue)
+        }
+      }
+    }, [_c('i', {
+      staticClass: "fa fa-pencil-square-o",
+      attrs: {
+        "aria-hidden": "true"
+      }
+    })]), _vm._v(" "), _c('a', {
+      attrs: {
+        "href": '/issues/' + issue.id
+      }
+    }, [_vm._m(1, true)])])])
+  })], 2)])]), _vm._v(" "), _c('edit-issue')], 1)])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('tr', [_c('th', [_c('strong', [_vm._v("موضوع الدعوى")])]), _vm._v(" "), _c('th', [_c('strong', [_vm._v("الخصوم")])]), _vm._v(" "), _c('th', [_c('strong', [_vm._v("نوع الدعوى")])]), _vm._v(" "), _c('th', [_c('strong', [_vm._v("تاريخ اخر جلسة")])]), _vm._v(" "), _c('th', [_c('strong', [_vm._v("المحكمة")])]), _vm._v(" "), _c('th', {
+    staticClass: "print-hidden"
+  })])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('button', {
+    staticClass: "btn btn-sm btn-dark pull-left"
+  }, [_c('i', {
+    staticClass: "fa fa-balance-scale",
+    attrs: {
+      "aria-hidden": "true"
+    }
+  })])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-10c718e5", module.exports)
+  }
+}
+
+/***/ }),
+/* 278 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(15)(
+  /* script */
+  __webpack_require__(279),
+  /* template */
+  __webpack_require__(280),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "D:\\www\\law-office\\resources\\assets\\js\\components\\office\\IssueAdvNumbersTable.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] IssueAdvNumbersTable.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-4bbce9c6", Component.options)
+  } else {
+    hotAPI.reload("data-v-4bbce9c6", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
 /* 279 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4535,7 +4727,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _editIssue = __webpack_require__(139);
+var _editIssue = __webpack_require__(128);
 
 var _editIssue2 = _interopRequireDefault(_editIssue);
 
@@ -4633,201 +4825,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       attrs: {
         "href": /issues/ + issue.id
       }
-    }, [_vm._v("\n                  " + _vm._s(issue.subject) + " \n              ")])]), _vm._v(" "), _c('td', _vm._l((issue.openents), function(openent) {
-      return (issue.openents.length) ? _c('span', {
-        key: openent.id
-      }, [_c('span', [_vm._v("\n                    " + _vm._s(openent.name) + " / " + _vm._s(_vm.openentType(openent)) + " "), _c('br')])]) : _vm._e()
-    })), _vm._v(" "), _c('td', [_vm._v("\n                " + _vm._s(_vm.issueType(issue)) + "\n          \t")]), _vm._v(" "), _c('td', [(issue.last_meeting_date) ? _c('span', [_vm._v("\n          \t       " + _vm._s(_vm.dayFormat(issue.last_meeting_date)) + " \n                ")]) : _vm._e()]), _vm._v(" "), _c('td', [_vm._v("\n                " + _vm._s(issue.court) + "\n            ")]), _vm._v(" "), _c('td', {
-      staticClass: "print-hidden"
-    }, [_c('button', {
-      staticClass: "btn btn-sm btn-info pull-left",
-      on: {
-        "click": function($event) {
-          _vm.editIssue(issue)
-        }
-      }
-    }, [_c('i', {
-      staticClass: "fa fa-pencil-square-o",
-      attrs: {
-        "aria-hidden": "true"
-      }
-    })]), _vm._v(" "), _c('a', {
-      attrs: {
-        "href": '/issues/' + issue.id
-      }
-    }, [_vm._m(1, true)])])])
-  })], 2)])]), _vm._v(" "), _c('edit-issue')], 1)])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('tr', [_c('th', [_c('strong', [_vm._v("موضوع الدعوى")])]), _vm._v(" "), _c('th', [_c('strong', [_vm._v("الخصوم")])]), _vm._v(" "), _c('th', [_c('strong', [_vm._v("نوع الدعوى")])]), _vm._v(" "), _c('th', [_c('strong', [_vm._v("تاريخ اخر جلسة")])]), _vm._v(" "), _c('th', [_c('strong', [_vm._v("المحكمة")])]), _vm._v(" "), _c('th', {
-    staticClass: "print-hidden"
-  })])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('button', {
-    staticClass: "btn btn-sm btn-dark pull-left"
-  }, [_c('i', {
-    staticClass: "fa fa-balance-scale",
-    attrs: {
-      "aria-hidden": "true"
-    }
-  })])
-}]}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-10c718e5", module.exports)
-  }
-}
-
-/***/ }),
-/* 281 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var Component = __webpack_require__(15)(
-  /* script */
-  __webpack_require__(282),
-  /* template */
-  __webpack_require__(283),
-  /* styles */
-  null,
-  /* scopeId */
-  null,
-  /* moduleIdentifier (server only) */
-  null
-)
-Component.options.__file = "D:\\www\\law-office\\resources\\assets\\js\\components\\office\\IssueAdvNumbersTable.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] IssueAdvNumbersTable.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-4bbce9c6", Component.options)
-  } else {
-    hotAPI.reload("data-v-4bbce9c6", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 282 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _editIssue = __webpack_require__(139);
-
-var _editIssue2 = _interopRequireDefault(_editIssue);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = {
-  props: ['header', 'data', 'id'],
-  methods: {
-    editIssue: function editIssue(issue) {
-      eventBus.$emit('editIssue', issue);
-      $('#editIssue').modal('show');
-    },
-    openentType: function openentType(openent) {
-      var type = openent.pivot.person_type;
-      switch (type) {
-        case 1:
-          return "مــتــهــم";break;
-        case 2:
-          return "مجنى عليه";break;
-        case 3:
-          return "مدعى بالحق المدنى";break;
-        case 4:
-          return "مدعى";break;
-        case 5:
-          return "مدعى عليه";break;
-        case 6:
-          return "شــاكى";break;
-        case 7:
-          return "مشكو فى حقه";break;
-      }
-    },
-    issueType: function issueType(issue) {
-      var type = issue.type;
-      switch (type) {
-        case 1:
-          return 'جـنــح';break;
-        case 2:
-          return 'جـنــايــات';break;
-        case 3:
-          return 'مــخــالفــات';break;
-        case 4:
-          return 'أدارى';break;
-        case 5:
-          return 'مــدنـى جــزئى';break;
-        case 6:
-          return 'مــدنـى كــلـى';break;
-        case 7:
-          return 'صــحــة توقيــع';break;
-        case 8:
-          return 'أســـرة';break;
-        case 9:
-          return 'وراثــــات';break;
-        case 10:
-          return 'تـجـــارى';break;
-        case 11:
-          return 'أدارى(مجلــس الدولة)';break;
-        case 12:
-          return 'اقتصـــادية';break;
-      }
-    },
-    dayFormat: function dayFormat(meetingdate) {
-      var d = new Date(meetingdate);
-      var days = ["الاحــد", "الاثــنين", "الثلاثــاء", "الاربعــاء", "الخمــيس", "الجمـــعة", "الســبت"];
-      return days[d.getDay()] + ' ' + meetingdate;
-    }
-  },
-  components: {
-    editIssue: _editIssue2.default
-  }
-};
-
-/***/ }),
-/* 283 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    attrs: {
-      "id": _vm.id
-    }
-  }, [_c('div', {
-    staticClass: "card text-center mr-auto"
-  }, [_c('div', {
-    staticClass: "card-header"
-  }, [_c('h4', {
-    staticClass: "card-title brown"
-  }, [_vm._v(_vm._s(_vm.header))])]), _vm._v(" "), _c('div', {
-    staticClass: "panel-body"
-  }, [_c('table', {
-    staticClass: "table table-responsive"
-  }, [_c('tbody', [_vm._m(0), _vm._v(" "), _vm._l((_vm.data), function(issue) {
-    return _c('tr', {
-      key: issue.id
-    }, [_c('td', [_c('a', {
-      attrs: {
-        "href": /issues/ + issue.id
-      }
     }, [(issue.number) ? _c('span', [_vm._v("\n                      " + _vm._s(issue.number) + " لسنة " + _vm._s(issue.year) + " " + _vm._s(_vm.issueType(issue)) + "\n                    ")]) : _vm._e()])]), _vm._v(" "), _c('td', [_c('a', {
       attrs: {
         "href": /issues/ + issue.id
@@ -4879,15 +4876,15 @@ if (false) {
 }
 
 /***/ }),
-/* 284 */
+/* 281 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var Component = __webpack_require__(15)(
   /* script */
-  __webpack_require__(285),
+  __webpack_require__(282),
   /* template */
-  __webpack_require__(286),
+  __webpack_require__(283),
   /* styles */
   null,
   /* scopeId */
@@ -4919,7 +4916,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 285 */
+/* 282 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5010,7 +5007,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 286 */
+/* 283 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;

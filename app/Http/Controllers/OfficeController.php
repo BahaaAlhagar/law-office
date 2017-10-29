@@ -126,7 +126,7 @@ class OfficeController extends Controller
 
         $firstJudgements = Judgement::where('level', 1)
                                 ->present()
-                                ->whereBetween('date', [$yasterDay, $firstPeriod])
+                                ->whereBetween('date', [$firstPeriod, $yasterDay])
                                 ->noChild()
                                 ->cevil()
                                 ->with('issue')
@@ -135,7 +135,7 @@ class OfficeController extends Controller
 
        $lateJudgements = Judgement::where('level', 3)
                                 ->present()
-                                ->whereBetween('date', [$yasterDay, $latePeriod])
+                                ->whereBetween('date', [$latePeriod, $yasterDay])
                                 ->noChild()
                                 ->cevil()
                                 ->with('issue')

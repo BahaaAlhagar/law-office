@@ -5637,26 +5637,15 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 125 */,
 /* 126 */,
 /* 127 */,
-/* 128 */,
-/* 129 */,
-/* 130 */,
-/* 131 */,
-/* 132 */,
-/* 133 */,
-/* 134 */,
-/* 135 */,
-/* 136 */,
-/* 137 */,
-/* 138 */,
-/* 139 */
+/* 128 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var Component = __webpack_require__(15)(
   /* script */
-  __webpack_require__(140),
+  __webpack_require__(129),
   /* template */
-  __webpack_require__(141),
+  __webpack_require__(130),
   /* styles */
   null,
   /* scopeId */
@@ -5688,7 +5677,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 140 */
+/* 129 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5741,7 +5730,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 141 */
+/* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -6059,6 +6048,17 @@ if (false) {
 }
 
 /***/ }),
+/* 131 */,
+/* 132 */,
+/* 133 */,
+/* 134 */,
+/* 135 */,
+/* 136 */,
+/* 137 */,
+/* 138 */,
+/* 139 */,
+/* 140 */,
+/* 141 */,
 /* 142 */,
 /* 143 */,
 /* 144 */,
@@ -6087,17 +6087,14 @@ if (false) {
 /* 167 */,
 /* 168 */,
 /* 169 */,
-/* 170 */,
-/* 171 */,
-/* 172 */,
-/* 173 */
+/* 170 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(174);
+module.exports = __webpack_require__(171);
 
 
 /***/ }),
-/* 174 */
+/* 171 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6127,11 +6124,11 @@ var _bootstrap = __webpack_require__(116);
 
 var _bootstrap2 = _interopRequireDefault(_bootstrap);
 
-var _addIssue = __webpack_require__(175);
+var _addIssue = __webpack_require__(172);
 
 var _addIssue2 = _interopRequireDefault(_addIssue);
 
-var _editIssue = __webpack_require__(139);
+var _editIssue = __webpack_require__(128);
 
 var _editIssue2 = _interopRequireDefault(_editIssue);
 
@@ -6280,15 +6277,15 @@ _toastr2.default.options = {
 };
 
 /***/ }),
-/* 175 */
+/* 172 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var Component = __webpack_require__(15)(
   /* script */
-  __webpack_require__(176),
+  __webpack_require__(173),
   /* template */
-  __webpack_require__(177),
+  __webpack_require__(174),
   /* styles */
   null,
   /* scopeId */
@@ -6320,7 +6317,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 176 */
+/* 173 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6355,7 +6352,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 177 */
+/* 174 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -6760,4 +6757,4 @@ if (false) {
 }
 
 /***/ })
-],[173]);
+],[170]);

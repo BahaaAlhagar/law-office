@@ -1,4 +1,4 @@
-webpackJsonp([4],[
+webpackJsonp([14],[
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6768,18 +6768,15 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 128 */,
-/* 129 */,
-/* 130 */,
-/* 131 */
+/* 128 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var Component = __webpack_require__(15)(
   /* script */
-  __webpack_require__(132),
+  __webpack_require__(129),
   /* template */
-  __webpack_require__(133),
+  __webpack_require__(130),
   /* styles */
   null,
   /* scopeId */
@@ -6787,9 +6784,9 @@ var Component = __webpack_require__(15)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "D:\\www\\law-office\\resources\\assets\\js\\components\\issue\\meetings\\editMeeting.vue"
+Component.options.__file = "D:\\www\\law-office\\resources\\assets\\js\\components\\issue\\editIssue.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] editMeeting.vue: functional components are not supported with templates, they should use render functions.")}
+if (Component.options.functional) {console.error("[vue-loader] editIssue.vue: functional components are not supported with templates, they should use render functions.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -6798,9 +6795,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-0dcae90b", Component.options)
+    hotAPI.createRecord("data-v-7341810e", Component.options)
   } else {
-    hotAPI.reload("data-v-0dcae90b", Component.options)
+    hotAPI.reload("data-v-7341810e", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -6811,7 +6808,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 132 */
+/* 129 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6820,79 +6817,58 @@ module.exports = Component.exports
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-
-var _vueFlatpickrComponent = __webpack_require__(111);
-
-var _vueFlatpickrComponent2 = _interopRequireDefault(_vueFlatpickrComponent);
-
-__webpack_require__(112);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Arabic = __webpack_require__(113).ar;
-
 exports.default = {
     data: function data() {
         return {
-            editMeetingForm: new Form({
-                person_id: '',
-                parent_id: '',
-                judgement_id: '',
-                level: '',
-                role: '',
-                date: '',
-                decision: '',
-                notes: ''
+            editForm: new Form({
+                number: '',
+                year: '',
+                adv_number: '',
+                adv_year: '',
+                subject: '',
+                court: '',
+                room: ''
             }),
-            meeting_id: '',
-            config: {
-                locale: Arabic
-            }
+            id: ''
         };
     },
 
     methods: {
-        onMeetingUpdate: function onMeetingUpdate() {
-            this.editMeetingForm.patch('/meetings/' + this.meeting_id).then(function (response) {
-                return eventBus.$emit('meetingUpdated', response);
+        onIssueCreate: function onIssueCreate() {
+            this.editForm.patch('/issues/' + this.id).then(function (response) {
+                return eventBus.$emit('IssueUpdated', response);
             });
         },
-        editMeetingModal: function editMeetingModal(meeting) {
-            this.editMeetingForm.reset();
-            this.editMeetingForm.person_id = meeting.person_id;
-            this.editMeetingForm.parent_id = meeting.parent_id;
-            this.editMeetingForm.judgement_id = meeting.judgement_id;
-            this.editMeetingForm.level = meeting.level;
-            this.editMeetingForm.role = meeting.role;
-            this.editMeetingForm.decision = meeting.decision;
-            this.editMeetingForm.date = meeting.date;
-            this.editMeetingForm.notes = meeting.notes;
-            this.meeting_id = meeting.id;
+        editIssueModal: function editIssueModal(issue) {
+            this.editForm.reset();
+            this.editForm.number = issue.number;
+            this.editForm.year = issue.year;
+            this.editForm.adv_number = issue.adv_number;
+            this.editForm.adv_year = issue.adv_year;
+            this.editForm.subject = issue.subject;
+            this.editForm.court = issue.court;
+            this.editForm.room = issue.room;
+            this.id = issue.id;
         }
     },
     created: function created() {
         var _this = this;
 
-        eventBus.$on('editMeeting', function (meeting) {
-            return _this.editMeetingModal(meeting);
+        eventBus.$on('editIssue', function (issue) {
+            return _this.editIssueModal(issue);
         });
-    },
-
-    components: {
-        flatPickr: _vueFlatpickrComponent2.default
     }
-
 };
 
 /***/ }),
-/* 133 */
+/* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "modal fade",
     attrs: {
-      "id": "editMeeting",
+      "id": "editIssue",
       "role": "dialog",
       "aria-labelledby": "myModalLabel"
     }
@@ -6908,21 +6884,21 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('form', {
     attrs: {
       "method": "POST",
-      "action": "/people"
+      "action": "/contracts"
     },
     on: {
       "submit": function($event) {
         $event.preventDefault();
-        _vm.onMeetingUpdate($event)
+        _vm.onIssueCreate($event)
       },
       "keydown": function($event) {
-        _vm.editMeetingForm.errors.clear($event.target.name)
+        _vm.editForm.errors.clear($event.target.name)
       },
       "change": function($event) {
-        _vm.editMeetingForm.errors.clear($event.target.name)
+        _vm.editForm.errors.clear($event.target.name)
       },
       "input": function($event) {
-        _vm.editMeetingForm.errors.clear($event.target.name)
+        _vm.editForm.errors.clear($event.target.name)
       }
     }
   }, [_c('div', {
@@ -6930,135 +6906,245 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('label', {
     staticClass: "label",
     attrs: {
-      "for": "role"
+      "for": "number"
     }
-  }, [_vm._v("رقم الرول:")]), _vm._v(" "), _c('input', {
+  }, [_vm._v("رقم القضية الجزئى:")]), _vm._v(" "), _c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.editMeetingForm.role),
-      expression: "editMeetingForm.role"
+      value: (_vm.editForm.number),
+      expression: "editForm.number"
     }],
     staticClass: "form-control",
     attrs: {
       "type": "text",
-      "id": "role",
-      "name": "role"
+      "id": "number",
+      "name": "number"
     },
     domProps: {
-      "value": (_vm.editMeetingForm.role)
+      "value": (_vm.editForm.number)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.editMeetingForm.role = $event.target.value
+        _vm.editForm.number = $event.target.value
       }
     }
-  }), _vm._v(" "), (_vm.editMeetingForm.errors.has('role')) ? _c('span', {
+  }), _vm._v(" "), (_vm.editForm.errors.has('number')) ? _c('span', {
     staticClass: "alert-danger",
     domProps: {
-      "textContent": _vm._s(_vm.editMeetingForm.errors.get('role'))
+      "textContent": _vm._s(_vm.editForm.errors.get('number'))
     }
   }) : _vm._e()]), _vm._v(" "), _c('div', {
     staticClass: "form-group"
   }, [_c('label', {
     staticClass: "label",
     attrs: {
-      "for": "date"
+      "for": "year"
     }
-  }, [_vm._v("التاريخ:")]), _vm._v(" "), _c('flat-pickr', {
-    attrs: {
-      "name": "date",
-      "config": _vm.config,
-      "placeholder": "اختر تاريخ الجلــسة"
-    },
-    model: {
-      value: (_vm.editMeetingForm.date),
-      callback: function($$v) {
-        _vm.editMeetingForm.date = $$v
-      },
-      expression: "editMeetingForm.date"
-    }
-  }), _vm._v(" "), (_vm.editMeetingForm.errors.has('date')) ? _c('span', {
-    staticClass: "alert-danger",
-    domProps: {
-      "textContent": _vm._s(_vm.editMeetingForm.errors.get('date'))
-    }
-  }) : _vm._e()], 1), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
-  }, [_c('label', {
-    staticClass: "label",
-    attrs: {
-      "for": "decision"
-    }
-  }, [_vm._v("القرار:")]), _vm._v(" "), _c('input', {
+  }, [_vm._v("لسنة:")]), _vm._v(" "), _c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.editMeetingForm.decision),
-      expression: "editMeetingForm.decision"
+      value: (_vm.editForm.year),
+      expression: "editForm.year"
     }],
     staticClass: "form-control",
     attrs: {
       "type": "text",
-      "id": "decision",
-      "name": "decision"
+      "id": "year",
+      "name": "year"
     },
     domProps: {
-      "value": (_vm.editMeetingForm.decision)
+      "value": (_vm.editForm.year)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.editMeetingForm.decision = $event.target.value
+        _vm.editForm.year = $event.target.value
       }
     }
-  }), _vm._v(" "), (_vm.editMeetingForm.errors.has('decision')) ? _c('span', {
+  }), _vm._v(" "), (_vm.editForm.errors.has('year')) ? _c('span', {
     staticClass: "alert-danger",
     domProps: {
-      "textContent": _vm._s(_vm.editMeetingForm.errors.get('decision'))
+      "textContent": _vm._s(_vm.editForm.errors.get('year'))
     }
   }) : _vm._e()]), _vm._v(" "), _c('div', {
     staticClass: "form-group"
   }, [_c('label', {
     staticClass: "label",
     attrs: {
-      "for": "notes"
+      "for": "adv_number"
     }
-  }, [_vm._v("ملاحظات:")]), _vm._v(" "), _c('textarea', {
+  }, [_vm._v("رقم القضية المستانف:")]), _vm._v(" "), _c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.editMeetingForm.notes),
-      expression: "editMeetingForm.notes"
+      value: (_vm.editForm.adv_number),
+      expression: "editForm.adv_number"
     }],
     staticClass: "form-control",
     attrs: {
       "type": "text",
-      "id": "notes",
-      "name": "notes",
-      "rows": "5"
+      "id": "adv_number",
+      "name": "adv_number"
     },
     domProps: {
-      "value": (_vm.editMeetingForm.notes)
+      "value": (_vm.editForm.adv_number)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.editMeetingForm.notes = $event.target.value
+        _vm.editForm.adv_number = $event.target.value
       }
     }
-  }), _vm._v(" "), (_vm.editMeetingForm.errors.has('notes')) ? _c('span', {
+  }), _vm._v(" "), (_vm.editForm.errors.has('adv_number')) ? _c('span', {
     staticClass: "alert-danger",
     domProps: {
-      "textContent": _vm._s(_vm.editMeetingForm.errors.get('notes'))
+      "textContent": _vm._s(_vm.editForm.errors.get('adv_number'))
+    }
+  }) : _vm._e()]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "adv_year"
+    }
+  }, [_vm._v("لسنة (مستانف):")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editForm.adv_year),
+      expression: "editForm.adv_year"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "adv_year",
+      "name": "adv_year"
+    },
+    domProps: {
+      "value": (_vm.editForm.adv_year)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.editForm.adv_year = $event.target.value
+      }
+    }
+  }), _vm._v(" "), (_vm.editForm.errors.has('adv_year')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.editForm.errors.get('adv_year'))
+    }
+  }) : _vm._e()]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "subject"
+    }
+  }, [_vm._v("موضوع الدعوى:")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editForm.subject),
+      expression: "editForm.subject"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "subject",
+      "name": "subject"
+    },
+    domProps: {
+      "value": (_vm.editForm.subject)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.editForm.subject = $event.target.value
+      }
+    }
+  }), _vm._v(" "), (_vm.editForm.errors.has('subject')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.editForm.errors.get('subject'))
+    }
+  }) : _vm._e()]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "court"
+    }
+  }, [_vm._v("المحكمة:")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editForm.court),
+      expression: "editForm.court"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "court",
+      "name": "court"
+    },
+    domProps: {
+      "value": (_vm.editForm.court)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.editForm.court = $event.target.value
+      }
+    }
+  }), _vm._v(" "), (_vm.editForm.errors.has('court')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.editForm.errors.get('court'))
+    }
+  }) : _vm._e()]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "room"
+    }
+  }, [_vm._v("الدائرة:")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editForm.room),
+      expression: "editForm.room"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "room",
+      "name": "room"
+    },
+    domProps: {
+      "value": (_vm.editForm.room)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.editForm.room = $event.target.value
+      }
+    }
+  }), _vm._v(" "), (_vm.editForm.errors.has('room')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.editForm.errors.get('room'))
     }
   }) : _vm._e()]), _vm._v(" "), _c('div', {
     staticClass: "form-group heading"
   }, [_c('button', {
     staticClass: "button btn-lg btn-success",
     attrs: {
-      "disabled": _vm.editMeetingForm.errors.any()
+      "disabled": _vm.editForm.errors.any()
     }
   }, [_vm._v("تعديل")])])])])])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -7082,17 +7168,20 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "id": "myModalLabel"
     }
-  }, [_vm._v(" تعديل جلـــسة ")])])])
+  }, [_vm._v(" تعديل قضية ")])])])
 }]}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-0dcae90b", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-7341810e", module.exports)
   }
 }
 
 /***/ }),
+/* 131 */,
+/* 132 */,
+/* 133 */,
 /* 134 */,
 /* 135 */,
 /* 136 */,
@@ -7193,9 +7282,219 @@ if (false) {
 /* 231 */,
 /* 232 */,
 /* 233 */,
-/* 234 */,
-/* 235 */,
-/* 236 */,
+/* 234 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(15)(
+  /* script */
+  __webpack_require__(235),
+  /* template */
+  __webpack_require__(236),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "D:\\www\\law-office\\resources\\assets\\js\\components\\issue\\meetings\\addAnnouncement.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] addAnnouncement.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-54831042", Component.options)
+  } else {
+    hotAPI.reload("data-v-54831042", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 235 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _vueFlatpickrComponent = __webpack_require__(111);
+
+var _vueFlatpickrComponent2 = _interopRequireDefault(_vueFlatpickrComponent);
+
+__webpack_require__(112);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Arabic = __webpack_require__(113).ar;
+
+exports.default = {
+    data: function data() {
+        return {
+            addAnnouncementForm: new Form({
+                present: 1,
+                active: '',
+                type: 1,
+                record: '',
+                year: '',
+                date: '',
+                body: '',
+                level: ''
+            }),
+            config: {
+                locale: Arabic
+            },
+            judgement_id: ''
+        };
+    },
+
+    methods: {
+        onJudgementUpdate: function onJudgementUpdate() {
+            this.addAnnouncementForm.patch('/judgements/' + this.judgement_id).then(function (response) {
+                return eventBus.$emit('judgementUpdated', response);
+            });
+        },
+        addAnnouncementModal: function addAnnouncementModal(judgement) {
+            this.addAnnouncementForm.present = 1;
+            this.addAnnouncementForm.body = judgement.body;
+            this.addAnnouncementForm.type = judgement.type;
+            this.addAnnouncementForm.active = judgement.active;
+            this.addAnnouncementForm.level = judgement.level;
+            this.judgement_id = judgement.id;
+        }
+    },
+    components: {
+        flatPickr: _vueFlatpickrComponent2.default
+    },
+    mounted: function mounted() {
+        var _this = this;
+
+        eventBus.$on('addAnnouncement', function (judgement) {
+            return _this.addAnnouncementModal(judgement);
+        });
+    }
+};
+
+/***/ }),
+/* 236 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "modal fade",
+    attrs: {
+      "id": "addAnnouncement",
+      "role": "dialog",
+      "aria-labelledby": "myModalLabel"
+    }
+  }, [_c('div', {
+    staticClass: "modal-dialog",
+    attrs: {
+      "role": "document"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "modal-body"
+  }, [_c('form', {
+    attrs: {
+      "method": "POST",
+      "action": "/people"
+    },
+    on: {
+      "submit": function($event) {
+        $event.preventDefault();
+        _vm.onJudgementUpdate($event)
+      },
+      "keydown": function($event) {
+        _vm.addAnnouncementForm.errors.clear($event.target.name)
+      },
+      "change": function($event) {
+        _vm.addAnnouncementForm.errors.clear($event.target.name)
+      },
+      "input": function($event) {
+        _vm.addAnnouncementForm.errors.clear($event.target.name)
+      }
+    }
+  }, [_c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "label",
+    attrs: {
+      "for": "date"
+    }
+  }, [_vm._v("تاريخ الاعلان:")]), _vm._v(" "), _c('flat-pickr', {
+    attrs: {
+      "name": "date",
+      "config": _vm.config,
+      "placeholder": "اختر تاريخ الاعلان"
+    },
+    model: {
+      value: (_vm.addAnnouncementForm.date),
+      callback: function($$v) {
+        _vm.addAnnouncementForm.date = $$v
+      },
+      expression: "addAnnouncementForm.date"
+    }
+  }), _vm._v(" "), (_vm.addAnnouncementForm.errors.has('date')) ? _c('span', {
+    staticClass: "alert-danger",
+    domProps: {
+      "textContent": _vm._s(_vm.addAnnouncementForm.errors.get('date'))
+    }
+  }) : _vm._e()], 1), _vm._v(" "), _c('div', {
+    staticClass: "form-group heading"
+  }, [_c('button', {
+    staticClass: "button btn-lg btn-success",
+    attrs: {
+      "disabled": _vm.addAnnouncementForm.errors.any()
+    }
+  }, [_vm._v("اضافة اعلان بالحكم")])])])])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "modal-header"
+  }, [_c('button', {
+    staticClass: "close",
+    attrs: {
+      "type": "button",
+      "data-dismiss": "modal",
+      "aria-label": "Close"
+    }
+  }, [_c('span', {
+    attrs: {
+      "aria-hidden": "true"
+    }
+  }, [_vm._v("×")])]), _vm._v(" "), _c('span', {
+    staticClass: "form-control-static pull-left"
+  }, [_c('h4', {
+    staticClass: "modal-title",
+    attrs: {
+      "id": "myModalLabel"
+    }
+  }, [_vm._v(" اضافة اعلان بالحكم ")])])])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-54831042", module.exports)
+  }
+}
+
+/***/ }),
 /* 237 */,
 /* 238 */,
 /* 239 */,
@@ -7217,14 +7516,450 @@ if (false) {
 /* 255 */,
 /* 256 */,
 /* 257 */,
-/* 258 */
+/* 258 */,
+/* 259 */,
+/* 260 */,
+/* 261 */,
+/* 262 */,
+/* 263 */,
+/* 264 */,
+/* 265 */,
+/* 266 */,
+/* 267 */,
+/* 268 */,
+/* 269 */,
+/* 270 */,
+/* 271 */,
+/* 272 */,
+/* 273 */,
+/* 274 */,
+/* 275 */,
+/* 276 */,
+/* 277 */,
+/* 278 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(259);
+var disposed = false
+var Component = __webpack_require__(15)(
+  /* script */
+  __webpack_require__(279),
+  /* template */
+  __webpack_require__(280),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "D:\\www\\law-office\\resources\\assets\\js\\components\\office\\IssueAdvNumbersTable.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] IssueAdvNumbersTable.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-4bbce9c6", Component.options)
+  } else {
+    hotAPI.reload("data-v-4bbce9c6", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
 
 
 /***/ }),
-/* 259 */
+/* 279 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _editIssue = __webpack_require__(128);
+
+var _editIssue2 = _interopRequireDefault(_editIssue);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  props: ['header', 'data', 'id'],
+  methods: {
+    editIssue: function editIssue(issue) {
+      eventBus.$emit('editIssue', issue);
+      $('#editIssue').modal('show');
+    },
+    openentType: function openentType(openent) {
+      var type = openent.pivot.person_type;
+      switch (type) {
+        case 1:
+          return "مــتــهــم";break;
+        case 2:
+          return "مجنى عليه";break;
+        case 3:
+          return "مدعى بالحق المدنى";break;
+        case 4:
+          return "مدعى";break;
+        case 5:
+          return "مدعى عليه";break;
+        case 6:
+          return "شــاكى";break;
+        case 7:
+          return "مشكو فى حقه";break;
+      }
+    },
+    issueType: function issueType(issue) {
+      var type = issue.type;
+      switch (type) {
+        case 1:
+          return 'جـنــح';break;
+        case 2:
+          return 'جـنــايــات';break;
+        case 3:
+          return 'مــخــالفــات';break;
+        case 4:
+          return 'أدارى';break;
+        case 5:
+          return 'مــدنـى جــزئى';break;
+        case 6:
+          return 'مــدنـى كــلـى';break;
+        case 7:
+          return 'صــحــة توقيــع';break;
+        case 8:
+          return 'أســـرة';break;
+        case 9:
+          return 'وراثــــات';break;
+        case 10:
+          return 'تـجـــارى';break;
+        case 11:
+          return 'أدارى(مجلــس الدولة)';break;
+        case 12:
+          return 'اقتصـــادية';break;
+      }
+    },
+    dayFormat: function dayFormat(meetingdate) {
+      var d = new Date(meetingdate);
+      var days = ["الاحــد", "الاثــنين", "الثلاثــاء", "الاربعــاء", "الخمــيس", "الجمـــعة", "الســبت"];
+      return days[d.getDay()] + ' ' + meetingdate;
+    }
+  },
+  components: {
+    editIssue: _editIssue2.default
+  }
+};
+
+/***/ }),
+/* 280 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    attrs: {
+      "id": _vm.id
+    }
+  }, [_c('div', {
+    staticClass: "card text-center mr-auto"
+  }, [_c('div', {
+    staticClass: "card-header"
+  }, [_c('h4', {
+    staticClass: "card-title brown"
+  }, [_vm._v(_vm._s(_vm.header))])]), _vm._v(" "), _c('div', {
+    staticClass: "panel-body"
+  }, [_c('table', {
+    staticClass: "table table-responsive"
+  }, [_c('tbody', [_vm._m(0), _vm._v(" "), _vm._l((_vm.data), function(issue) {
+    return _c('tr', {
+      key: issue.id
+    }, [_c('td', [_c('a', {
+      attrs: {
+        "href": /issues/ + issue.id
+      }
+    }, [(issue.number) ? _c('span', [_vm._v("\n                      " + _vm._s(issue.number) + " لسنة " + _vm._s(issue.year) + " " + _vm._s(_vm.issueType(issue)) + "\n                    ")]) : _vm._e()])]), _vm._v(" "), _c('td', [_c('a', {
+      attrs: {
+        "href": /issues/ + issue.id
+      }
+    }, [_vm._v("\n                  " + _vm._s(issue.subject) + " \n              ")])]), _vm._v(" "), _c('td', _vm._l((issue.openents), function(openent) {
+      return (issue.openents.length) ? _c('span', {
+        key: openent.id
+      }, [_c('span', [_vm._v("\n                    " + _vm._s(openent.name) + " / " + _vm._s(_vm.openentType(openent)) + " "), _c('br')])]) : _vm._e()
+    })), _vm._v(" "), _c('td', [(issue.last_meeting_date) ? _c('span', [_vm._v("\n          \t       " + _vm._s(_vm.dayFormat(issue.last_meeting_date)) + " \n                ")]) : _vm._e()]), _vm._v(" "), _c('td', [_vm._v("\n                " + _vm._s(issue.court) + "\n            ")]), _vm._v(" "), _c('td', {
+      staticClass: "print-hidden"
+    }, [_c('button', {
+      staticClass: "btn btn-sm btn-info pull-left",
+      on: {
+        "click": function($event) {
+          _vm.editIssue(issue)
+        }
+      }
+    }, [_c('i', {
+      staticClass: "fa fa-pencil-square-o",
+      attrs: {
+        "aria-hidden": "true"
+      }
+    })]), _vm._v(" "), _c('a', {
+      attrs: {
+        "href": '/issues/' + issue.id
+      }
+    }, [_vm._m(1, true)])])])
+  })], 2)])]), _vm._v(" "), _c('edit-issue')], 1)])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('tr', [_c('th', [_c('strong', [_vm._v("رقم الدعوى")])]), _vm._v(" "), _c('th', [_c('strong', [_vm._v("موضوع الدعوى")])]), _vm._v(" "), _c('th', [_c('strong', [_vm._v("الخصوم")])]), _vm._v(" "), _c('th', [_c('strong', [_vm._v("تاريخ اخر جلسة")])]), _vm._v(" "), _c('th', [_c('strong', [_vm._v("المحكمة")])]), _vm._v(" "), _c('th', {
+    staticClass: "print-hidden"
+  })])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('button', {
+    staticClass: "btn btn-sm btn-dark pull-left"
+  }, [_c('i', {
+    staticClass: "fa fa-balance-scale",
+    attrs: {
+      "aria-hidden": "true"
+    }
+  })])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-4bbce9c6", module.exports)
+  }
+}
+
+/***/ }),
+/* 281 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(15)(
+  /* script */
+  __webpack_require__(282),
+  /* template */
+  __webpack_require__(283),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "D:\\www\\law-office\\resources\\assets\\js\\components\\office\\missingRecordsTable.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] missingRecordsTable.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-18ca9a9a", Component.options)
+  } else {
+    hotAPI.reload("data-v-18ca9a9a", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 282 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {
+  props: ['header', 'data', 'id'],
+  methods: {
+    openentType: function openentType(openent) {
+      var type = openent.pivot.person_type;
+      switch (type) {
+        case 1:
+          return "مــتــهــم";break;
+        case 2:
+          return "مجنى عليه";break;
+        case 3:
+          return "مدعى بالحق المدنى";break;
+        case 4:
+          return "مدعى";break;
+        case 5:
+          return "مدعى عليه";break;
+        case 6:
+          return "شــاكى";break;
+        case 7:
+          return "مشكو فى حقه";break;
+      }
+    },
+    level: function level(judgement) {
+      var level = judgement.level;
+      switch (level) {
+        case 1:
+          return "اول درجة";break;
+        case 2:
+          return "معارضة";break;
+        case 3:
+          return "استئناف";break;
+        case 4:
+          return "معارضة استئنافية";break;
+      }
+    },
+    issueType: function issueType(issue) {
+      var type = issue.type;
+      switch (type) {
+        case 1:
+          return 'جـنــح';break;
+        case 2:
+          return 'جـنــايــات';break;
+        case 3:
+          return 'مــخــالفــات';break;
+        case 4:
+          return 'أدارى';break;
+        case 5:
+          return 'مــدنـى جــزئى';break;
+        case 6:
+          return 'مــدنـى كــلـى';break;
+        case 7:
+          return 'صــحــة توقيــع';break;
+        case 8:
+          return 'أســـرة';break;
+        case 9:
+          return 'وراثــــات';break;
+        case 10:
+          return 'تـجـــارى';break;
+        case 11:
+          return 'أدارى(مجلــس الدولة)';break;
+        case 12:
+          return 'اقتصـــادية';break;
+      }
+    },
+    judgementStatus: function judgementStatus(judgement) {
+      if (judgement.present) {
+        return 'ح';
+      } else {
+        return 'غ';
+      }
+    },
+    judgementType: function judgementType(judgement) {
+      if (judgement.level < 3) {
+        return this.issueType(judgement.issue) + ' ' + judgement.issue.court;
+      } else {
+        return this.issueType(judgement.issue) + ' مستأنف ' + judgement.issue.court;
+      }
+    }
+  }
+};
+
+/***/ }),
+/* 283 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    attrs: {
+      "id": _vm.id
+    }
+  }, [_c('div', {
+    staticClass: "card text-center mr-auto"
+  }, [_c('div', {
+    staticClass: "card-header"
+  }, [_c('h4', {
+    staticClass: "card-title blue"
+  }, [_vm._v(_vm._s(_vm.header))])]), _vm._v(" "), _c('div', {
+    staticClass: "panel-body"
+  }, [_c('table', {
+    staticClass: "table table-responsive"
+  }, [_c('tbody', [_vm._m(0), _vm._v(" "), _vm._l((_vm.data), function(judgement) {
+    return _c('tr', {
+      key: judgement.id
+    }, [_c('td', [_c('a', {
+      attrs: {
+        "href": '/issues/' + judgement.issue.id
+      }
+    }, [_c('span', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: (judgement.issue.number),
+        expression: "judgement.issue.number"
+      }]
+    }, [_vm._v("\n                  " + _vm._s(judgement.issue.number) + " لسنة " + _vm._s(judgement.issue.year) + " " + _vm._s(_vm.issueType(judgement.issue)) + "\n                ")]), _vm._v(" "), _c('span', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: (judgement.issue.adv_number),
+        expression: "judgement.issue.adv_number"
+      }]
+    }, [_c('br'), _vm._v(_vm._s(judgement.issue.adv_number) + " لسنة " + _vm._s(judgement.issue.adv_year) + " س\n                ")])])]), _vm._v(" "), _c('td', [_vm._v(_vm._s(judgement.issue.subject))]), _vm._v(" "), _c('td', [_c('a', {
+      attrs: {
+        "href": '/people/' + judgement.person.id
+      }
+    }, [_vm._v("\n                    " + _vm._s(judgement.person.name) + "\n                ")])]), _vm._v(" "), _c('td', [_vm._v("\n                " + _vm._s(_vm.judgementStatus(judgement)) + " - " + _vm._s(judgement.body) + "\n          \t")]), _vm._v(" "), _c('td', [_vm._v("\n              " + _vm._s(judgement.date) + "\n          \t")]), _vm._v(" "), _c('td', [_vm._v("\n              " + _vm._s(_vm.level(judgement)) + "\n            ")]), _vm._v(" "), _c('td', {
+      staticClass: "print-hidden"
+    }, [_c('a', {
+      attrs: {
+        "href": '/issues/' + judgement.issue.id
+      }
+    }, [_vm._m(1, true)])])])
+  })], 2)])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('tr', [_c('th', {
+    staticClass: "brown"
+  }, [_c('strong', [_vm._v("رقم القضية")])]), _vm._v(" "), _c('th', {
+    staticClass: "brown"
+  }, [_c('strong', [_vm._v("موضوع القضية")])]), _vm._v(" "), _c('th', {
+    staticClass: "brown"
+  }, [_c('strong', [_vm._v("اسم المتهم")])]), _vm._v(" "), _c('th', {
+    staticClass: "brown"
+  }, [_c('strong', [_vm._v("الحكم")])]), _vm._v(" "), _c('th', {
+    staticClass: "brown"
+  }, [_c('strong', [_vm._v("تــاريخ الحــكـم")])]), _vm._v(" "), _c('th', {
+    staticClass: "brown"
+  }, [_c('strong', [_vm._v("مرحلة التقاضى")])]), _vm._v(" "), _c('th', {
+    staticClass: "print-hidden"
+  })])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('button', {
+    staticClass: "btn btn-sm btn-dark pull-left"
+  }, [_c('i', {
+    staticClass: "fa fa-balance-scale",
+    attrs: {
+      "aria-hidden": "true"
+    }
+  })])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-18ca9a9a", module.exports)
+  }
+}
+
+/***/ }),
+/* 284 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(285);
+
+
+/***/ }),
+/* 285 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7246,15 +7981,17 @@ var _bootstrap = __webpack_require__(116);
 
 var _bootstrap2 = _interopRequireDefault(_bootstrap);
 
-var _MeetingsTable = __webpack_require__(260);
+var _NotPresentTable = __webpack_require__(289);
 
-var _MeetingsTable2 = _interopRequireDefault(_MeetingsTable);
+var _NotPresentTable2 = _interopRequireDefault(_NotPresentTable);
 
-var _vueFlatpickrComponent = __webpack_require__(111);
+var _IssueAdvNumbersTable = __webpack_require__(278);
 
-var _vueFlatpickrComponent2 = _interopRequireDefault(_vueFlatpickrComponent);
+var _IssueAdvNumbersTable2 = _interopRequireDefault(_IssueAdvNumbersTable);
 
-__webpack_require__(112);
+var _missingRecordsTable = __webpack_require__(281);
+
+var _missingRecordsTable2 = _interopRequireDefault(_missingRecordsTable);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -7266,91 +8003,63 @@ window.Form = _Form2.default;
 
 window.toastr = _toastr2.default;
 
-var Arabic = __webpack_require__(113).ar;
-
 window.eventBus = new Vue();
 
-var listMeetings = new Vue({
-  el: '#listMeetings',
+var expirationPage = new Vue({
+  el: '#expirationPage',
   data: {
-    thisweekcevil: [],
-    thisweekcriminal: [],
-    nextweekcevil: [],
-    nextweekcriminal: [],
-    cevil: [],
-    criminal: [],
-    resource_url: '/meetings/list',
-    showDefault: true,
-    start: '',
-    end: '',
-    printed_start: '',
-    printed_end: '',
-    config: { locale: Arabic }
-  },
-  components: {
-    MeetingsTable: _MeetingsTable2.default,
-    flatPickr: _vueFlatpickrComponent2.default
+    not_present_judgements: [],
+    first_judgements: [],
+    late_judgements: [],
+    client_records: [],
+    openent_records: [],
+    fetched: false
   },
   methods: {
     fetchData: function fetchData() {
       var _this = this;
 
-      axios.get(this.resource_url).then(function (response) {
+      axios.get(window.location.pathname).then(function (response) {
         return _this.assignData(response);
       });
     },
-    afterMeetingUpdated: function afterMeetingUpdated(response) {
-      $('#editMeeting').modal('hide');
-      _toastr2.default.info(response.message);
-      this.fetchData();
-    },
     assignData: function assignData(response) {
-      this.thisweekcevil = response.data.thisWeekCevil;
-      this.thisweekcriminal = response.data.thisWeekCriminal;
-      this.nextweekcevil = response.data.nextWeekCevil;
-      this.nextweekcriminal = response.data.nextWeekCriminal;
-      if (!this.showDefault) {
-        this.cevil = response.data.cevil;
-        this.criminal = response.data.criminal;
-      }
+      this.fetched = true;
+      this.not_present_judgements = response.data.notPresetJudgements;
+      this.first_judgements = response.data.firstJudgements;
+      this.late_judgements = response.data.lateJudgements;
+      this.client_records = response.data.clientRecords;
+      this.openent_records = response.data.openentRecords;
     },
     printPage: function printPage() {
       $('.print-hidden').hide();
       $('.btn').hide();
-      $('.heading').hide();
       window.print();
       $('.print-hidden').show();
       $('.btn').show();
-      $('.heading').show();
-    },
-    listDates: function listDates() {
-      if (this.start && this.end) {
-        this.resource_url = '/meetings/list/' + this.start + '/' + this.end;
-        this.showDefault = false;
-        this.printed_start = this.start;
-        this.printed_end = this.end;
-        this.fetchData();
-      }
     },
     dayFromat: function dayFromat(meetingdate) {
       var d = new Date(meetingdate);
       var days = ["الاحــد", "الاثــنين", "الثلاثــاء", "الاربعــاء", "الخمــيس", "الجمـــعة", "الســبت"];
       return days[d.getDay()] + ' ' + meetingdate;
     },
-    echoDatesRange: function echoDatesRange() {
-      if (this.printed_start !== this.printed_end) {
-        return 'من ' + this.dayFromat(this.printed_start) + ' حتى ' + this.dayFromat(this.printed_end);
-      } else {
-        return 'ليوم ' + this.dayFromat(this.printed_start);
-      }
+    afterJudgementUpdated: function afterJudgementUpdated(response) {
+      $('#addAnnouncement').modal('hide');
+      this.fetchData();
+      _toastr2.default.info(response.message);
     }
+  },
+  components: {
+    NotPresentTable: _NotPresentTable2.default,
+    IssueAdvNumbersTable: _IssueAdvNumbersTable2.default,
+    missingRecordsTable: _missingRecordsTable2.default
   },
   mounted: function mounted() {
     var _this2 = this;
 
     this.fetchData();
-    eventBus.$on('meetingUpdated', function (response) {
-      return _this2.afterMeetingUpdated(response);
+    eventBus.$on('judgementUpdated', function (response) {
+      return _this2.afterJudgementUpdated(response);
     });
   }
 });
@@ -7360,15 +8069,18 @@ _toastr2.default.options = {
 };
 
 /***/ }),
-/* 260 */
+/* 286 */,
+/* 287 */,
+/* 288 */,
+/* 289 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var Component = __webpack_require__(15)(
   /* script */
-  __webpack_require__(261),
+  __webpack_require__(290),
   /* template */
-  __webpack_require__(262),
+  __webpack_require__(291),
   /* styles */
   null,
   /* scopeId */
@@ -7376,9 +8088,9 @@ var Component = __webpack_require__(15)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "D:\\www\\law-office\\resources\\assets\\js\\components\\meetings\\MeetingsTable.vue"
+Component.options.__file = "D:\\www\\law-office\\resources\\assets\\js\\components\\office\\NotPresentTable.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] MeetingsTable.vue: functional components are not supported with templates, they should use render functions.")}
+if (Component.options.functional) {console.error("[vue-loader] NotPresentTable.vue: functional components are not supported with templates, they should use render functions.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -7387,9 +8099,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-14691d0c", Component.options)
+    hotAPI.createRecord("data-v-c01450e4", Component.options)
   } else {
-    hotAPI.reload("data-v-14691d0c", Component.options)
+    hotAPI.reload("data-v-c01450e4", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -7400,96 +8112,99 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 261 */
+/* 290 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+  value: true
 });
 
-var _editMeeting = __webpack_require__(131);
+var _addAnnouncement = __webpack_require__(234);
 
-var _editMeeting2 = _interopRequireDefault(_editMeeting);
+var _addAnnouncement2 = _interopRequireDefault(_addAnnouncement);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
-	props: ['header', 'data', 'id'],
-	methods: {
-		editMeeting: function editMeeting(meeting) {
-			eventBus.$emit('editMeeting', meeting);
-			$('#editMeeting').modal('show');
-		},
-		openentType: function openentType(openent) {
-			var type = openent.pivot.person_type;
-			switch (type) {
-				case 1:
-					return "مــتــهــم";break;
-				case 2:
-					return "مجنى عليه";break;
-				case 3:
-					return "مدعى بالحق المدنى";break;
-				case 4:
-					return "مدعى";break;
-				case 5:
-					return "مدعى عليه";break;
-				case 6:
-					return "شــاكى";break;
-				case 7:
-					return "مشكو فى حقه";break;
-			}
-		},
-		issueType: function issueType(meeting) {
-			var type = meeting.issue.type;
-			switch (type) {
-				case 1:
-					return 'جـنــح';break;
-				case 2:
-					return 'جـنــايــات';break;
-				case 3:
-					return 'مــخــالفــات';break;
-				case 4:
-					return 'أدارى';break;
-				case 5:
-					return 'مــدنـى جــزئى';break;
-				case 6:
-					return 'مــدنـى كــلـى';break;
-				case 7:
-					return 'صــحــة توقيــع';break;
-				case 8:
-					return 'أســـرة';break;
-				case 9:
-					return 'وراثــــات';break;
-				case 10:
-					return 'تـجـــارى';break;
-				case 11:
-					return 'أدارى(مجلــس الدولة)';break;
-				case 12:
-					return 'اقتصـــادية';break;
-			}
-		},
-		dayFormat: function dayFormat(meetingdate) {
-			var d = new Date(meetingdate);
-			var days = ["الاحــد", "الاثــنين", "الثلاثــاء", "الاربعــاء", "الخمــيس", "الجمـــعة", "الســبت"];
-			return days[d.getDay()] + ' ' + meetingdate;
-		},
-		levelCheck: function levelCheck(meeting) {
-			if (meeting.level > 2) {
-				return 'table-info';
-			}
-			return false;
-		}
-	},
-	components: {
-		editMeeting: _editMeeting2.default
-	}
+  props: ['header', 'data', 'id'],
+  methods: {
+    addAnnouncement: function addAnnouncement(judgement) {
+      eventBus.$emit('addAnnouncement', judgement);
+      $('#addAnnouncement').modal('show');
+    },
+    openentType: function openentType(openent) {
+      var type = openent.pivot.person_type;
+      switch (type) {
+        case 1:
+          return "مــتــهــم";break;
+        case 2:
+          return "مجنى عليه";break;
+        case 3:
+          return "مدعى بالحق المدنى";break;
+        case 4:
+          return "مدعى";break;
+        case 5:
+          return "مدعى عليه";break;
+        case 6:
+          return "شــاكى";break;
+        case 7:
+          return "مشكو فى حقه";break;
+      }
+    },
+    issueType: function issueType(issue) {
+      var type = issue.type;
+      switch (type) {
+        case 1:
+          return 'جـنــح';break;
+        case 2:
+          return 'جـنــايــات';break;
+        case 3:
+          return 'مــخــالفــات';break;
+        case 4:
+          return 'أدارى';break;
+        case 5:
+          return 'مــدنـى جــزئى';break;
+        case 6:
+          return 'مــدنـى كــلـى';break;
+        case 7:
+          return 'صــحــة توقيــع';break;
+        case 8:
+          return 'أســـرة';break;
+        case 9:
+          return 'وراثــــات';break;
+        case 10:
+          return 'تـجـــارى';break;
+        case 11:
+          return 'أدارى(مجلــس الدولة)';break;
+        case 12:
+          return 'اقتصـــادية';break;
+      }
+    },
+    judgementStatus: function judgementStatus(judgement) {
+      if (judgement.present) {
+        return 'ح';
+      } else {
+        return 'غ';
+      }
+    },
+    judgementType: function judgementType(judgement) {
+      if (judgement.level < 3) {
+        return this.issueType(judgement.issue) + ' ' + judgement.issue.court;
+      } else {
+        return this.issueType(judgement.issue) + ' مستأنف ' + judgement.issue.court;
+      }
+    }
+  },
+  components: {
+    addAnnouncement: _addAnnouncement2.default
+  }
 };
 
 /***/ }),
-/* 262 */
+/* 291 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -7502,66 +8217,57 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('div', {
     staticClass: "card-header"
   }, [_c('h4', {
-    staticClass: "card-title green"
+    staticClass: "card-title blue"
   }, [_vm._v(_vm._s(_vm.header))])]), _vm._v(" "), _c('div', {
     staticClass: "panel-body"
   }, [_c('table', {
     staticClass: "table table-responsive"
-  }, [_c('tbody', [_vm._m(0), _vm._v(" "), _vm._l((_vm.data), function(meeting) {
+  }, [_c('tbody', [_vm._m(0), _vm._v(" "), _vm._l((_vm.data), function(judgement) {
     return _c('tr', {
-      key: meeting.id,
-      class: _vm.levelCheck(meeting)
-    }, [_c('td', [_c('a', {
+      key: judgement.id
+    }, [_c('td', [_vm._v("\n                " + _vm._s(judgement.date) + "\n            ")]), _vm._v(" "), _c('td', [_c('a', {
       attrs: {
-        "href": '/issues/' + meeting.issue.id
+        "href": '/issues/' + judgement.issue.id
       }
-    }, [_vm._v("\n          \t\t" + _vm._s(_vm.dayFormat(meeting.date)) + "\n          \t\t")])]), _vm._v(" "), _c('td', [_vm._v(_vm._s(meeting.role))]), _vm._v(" "), _c('td', [_c('span', {
+    }, [_c('span', {
       directives: [{
         name: "show",
         rawName: "v-show",
-        value: (meeting.issue.number),
-        expression: "meeting.issue.number"
+        value: (judgement.issue.number),
+        expression: "judgement.issue.number"
       }]
-    }, [_vm._v("\n                  " + _vm._s(meeting.issue.number) + " لسنة " + _vm._s(meeting.issue.year) + " " + _vm._s(_vm.issueType(meeting)) + "\n                ")]), _vm._v(" "), _c('span', {
+    }, [_vm._v("\n                    " + _vm._s(judgement.issue.number) + " لسنة " + _vm._s(judgement.issue.year) + " " + _vm._s(_vm.issueType(judgement.issue)) + "\n                  ")]), _vm._v(" "), _c('span', {
       directives: [{
         name: "show",
         rawName: "v-show",
-        value: (meeting.issue.adv_number),
-        expression: "meeting.issue.adv_number"
+        value: (judgement.issue.adv_number),
+        expression: "judgement.issue.adv_number"
       }]
-    }, [_c('br'), _vm._v(_vm._s(meeting.issue.adv_number) + " لسنة " + _vm._s(meeting.issue.adv_year) + " س\n                ")])]), _vm._v(" "), _c('td', [_vm._v("\n          \t  " + _vm._s(meeting.issue.court) + " \n                "), _c('span', {
-      directives: [{
-        name: "show",
-        rawName: "v-show",
-        value: (meeting.issue.room),
-        expression: "meeting.issue.room"
-      }]
-    }, [_vm._v("\n                  - الدائــرة " + _vm._s(meeting.issue.room) + "\n                ")]), _vm._v(" "), _c('br'), _vm._v(_vm._s(meeting.decision) + "\n          \t")]), _vm._v(" "), _c('td', _vm._l((meeting.issue.openents), function(openent) {
-      return (meeting.issue.openents.length) ? _c('span', {
-        key: openent.id
-      }, [_c('span', [_vm._v("\n          \t\t\t\t" + _vm._s(openent.name) + " / " + _vm._s(_vm.openentType(openent)) + " "), _c('br')])]) : _vm._e()
-    })), _vm._v(" "), _c('td', {
+    }, [_c('br'), _vm._v(_vm._s(judgement.issue.adv_number) + " لسنة " + _vm._s(judgement.issue.adv_year) + " س\n                  ")])])]), _vm._v(" "), _c('td', [_vm._v("\n                " + _vm._s(judgement.issue.subject) + "\n            ")]), _vm._v(" "), _c('td', [_vm._v("\n                " + _vm._s(judgement.body) + "\n          \t")]), _vm._v(" "), _c('td', {
       staticClass: "print-hidden"
-    }, [_c('button', {
+    }, [_c('a', {
+      attrs: {
+        "href": '/issues/' + judgement.issue.id
+      }
+    }, [_vm._m(1, true)]), _vm._v(" "), _c('button', {
       staticClass: "btn btn-sm btn-info pull-left",
       on: {
         "click": function($event) {
-          _vm.editMeeting(meeting)
+          _vm.addAnnouncement(judgement)
         }
       }
-    }, [_c('i', {
-      staticClass: "fa fa-pencil-square-o",
-      attrs: {
-        "aria-hidden": "true"
-      }
-    })]), _vm._v(" "), _c('a', {
-      attrs: {
-        "href": '/issues/' + meeting.issue.id
-      }
-    }, [_vm._m(1, true)])])])
-  })], 2)])]), _vm._v(" "), _c('edit-meeting')], 1)])
+    }, [_vm._v("اضافة اعلان")])])])
+  })], 2)]), _vm._v(" "), _c('add-announcement')], 1)])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('tr', [_c('th', [_c('strong', [_vm._v("تاريخ الجلسة")])]), _vm._v(" "), _c('th', [_c('strong', [_vm._v("الرول")])]), _vm._v(" "), _c('th', [_c('strong', [_vm._v("بيانات القضية")])]), _vm._v(" "), _c('th', [_c('strong', [_vm._v("المحكمة والدائرة والقرار")])]), _vm._v(" "), _c('th', [_c('strong', [_vm._v("الخصوم")])]), _vm._v(" "), _c('th', {
+  return _c('tr', [_c('th', {
+    staticClass: "brown"
+  }, [_c('strong', [_vm._v("تاريخ الحكم")])]), _vm._v(" "), _c('th', {
+    staticClass: "brown"
+  }, [_c('strong', [_vm._v("بيانات القضية")])]), _vm._v(" "), _c('th', {
+    staticClass: "brown"
+  }, [_c('strong', [_vm._v("موضوع القضية")])]), _vm._v(" "), _c('th', {
+    staticClass: "brown"
+  }, [_c('strong', [_vm._v("صيغة الحكم")])]), _vm._v(" "), _c('th', {
     staticClass: "print-hidden"
   })])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -7578,9 +8284,9 @@ module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-14691d0c", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-c01450e4", module.exports)
   }
 }
 
 /***/ })
-],[258]);
+],[284]);
