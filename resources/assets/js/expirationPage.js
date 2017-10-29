@@ -17,7 +17,7 @@ window.toastr = toastr;
 
 
 import NotPresentTable from './components/office/NotPresentTable';
-import IssueAdvNumbersTable from './components/office/IssueAdvNumbersTable';
+import CevilJudgementsTable from './components/office/CevilJudgementsTable';
 import missingRecordsTable from './components/office/missingRecordsTable';
 
 
@@ -66,7 +66,7 @@ const expirationPage = new Vue({
     },
     components: {
       NotPresentTable,
-      IssueAdvNumbersTable,
+      CevilJudgementsTable,
       missingRecordsTable
     },
     mounted() {

@@ -19,9 +19,14 @@ class Judgement extends Model
 
     public $timestamps = false;
 
-    protected $appends = ['expire_at'];
+    protected $appends = ['expire_at', 'valid_at'];
 
     public function getExpireAtAttribute()
+    {
+            return Carbon::parse($this->date)->addYears(3)->format('Y-m-d');
+    }
+
+    public function getValidAtAttribute()
     {
         if($this->level == 1)
         {
