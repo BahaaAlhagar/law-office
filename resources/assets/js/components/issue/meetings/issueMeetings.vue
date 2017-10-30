@@ -16,7 +16,7 @@
                   <th>تـــاريخ الجـــلــــسة</th>
                   <th>القــرار</th>
                   <th>مـــلاحــــظات</th>
-                  <th>الاحــكــــام</th>
+                  <th style="width: 400px;">الاحــكــــام</th>
                 </tr>
             </thead>
             <tbody>
@@ -37,7 +37,7 @@
                       {{ ownerOf(meeting) }}<br>
                       {{ meeting.notes }}
                   </td>
-                  <td>
+                  <td style="width: 400px;">
                       <meeting-judgements :issue="issue" :accusedopenents="accusedopenents" :meeting="meeting"></meeting-judgements>
                   </td>
                 </tr>

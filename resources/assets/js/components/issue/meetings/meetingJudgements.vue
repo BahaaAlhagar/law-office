@@ -64,7 +64,7 @@
           <ul v-if="firstMeetingCheck(meeting)" v-for="openent in accusedopenents" :key="openent.id">
             <!-- check the openent person_type for result 1 then echo the name  -->
             <li>
-              {{ echoName(openent) }}...
+              {{ echoName(openent) }}...<br>
 
                 <span v-if="!openent.judgements.length && !openent.meetings.length">
                   <!-- delay for certain openent button -->
@@ -86,6 +86,7 @@
                     حصر {{ currentJudgement.record }} لسنة {{ currentJudgement.year }}
                   </li>
 
+                  <span style="display: inline-block;">
                   <!-- add challenge if the judgement doesnt have challenge(child meeting) - and judgement type is 1 or 2 -->
                   <button v-if="!currentJudgement.child_meeting && currentJudgement.type < 3" class="btn btn-sm btn-dark pull-left" 
                   @click="addCriminalChallenge(currentJudgement)"> اضافة طعن </button>
@@ -101,8 +102,8 @@
 
                   <!-- reActivate judgement -->
                   <button v-if="!currentJudgement.active  && !currentJudgement.child_meeting" class="btn btn-sm btn-success pull-left" @click="reActivateJudgement(currentJudgement)"><i class="fa fa-bell" aria-hidden="true"></i></button>
-
-                  <br><hr>
+                  </span>
+                  <br><br><hr>
                 </ul>
             </li>
           </ul>

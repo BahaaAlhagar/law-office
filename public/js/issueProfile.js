@@ -12945,7 +12945,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }), _vm._v(" "), _c('delay-meeting'), _vm._v(" "), _vm._l((_vm.accusedopenents), function(openent) {
     return (_vm.firstMeetingCheck(_vm.meeting)) ? _c('ul', {
       key: openent.id
-    }, [_c('li', [_vm._v("\n              " + _vm._s(_vm.echoName(openent)) + "...\n\n                "), (!openent.judgements.length && !openent.meetings.length) ? _c('span', [_c('button', {
+    }, [_c('li', [_vm._v("\n              " + _vm._s(_vm.echoName(openent)) + "..."), _c('br'), _vm._v(" "), (!openent.judgements.length && !openent.meetings.length) ? _c('span', [_c('button', {
       staticClass: "btn btn-sm btn-dark",
       on: {
         "click": function($event) {
@@ -12960,7 +12960,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       }
     }, [_vm._v(" اضافة حكم ")]), _vm._v(" "), _c('hr')]) : _vm._e(), _vm._v(" "), _vm._l((_vm.meeting.judgements), function(currentJudgement) {
-      return (openent.id == currentJudgement.person_id) ? _c('ul', [_c('li', [_vm._v("\n                  " + _vm._s(_vm.echoJudgementStatus(currentJudgement)) + _vm._s(currentJudgement.body) + "\n                  ")]), _vm._v(" "), (currentJudgement.record) ? _c('li', [_vm._v("\n                    حصر " + _vm._s(currentJudgement.record) + " لسنة " + _vm._s(currentJudgement.year) + "\n                  ")]) : _vm._e(), _vm._v(" "), (!currentJudgement.child_meeting && currentJudgement.type < 3) ? _c('button', {
+      return (openent.id == currentJudgement.person_id) ? _c('ul', [_c('li', [_vm._v("\n                  " + _vm._s(_vm.echoJudgementStatus(currentJudgement)) + _vm._s(currentJudgement.body) + "\n                  ")]), _vm._v(" "), (currentJudgement.record) ? _c('li', [_vm._v("\n                    حصر " + _vm._s(currentJudgement.record) + " لسنة " + _vm._s(currentJudgement.year) + "\n                  ")]) : _vm._e(), _vm._v(" "), _c('span', {
+        staticStyle: {
+          "display": "inline-block"
+        }
+      }, [(!currentJudgement.child_meeting && currentJudgement.type < 3) ? _c('button', {
         staticClass: "btn btn-sm btn-dark pull-left",
         on: {
           "click": function($event) {
@@ -13015,7 +13019,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         attrs: {
           "aria-hidden": "true"
         }
-      })]) : _vm._e(), _vm._v(" "), _c('br'), _c('hr')]) : _vm._e()
+      })]) : _vm._e()]), _vm._v(" "), _c('br'), _c('br'), _c('hr')]) : _vm._e()
     })], 2)]) : _vm._e()
   }), _vm._v(" "), (_vm.meeting.person) ? _c('ul', [_c('li', [(!_vm.meeting.judgements.length && !_vm.meeting.child_meetings.length) ? _c('span', [_c('button', {
     staticClass: "btn btn-sm btn-primary",
@@ -13620,7 +13624,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           _vm.delayMeeting(meeting)
         }
       }
-    }, [_vm._v("تأجيل")]) : _vm._e()]), _vm._v(" "), _c('td', [_vm._v("\n                      " + _vm._s(meeting.decision) + "\n                  ")]), _vm._v(" "), _c('td', [_vm._v("\n                      " + _vm._s(_vm.ownerOf(meeting))), _c('br'), _vm._v("\n                      " + _vm._s(meeting.notes) + "\n                  ")]), _vm._v(" "), _c('td', [_c('meeting-judgements', {
+    }, [_vm._v("تأجيل")]) : _vm._e()]), _vm._v(" "), _c('td', [_vm._v("\n                      " + _vm._s(meeting.decision) + "\n                  ")]), _vm._v(" "), _c('td', [_vm._v("\n                      " + _vm._s(_vm.ownerOf(meeting))), _c('br'), _vm._v("\n                      " + _vm._s(meeting.notes) + "\n                  ")]), _vm._v(" "), _c('td', {
+      staticStyle: {
+        "width": "400px"
+      }
+    }, [_c('meeting-judgements', {
       attrs: {
         "issue": _vm.issue,
         "accusedopenents": _vm.accusedopenents,
@@ -13675,7 +13683,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('thead', {
     staticClass: "thead-inverse"
-  }, [_c('tr', [_c('th', [_vm._v("الرول")]), _vm._v(" "), _c('th', [_vm._v("تـــاريخ الجـــلــــسة")]), _vm._v(" "), _c('th', [_vm._v("القــرار")]), _vm._v(" "), _c('th', [_vm._v("مـــلاحــــظات")]), _vm._v(" "), _c('th', [_vm._v("الاحــكــــام")])])])
+  }, [_c('tr', [_c('th', [_vm._v("الرول")]), _vm._v(" "), _c('th', [_vm._v("تـــاريخ الجـــلــــسة")]), _vm._v(" "), _c('th', [_vm._v("القــرار")]), _vm._v(" "), _c('th', [_vm._v("مـــلاحــــظات")]), _vm._v(" "), _c('th', {
+    staticStyle: {
+      "width": "400px"
+    }
+  }, [_vm._v("الاحــكــــام")])])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('thead', {
     staticClass: "thead-inverse"

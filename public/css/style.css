@@ -143,3 +143,26 @@ td ul li {
   font-weight: bold;
   font-size: 16px;
 }
+
+@media print {
+
+  .spacer {
+    display: none !important;
+  }
+
+  table td, table th {
+    font-size: 14px !important; 
+  }
+
+  .heading {
+    font-size: 12px !important;
+  }
+
+  .card-title {
+    font-size: 14px !important;
+  }
+
+  .print-hidden {
+    display: none !important;
+  }
+}
