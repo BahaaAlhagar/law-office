@@ -36,6 +36,8 @@ route::get('missingdata', 'OfficeController@missingData')->name('office.missingD
 
 route::get('expiration', 'OfficeController@expiration')->name('office.expiration');
 
+route::get('/search', 'OfficeController@search');
+
 // office services end
 
 

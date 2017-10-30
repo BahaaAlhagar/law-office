@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Issue;
+use App\Person;
 use App\Meeting;
+use App\Contract;
 use App\Judgement;
 
 use Carbon\Carbon;
@@ -157,5 +159,32 @@ class OfficeController extends Controller
                                 ->get();
 
         return $this->makeResponse('office/expirationPage', compact('notPresetJudgements', 'firstJudgements', 'lateJudgements', 'clientRecords', 'openentRecords'));
+    }
+
+    public function search(Request $request)
+    {
+        if($request->has('q'))
+        {
+            $q = request('q');
+
+            $people = Person::where('name', 'LIKE', '%'.$q.'%')
+                    ->orWhere('location', 'LIKE', '%'.$q.'%')
+                    ->get();
+
+            $issues = Issue::where('number', 'LIKE', '%'.$q.'%')
+                    ->orWhere('adv_number', 'LIKE', '%'.$q.'%')
+                    ->orWhere('subject', 'LIKE', '%'.$q.'%')
+                    ->get();
+
+            $contracts = Contract::where('number', 'LIKE', '%'.$q.'%')
+                    ->get();
+
+            $judgements = Judgement::where('record', 'LIKE', '%'.$q.'%')
+                    ->get();
+
+            return view('office/searchResults', compact('people', 'issues', 'contracts', 'judgements'));
+        }
+
+        return back();
     }
 }

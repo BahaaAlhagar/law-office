@@ -38,7 +38,7 @@
       </li>
     </ul>
 
-    <form action="/" class="form-inline my-2 my-lg-0 mr-auto">
+    <form action="/search" class="form-inline my-2 my-lg-0 mr-auto">
       <div class="input-group">
         <input type="text" name="q" class="form-control" placeholder="اسم او رقم ..">
         <span class="input-group-btn">
