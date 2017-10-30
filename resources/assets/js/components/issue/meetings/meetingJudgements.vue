@@ -80,7 +80,7 @@
 
                 <ul v-for="currentJudgement in meeting.judgements" v-if="openent.id == currentJudgement.person_id">
                   <li>
-                  {{ echoJudgementStatus(currentJudgement) }}{{ currentJudgement.body }}
+                  {{ echoJudgementStatus(currentJudgement) }} {{ currentJudgement.body }}
                   </li>
                   <li v-if="currentJudgement.record">
                     حصر {{ currentJudgement.record }} لسنة {{ currentJudgement.year }}
