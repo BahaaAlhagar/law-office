@@ -40,59 +40,72 @@
             </form>
         </div>
 
-        <div v-if="showDefault">
-            <span v-if="thisweekcevil.length">
-            	<button class="btn btn-sm btn-info pull-left" data-toggle="collapse" data-target="#thisweekcevil"><i class="fa fa-window-minimize" aria-hidden="true"></i></button>
-            	<meetings-table :header="'الجلسات المدنية والتجارية والادارية لهذا الاسبوع'" :id="'thisweekcevil'" :data="thisweekcevil"></meetings-table>
-            </span>
-            <span v-else class="alert alert-info heading col-xs-12">
-            	لا يوجد جلسات مدنية او تجارية لهذا الاسبوع
-            </span>
 
-            <span v-if="thisweekcriminal.length">
-            	<button class="btn btn-sm btn-dark pull-left" data-toggle="collapse" data-target="#thisweekcriminal"><i class="fa fa-window-minimize" aria-hidden="true"></i></button>
-            	<meetings-table :header="'الجلسات الجنائية لهذا الاسبوع'" :id="'thisweekcriminal'" :data="thisweekcriminal"></meetings-table>
-            </span>
-            <span v-else class="alert alert-info heading col-xs-12">
-            	لا يوجد جلسات جنائية لهذا الاسبوع
-            </span>
-
-            <span v-if="nextweekcevil.length">
-            	<button class="btn btn-sm btn-info pull-left" data-toggle="collapse" data-target="#nextweekcevil"><i class="fa fa-window-minimize" aria-hidden="true"></i></button>
-            	<meetings-table :header="'الجلسات المدنية والتجارية والادارية للاسبوع القادم'" :id="'nextweekcevil'" :data="nextweekcevil"></meetings-table>
-            </span>
-            <span v-else class="alert alert-info heading col-xs-12">
-            	لا يوجد جلسات مدنية او تجارية للاسبوع القادم
-            </span>
-
-            <span v-if="nextweekcriminal.length">
-            	<button class="btn btn-sm btn-dark pull-left" data-toggle="collapse" data-target="#nextweekcriminal"><i class="fa fa-window-minimize" aria-hidden="true"></i></button>
-            	<meetings-table :header="'الجلسات الجنائية للاسبوع القادم'" :id="'nextweekcriminal'" :data="nextweekcriminal"></meetings-table>
-            </span>
-            <span v-else class="alert alert-info heading col-xs-12">
-            	لا يوجد جلسات جنائية للاسبوع القادم
-            </span>
+        <div v-if="!fetched">
+          <div class="spacer"></div>
+          <div class="spacer"></div>
+          <div class="heading alert alert-warning">
+            جارى التحميل..
+          </div>
         </div>
 
-        <div v-if="!showDefault">
-            <span v-if="cevil.length">
-                <button class="btn btn-sm btn-info pull-left" data-toggle="collapse" data-target="#cevil"><i class="fa fa-window-minimize" aria-hidden="true"></i></button>
-                <meetings-table :header="'الجلسات المدنية والتجارية والادارية ' + echoDatesRange()" :id="'cevil'" :data="cevil"></meetings-table>
-            </span>
-            <span v-else class="alert alert-info heading col-xs-12">
-                لا يوجد جلسات مدنية او تجارية فى هذا اليوم او هذه الفترة
-            </span>
+        <div v-if="fetched">
 
-            <span v-if="criminal.length">
-                <button class="btn btn-sm btn-dark pull-left" data-toggle="collapse" data-target="#criminal"><i class="fa fa-window-minimize" aria-hidden="true"></i></button>
-                <meetings-table :header="'الجلسات الجنائية ' + echoDatesRange()" :id="'criminal'" :data="criminal"></meetings-table>
-            </span>
-            <span v-else class="alert alert-info heading col-xs-12">
-                لا يوجد جلسات جنائية فى هذا اليوم او هذه الفترة
-            </span>
+            <div v-if="showDefault">
+                <span v-if="thisweekcevil.length">
+                	<button class="btn btn-sm btn-info pull-left" data-toggle="collapse" data-target="#thisweekcevil"><i class="fa fa-window-minimize" aria-hidden="true"></i></button>
+                	<meetings-table :header="'الجلسات المدنية والتجارية والادارية لهذا الاسبوع'" :id="'thisweekcevil'" :data="thisweekcevil"></meetings-table>
+                </span>
+                <span v-else class="alert alert-info heading col-xs-12">
+                	لا يوجد جلسات مدنية او تجارية لهذا الاسبوع
+                </span>
+
+                <span v-if="thisweekcriminal.length">
+                	<button class="btn btn-sm btn-dark pull-left" data-toggle="collapse" data-target="#thisweekcriminal"><i class="fa fa-window-minimize" aria-hidden="true"></i></button>
+                	<meetings-table :header="'الجلسات الجنائية لهذا الاسبوع'" :id="'thisweekcriminal'" :data="thisweekcriminal"></meetings-table>
+                </span>
+                <span v-else class="alert alert-info heading col-xs-12">
+                	لا يوجد جلسات جنائية لهذا الاسبوع
+                </span>
+
+                <span v-if="nextweekcevil.length">
+                	<button class="btn btn-sm btn-info pull-left" data-toggle="collapse" data-target="#nextweekcevil"><i class="fa fa-window-minimize" aria-hidden="true"></i></button>
+                	<meetings-table :header="'الجلسات المدنية والتجارية والادارية للاسبوع القادم'" :id="'nextweekcevil'" :data="nextweekcevil"></meetings-table>
+                </span>
+                <span v-else class="alert alert-info heading col-xs-12">
+                	لا يوجد جلسات مدنية او تجارية للاسبوع القادم
+                </span>
+
+                <span v-if="nextweekcriminal.length">
+                	<button class="btn btn-sm btn-dark pull-left" data-toggle="collapse" data-target="#nextweekcriminal"><i class="fa fa-window-minimize" aria-hidden="true"></i></button>
+                	<meetings-table :header="'الجلسات الجنائية للاسبوع القادم'" :id="'nextweekcriminal'" :data="nextweekcriminal"></meetings-table>
+                </span>
+                <span v-else class="alert alert-info heading col-xs-12">
+                	لا يوجد جلسات جنائية للاسبوع القادم
+                </span>
+            </div>
+
+            <div v-if="!showDefault">
+                <span v-if="cevil.length">
+                    <button class="btn btn-sm btn-info pull-left" data-toggle="collapse" data-target="#cevil"><i class="fa fa-window-minimize" aria-hidden="true"></i></button>
+                    <meetings-table :header="'الجلسات المدنية والتجارية والادارية ' + echoDatesRange()" :id="'cevil'" :data="cevil"></meetings-table>
+                </span>
+                <span v-else class="alert alert-info heading col-xs-12">
+                    لا يوجد جلسات مدنية او تجارية فى هذا اليوم او هذه الفترة
+                </span>
+
+                <span v-if="criminal.length">
+                    <button class="btn btn-sm btn-dark pull-left" data-toggle="collapse" data-target="#criminal"><i class="fa fa-window-minimize" aria-hidden="true"></i></button>
+                    <meetings-table :header="'الجلسات الجنائية ' + echoDatesRange()" :id="'criminal'" :data="criminal"></meetings-table>
+                </span>
+                <span v-else class="alert alert-info heading col-xs-12">
+                    لا يوجد جلسات جنائية فى هذا اليوم او هذه الفترة
+                </span>
+            </div>
+            
         </div>
+          <div class="spacer"></div>
       </div>
-      <div class="spacer"></div>
 @endsection
 
 

@@ -7517,7 +7517,8 @@ var listMeetings = new Vue({
     end: '',
     printed_start: '',
     printed_end: '',
-    config: { locale: Arabic }
+    config: { locale: Arabic },
+    fetched: false
   },
   components: {
     MeetingsTable: _MeetingsTable2.default,
@@ -7541,6 +7542,7 @@ var listMeetings = new Vue({
       this.thisweekcriminal = response.data.thisWeekCriminal;
       this.nextweekcevil = response.data.nextWeekCevil;
       this.nextweekcriminal = response.data.nextWeekCriminal;
+      this.fetched = true;
       if (!this.showDefault) {
         this.cevil = response.data.cevil;
         this.criminal = response.data.criminal;
@@ -7557,6 +7559,7 @@ var listMeetings = new Vue({
     },
     listDates: function listDates() {
       if (this.start && this.end) {
+        this.fetched = false;
         this.resource_url = '/meetings/list/' + this.start + '/' + this.end;
         this.showDefault = false;
         this.printed_start = this.start;

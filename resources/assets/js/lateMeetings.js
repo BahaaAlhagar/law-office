@@ -25,7 +25,8 @@ const lateMeetings = new Vue({
     el: '#lateMeetings',
     data: {
       cevil_meetings: [],
-      criminal_meetings: []
+      criminal_meetings: [],
+      fetched: false
     },
     methods: {
       fetchData(){
@@ -35,6 +36,7 @@ const lateMeetings = new Vue({
       assignData(response){
         this.cevil_meetings = response.data.cevilMeetings;
         this.criminal_meetings = response.data.criminalMeetings;
+        this.fetched = true;
         },
       printPage(){
           $('.print-hidden').hide();

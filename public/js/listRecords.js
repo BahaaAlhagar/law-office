@@ -4211,7 +4211,8 @@ var listRecords = new Vue({
   data: {
     current_view: 1,
     records: [],
-    advanced_records: []
+    advanced_records: [],
+    fetched: false
   },
   methods: {
     fetchData: function fetchData() {
@@ -4224,6 +4225,7 @@ var listRecords = new Vue({
     assignData: function assignData(response) {
       this.records = response.data.records;
       this.advanced_records = response.data.advancedRecords;
+      this.fetched = true;
     },
     printPage: function printPage() {
       $('.print-hidden').hide();

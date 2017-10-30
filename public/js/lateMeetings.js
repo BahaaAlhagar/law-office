@@ -7282,7 +7282,8 @@ var lateMeetings = new Vue({
   el: '#lateMeetings',
   data: {
     cevil_meetings: [],
-    criminal_meetings: []
+    criminal_meetings: [],
+    fetched: false
   },
   methods: {
     fetchData: function fetchData() {
@@ -7295,6 +7296,7 @@ var lateMeetings = new Vue({
     assignData: function assignData(response) {
       this.cevil_meetings = response.data.cevilMeetings;
       this.criminal_meetings = response.data.criminalMeetings;
+      this.fetched = true;
     },
     printPage: function printPage() {
       $('.print-hidden').hide();

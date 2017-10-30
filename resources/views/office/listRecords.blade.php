@@ -25,24 +25,34 @@
 			<button @click="printPage()" class="btn btn-sm btn-info pull-left">طباعة الجدول</button>
 		</div>
 
-		<!-- first level records -->
-		<div v-if="current_view == 1">
-			<span v-if="records.length">
-            	<records-table :header="'ارقام الحصر الجزئية'" :id="'records'" :data="records"></records-table>
-            </span>
-            <span v-else class="alert alert-info heading col-xs-12">
-            	لا توجد ارقام حصر جزئية
-            </span>
+
+        <div v-if="!fetched">
+          <div class="spacer"></div>
+          <div class="heading alert alert-warning">
+            جارى التحميل..
+          </div>
         </div>
 
-        <!-- advanced level records -->
-        <div v-if="current_view == 2">
-			<span v-if="advanced_records.length">
-            	<records-table :header="'ارقام الحصر الاستئنافية'" :id="'advanced_records'" :data="advanced_records"></records-table>
-            </span>
-            <span v-else class="alert alert-info heading col-xs-12">
-            	لا توجد ارقام حصر الاستئنافية
-            </span>
+        <div v-if="fetched">
+    		<!-- first level records -->
+    		<div v-if="current_view == 1">
+    			<span v-if="records.length">
+                	<records-table :header="'ارقام الحصر الجزئية'" :id="'records'" :data="records"></records-table>
+                </span>
+                <span v-else class="alert alert-info heading col-xs-12">
+                	لا توجد ارقام حصر جزئية
+                </span>
+            </div>
+
+            <!-- advanced level records -->
+            <div v-if="current_view == 2">
+    			<span v-if="advanced_records.length">
+                	<records-table :header="'ارقام الحصر الاستئنافية'" :id="'advanced_records'" :data="advanced_records"></records-table>
+                </span>
+                <span v-else class="alert alert-info heading col-xs-12">
+                	لا توجد ارقام حصر الاستئنافية
+                </span>
+            </div>
         </div>
 
 

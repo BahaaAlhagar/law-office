@@ -26,7 +26,8 @@ const listRecords = new Vue({
     data: {
       current_view: 1,
       records: [],
-      advanced_records: []
+      advanced_records: [],
+      fetched: false
     },
     methods: {
       fetchData(){
@@ -36,6 +37,7 @@ const listRecords = new Vue({
       assignData(response){
         this.records = response.data.records;
         this.advanced_records = response.data.advancedRecords;
+        this.fetched = true;
         },
       printPage(){
           $('.print-hidden').hide();
