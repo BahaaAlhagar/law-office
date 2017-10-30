@@ -136,3 +136,10 @@ td ul li {
 .card-footer {
   border-top: 0;
 }
+
+
+#seach_panel {
+  margin: 15px auto;
+  font-weight: bold;
+  font-size: 16px;
+}

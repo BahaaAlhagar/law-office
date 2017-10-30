@@ -174,12 +174,15 @@ class OfficeController extends Controller
             $issues = Issue::where('number', 'LIKE', '%'.$q.'%')
                     ->orWhere('adv_number', 'LIKE', '%'.$q.'%')
                     ->orWhere('subject', 'LIKE', '%'.$q.'%')
+                    ->with('openents')
                     ->get();
 
             $contracts = Contract::where('number', 'LIKE', '%'.$q.'%')
+                    ->with('people')
                     ->get();
 
             $judgements = Judgement::where('record', 'LIKE', '%'.$q.'%')
+                    ->with('person', 'issue')
                     ->get();
 
             return view('office/searchResults', compact('people', 'issues', 'contracts', 'judgements'));
