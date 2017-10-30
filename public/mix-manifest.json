@@ -1,5 +1,7 @@
 {
     "/js/issueProfile.js": "/js/issueProfile.js",
+    "/js/mainPage.js": "/js/mainPage.js",
+    "/js/expirationPage.js": "/js/expirationPage.js",
     "/js/personFiles.js": "/js/personFiles.js",
     "/js/manageTodos.js": "/js/manageTodos.js",
     "/js/manageContracts.js": "/js/manageContracts.js",
@@ -13,6 +15,5 @@
     "/js/personProfile.js": "/js/personProfile.js",
     "/js/listRecords.js": "/js/listRecords.js",
     "/js/vendor.js": "/js/vendor.js",
-    "/js/expirationPage.js": "/js/expirationPage.js",
     "/js/manifest.js": "/js/manifest.js"
 }

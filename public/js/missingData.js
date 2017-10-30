@@ -1,4 +1,4 @@
-webpackJsonp([6],[
+webpackJsonp([8],[
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3814,15 +3814,18 @@ module.exports = function spread(callback) {
 /* 125 */,
 /* 126 */,
 /* 127 */,
-/* 128 */
+/* 128 */,
+/* 129 */,
+/* 130 */,
+/* 131 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var Component = __webpack_require__(15)(
   /* script */
-  __webpack_require__(129),
+  __webpack_require__(132),
   /* template */
-  __webpack_require__(130),
+  __webpack_require__(133),
   /* styles */
   null,
   /* scopeId */
@@ -3854,7 +3857,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 129 */
+/* 132 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3907,7 +3910,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 130 */
+/* 133 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -4225,9 +4228,6 @@ if (false) {
 }
 
 /***/ }),
-/* 131 */,
-/* 132 */,
-/* 133 */,
 /* 134 */,
 /* 135 */,
 /* 136 */,
@@ -4367,14 +4367,20 @@ if (false) {
 /* 270 */,
 /* 271 */,
 /* 272 */,
-/* 273 */
+/* 273 */,
+/* 274 */,
+/* 275 */,
+/* 276 */,
+/* 277 */,
+/* 278 */,
+/* 279 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(274);
+module.exports = __webpack_require__(280);
 
 
 /***/ }),
-/* 274 */
+/* 280 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4396,15 +4402,15 @@ var _bootstrap = __webpack_require__(116);
 
 var _bootstrap2 = _interopRequireDefault(_bootstrap);
 
-var _IssueNumbersTable = __webpack_require__(275);
+var _IssueNumbersTable = __webpack_require__(281);
 
 var _IssueNumbersTable2 = _interopRequireDefault(_IssueNumbersTable);
 
-var _IssueAdvNumbersTable = __webpack_require__(278);
+var _IssueAdvNumbersTable = __webpack_require__(284);
 
 var _IssueAdvNumbersTable2 = _interopRequireDefault(_IssueAdvNumbersTable);
 
-var _missingRecordsTable = __webpack_require__(281);
+var _missingRecordsTable = __webpack_require__(287);
 
 var _missingRecordsTable2 = _interopRequireDefault(_missingRecordsTable);
 
@@ -4482,15 +4488,15 @@ _toastr2.default.options = {
 };
 
 /***/ }),
-/* 275 */
+/* 281 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var Component = __webpack_require__(15)(
   /* script */
-  __webpack_require__(276),
+  __webpack_require__(282),
   /* template */
-  __webpack_require__(277),
+  __webpack_require__(283),
   /* styles */
   null,
   /* scopeId */
@@ -4522,7 +4528,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 276 */
+/* 282 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4532,7 +4538,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _editIssue = __webpack_require__(128);
+var _editIssue = __webpack_require__(131);
 
 var _editIssue2 = _interopRequireDefault(_editIssue);
 
@@ -4605,7 +4611,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 277 */
+/* 283 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -4677,15 +4683,15 @@ if (false) {
 }
 
 /***/ }),
-/* 278 */
+/* 284 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var Component = __webpack_require__(15)(
   /* script */
-  __webpack_require__(279),
+  __webpack_require__(285),
   /* template */
-  __webpack_require__(280),
+  __webpack_require__(286),
   /* styles */
   null,
   /* scopeId */
@@ -4717,7 +4723,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 279 */
+/* 285 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4727,7 +4733,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _editIssue = __webpack_require__(128);
+var _editIssue = __webpack_require__(131);
 
 var _editIssue2 = _interopRequireDefault(_editIssue);
 
@@ -4800,7 +4806,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 280 */
+/* 286 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -4876,15 +4882,15 @@ if (false) {
 }
 
 /***/ }),
-/* 281 */
+/* 287 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var Component = __webpack_require__(15)(
   /* script */
-  __webpack_require__(282),
+  __webpack_require__(288),
   /* template */
-  __webpack_require__(283),
+  __webpack_require__(289),
   /* styles */
   null,
   /* scopeId */
@@ -4916,7 +4922,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 282 */
+/* 288 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5007,7 +5013,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 283 */
+/* 289 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -5093,4 +5099,4 @@ if (false) {
 }
 
 /***/ })
-],[273]);
+],[279]);

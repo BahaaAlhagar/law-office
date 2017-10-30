@@ -24,5 +24,6 @@ mix.js('resources/assets/js/managePeople.js', 'public/js')
 	.js('resources/assets/js/lateMeetings.js', 'public/js')
 	.js('resources/assets/js/missingData.js', 'public/js')
 	.js('resources/assets/js/expirationPage.js', 'public/js')
+	.js('resources/assets/js/mainPage.js', 'public/js')
 	.js('resources/assets/js/contractProfile.js', 'public/js')
 	.extract(['vue', 'bootstrap', 'toastr', 'dropzone', 'jquery']);

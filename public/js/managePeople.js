@@ -1,4 +1,4 @@
-webpackJsonp([8],[
+webpackJsonp([10],[
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3805,7 +3805,11 @@ module.exports = function spread(callback) {
 /* 116 */,
 /* 117 */,
 /* 118 */,
-/* 119 */
+/* 119 */,
+/* 120 */,
+/* 121 */,
+/* 122 */,
+/* 123 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4907,7 +4911,7 @@ var xhrClient = function (request) {
 
 var nodeClient = function (request) {
 
-    var client = __webpack_require__(120);
+    var client = __webpack_require__(124);
 
     return new PromiseObj(function (resolve) {
 
@@ -5383,13 +5387,13 @@ if (typeof window !== 'undefined' && window.Vue) {
 
 
 /***/ }),
-/* 120 */
+/* 124 */
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
-/* 121 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -5631,10 +5635,6 @@ return /******/ (function(modules) { // webpackBootstrap
 //# sourceMappingURL=vuejs-paginator.js.map
 
 /***/ }),
-/* 122 */,
-/* 123 */,
-/* 124 */,
-/* 125 */,
 /* 126 */,
 /* 127 */,
 /* 128 */,
@@ -5643,15 +5643,18 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 131 */,
 /* 132 */,
 /* 133 */,
-/* 134 */
+/* 134 */,
+/* 135 */,
+/* 136 */,
+/* 137 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var Component = __webpack_require__(15)(
   /* script */
-  __webpack_require__(135),
+  __webpack_require__(138),
   /* template */
-  __webpack_require__(136),
+  __webpack_require__(139),
   /* styles */
   null,
   /* scopeId */
@@ -5683,7 +5686,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 135 */
+/* 138 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5732,7 +5735,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 136 */
+/* 139 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -6000,9 +6003,6 @@ if (false) {
 }
 
 /***/ }),
-/* 137 */,
-/* 138 */,
-/* 139 */,
 /* 140 */,
 /* 141 */,
 /* 142 */,
@@ -6019,32 +6019,47 @@ if (false) {
 /* 153 */,
 /* 154 */,
 /* 155 */,
-/* 156 */
+/* 156 */,
+/* 157 */,
+/* 158 */,
+/* 159 */,
+/* 160 */,
+/* 161 */,
+/* 162 */,
+/* 163 */,
+/* 164 */,
+/* 165 */,
+/* 166 */,
+/* 167 */,
+/* 168 */,
+/* 169 */,
+/* 170 */,
+/* 171 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(157);
+module.exports = __webpack_require__(172);
 
 
 /***/ }),
-/* 157 */
+/* 172 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _vueResource = __webpack_require__(119);
+var _vueResource = __webpack_require__(123);
 
 var _vueResource2 = _interopRequireDefault(_vueResource);
 
-var _vuejsPaginator = __webpack_require__(121);
+var _vuejsPaginator = __webpack_require__(125);
 
 var _vuejsPaginator2 = _interopRequireDefault(_vuejsPaginator);
 
-var _addPerson = __webpack_require__(158);
+var _addPerson = __webpack_require__(173);
 
 var _addPerson2 = _interopRequireDefault(_addPerson);
 
-var _editPerson = __webpack_require__(134);
+var _editPerson = __webpack_require__(137);
 
 var _editPerson2 = _interopRequireDefault(_editPerson);
 
@@ -6198,15 +6213,15 @@ _toastr2.default.options = {
 };
 
 /***/ }),
-/* 158 */
+/* 173 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var Component = __webpack_require__(15)(
   /* script */
-  __webpack_require__(159),
+  __webpack_require__(174),
   /* template */
-  __webpack_require__(160),
+  __webpack_require__(175),
   /* styles */
   null,
   /* scopeId */
@@ -6238,7 +6253,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 159 */
+/* 174 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6271,7 +6286,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 160 */
+/* 175 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -6534,4 +6549,4 @@ if (false) {
 }
 
 /***/ })
-],[156]);
+],[171]);
