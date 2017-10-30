@@ -86,7 +86,7 @@
                     حصر {{ currentJudgement.record }} لسنة {{ currentJudgement.year }}
                   </li>
 
-                  <span style="display: inline-block;">
+                  <span class="print-hidden" style="display: inline-block;">
                   <!-- add challenge if the judgement doesnt have challenge(child meeting) - and judgement type is 1 or 2 -->
                   <button v-if="!currentJudgement.child_meeting && currentJudgement.type < 3" class="btn btn-sm btn-dark pull-left" 
                   @click="addCriminalChallenge(currentJudgement)"> اضافة طعن </button>

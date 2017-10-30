@@ -165,4 +165,8 @@ td ul li {
   .print-hidden {
     display: none !important;
   }
+
+  .btn {
+    display: none !important;
+  }
 }

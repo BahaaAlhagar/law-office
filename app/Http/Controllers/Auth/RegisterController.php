@@ -36,7 +36,9 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        // registeration disabled
+        // $this->middleware('guest');
+        redirect('/')->send();
     }
 
     /**
@@ -62,10 +64,12 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        return 'تم تعطيل التسجيل';
+        // registeration disabled
+        /*return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-        ]);
+        ]);*/
     }
 }

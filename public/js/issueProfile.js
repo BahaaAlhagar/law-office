@@ -12961,6 +12961,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }, [_vm._v(" اضافة حكم ")]), _vm._v(" "), _c('hr')]) : _vm._e(), _vm._v(" "), _vm._l((_vm.meeting.judgements), function(currentJudgement) {
       return (openent.id == currentJudgement.person_id) ? _c('ul', [_c('li', [_vm._v("\n                  " + _vm._s(_vm.echoJudgementStatus(currentJudgement)) + _vm._s(currentJudgement.body) + "\n                  ")]), _vm._v(" "), (currentJudgement.record) ? _c('li', [_vm._v("\n                    حصر " + _vm._s(currentJudgement.record) + " لسنة " + _vm._s(currentJudgement.year) + "\n                  ")]) : _vm._e(), _vm._v(" "), _c('span', {
+        staticClass: "print-hidden",
         staticStyle: {
           "display": "inline-block"
         }
