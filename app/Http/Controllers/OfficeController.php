@@ -163,9 +163,9 @@ class OfficeController extends Controller
 
     public function search(Request $request)
     {
-        if($request->has('q'))
+        if($request->q)
         {
-            $q = request('q');
+            $q = $request->q;
 
             $people = Person::where('name', 'LIKE', '%'.$q.'%')
                     ->orWhere('location', 'LIKE', '%'.$q.'%')
@@ -189,5 +189,52 @@ class OfficeController extends Controller
         }
 
         return back();
+    }
+
+    public function main()
+    {
+        $todayMeetings = Meeting::where('date', Carbon::today())
+                    ->with('issue.openents')
+                    ->meetingOrder()
+                    ->get();
+
+        $tomorrowMeetings = Meeting::where('date', Carbon::tomorrow())
+                    ->with('issue.openents')
+                    ->meetingOrder()
+                    ->get();
+
+
+        $yasterDay = Carbon::yesterday();
+        $firstPeriod = Carbon::today()->subDays(50);
+        $latePeriod = Carbon::today()->subDays(70);
+
+        $notPresetJudgements = Judgement::where('level', 1)
+                                ->where('present', 0)
+                                ->where('date', '<', Carbon::parse('today'))
+                                ->noChild()
+                                ->cevil()
+                                ->orderBy('date')
+                                ->with('issue')
+                                ->get();
+
+        $firstJudgements = Judgement::where('level', 1)
+                                ->present()
+                                ->whereBetween('date', [$firstPeriod, $yasterDay])
+                                ->noChild()
+                                ->cevil()
+                                ->with('issue')
+                                ->orderBy('date')
+                                ->get();
+
+       $lateJudgements = Judgement::where('level', 3)
+                                ->present()
+                                ->whereBetween('date', [$latePeriod, $yasterDay])
+                                ->noChild()
+                                ->cevil()
+                                ->with('issue')
+                                ->orderBy('date')
+                                ->get();
+
+      return $this->makeResponse('office/mainPage', compact('todayMeetings', 'tomorrowMeetings', 'notPresetJudgements', 'firstJudgements', 'lateJudgements'));
     }
 }

@@ -91,7 +91,8 @@
 						<tr>
 							<td>
 								<a href="{{ route('issues.show', $issue->id) }}" target="_blank">
-									{{ $issue->number }} لسنة {{ $issue->year }}
+									{{ $issue->number }} لسنة {{ $issue->year }}<br>
+									{{ $issue->adv_number }} لسنة {{ $issue->adv_year }} س
 								</a>
 							</td>
 							<td>

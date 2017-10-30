@@ -11,9 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Auth::routes();
 Route::view('change_password', 'user.changePassword')->middleware('auth');
@@ -36,7 +33,9 @@ route::get('missingdata', 'OfficeController@missingData')->name('office.missingD
 
 route::get('expiration', 'OfficeController@expiration')->name('office.expiration');
 
-route::get('/search', 'OfficeController@search');
+Route::get('/', 'OfficeController@main');
+
+route::get('search', 'OfficeController@search');
 
 // office services end
 
