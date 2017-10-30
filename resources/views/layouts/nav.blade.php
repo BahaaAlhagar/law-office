@@ -55,6 +55,7 @@
           {{ Auth::user()->name }}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="{{ route('office.backup') }}">النسخ الاحتياطى</a>
           <a class="dropdown-item" href="/change_password">تغيير كلمة المرور</a>
           <a class="dropdown-item" href="{{ route('logout') }}"
               onclick="event.preventDefault();

@@ -237,4 +237,9 @@ class OfficeController extends Controller
 
       return $this->makeResponse('office/mainPage', compact('todayMeetings', 'tomorrowMeetings', 'notPresetJudgements', 'firstJudgements', 'lateJudgements'));
     }
+
+    public function DatabaseBackup()
+    {
+        return view('office/databaseBackup');
+    }
 }

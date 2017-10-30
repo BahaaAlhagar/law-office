@@ -37,6 +37,8 @@ Route::get('/', 'OfficeController@main');
 
 route::get('search', 'OfficeController@search');
 
+route::get('backup', 'OfficeController@databaseBackup')->name('office.backup');
+
 // office services end
 
 
