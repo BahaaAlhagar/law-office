@@ -137,12 +137,56 @@ td ul li {
   border-top: 0;
 }
 
+.modal-header{
+  direction: ltr !important;
+}
+
 
 #seach_panel {
   margin: 15px auto;
   font-weight: bold;
   font-size: 16px;
 }
+
+
+/*about developer modal*/
+#aboutDeveloperModal{
+  color: black;
+  background-color: transparent;
+  font-size: 10px;
+  direction: rtl;
+}
+
+.social-icons {
+  font-size: 30px;
+  margin-top: 10px;
+}
+.social-icons .git {
+  color: black;
+  cursor: pointer;
+  margin: 0 10px;
+}
+.social-icons .twitter {
+  color: #19C4FF;
+  cursor: pointer;
+  margin: 0 10px;
+}
+.social-icons .facebook {
+  color: #49649F;
+  cursor: pointer;
+  margin: 0 10px;
+}
+
+.social-icons a:hover {
+  color: transparent;
+}
+
+
+#biography {
+  font-family: 'cairo', sans-serif;
+  font-size: 12px;
+}
+
 
 @media print {
 
