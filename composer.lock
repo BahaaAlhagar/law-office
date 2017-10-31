@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "0c8d782e31713419712f8e0f4f4e5266",
-    "content-hash": "8f2120fa77d42a42b4210cdbe1c114e2",
+    "hash": "84af843d9dea6af07a3cb114f0fbec45",
+    "content-hash": "4dc489c5b8c097861bb7e37df90ae44f",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1172,6 +1172,46 @@
                 "shell"
             ],
             "time": "2017-07-29 19:30:02"
+        },
+        {
+            "name": "rachidlaasri/laravel-installer",
+            "version": "3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/RachidLaasri/LaravelInstaller.git",
+                "reference": "a16c3574b9e66cdc05b8e0096efe0de71053a8d2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/RachidLaasri/LaravelInstaller/zipball/a16c3574b9e66cdc05b8e0096efe0de71053a8d2",
+                "reference": "a16c3574b9e66cdc05b8e0096efe0de71053a8d2",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "RachidLaasri\\LaravelInstaller\\": "src/"
+                },
+                "files": [
+                    "src/Helpers/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rachid Laasri",
+                    "email": "rashidlaasri@gmail.com"
+                },
+                {
+                    "name": "Jeremy Kenedy",
+                    "email": "jeremykenedy@gmail.com"
+                }
+            ],
+            "description": "Laravel web installer",
+            "time": "2017-07-17 10:06:21"
         },
         {
             "name": "ramsey/uuid",

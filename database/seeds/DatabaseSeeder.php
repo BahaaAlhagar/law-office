@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
         // seed for admin user when installing
     	$admin = new \App\User();
 
-    	$admin->name = 'مدير التطبيق';
+    	$admin->name = 'الادارة';
     	$admin->email = 'admin@law.dev';
     	$admin->password = bcrypt('secret');
     	$admin->group_id = 5;
