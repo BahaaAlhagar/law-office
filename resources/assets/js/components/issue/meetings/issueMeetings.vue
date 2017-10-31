@@ -25,8 +25,10 @@
                       {{ meeting.role }}
                   </td>
                   <td>
-                      {{ meeting.date }}
-                      <button v-if="!meeting.judgements.length && !meeting.child_meetings.length" class="btn btn-sm btn-danger pull-left" @click="deleteMeeting(meeting)"><i class="fa fa-times" aria-hidden="true"></i></button>
+                      <span class="text-center" style="display: block;">
+                        {{ meeting.date }}
+                      </span>
+                      <button v-if="!meeting.judgements.length && !meeting.child_meetings.length" class="btn btn-sm btn-danger pull-left" @click="deleteMeeting(meeting)"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                       <button class="btn btn-sm btn-info pull-left" @click="editMeeting(meeting)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                       <button v-if="!meeting.judgements.length && !meeting.child_meetings.length" class="btn btn-sm btn-dark pull-left" @click="delayMeeting(meeting)">تأجيل</button>
                   </td>
@@ -70,7 +72,7 @@
                 <tr v-for="meeting in meetings" :key="meeting.id">
                   <td>
                       {{ meeting.date }}
-                      <button v-if="!meeting.judgements.length && !meeting.child_meetings.length" class="btn btn-sm btn-danger pull-left" @click="deleteDecision(meeting)"><i class="fa fa-times" aria-hidden="true"></i></button>
+                      <button v-if="!meeting.judgements.length && !meeting.child_meetings.length" class="btn btn-sm btn-danger pull-left" @click="deleteDecision(meeting)"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                       <button class="btn btn-sm btn-info pull-left" @click="editDecision(meeting)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                   </td>
                   <td>

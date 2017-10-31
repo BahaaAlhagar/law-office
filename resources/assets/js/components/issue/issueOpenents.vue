@@ -23,7 +23,7 @@
                         <a :href="'/people/' + openent.id">
                           {{ openent.name }} <span class="green">{{ clientCheck(openent) }}</span>
                         </a>
-                        <button class="btn btn-sm btn-danger pull-left" @click="deleteOpenent(openent)"><i class="fa fa-times" aria-hidden="true"></i></button>
+                        <button class="btn btn-sm btn-danger pull-left" @click="deleteOpenent(openent)"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                         <button class="btn btn-sm btn-info pull-left" @click="editOpenent(openent)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                         </td>
                         <td>

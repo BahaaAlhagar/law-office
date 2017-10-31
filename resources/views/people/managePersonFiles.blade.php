@@ -60,7 +60,7 @@
                   </td>
                   <td>
                       <button class="btn btn-info" @click="editFile(file)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                      <button class="btn btn-danger" @click="deleteFile(file)"><i class="fa fa-times" aria-hidden="true"></i></button>
+                      <button class="btn btn-danger" @click="deleteFile(file)"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                   </td>
                 </tr>
             </tbody>

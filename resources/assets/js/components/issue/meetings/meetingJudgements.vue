@@ -22,7 +22,7 @@
             <!-- add challenge if the judgement is present and doesnt have challenge(child meeting) and judgement level is less than 5 -->
             <button v-if="judgement.child_meeting == null && judgement.present && judgement.level < 5" class="btn btn-sm btn-dark pull-left" 
             data-toggle="modal" 
-            data-target="#addChallenge"> اضافة طعن </button>
+            data-target="#addChallenge">طعن</button>
 
             <!-- add challenge component if judgement doesnt have a child meeting -->
             <add-challenge v-if="judgement.child_meeting == null && judgement.level < 5" :judgement="judgement" :issue="issue"></add-challenge>
@@ -35,7 +35,7 @@
             <add-announcement v-if="judgement.child_meeting == null && !judgement.present && meeting.level == 1"></add-announcement>
 
             <!-- delete judgement if doesnt have challenge(child meeting) -->
-            <button v-if="judgement.child_meeting == null" class="btn btn-sm btn-danger pull-left" @click="deleteJudgement(judgement)"><i class="fa fa-times" aria-hidden="true"></i></button>
+            <button v-if="judgement.child_meeting == null" class="btn btn-sm btn-danger pull-left" @click="deleteJudgement(judgement)"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
 
             <!-- edit judgement -->
             <button class="btn btn-sm btn-info pull-left" @click="editJudgement(judgement)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
@@ -89,10 +89,10 @@
                   <span class="print-hidden" style="display: inline-block;">
                   <!-- add challenge if the judgement doesnt have challenge(child meeting) - and judgement type is 1 or 2 -->
                   <button v-if="!currentJudgement.child_meeting && currentJudgement.type < 3" class="btn btn-sm btn-dark pull-left" 
-                  @click="addCriminalChallenge(currentJudgement)"> اضافة طعن </button>
+                  @click="addCriminalChallenge(currentJudgement)">طعن</button>
 
                   <!-- delete judgement if doesnt have challenge(child meeting) -->
-                  <button v-if="currentJudgement.child_meeting == null" class="btn btn-sm btn-danger pull-left" @click="deleteJudgement(currentJudgement)"><i class="fa fa-times" aria-hidden="true"></i></button>
+                  <button v-if="currentJudgement.child_meeting == null" class="btn btn-sm btn-danger pull-left" @click="deleteJudgement(currentJudgement)"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
 
                   <!-- edit judgement -->
                   <button class="btn btn-sm btn-info pull-left" @click="editJudgement(currentJudgement)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
@@ -125,10 +125,10 @@
 
                   <!-- add challenge if the judgement doesnt have challenge(child meeting) and level is less than 5 -->
                   <button v-if="judgement.child_meeting == null && judgement.level < 5" class="btn btn-sm btn-dark pull-left" 
-                  @click="addCriminalChallenge(judgement)"> اضافة طعن </button>
+                  @click="addCriminalChallenge(judgement)">طعن</button>
 
                   <!-- delete judgement if doesnt have challenge(child meeting) -->
-                  <button v-if="judgement.child_meeting == null" class="btn btn-sm btn-danger pull-left" @click="deleteJudgement(judgement)"><i class="fa fa-times" aria-hidden="true"></i></button>
+                  <button v-if="judgement.child_meeting == null" class="btn btn-sm btn-danger pull-left" @click="deleteJudgement(judgement)"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
 
                   <!-- edit judgement -->
                   <button class="btn btn-sm btn-info pull-left" @click="editJudgement(judgement)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
