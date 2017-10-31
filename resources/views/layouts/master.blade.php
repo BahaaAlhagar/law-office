@@ -73,7 +73,7 @@
                     </div>
                 <div class="modal-body">
                     <center>
-                    <img src="{{ Storage::url('profile/pic.jpg') }}" name="aboutme" width="140" height="140" border="0" class="rounded-circle"></a>
+                    <img src="{{ Storage::url('pic.jpg') }}" name="aboutme" width="140" height="140" border="0" class="rounded-circle"></a>
                     <h3 class="media-heading"><b>Bahaa Alhagar</b></h3>
                     <span class="social-icons">
                     <a href="https://github.com/BahaaAlhagar" target="_blank">
