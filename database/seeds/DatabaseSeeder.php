@@ -11,6 +11,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        // seed for admin user when installing
+    	$admin = new \App\User();
+
+    	$admin->name = 'مدير التطبيق';
+    	$admin->email = 'admin@law.dev';
+    	$admin->password = bcrypt('secret');
+    	$admin->group_id = 5;
+    	$admin->remember_token = str_random(30);
+    	$admin->save();
+
+
+
+    	// old seeds
+/*
         // $this->call(UsersTableSeeder::class);
         // Populate roles
 		factory(App\Person::class, 20)->create();
@@ -26,6 +40,6 @@ class DatabaseSeeder extends Seeder
 		    $contract->people()->attach(
 		        $people->random(rand(1, 3))->pluck('id')->toArray()
 		    );
-		});
+		});*/
     }
 }
