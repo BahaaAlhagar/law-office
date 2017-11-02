@@ -114,7 +114,7 @@
 
 					<td>
 						<ul>
-							<span v-for="person in issue.openents">@{{ person.name }} / @{{ openentType(person) }}<br>
+							<span style="display: block;" v-for="person in issue.openents">@{{ person.name }} / @{{ openentType(person) }}
 							</span>
 						</ul>
 					</td>

@@ -38,6 +38,7 @@
 				<th>الرقم</th>
 				<th>النوع - المكتب</th>
 				<th>رقم الفهرس</th>
+				<th>ملاحظات</th>
 				<th>الموكلين</th>
 				<th class="print-hidden">الاعدادات</th>
 				</tr>
@@ -69,13 +70,10 @@
 						</span>
 					 	@{{ contract.office }} 
 					</td>
-
 					<td> @{{ contract.archive_number }} </td>
-
-					<td>
-						<ul>
-							<li v-for="person in contract.people">@{{ person.name }}</li>
-						</ul>
+					<td> @{{ contract.notes }} </td>
+					<td style="width: 350px;">
+							<span style="display: block;" v-for="person in contract.people">@{{ person.name }}</span>
 					</td>
 
 					<td v-if="current_view != 'trashed'" class="print-hidden">

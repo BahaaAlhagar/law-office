@@ -31,6 +31,7 @@ class storeContractRequest extends FormRequest
             'type' => 'required|integer',
             'office' => 'required|string',
             'archive_number' => 'nullable|integer',
+            'nots' => 'nullable|string',
             'people' => 'required'
         ];
     }

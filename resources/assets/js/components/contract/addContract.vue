@@ -90,6 +90,14 @@
                         <span class="alert-danger" v-if="form.errors.has('archive_number')" v-text="form.errors.get('archive_number')"></span>
                     </div>
 
+                    <div class="form-group">
+                        <label for="notes" class="label">ملاحظات:</label>
+                        
+                        <textarea type="text" id="notes" name="notes" class="form-control" rows="5" v-model="form.notes"></textarea> 
+
+                        <span class="alert-danger" v-if="form.errors.has('notes')" v-text="form.errors.get('notes')"></span>
+                    </div>
+
                     <div class="form-group heading">
                         <button class="button btn-lg btn-success" :disabled="form.errors.any()">اضافة</button>
                     </div>
@@ -116,6 +124,7 @@
                 type: '',
                 office: '',
                 archive_number: '',
+                notes: '',
                 people: []
             }),
         };

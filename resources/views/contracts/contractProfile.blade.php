@@ -48,6 +48,10 @@
                   <th><strong>رقم التوكيل بفهرس الحفظ</strong></th>
                   <td>@{{ contract.archive_number }}</td>
                 </tr>
+                <tr>
+                  <th><strong>ملاحظات</strong></th>
+                  <td>@{{ contract.notes }}</td>
+                </tr>
               </tbody>
             </table>
           </div>

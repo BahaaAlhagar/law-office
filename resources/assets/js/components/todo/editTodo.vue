@@ -45,13 +45,13 @@
                     <div class="form-group">
                         <label for="notes" class="label">ملاحظات:</label>
                         
-                        <input type="text" id="notes" name="notes" class="form-control" v-model="editForm.notes"> 
+                        <textarea type="text" id="notes" name="notes" class="form-control" rows="5" v-model="editForm.notes"></textarea> 
 
                         <span class="alert-danger" v-if="editForm.errors.has('notes')" v-text="editForm.errors.get('notes')"></span>
                     </div>
 
                     <div class="form-group">
-                        <label for="completed" class="label">ملاحظات:</label>
+                        <label for="completed" class="label">الحالة:</label>
                         
                         <select id="completed" name="completed" class="form-control" v-model.number="editForm.completed">
                             <option value="1">اكتمل</option>

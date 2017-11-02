@@ -21,6 +21,7 @@ class CreateContractsTable extends Migration
             $table->integer('type');
             $table->string('office');
             $table->integer('archive_number')->nullable();
+            $table->string('notes')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

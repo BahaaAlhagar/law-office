@@ -27,8 +27,8 @@
                         <button class="btn btn-sm btn-info pull-left" @click="editOpenent(openent)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                         </td>
                         <td>
-                            <span v-for="contract in openent.contracts">
-                              <a :href="'/contracts/' + contract.id">{{ contract.number }} لسنة {{ contract.year }} {{ contractType(contract) }}</a><br>
+                            <span style="display: block;" v-for="contract in openent.contracts">
+                              <a :href="'/contracts/' + contract.id">{{ contract.number }} لسنة {{ contract.year }} {{ contractType(contract) }}</a>
                             </span>
                         </td>
                         <td>{{ openentType(openent) }}</td>

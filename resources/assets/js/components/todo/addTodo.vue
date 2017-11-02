@@ -45,7 +45,7 @@
                     <div class="form-group">
                         <label for="notes" class="label">ملاحظات:</label>
                         
-                        <input type="text" id="notes" name="notes" class="form-control" v-model="form.notes"> 
+                        <textarea type="text" id="notes" name="notes" class="form-control" rows="5" v-model="form.notes"></textarea> 
 
                         <span class="alert-danger" v-if="form.errors.has('notes')" v-text="form.errors.get('notes')"></span>
                     </div>

@@ -90,6 +90,14 @@
                         <span class="alert-danger" v-if="editForm.errors.has('archive_number')" v-text="editForm.errors.get('archive_number')"></span>
                     </div>
 
+                    <div class="form-group">
+                        <label for="notes" class="label">ملاحظات:</label>
+                        
+                        <textarea type="text" id="notes" name="notes" class="form-control" rows="5" v-model="editForm.notes"></textarea> 
+
+                        <span class="alert-danger" v-if="editForm.errors.has('notes')" v-text="editForm.errors.get('notes')"></span>
+                    </div>
+
                     <div class="form-group heading">
                         <button class="button btn-lg btn-success" :disabled="editForm.errors.any()">تعديل</button>
                     </div>
@@ -116,6 +124,7 @@
                 type: '',
                 office: '',
                 archive_number: '',
+                notes: '',
                 people: []
             }),
             id: ''
@@ -142,7 +151,8 @@
         	this.editForm.type   = contract.type;
         	this.editForm.office = contract.office;
         	this.editForm.people = contract.people;
-        	this.editForm.archive_number = contract.archive_number;
+            this.editForm.archive_number = contract.archive_number;
+        	this.editForm.notes = contract.notes;
         	this.id = contract.id;
         },
         customLabel(option) {
