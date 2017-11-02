@@ -91,12 +91,15 @@ const manageTodos = new Vue({
         $('.print-hidden').show()
         $('.btn').show()
       },
-      updateTodo(todo, $event)
-      {
+      updateTodo(todo, $event){
         this.$refs.editTodo.editTodoModal(todo);
         this.$refs.editTodo.editForm.completed = $event.target.checked;
         this.$refs.editTodo.onTodoUpdate();
-
+      },
+      dayFormat(todoDate){
+          var d = new Date(todoDate);
+          var days = ["الاحــد","الاثــنين","الثلاثــاء","الاربعــاء","الخمــيس","الجمـــعة","الســبت"];
+          return days[d.getDay()] + ' ' + todoDate;
       }
    	},
     created() {

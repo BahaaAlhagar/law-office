@@ -108,7 +108,7 @@ class Judgement extends Model
     public function scopeOpenJudgement($query)
     {
         return $query->whereNotNull('record')
-                    ->where('type', '<', 3)
+                    ->where('type', 1)
                     ->orderBy('date', 'asc');
     }
 }

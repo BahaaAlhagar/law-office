@@ -26,7 +26,7 @@
                   </td>
                   <td>
                       <span class="text-center" style="display: block;">
-                        {{ meeting.date }}
+                        {{ dayFormat(meeting.date) }}
                       </span>
                       <button v-if="!meeting.judgements.length && !meeting.child_meetings.length" class="btn btn-sm btn-danger pull-left" @click="deleteMeeting(meeting)"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                       <button class="btn btn-sm btn-info pull-left" @click="editMeeting(meeting)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
@@ -183,6 +183,11 @@ export default {
       onDecisionDelete(){
         toastr.warning('تم حذف القرار بنجاح');
         eventBus.$emit('refetchIssueMeetings');
+      },
+      dayFormat(meetingdate){
+          var d = new Date(meetingdate);
+          var days = ["الاحــد","الاثــنين","الثلاثــاء","الاربعــاء","الخمــيس","الجمـــعة","الســبت"];
+          return days[d.getDay()] + ' ' + meetingdate;
       }
     },
     components: {

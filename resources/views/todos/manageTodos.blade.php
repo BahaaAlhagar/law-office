@@ -42,7 +42,7 @@
 			<tbody>
 				<tr v-for="todo in todos" :key="todo.id">
 					<td> @{{ todo.name }} </td>
-					<td> @{{ todo.date }} </td>
+					<td> @{{ dayFormat(todo.date) }} </td>
 					<td> @{{ todo.notes }} </td>
 					<td class="print-hidden">
 						<input type="checkbox" id="checkbox" @click="updateTodo(todo, $event)" :checked="todo.completed"> 
