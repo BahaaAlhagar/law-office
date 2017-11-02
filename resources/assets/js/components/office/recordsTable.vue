@@ -14,7 +14,7 @@
                 	<th class="brown"><strong>الحكم</strong></th>
                   <th class="brown"><strong>تــاريخ الحــكـم</strong></th>
                   <th class="brown"><strong>رقم القضية</strong></th>
-                  <th class="brown"><strong>اخر ايام العقوبة</strong></th>
+                  <th class="brown"><strong>تاريخ السقوط بالتقادم</strong></th>
                 	<th class="print-hidden"></th>
                 </tr>
                 <tr v-for="judgement in data" :key="judgement.id">

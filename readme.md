@@ -1,53 +1,95 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+# Lawyer Office Panel | PHP Laravel Panel
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+- [About](#about) عن التطبيق
+- [Requirements](#requirements) المتطلبات
+- [Installation](#installation) التثبيت
 
-## About Laravel
+## About
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+Simple Panel to control lawyer office in arabic, including Cases & Office Clients & Contracts & Todos & Files Mangement.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## <div dir="rtl">عن التطبيق</div>
+<div dir="rtl">
+تطبيق لادارة مكاتب المحاماة يسهل انجاز الاعمال الاداراية ومتابعة الجلسات ويتميز بالاتى :
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb combination of simplicity, elegance, and innovation give you tools you need to build any application with which you are tasked.
+- سهولة البحث عن اى قضية او موكل او خصم او توكيل لاستحضار بياناته.
+- عرض موكلى المكتب بالاسم + عرض الخصوم.
+- عرض توكيلات وقضايا واحكام كل موكل او خصم.
+- صفحة خاصة لملفات كل شخص.
+- عرض توكيلات المكتب حسب انواعها سواء كانت عامة او خاصة بالاضافة الى عرض عقود الوكالة بارقامها وكذلك الموكلين فى كل عقد وكالة او توكيل
+- عرض قضايا المكتب حسب نوع القضية (جنائى - مدنى - ادارى .... الخ).
+- عرض الاعمال الادارية مرتبة حسب تاريخها وموقفها من الانجاز.
+- عرض الجلسات حسب نوع القضية.
+- صفحة خاصة لكل قضية تحتوى على الجلسات وقراراتها و الخصوم بتوكيلاتهم و صفتهم.
+- قسم خاص لملفات القضية كصور عريضة الدعوى او الاحكام او المحاضر الخ..
+- عرض ارقام حصر الاحكام الجنائية حسب درجة التقاضى وتاريخ سقوط الحكم بالتقادم.
+- عرض الجاسات السابقة التى لا تحتوى على قرارات سواء باتاجيل او احكام لمتابعتها.
+- عرض القضايا التى لا تحتوى على رقم القضية الجزئى او المستانف لاستيفائه.
+- عرض القضايا التى لا تحتوى على خصوم لاستيفائهم.
+- عرض القضايا التى لا تحتوى على جلسات لاستيفائهم.
+- عرض احكام الادانة الجنائية التى لا تحتوى على ارقام حصر لاستيفائها.
+- عرض الاحكام الغيابية لاتخاذ اجراءات الاعلان.
+- عرض الاحكام الحضورية + تاريخ نهاية الطعن فى الحكم لامكانية متابعة الاحكام واوقات الطعن فيها.
+- عرض الاحكام الجنائية الصادرة ضد موكلى المكتب وتاريخ سقوطها.
+- عرض الاحكام الجنائية الصادرة لصالح موكلى المكتب وتاريخ سقوطها.
+</div>
 
-## Learning Laravel
+## Requirements <span dir="rtl">المتطلبات</span>
 
-Laravel has the most extensive and thorough documentation and video tutorial library of any modern web application framework. The [Laravel documentation](https://laravel.com/docs) is thorough, complete, and makes it a breeze to get started learning the framework.
+```bash
+	
+    PHP >= 7.0.0
+    OpenSSL PHP Extension
+    PDO PHP Extension
+    Mbstring PHP Extension
+    Tokenizer PHP Extension
+    XML PHP Extension
 
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 900 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
+```
 
-## Laravel Sponsors
+## Installation
 
-We would like to extend our thanks to the following sponsors for helping fund on-going Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](http://patreon.com/taylorotwell):
+1. Download or Clone this Repository
 
-- **[Vehikl](http://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Styde](https://styde.net)**
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
+2. From your this Repository root folder in terminal run:
 
-## Contributing
+```bash
+    composer install
+```
+then
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+```bash
+    php arstian migrate --seed
+```
 
-## Security Vulnerabilities
+3. Navigate to the browser and use the default admin & password to log in
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+```bash
+    username: admin@law.dev
+    password: secret
+```
 
-## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+## <div dir="rtl">التثبيت</div>
+
+<div dir="rtl">
+1. حمل او انسخ التطيبق
+
+2. من داخل المجلد الرئيسى للتطبيق افتح terminal واخل الاوامر التالية:
+
+```bash
+    composer install
+```
+ثم
+
+```bash
+    php arstian migrate --seed
+```
+
+3. افتح التطبيق باستخدام المتصفح واستخدم البيانات التالية للدخول
+
+```bash
+    username: admin@law.dev
+    password: secret
+```
+</div>
