@@ -100,6 +100,7 @@ import delayMeeting from './delayMeeting';
 import meetingJudgements from './meetingJudgements';
 import addDecision from './addDecision';
 import editDecision from './editDecision';
+import moment from 'moment';
 
 export default {
 	props: ['issue', 'accusedopenents', 'meetings'],
@@ -185,9 +186,9 @@ export default {
         eventBus.$emit('refetchIssueMeetings');
       },
       dayFormat(meetingdate){
-          var d = new Date(meetingdate);
+          var d = new moment(meetingdate).tz('Africa/Cairo');
           var days = ["الاحــد","الاثــنين","الثلاثــاء","الاربعــاء","الخمــيس","الجمـــعة","الســبت"];
-          return days[d.getDay()] + ' ' + meetingdate;
+          return days[d.isoWeekday()] + ' ' + meetingdate;
       }
     },
     components: {
