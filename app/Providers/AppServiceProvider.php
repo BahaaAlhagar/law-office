@@ -22,8 +22,6 @@ class AppServiceProvider extends ServiceProvider
             'issue' => 'App\Issue',
             'person' => 'App\Person',
         ]);
-
-        Carbon::setWeekStartsAt(Carbon::SATURDAY);
     }
 
     /**
