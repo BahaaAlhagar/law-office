@@ -20,6 +20,7 @@ window.Form = Form;
 import jquery from 'jquery';
 import toastr from 'toastr';
 import bootstrap from 'bootstrap';
+import moment from 'moment'
 
 
 
@@ -97,9 +98,9 @@ const manageTodos = new Vue({
         this.$refs.editTodo.onTodoUpdate();
       },
       dayFormat(todoDate){
-          var d = new Date(todoDate);
+          var d = new moment(todoDate).tz('Africa/Cairo');
           var days = ["الاحــد","الاثــنين","الثلاثــاء","الاربعــاء","الخمــيس","الجمـــعة","الســبت"];
-          return days[d.getDay()] + ' ' + todoDate;
+          return days[d.day()] + ' ' + todoDate;
       }
    	},
     created() {

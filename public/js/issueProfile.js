@@ -10617,7 +10617,7 @@ exports.default = {
     dayFormat: function dayFormat(meetingdate) {
       var d = new _moment2.default(meetingdate).tz('Africa/Cairo');
       var days = ["الاحــد", "الاثــنين", "الثلاثــاء", "الاربعــاء", "الخمــيس", "الجمـــعة", "الســبت"];
-      return days[d.isoWeekday()] + ' ' + meetingdate;
+      return days[d.day()] + ' ' + meetingdate;
     }
   },
   components: {

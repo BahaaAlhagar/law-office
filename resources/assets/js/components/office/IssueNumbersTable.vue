@@ -56,6 +56,7 @@
 
 <script>
 	import editIssue from '../issue/editIssue';
+  import moment from 'moment'
 
 	export default {
 		props: ['header', 'data', 'id'],
@@ -94,9 +95,9 @@
 	          }
 	      },
 	      dayFormat(meetingdate){
-	      	var d = new Date(meetingdate);
-	        var days = ["الاحــد","الاثــنين","الثلاثــاء","الاربعــاء","الخمــيس","الجمـــعة","الســبت"];
-	        return days[d.getDay()] + ' ' + meetingdate;
+	      	var d = new moment(meetingdate).tz('Africa/Cairo');
+            var days = ["الاحــد","الاثــنين","الثلاثــاء","الاربعــاء","الخمــيس","الجمـــعة","الســبت"];
+            return days[d.day()] + ' ' + meetingdate;
 	      }
 		},
 		components: {

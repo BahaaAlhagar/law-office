@@ -63,6 +63,7 @@
 
 <script>
 	import editMeeting from '../issue/meetings/editMeeting';
+  import moment from 'moment';
 
 	export default {
 		props: ['header', 'data', 'id'],
@@ -101,9 +102,9 @@
 	          }
 	      },
 	      dayFormat(meetingdate){
-	      	var d = new Date(meetingdate);
-	        var days = ["الاحــد","الاثــنين","الثلاثــاء","الاربعــاء","الخمــيس","الجمـــعة","الســبت"];
-	        return days[d.getDay()] + ' ' + meetingdate;
+  	      	var d = new moment(meetingdate).tz('Africa/Cairo');
+            var days = ["الاحــد","الاثــنين","الثلاثــاء","الاربعــاء","الخمــيس","الجمـــعة","الســبت"];
+            return days[d.day()] + ' ' + meetingdate;
 	      },
 	      levelCheck(meeting){
 		      	if(meeting.level > 2){
