@@ -1,5 +1,6 @@
 {
     "/js/issueProfile.js": "/js/issueProfile.js",
+    "/js/vendor.js": "/js/vendor.js",
     "/js/mainPage.js": "/js/mainPage.js",
     "/js/expirationPage.js": "/js/expirationPage.js",
     "/js/personFiles.js": "/js/personFiles.js",
@@ -14,6 +15,5 @@
     "/js/contractProfile.js": "/js/contractProfile.js",
     "/js/personProfile.js": "/js/personProfile.js",
     "/js/listRecords.js": "/js/listRecords.js",
-    "/js/vendor.js": "/js/vendor.js",
     "/js/manifest.js": "/js/manifest.js"
 }
