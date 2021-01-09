@@ -18,7 +18,7 @@ window.toastr = toastr;
 
 import NotPresentTable from './components/office/NotPresentTable';
 import CevilJudgementsTable from './components/office/CevilJudgementsTable';
-import MeetingsTable from './components/meetings/MeetingsTable';
+import MeetingsTable from './components/meetings/meetingsTable';
 
 
 window.eventBus = new Vue();

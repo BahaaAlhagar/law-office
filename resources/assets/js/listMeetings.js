@@ -16,7 +16,7 @@ import bootstrap from 'bootstrap';
 window.toastr = toastr;
 
 
-import MeetingsTable from './components/meetings/MeetingsTable';
+import MeetingsTable from './components/meetings/meetingsTable';
 import flatPickr from 'vue-flatpickr-component';
 import 'flatpickr/dist/flatpickr.css';
 const Arabic = require("flatpickr/dist/l10n/ar.js").ar;

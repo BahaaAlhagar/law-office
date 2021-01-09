@@ -17,9 +17,8 @@ class ActiveIssueScope implements Scope
      */
     public function apply(Builder $builder, Model $model)
     {
-        $builder->whereHas('issue', function($query)
-        {
+        $builder->whereHas('issue', function ($query) {
             $query->where('deleted_at', null);
-        });
+        }, '>=', 1);
     }
 }
