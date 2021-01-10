@@ -101,6 +101,7 @@ import meetingJudgements from './meetingJudgements';
 import addDecision from './addDecision';
 import editDecision from './editDecision';
 import moment from 'moment';
+import 'moment-timezone';
 
 export default {
 	props: ['issue', 'accusedopenents', 'meetings'],

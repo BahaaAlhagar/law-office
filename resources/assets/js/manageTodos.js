@@ -22,7 +22,7 @@ import toastr from 'toastr';
 import bootstrap from 'bootstrap';
 import moment from 'moment'
 
-
+import 'moment-timezone';
 
 
 
