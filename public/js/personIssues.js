@@ -2759,6 +2759,9 @@ window.axios = __webpack_require__(92);
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
+window.Popper = __webpack_require__(317).default;
+window.$ = window.jQuery = __webpack_require__(115);
+
 var token = document.head.querySelector('meta[name="csrf-token"]');
 
 if (token) {

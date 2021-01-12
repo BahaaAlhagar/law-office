@@ -2759,6 +2759,9 @@ window.axios = __webpack_require__(92);
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
+window.Popper = __webpack_require__(317).default;
+window.$ = window.jQuery = __webpack_require__(115);
+
 var token = document.head.querySelector('meta[name="csrf-token"]');
 
 if (token) {
@@ -8006,10 +8009,6 @@ exports.push([module.i, "/*\n * The MIT License\n * Copyright (c) 2012 Matias Me
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-
-
-window.$ = window.jQuery = __webpack_require__(115);
-
 exports.default = {
     data: function data() {
         return {
