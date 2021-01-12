@@ -8006,6 +8006,10 @@ exports.push([module.i, "/*\n * The MIT License\n * Copyright (c) 2012 Matias Me
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+
+
+window.$ = window.jQuery = __webpack_require__(115);
+
 exports.default = {
     data: function data() {
         return {

@@ -45,8 +45,8 @@
         <script src="{{ URL::asset('js/respond-1.4.2.min.js') }}"></script>
 
         <!-- jquery & bootstrap requirements -->
-        <script src="{{ URL::asset('js/jquery-3.2.1.slim.min.js') }}"></script>
-        <script src="{{ URL::asset('js/popper.min.js') }}"></script>
+        {{-- <script src="{{ URL::asset('js/jquery-3.2.1.slim.min.js') }}"></script> --}}
+        {{-- <script src="{{ URL::asset('js/popper.min.js') }}"></script> --}}
         
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
         <script src="{{ URL::asset('js/ie10-viewport-bug-workaround.js') }}"></script>

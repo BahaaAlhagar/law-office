@@ -6022,6 +6022,10 @@ exports.push([module.i, "/*\n * The MIT License\n * Copyright (c) 2012 Matias Me
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+
+
+window.$ = window.jQuery = __webpack_require__(115);
+
 exports.default = {
     data: function data() {
         return {
@@ -6765,10 +6769,6 @@ var _Form = __webpack_require__(48);
 
 var _Form2 = _interopRequireDefault(_Form);
 
-var _jquery = __webpack_require__(115);
-
-var _jquery2 = _interopRequireDefault(_jquery);
-
 var _toastr = __webpack_require__(116);
 
 var _toastr2 = _interopRequireDefault(_toastr);
@@ -6786,6 +6786,9 @@ window.Vue = __webpack_require__(119);
 Vue.use(_vueResource2.default);
 
 window.Form = _Form2.default;
+
+window.Popper = __webpack_require__(317).default;
+window.$ = window.jQuery = __webpack_require__(115);
 
 window.eventBus = new Vue();
 

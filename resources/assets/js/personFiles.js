@@ -15,9 +15,12 @@ import editFile from './components/files/editFile.vue';
 import Form from './partials/Form';
 window.Form = Form;
 
-import jquery from 'jquery';
+window.Popper = require('popper.js').default;
+window.$ = window.jQuery = require('jquery');
+
 import toastr from 'toastr';
 import bootstrap from 'bootstrap';
+
 
 window.eventBus = new Vue();
 
