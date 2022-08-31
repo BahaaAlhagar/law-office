@@ -22,7 +22,7 @@
     "jquery": "^3.5.1",
     "less-loader": "^4.0.5",
     "moment": "^2.29.1",
-    "moment-timezone": "^0.5.32",
+    "moment-timezone": "^0.5.35",
     "npm": "^5.4.2",
     "popper.js": "^1.16.1",
     "select2": "^4.0.3",
