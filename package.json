@@ -10,7 +10,7 @@
     "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
   },
   "devDependencies": {
-    "laravel-mix": "^1.0"
+    "laravel-mix": "^6.0"
   },
   "dependencies": {
     "axios": "^0.16.2",
@@ -20,7 +20,7 @@
     "dropzone": "^5.2.0",
     "install": "^0.10.1",
     "jquery": "^3.5.1",
-    "less-loader": "^4.0.5",
+    "less-loader": "^11.1.0",
     "moment": "^2.29.1",
     "moment-timezone": "^0.5.32",
     "npm": "^5.4.2",
